@@ -1,0 +1,18 @@
+*******************************************************************************
+  International Telecommunications Union - Radiocommunications Sector (ITU-R)
+  
+                                    P533() 
+						 
+     A software method for the prediction of the performance of HF circuits
+	              based on ITU Recommendation P.533-13
+						   
+*******************************************************************************
+
+
+P533() 
+	This program provides methods for the prediction of available frequencies, signal levels, and the predicted reliability for analogue and digital-modulated HF systems, taking into account not only the signal-to-noise ratio but also the expected time and frequency spreads of the channel. This program calculates the HF path parameters that appear in ITU-R P.533-12. 
+	Great care has been taken in this implementation to follow the ITU published standard P.533-13. The flow of this implementation was designed primarily for readability and clarity, with performance being the secondary goal. It is hoped that this code will illuminate the standard and be easily maintainable.
+
+
+
+Behm 12/19/17

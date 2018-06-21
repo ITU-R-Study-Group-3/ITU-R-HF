@@ -1,0 +1,29 @@
+﻿          1 file(s) copied.
+          1 file(s) copied.
+  Between7000kmand9000km.c
+  CalculateCPParameters.c
+  CircuitReliability.c
+  ELayerScreeningFrequency.c
+  Geometry.c
+  InitializePath.c
+  InputDump.c
+  Magfit.c
+  MedianAvailableReceiverPower.c
+  MedianSkywaveFieldStrengthLong.c
+  MedianSkywaveFieldStrengthShort.c
+  MUFBasic.c
+  MUFOperational.c
+  MUFVariability.c
+  P533.c
+  PathMemory.c
+  ReadIonParameters.c
+  ReadP1239.c
+  ReadType13.c
+  ValidatePath.c
+     Creating library C:\Users\Behm\Documents\GitHub\ITURHFProp\Win32\Combined\Release\P533.lib and object C:\Users\Behm\Documents\GitHub\ITURHFProp\Win32\Combined\Release\P533.exp
+  Generating code
+  All 82 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  P533.vcxproj -> C:\Users\Behm\Documents\GitHub\ITURHFProp\Win32\Combined\Release\P533.dll
+          1 file(s) copied.
+          1 file(s) copied.

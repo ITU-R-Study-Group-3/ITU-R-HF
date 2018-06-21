@@ -1,0 +1,43 @@
+PathName "Test case ID 1: Year 85 Month 5"
+PathTXName "LUXEMBURG"
+Path.L_tx.lat 49.6666666667
+Path.L_tx.lng 6.31666666667
+TXAntFilePath "ISOTROPIC"
+TXGOS 0.0
+TXBearing 106.868
+PathRXName "BOCKHACKEN"
+Path.L_rx.lat 51.1166666667
+Path.L_rx.lng 7.26666666667
+RXAntFilePath "ISOTROPIC"
+RXGOS 0.0
+RXBearing 43.666
+AntennaOrientation "MANUAL"
+Path.year 1985
+Path.month 5
+Path.hour 20
+Path.SSN 18
+Path.frequency 6.1
+Path.txpower 0.0
+Path.BW 1000.0
+Path.SNRr 10.0
+Path.SNRXXp 10
+Path.ManMadeNoise "RURAL"
+Path.Modulation "ANALOG"
+Path.SIRr 23.76
+Path.A 0.0
+Path.TW 0.0
+Path.FW 0.0
+Path.T0 0.0
+Path.F0 0.0
+Path.SorL "SHORTPATH"
+RptFilePath "C:\Users\behm\Documents\GitHub\GitHf\Reports\"
+\\RptFileFormat "RPT_E | RPT_PR | RPT_RXLOCATION | RPT_D | RPT_SNRXX | RPT_OCR | RPT_OCRS"
+\\RptFileFormat "RPT_ALL"
+RptFileFormat "RPT_NOISESOURCESD | RPT_NOISESOURCES | RPT_NOISETOTALD | RPT_NOISETOTAL"
+SE.lat 51.1166666667
+SE.lng 7.26666666667
+NW.lat 51.1166666667
+NW.lng 7.26666666667
+latinc 1.0
+lnginc 1.0
+DataFilePath "C:\Users\behm\Documents\GitHub\GitHf\Data\"

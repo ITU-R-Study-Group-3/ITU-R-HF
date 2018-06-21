@@ -1,0 +1,102 @@
+---------------------------------------------------------------------------
+ International Telecommunications Union - Radiocommunication Sector (ITU-R)
+     ITURHFProp         Ver May  3 2018	- Mon Apr 30 11:45:04 2018
+     HF Model (P533)    Ver P.533-13.8	- Mon Apr 30 11:45:04 2018
+     Noise Model (P372) Ver P.372-13.1	- Mon Apr 30 11:45:04 2018
+     Analysis Prepared  Thu May 10 09:52:50 2018
+
+---------------------------------------------------------------------------
+
+***************************** P533 Input Parameters ****************************
+
+	United Kingdom to Moscow
+	Year = 2018
+	Month = May
+	Hour = 2 (hour UTC)
+	SSN (R12) = 10
+	Distance = 2562.104539 (km)
+	dmax = 4000.000000 (km)
+	Tx power = -10.000000
+	Tx Location Moscow
+	Tx latitude  =  55.750000 N
+	Tx longitude =  37.580000 E
+	Rx Location Birmingham
+	Rx latitude  =  52.486200 N
+	Rx longitude =   1.890400 W
+	local time Rx   = 2 (hour UTC)
+	local time Tx   = 4 (hour UTC)
+	Frequency       = 14.000000
+	Bandwidth       = 1.000000
+	Modulation = ANALOG
+	Required signal-to-noise ratio = 31.000000
+	Required % of month signal-to-noise ratio =  90
+	Required signal-to-interference ratio = 0.000000
+	Man-made noise = RESIDENTIAL
+	Antenna configuration: Transmitter main beam to receiver main beam
+	Transmit antenna 14 MHz Dipole at 10 m AAGL    
+	Transmit antenna bearing = 278.500401
+	Transmit antenna gain offset = 0.000000
+	Receive antenna  14 MHz Dipole at 10 m AAGL    
+	Receive antenna bearing = 66.073351
+	Receive antenna gain offset = 0.000000
+
+************************ End P533 Input Parameters *****************************
+
+************************** ITURHFP Input Parameters *****************************
+
+	Upper left (North West) latitude   =  52.486200 N
+	Upper left (North West) longitude  =   1.890400 W
+	Lower right (South East) latitude  =  52.486200 N
+	Lower right (South East) longitude =   1.890400 W
+	Number of frequencies = 1
+	Number of hours       = 12
+	Number of months      = 1
+	Latitude increment    = 1.000000 (deg)
+	Longitude increment   = 1.000000 (deg)
+
+************************** ITURHFP Input Parameters *****************************
+
+******************************** Data Format ***********************************
+
+Column 01: Month
+Column 02: Hour
+Column 03: Frequency (MHz)
+Column 04: ele - Path minimum elevation angle (deg)
+Column 05: Pr - Median receiver power (dB)
+Column 06: Grw - Receive Antenna Gain (dbi)
+Column 07: SNR - Median signal-to-noise ratio (dB)
+Column 08: BCR - Basic circuit reliability (%)
+Column 09: Dominant mode
+Column 10: Dominant mode - Elevation angle (deg)
+Column 11: Dominant mode - Delay (mS)
+Column 12: Dominant mode - Loss (dB)
+Column 13: Dominant mode - Propagation probability (%)
+Column 14: Dominant mode - Virtual height (km)
+Column 15: Dominant mode - Median received power (dB)
+Column 16: Dominant mode - Receiver Antenna Gain (dBi)
+Column 17: Dominant mode - Field Strength (dB(1uV/m))
+Column 18: Dominant mode - Basic MUF (MHz)
+Column 19: Short Path (<=7000 km) Field Strength (dB(1uV/m))
+Column 20: Long Path (>9000km) Field Strength (dB(1uV/m))
+
+************************** End Data Format ********************************
+
+************************ Calculated Parameters ****************************
+
+05, 02,  14.00,   8.08,-144.11,   0.09,  18.88,  12.87,  1F2 ,   8.08,   0.00, 166.12,   4.43, 486.47,-146.54,   0.09, -16.51,   8.94, -15.8361,-307.0000
+05, 04,  14.00,   7.65,-138.55,  -0.36,  24.45,  25.52,  1F2 ,   7.65,   0.00, 159.27,   8.15, 360.43,-140.60,  -0.36, -10.11,  10.89,  -9.6093,-307.0000
+05, 06,  14.00,   7.34,-130.34,  -0.69,  32.61,  56.40,  1F2 ,   7.34,   0.00, 149.37,  12.38, 375.90,-131.34,  -0.69,  -0.53,  13.46,  -0.3184,-307.0000
+05, 08,  14.00,   7.42,-122.59,  -0.60,  40.30,  77.49,  1F2 ,   7.42,   0.00, 140.89,  94.59, 379.40,-122.70,  -0.60,   8.02,  14.63,   8.0475,-307.0000
+05, 10,  14.00,   7.40,-124.60,  -0.62,  38.18,  73.04,  1F2 ,   7.40,   0.00, 143.06,  95.13, 378.50,-124.90,  -0.62,   5.84,  15.04,   5.9297,-307.0000
+05, 12,  14.00,   7.41,-124.96,  -0.61,  37.72,  71.96,  1F2 ,   7.41,   0.00, 143.58,  94.24, 378.85,-125.41,  -0.61,   5.33,  14.58,   5.6581,-307.0000
+05, 14,  14.00,   7.41,-123.84,  -0.61,  38.68,  74.20,  1F2 ,   7.41,   0.00, 142.19,  93.64, 378.86,-124.01,  -0.61,   6.72,  14.14,   6.7712,-307.0000
+05, 16,  14.00,   7.07,-124.19,  -0.96,  38.18,  73.13,  1F2 ,   7.07,   0.00, 141.90,  94.24, 359.76,-124.42,  -0.96,   6.66,  14.90,   6.7086,-307.0000
+05, 18,  14.00,   6.80,-121.84,  -1.29,  40.70,  78.37,  1F2 ,   6.80,   0.00, 139.01,  95.53, 323.99,-122.19,  -1.29,   9.22,  15.90,   9.2850,-307.0000
+05, 20,  14.00,   6.88,-119.24,  -1.19,  43.50,  83.12,  1F2 ,   6.88,   0.00, 136.55,  96.16, 310.07,-119.53,  -1.19,  11.78,  15.42,  11.8346,-307.0000
+05, 22,  14.00,   7.23,-135.71,  -0.80,  27.15,  32.72,  1F2 ,   7.23,   0.00, 155.17,   9.49, 391.55,-137.38,  -0.80,  -6.45,  11.85,  -6.0868,-307.0000
+05, 24,  14.00,   7.82,-144.42,  -0.18,  18.57,  12.35,  1F2 ,   7.82,   0.00, 165.49,   5.18, 477.05,-146.45,  -0.18, -16.15,   9.29, -15.6296,-307.0000
+
+**************************End Calculated Parameters ***********************
+
+Copyright  International Telecommunication Union (ITU) 2018
+All rights reserved.

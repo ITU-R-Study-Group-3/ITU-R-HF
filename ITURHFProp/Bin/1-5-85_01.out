@@ -1,0 +1,86 @@
+---------------------------------------------------------------------------
+ International Telecommunications Union - Radiocommunication Sector (ITU-R)
+     ITURHFProp         Ver Jan 12 2018	- Fri Jan 12 14:12:26 2018
+     HF Model (P533)    Ver P.533-13.7.0	- Fri Jan 12 16:10:02 2018
+     Noise Model (P372) Ver P.372-13.1.0	- Fri Jan 12 13:17:11 2018
+     Analysis Prepared  Fri Jan 12 16:10:19 2018
+
+---------------------------------------------------------------------------
+
+***************************** P533 Input Parameters ****************************
+
+	Test case ID 1: Year 85 Month 5
+	Year = 1985
+	Month = May
+	Hour = 20 (hour UTC)
+	SSN (R12) = 18
+	Distance = 174.728941 (km)
+	dmax = 4000.000000 (km)
+	Tx power = 0.000000
+	Tx Location LUXEMBURG
+	Tx latitude  =  49.666667 N
+	Tx longitude =   6.316667 E
+	Rx Location BOCKHACKEN
+	Rx latitude  =  51.116667 N
+	Rx longitude =   7.266667 E
+	local time Rx   = 20 (hour UTC)
+	local time Tx   = 20 (hour UTC)
+	Frequency       = 6.100000
+	Bandwidth       = 1000.000000
+	Modulation = ANALOG
+	Required signal-to-noise ratio = 10.000000
+	Required % of month signal-to-noise ratio =  10
+	Required signal-to-interference ratio = 23.760000
+	Man-made noise = RURAL
+	Antenna configuration: User determined
+	Transmit antenna ISOTROPIC
+	Transmit antenna bearing = 106.868000
+	Transmit antenna gain offset = 0.000000
+	Receive antenna  ISOTROPIC
+	Receive antenna bearing = 43.666000
+	Receive antenna gain offset = 0.000000
+
+************************ End P533 Input Parameters *****************************
+
+************************** ITURHFP Input Parameters *****************************
+
+	Upper left latitude   =  51.116667 N
+	Upper left longitude  =   7.266667 E
+	Lower right latitude  =  51.116667 N
+	Lower right longitude =   7.266667 E
+	Number of frequencies = 1
+	Number of hours       = 1
+	Number of months      = 1
+	Latitude increment    = 1.000000 (deg)
+	Longitude increment   = 1.000000 (deg)
+
+************************** ITURHFP Input Parameters *****************************
+
+******************************** Data Format ***********************************
+
+Column 01: Month
+Column 02: Hour
+Column 03: Frequency (MHz)
+Column 04: FaA - Atmospheric noise (dB)
+Column 05: FaM - Man-made noise (dB)
+Column 06: FaG - Galactic noise (dB)
+Column 07: DuA - Upper decile deviation of atmospheric noise (dB)
+Column 08: DlA - Lower decile deviation of atmospheric noise (dB)
+Column 09: DuM - Upper decile deviation of man-made noise (dB)
+Column 10: DlM - Lower decile deviation of man-made noise (dB)
+Column 11: DuG - Upper decile deviation of atmospheric noise (dB)
+Column 12: DuG - Lower decile deviation of atmospheric noise (dB)
+Column 13: DuT - Upper decile deviation of total noise (dB)
+Column 14: DlT - Lower decile deviation of total noise (dB)
+Column 15: FamT - Total noise (dB)
+
+************************** End Data Format ********************************
+
+************************ Calculated Parameters ****************************
+
+05, 20,   6.10,  50.81,  45.45,  33.94,   6.35,   6.27,   9.20,   4.60,   2.00,   2.00,   6.56,   5.57,  52.28
+
+**************************End Calculated Parameters ***********************
+
+Copyright  International Telecommunication Union (ITU) 2018
+All rights reserved.

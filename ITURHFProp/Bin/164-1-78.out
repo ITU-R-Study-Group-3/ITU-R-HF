@@ -1,0 +1,86 @@
+---------------------------------------------------------------------------
+ International Telecommunications Union - Radiocommunication Sector (ITU-R)
+   ITURHFProp Ver         Jan  5 2018 - Fri Jan  5 14:18:19 2018
+   HF Model (P533) Ver    P.533-13.7.0 - Fri Jan  5 13:33:00 2018
+   Noise Model (P372) Ver P.372-13.1 - Thu Jan  4 15:40:42 2018
+   Analysis Prepared      Fri Jan  5 14:18:22 2018
+
+---------------------------------------------------------------------------
+
+***************************** P533 Input Parameters ****************************
+
+	Test case ID 164: Year 78 Month 1
+	Year = 1978
+	Month = February
+	Hour = 8 (hour UTC)
+	SSN (R12) = 61
+	Distance = 0.000000 (km)
+	dmax = 4000.000000 (km)
+	Tx power = 0.000000
+	Tx Location CANBERRA
+	Tx latitude  =  40.000000 N
+	Tx longitude =  10.000000 E
+	Rx Location LUECHOW
+	Rx latitude  =  40.000000 N
+	Rx longitude =  10.000000 E
+	local time Rx   = 8 (hour UTC)
+	local time Tx   = 8 (hour UTC)
+	Frequency       = 10.000000
+	Bandwidth       = 6000.000000
+	Modulation = ANALOG
+	Required signal-to-noise ratio = 38.400000
+	Required % of month signal-to-noise ratio =  43
+	Required signal-to-interference ratio = 23.760000
+	Man-made noise = RESIDENTIAL
+	Antenna configuration: User determined
+	Transmit antenna ISOTROPIC
+	Transmit antenna bearing = 0.000000
+	Transmit antenna gain offset = 0.000000
+	Receive antenna  ISOTROPIC
+	Receive antenna bearing = 0.000000
+	Receive antenna gain offset = 0.000000
+
+************************ End P533 Input Parameters *****************************
+
+************************** ITURHFP Input Parameters *****************************
+
+	Upper left latitude   =  40.000000 N
+	Upper left longitude  =  10.000000 E
+	Lower right latitude  =  40.000000 N
+	Lower right longitude =  10.000000 E
+	Number of frequencies = 1
+	Number of hours       = 1
+	Number of months      = 1
+	Latitude increment    = 1.000000 (deg)
+	Longitude increment   = 1.000000 (deg)
+
+************************** ITURHFP Input Parameters *****************************
+
+******************************** Data Format ***********************************
+
+Column 01: Month
+Column 02: Hour
+Column 03: Frequency (MHz)
+Column 04: FaA - Atmospheric noise (dB)
+Column 05: FaM - Man-made noise (dB)
+Column 06: FaG - Galactic noise (dB)
+Column 07: DuA - Upper decile deviation of atmospheric noise (dB)
+Column 08: DlA - Lower decile deviation of atmospheric noise (dB)
+Column 09: DuM - Upper decile deviation of man-made noise (dB)
+Column 10: DlM - Lower decile deviation of man-made noise (dB)
+Column 11: DuG - Upper decile deviation of atmospheric noise (dB)
+Column 12: DuG - Lower decile deviation of atmospheric noise (dB)
+Column 13: DuT - Upper decile deviation of total noise (dB)
+Column 14: DlT - Lower decile deviation of total noise (dB)
+Column 15: FamT - Total noise (dB)
+
+************************** End Data Format ********************************
+
+************************ Calculated Parameters ****************************
+
+02, 08,  10.00,  32.64,  44.80,  29.00,   8.16,   6.70,  10.60,   5.30,   2.00,   2.00,  10.51,   5.00,  45.08
+
+**************************End Calculated Parameters ***********************
+
+Copyright  International Telecommunication Union (ITU) 2018
+All rights reserved.

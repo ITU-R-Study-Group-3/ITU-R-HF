@@ -1,0 +1,5 @@
+These are utility routines that may come in handy were someone inclined to tinker with the coefficient files that were harmonized by Suessmann.
+These three routines would allow for the extraction of any of the arrays that are in the coefficient files. These were used in the development of 
+the subroutine ReadFamDud.c for the P533 DLL. 
+
+ 
