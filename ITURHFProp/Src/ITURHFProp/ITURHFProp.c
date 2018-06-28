@@ -4,6 +4,7 @@
 #include <time.h>
 
 // Local includes
+#include "Common.h"
 #include "P533.h"
 #include "ITURHFProp.h"
 // End local includes
@@ -116,7 +117,7 @@ int main(int argc, char *argv[]) {
 
 #elif __linux__ || __APPLE__
 	void * hLib;
-	hLib = dlopen("libp533.so", RTLD_NOW);
+	hLib = dlopen("./libp533.so", RTLD_NOW);
 	if (!hLib) {
 		printf("Couldn't load libp533.so, exiting.\n");
 		exit(1);
@@ -131,7 +132,6 @@ int main(int argc, char *argv[]) {
 
 	dllReadType13Func = dlsym(hLib,"ReadType13");
 	dllIsotropicPatternFunc = dlsym(hLib,"IsotropicPattern");
-	dllReadFamDudFunc = dlsym(hLib,"ReadFamDud");
 	dllReadIonParametersBinFunc = dlsym(hLib,"ReadIonParametersBin");
 	dllReadIonParametersTxtFunc = dlsym(hLib,"ReadIonParametersTxt");
 	dllReadP1239Func = dlsym(hLib,"ReadP1239");
@@ -391,12 +391,12 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 	dllReadFamDud = (iReadFamDud)GetProcAddress((HMODULE)hLib, "ReadFamDud");
 #elif __linux__ || __APPLE__
 	void * hLib;
-	hLib = dlopen("libp372.so", RTLD_NOW);
+	hLib = dlopen("./libp372.so", RTLD_NOW);
 	if (!hLib) {
 		printf("Couldn't load libp372.so, exiting.\n");
 		exit(1);
 	}
-	dllReadFamDud = dlsym(hlib, "ReadFamDud");
+	dllReadFamDud = dlsym(hLib, "ReadFamDud");
 #endif	
 	// End P372.DLL Load ************************************************
 

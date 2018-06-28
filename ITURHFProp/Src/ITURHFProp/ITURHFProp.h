@@ -52,7 +52,8 @@
 	double (*dllBearing)(struct Location,struct Location);
 	int  (*dllReadType13Func)(struct Antenna *Ant, FILE *fp, double bearing, int silent);
 	void (*dllIsotropicPatternFunc)(struct Antenna *Ant, double G);
-	int  (*dllReadIonParametersTxtFunc)(struct PathData *path, char DataFilePath[256], int silent) ;
+	int  (*dllReadIonParametersTxtFunc)(struct PathData *path, char DataFilePath[256], int silent);
+        int  (*dllReadIonParametersBinFunc)(int month, float ****foF2, float ****M3kF2, char DataFilePath[256], int silent);
 	int  (*dllReadP1239Func)(struct PathData *path, const char * DataFilePath);
 #endif
 

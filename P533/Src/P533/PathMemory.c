@@ -170,10 +170,11 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 	iNoiseMemory dllAllocateNoiseMemory = (iNoiseMemory)GetProcAddress((HMODULE)hLib, "AllocateNoiseMemory");
 #elif __linux__ || __APPLE__
 	void * hLib;
-	hLib = dlopen("libp372.so", RTLD_NOW);
+	hLib = dlopen("./libp372.so", RTLD_NOW);
 	if (!hLib) {
 		printf("Couldn't load libp372.so, exiting.\n");
 		exit(1);
+	};
 	dllAllocateNoiseMemory = dlsym(hLib, "AllocateNoiseMemory");
 #endif	
 

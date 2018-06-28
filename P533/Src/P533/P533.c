@@ -160,7 +160,7 @@
 		dllInitializeNoise = (vInitializeNoise)GetProcAddress((HMODULE)hLib, "InitializeNoise");
 	#elif __linux__ || __APPLE__
 		void * hLib;
-		hLib = dlopen("libp372.so", RTLD_NOW);
+		hLib = dlopen("./libp372.so", RTLD_NOW);
 		if (!hLib) {
 			printf("Couldn't load libp372.so, exiting.\n");
 			exit(1);
@@ -170,7 +170,7 @@
 		dllNoise = dlsym(hLib, "Noise");
 		dllAllocateNoiseMemory = dlsym(hLib, "AllocateNoiseMemory");
 		dllFreeNoiseMemory = dlsym(hLib, "FreeNoiseMemory");
-		dllInitializeNoise = dlsym(hlib, "InitializeNoise");
+		dllInitializeNoise = dlsym(hLib, "InitializeNoise");
 	#endif	
 		
 	// End P372.DLL Load ************************************************

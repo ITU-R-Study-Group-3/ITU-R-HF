@@ -42,7 +42,7 @@
 	int(*dllNoise)(struct NoiseParams *);
 	int(*dllAllocateNoiseMemory)(struct NoiseParams *);
 	int(*dllFreeNoiseMemory)(struct NoiseParams *);
-	int(*dllReadFamDudFunc)(struct NoiseParams *, const char *, int);
+	int(*dllReadFamDud)(struct NoiseParams *, const char *, int);
 	void(*dllInitiailizeNoise)(struct NoiseParams *);
 #endif
 // End operating system preprocessor *******************************************

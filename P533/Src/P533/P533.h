@@ -9,6 +9,11 @@
 	#define DLLEXPORT
 #endif
 
+// External Preprocessors Dependancies
+// The path structure constains the P372 noise structure
+#include "Noise.h"
+// End External Preprocessor Dependancies
+
 // Start P372.DLL typedef ******************************************************
 #ifdef _WIN32
 	#include <Windows.h>
@@ -39,22 +44,17 @@
 	void * hLib;
 	char * (*dllP372Version)();
 	char * (*dllP372CompileTime)();
-	int(*dllNoise)(struct NoiseParams *);
+	int(*dllNoise)(struct NoiseParams *, int, double, double, double);
 	int(*dllAllocateNoiseMemory)(struct NoiseParams *);
 	int(*dllFreeNoiseMemory)(struct NoiseParams *);
-	int(*dllReadFamDudFunc)(struct NoiseParams *, const char *, int);
-	void(*dllInitiailizeNoise)(struct NoiseParams *);
+	int(*dllReadFamDud)(struct NoiseParams *, const char *, int);
+	void(*dllInitializeNoise)(struct NoiseParams *);
 #endif
 // End operating system preprocessor *******************************************
 
 // End P372.DLL typedef ******************************************************
 
 // P533 *******************************************************************************************
-
-// External Preprocessors Dependancies
-// The path structure constains the P372 noise structure
-#include "Noise.h"
-// End External Preprocessor Dependancies
 
 // Version number
 #define P533VER		"P.533-13.8"
