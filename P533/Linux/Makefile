@@ -1,6 +1,6 @@
 CC = gcc
 source_dir = ../Src/P533/
-bin_dir = ../../bin/
+bin_dir = ../Bin/
 CFLAGS = -fPIC -Wall -Wextra -O2 -g -I$(source_dir)
 LDFLAGS = -shared -lm -ldl 
 RM = rm -f
