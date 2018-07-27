@@ -5,7 +5,7 @@
 #include <time.h>
 
 // Local includes
-#include "Common.h"
+#include "common.h"
 #include "Noise.h"
 
 // Local prototypes
