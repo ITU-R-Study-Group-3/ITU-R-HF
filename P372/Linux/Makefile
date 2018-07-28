@@ -10,10 +10,7 @@ SRCS = $(source_dir)InitializeNoise.c \
        $(source_dir)Noise.c \
        $(source_dir)NoiseMemory.c
 
-DEPS = $(source_dir)common.h \
-       $(source_dir)Noise.h
-
-	   OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.c=.o)
 
 .PHONY: all
 all: ${TARGET_LIB}
@@ -26,5 +23,9 @@ $(SRCS:.c=.d):%.d:%.c
 include $(SRCS:.c=.d)
 
 .PHONY: clean
+
 clean:
 	${RM} ${OBJS} $(SRCS:.c=.d)
+
+install: all
+	install -m 644 $(TARGET_LIB) $(DESTDIR)$(PREFIX)/lib/
