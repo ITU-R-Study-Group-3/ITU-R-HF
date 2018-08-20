@@ -50,14 +50,14 @@ int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 	elen = 91;			// Fixed number of elevations at 1-degree intervals
 
 	// Determine the azimuth direction that the antenna is pointing to find the index offset.
-	// Ideally the antenna pattern could be rotated to any position and then every gain value in the 
+	// Ideally the antenna pattern could be rotated to any position and then every gain value in the
 	// pattern would be interpolated. In this implementation the pattern will be rotated to the nearest
-	// integer azimuth degree. This approximate method was chosen because of the error of having the 
-	// pattern off by maximally +- 1/2 degree is considered to be minimal. 
+	// integer azimuth degree. This approximate method was chosen because of the error of having the
+	// pattern off by maximally +- 1/2 degree is considered to be minimal.
 	iMBOS = (int)(bearing*R2D);
-		
+
 	// Read a VOACAP antenna pattern Type 13 file
-	/* 
+	/*
 	 * Typically, the header will look like the following:
 	 *
 	 * DeMinco Antenna ITS 2010 (ASCUH15)       :Sample type 13  360-degree gain table
@@ -93,7 +93,7 @@ int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 
 	// User feedback
 	if(silent != TRUE) {
-		printf("ReadType13: Reading antenna %.35s\n", Ant->Name); 
+		printf("ReadType13: Reading antenna %.35s\n", Ant->Name);
 	};
 
 	fgets(line, sizeof(line), fp);		// Number of parameters
@@ -131,28 +131,28 @@ int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 		iazi = (iMBOS+i)%360;
 
 		fgets(line, sizeof(line), fp);
-		sscanf(line, " %d %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf", 
+		sscanf(line, " %d %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
 			&iI, &Ant->pattern[iazi][0], &Ant->pattern[iazi][1], &Ant->pattern[iazi][2], &Ant->pattern[iazi][3], &Ant->pattern[iazi][4],
 			     &Ant->pattern[iazi][5], &Ant->pattern[iazi][6], &Ant->pattern[iazi][7], &Ant->pattern[iazi][8], &Ant->pattern[iazi][9]);
 		for(j=10; j<90; j += 10) {
 			fgets(line, sizeof(line), fp);
-			sscanf(line, " %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf", 
+			sscanf(line, " %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
 				&Ant->pattern[iazi][j],   &Ant->pattern[iazi][j+1], &Ant->pattern[iazi][j+2], &Ant->pattern[iazi][j+3], &Ant->pattern[iazi][j+4],
 				&Ant->pattern[iazi][j+5], &Ant->pattern[iazi][j+6], &Ant->pattern[iazi][j+7], &Ant->pattern[iazi][j+8], &Ant->pattern[iazi][j+9]);
 		};
 		fgets(line, sizeof(line), fp);
 		sscanf(line, " %lf\n", &Ant->pattern[iazi][90]);
 	};
-
+	fclose(fp);
 	return RTN_READTYPE13OK;
-	
+
 };
 
 void IsotropicPattern(struct Antenna *Ant, double G) {
-	
+
 	int azin, elen;		// Number of elevations and azimuths
 	int i, j;			// Loop counters
-	
+
 	azin = 360;			// Fixed number of azimuths at 1-degree intervals
 	elen = 91;			// Fixed number of elevations at 1-degree intervals
 

@@ -126,6 +126,7 @@ int FreeNoiseMemory(struct NoiseParams *noiseP) {
 		for(m=0; m<16; m++) {
 			free(noiseP->fakp[n][m]);
 		};
+    free(noiseP->fakp[n]);
 	};
 	free(noiseP->fakp);
 
