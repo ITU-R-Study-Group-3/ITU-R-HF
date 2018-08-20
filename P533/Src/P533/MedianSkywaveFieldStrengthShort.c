@@ -1216,7 +1216,7 @@ double AntennaGain(struct PathData path, struct Antenna Ant, double delta, int d
 
   printf("\nPath freq: %.3fMHz Pattern.freq: %.3fMHz (Index = %d)\n", path.frequency, Ant.freqs[freqIndex], freqIndex);
   printf("Bearing: %.3f deg Elevation: %.3fdeg\n", B, delta);
-  printf("LL:%.3f LR: %.3f UL: %.3f UR: %.3f\n");
+  printf("LL:%.3f LR: %.3f UL: %.3f UR: %.3f\n", LL, LR, UL, UR);
   printf("Gain:%.3f\n", G);
 
 	return G;
