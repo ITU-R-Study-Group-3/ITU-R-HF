@@ -595,8 +595,20 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
 
 		// Store the name of the antenna to the path structure.
 		strcpy(path->A_rx.Name, "ISOTROPIC");
-	}
-	else {
+	} else if (strncmp(ITURHFP.RXAntFilePath + strlen(ITURHFP.RXAntFilePath) - 4, ".t14", 4) == 0) { // Type 14 antenna
+		printf("DEBUG Looking at a type 14 antenna.\n");
+		retval = dllReadType14Func(&path->A_rx, ITURHFP.RXAntFilePath, ITURHFP.RXBearing, ITURHFP.silent);
+		if (retval != RTN_READTYPE14OK) {
+			// Convert the error message from P533() to a ITURHFProp() error message
+			// since you know that you are opening a rx antenna file
+			if (retval == RTN_ERRCANTOPENANTFILE) {
+				return RTN_ERRCANTOPENRXANTFILE;
+			}
+			else {
+				return retval;
+			};
+		};
+	} else {
 		// The file exists and is open now fill the antenna array in the path.
 		retval = dllReadType13Func(&path->A_rx, ITURHFP.RXAntFilePath, ITURHFP.RXBearing, ITURHFP.silent);
 		if (retval != RTN_READTYPE13OK) {
@@ -618,8 +630,20 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
 
 		// Store the name of the antenna to the path structure.
 		strcpy(path->A_tx.Name, "ISOTROPIC");
-	}
-	else {
+	} else if (strncmp(ITURHFP.TXAntFilePath + strlen(ITURHFP.TXAntFilePath) - 4, ".t14", 4) == 0) { // Type 14 antenna
+		printf("DEBUG: Looking at a type 14 tx antenna.\n");
+		retval = dllReadType14Func(&path->A_tx, ITURHFP.TXAntFilePath, ITURHFP.TXBearing, ITURHFP.silent);
+		if (retval != RTN_READTYPE14OK) {
+			// Convert the error message from P533() to a ITURHFProp() error message
+			// since you know that you are opening a tx antenna file
+			if (retval == RTN_ERRCANTOPENANTFILE) {
+				return RTN_ERRCANTOPENRXANTFILE;
+			}
+			else {
+				return retval;
+			};
+		};
+	} else {
 		// The file exists and is open now fill the antenna array in the path.
 		retval = dllReadType13Func(&path->A_tx, ITURHFP.TXAntFilePath, ITURHFP.TXBearing, ITURHFP.silent);
 		if(retval != RTN_READTYPE13OK) {

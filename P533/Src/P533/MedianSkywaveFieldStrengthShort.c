@@ -1133,7 +1133,7 @@ double AntennaGain(struct PathData path, struct Antenna Ant, double delta, int d
 	 			struct PathData path
 				struct Antenna Ant
 				double delta
-	 
+
 	 		OUTPUT
 				returns the interpolated antenna gain at the desired elevation, delta
 
@@ -1142,25 +1142,46 @@ double AntennaGain(struct PathData path, struct Antenna Ant, double delta, int d
 				BilinearInterpolation()
 
 	*/
-	
-	
-	// The structure Antenna Ant is used to tell the subroutine which antenna to calculate.
 
+
+	// The structure Antenna Ant is used to tell the subroutine which antenna to calculate.
 	double B;				// Bearing from transmitter to receiver
 	double c;				// fractional column (azimuth)
 	double r;				// fractional row (elevation)
 	double LL, LR, UR, UL;	// Neighboring gain values
 	double G;				// Interpolated gain
-	
+
 	int deltaL, deltaU;		// Upper and lower elevation indices
 	int BL, BR;				// Left and right bearing indices
-	
+
+  int i, freqIndex;
+  double minFreqDelta, freqDelta;
+  /* Determine the closest frequency for which we have pattern data to the
+   * required frequency.  We don't make any assumptions regarding order of
+   * frequencies so have to iterate over the whole array.
+   */
+  
+  freqIndex = 0;
+  /* If we have pattern data for multiple frequencies, find the index of the
+   * frequency closest to the path.frequency.
+   */
+  if (Ant.numFreqs > 1) {
+    minFreqDelta = DBL_MAX;
+    for (i=0; i<Ant.numFreqs; i++) {
+      freqDelta = abs(Ant.freqs[i] - path.frequency);
+      if (freqDelta < minFreqDelta) {
+        minFreqDelta = freqDelta;
+        freqIndex = i;
+      }
+    }
+  }
+  
 	// The elevations and azimuths have to be in degrees because the antenna pattern is indexed in degrees.
-	
+
 	// delta is in radians convert to degrees
 	delta = delta*R2D;
 
-	// Determine the bearing 
+	// Determine the bearing
 	// From the tx to rx.
 	if (direction == TXTORX) {
 		B = Bearing(path.L_tx, path.L_rx)*R2D; // degrees
@@ -1178,11 +1199,13 @@ double AntennaGain(struct PathData path, struct Antenna Ant, double delta, int d
 	BR = (int)ceil(B)%360;
 	BL = (int)floor(B)%360;
 
+  // Temporary value for now, calculate the correct index later
+
 	// Identify the neighbors.
-	LL = Ant.pattern[BL][deltaL];
-	LR = Ant.pattern[BR][deltaL];
-	UL = Ant.pattern[BL][deltaU];
-	UR = Ant.pattern[BR][deltaU];
+	LL = Ant.pattern[freqIndex][BL][deltaL];
+	LR = Ant.pattern[freqIndex][BR][deltaL];
+	UL = Ant.pattern[freqIndex][BL][deltaU];
+	UR = Ant.pattern[freqIndex][BR][deltaU];
 
 	// Determine the fractional column and row.
 	// The distance between indices is fixed at 1 degree.
@@ -1190,6 +1213,11 @@ double AntennaGain(struct PathData path, struct Antenna Ant, double delta, int d
 	c = B - (int)B;			// The fractional part of the column
 
 	G = BilinearInterpolation(LL, LR, UL, UR, r, c);
+
+  printf("\nPath freq: %.3fMHz Pattern.freq: %.3fMHz (Index = %d)\n", path.frequency, Ant.freqs[freqIndex], freqIndex);
+  printf("Bearing: %.3f deg Elevation: %.3fdeg\n", B, delta);
+  printf("LL:%.3f LR: %.3f UL: %.3f UR: %.3f\n");
+  printf("Gain:%.3f\n", G);
 
 	return G;
 

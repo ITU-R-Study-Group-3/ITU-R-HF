@@ -109,6 +109,7 @@ int main(int argc, char *argv[]) {
 	dllInputDump = (iInputDump)GetProcAddress((HMODULE)hLib, "InputDump");
 	// Get functions that have been moved into DLL as utility for PMW integration
 	dllReadType13Func = (iReadType13Func)GetProcAddress((HMODULE)hLib,"ReadType13");
+	dllReadType14Func = (iReadType14Func)GetProcAddress((HMODULE)hLib,"ReadType14");
 	dllIsotropicPatternFunc = (vIsotropicPatternFunc)GetProcAddress((HMODULE)hLib,"IsotropicPattern");
 //	dllReadFamDudFunc = (ReadFamDudFunc)GetProcAddress((HMODULE)hLib,"ReadFamDud");
 	dllReadIonParametersBinFunc = (iReadIonParametersBinFunc)GetProcAddress((HMODULE)hLib,"ReadIonParametersBin");
@@ -131,6 +132,7 @@ int main(int argc, char *argv[]) {
 	dllBearing = dlsym(hLib,"Bearing");
 
 	dllReadType13Func = dlsym(hLib,"ReadType13");
+	dllReadType14Func = dlsym(hLib,"ReadType14");
 	dllIsotropicPatternFunc = dlsym(hLib,"IsotropicPattern");
 	dllReadIonParametersBinFunc = dlsym(hLib,"ReadIonParametersBin");
 	dllReadIonParametersTxtFunc = dlsym(hLib,"ReadIonParametersTxt");

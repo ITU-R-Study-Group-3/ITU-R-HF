@@ -33,15 +33,12 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 	float ****foF2;			// foF2 ionospheric map
 	float ****M3kF2;		// M(3000)F2 ionospheric map
 	double *****foF2var;	// foF2 statistics
-	double **txantpat;		// Transmitter antenna pattern
-	double **rxantpat;		// Receiver antenna pattern
 
 	int retval;
 	int hrs, lng, lat, ssn;
 	int i, j, k, m;
 	int season;
 	int decile;
-	int azimuth, elevation;
 
 	/*
 	 * Allocate the ionospheric parameter arrays that will be used by the P533 engine.
@@ -110,28 +107,12 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 	}
 
 	/*
-	 * Allocate the TX and RX antenna arrays.
-	 * The antenna files are fixed at 1-degree increments.
-	 * Eventually this perhaps should be made for generic increments.
+	 * The TX and RX antenna arrays are alocated in the functions used to Parse
+	 * the input files (e.g. ReadType13) as the array size varies with the antenna
+	 * type and the number of frequencies for which pattern data is available.
+	 *
+	 * The arrays are free'd in FreePathMemory.
 	 */
-	azimuth = 360; 
-	elevation = 91; 
-
-	/* 
-	 * Create the TX antenna array so you can pass it into the core P.533 process.
-	 */
-	txantpat = (double **) malloc(azimuth * sizeof(double *));
-	for (m=0; m<azimuth; m++) {
-		txantpat[m] = (double*) malloc(elevation * sizeof(double));
-	}
-
-	/* 
-	 * Create the RX antenna array so you can pass it into the core P.533 process. 
-	 */
-	rxantpat = (double **) malloc(azimuth * sizeof(double *));
-	for (m=0; m<azimuth; m++) {
-		rxantpat[m] = (double*) malloc(elevation * sizeof(double));
-	}
 
 	// Check for NULLs and save the pointers to the path structure.
 	if(foF2 != NULL) path->foF2 = foF2;
@@ -142,13 +123,6 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 
 	if(foF2var != NULL) path->foF2var = foF2var;
 	else return RTN_ERRALLOCATEFOF2VAR;
-
-	if(txantpat != NULL) path->A_tx.pattern = txantpat;
-	else return RTN_ERRALLOCATETX;
-
-	if(rxantpat != NULL) path->A_rx.pattern = rxantpat;
-	else return RTN_ERRALLOCATERX;
-
 
 	// P372.dll **********************************************************
     
@@ -210,7 +184,7 @@ DLLEXPORT int FreePathMemory(struct PathData *path) {
 
 	int retval;
 	int hrs, lng, lat, ssn;
-	int i, j, k, m;
+	int i, j, k, m, n;
 	int season;
 	int azimuth;
 	
@@ -264,17 +238,24 @@ DLLEXPORT int FreePathMemory(struct PathData *path) {
 	free(path->foF2var);
 	
 	// Free antenna array
-	azimuth = 360; 
-
-	for (m=0; m<azimuth; m++) {
+	azimuth = 360;
+  for (m=0; m < path->A_tx.numFreqs; m++) {
+		for (n=0; n<azimuth; n++) {
+			free(path->A_tx.pattern[m][n]);
+		}
 		free(path->A_tx.pattern[m]);
-	};
+    }
 	free(path->A_tx.pattern);
+	free(path->A_tx.freqs);
 
-	for (m=0; m<azimuth; m++) {
+	for (m=0; m < path->A_rx.numFreqs; m++) {
+		for (n=0; n<azimuth; n++) {
+			free(path->A_rx.pattern[m][n]);
+		}
 		free(path->A_rx.pattern[m]);
 	}
 	free(path->A_rx.pattern);
+	free(path->A_rx.freqs);
 
 	// Free the noise memory
 	retval = dllFreeNoiseMemory(&path->noiseP);
