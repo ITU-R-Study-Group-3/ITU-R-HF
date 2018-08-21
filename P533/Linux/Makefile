@@ -27,7 +27,6 @@ SRCS = $(source_dir)Between7000kmand9000km.c \
 	   $(source_dir)PathMemory.c \
 	   $(source_dir)ValidatePath.c
 	   
-DEPS = $(source_dir)Common.h $(source_dir)Noise.h $(source_dir)P533.h
 OBJS = $(SRCS:.c=.o)
 
 .PHONY: all
@@ -43,3 +42,7 @@ include $(SRCS:.c=.d)
 .PHONY: clean
 clean: 
 	${RM} ${OBJS} $(SRCS:.c=.d)
+
+install: all
+	install -m 644 $(TARGET_LIB) $(DESTDIR)$(PREFIX)/lib/
+

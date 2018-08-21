@@ -160,7 +160,7 @@
 		dllInitializeNoise = (vInitializeNoise)GetProcAddress((HMODULE)hLib, "InitializeNoise");
 	#elif __linux__ || __APPLE__
 		void * hLib;
-		hLib = dlopen("./libp372.so", RTLD_NOW);
+		hLib = dlopen("libp372.so", RTLD_NOW);
 		if (!hLib) {
 			printf("Couldn't load libp372.so, exiting.\n");
 			exit(1);
