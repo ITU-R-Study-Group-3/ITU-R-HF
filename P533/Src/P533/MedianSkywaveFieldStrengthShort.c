@@ -1164,7 +1164,7 @@ double AntennaGain(struct PathData path, struct Antenna Ant, double delta, int d
   if (Ant.freqn > 1) {
     minFreqDelta = DBL_MAX;
     for (i=0; i<Ant.freqn; i++) {
-      freqDelta = abs(Ant.freqs[i] - path.frequency);
+      freqDelta = fabs(Ant.freqs[i] - path.frequency);
       if (freqDelta < minFreqDelta) {
         minFreqDelta = freqDelta;
         freqIndex = i;
@@ -1194,8 +1194,6 @@ double AntennaGain(struct PathData path, struct Antenna Ant, double delta, int d
 	// The bearing might wrap around.
 	BR = (int)ceil(B)%360;
 	BL = (int)floor(B)%360;
-
-  // Temporary value for now, calculate the correct index later
 
 	// Identify the neighbors.
 	LL = Ant.pattern[freqIndex][BL][deltaL];
