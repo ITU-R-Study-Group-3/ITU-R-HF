@@ -39,7 +39,7 @@ int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 	char instr[256];	// String temp
 
 	int i, j;					// Loop counters
-	int azin, elen;		// Number of elevations and azimuths
+	int freqn, azin, elen;		// Number of freqs, elevations and azimuths
 	int iazi;					// Offset azimuth counter
 	int iMBOS;				// Integer offset of the main beam azimuth
 	int iI = 0;				// Temp
@@ -49,8 +49,9 @@ int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 	FILE * fp;
 	azin = 360;			// Fixed number of azimuths at 1-degree intervals
 	elen = 91;			// Fixed number of elevations at 1-degree intervals
+	freqn = 1;      // Assume data for a single frequency block
 
-	AllocateAntennaMemory(Ant, 1, azin, elen);
+	AllocateAntennaMemory(Ant, freqn, azin, elen);
 
 	// Determine the azimuth direction that the antenna is pointing to find the index offset.
 	// Ideally the antenna pattern could be rotated to any position and then every gain value in the
@@ -154,7 +155,7 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, int silent) {
 	char instr[256];		// String temp
 
 	int i, j;	// Loop counters
-	int azin, elen;			// Number of elevations and azimuths
+	int azin, elen, freqn;			// Number of elevations and azimuths
 
 	/*
 	 * todojw What do I need to do with antenna efficiency?  These appear to be
@@ -170,12 +171,9 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, int silent) {
 
 	azin = 360;					// Fixed number of azimuths at 1-degree intervals
 	elen = 91;					// Fixed number of elevations at 1-degree intervals
+	freqn = 30;					// 1-30Mhz in 1MHz intervals, as per standard voacap files.
 
-  /* Assume we have frequency data available for 1-30MHz in 1MHz intervals,
-	 * as is the case with standard voacap files.
-	 */
-
-	AllocateAntennaMemory(Ant, 30, azin, elen);
+	AllocateAntennaMemory(Ant, freqn, azin, elen);
 
 	// Read a VOACAP antenna pattern Type 14 file
 	/*
@@ -241,11 +239,9 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, int silent) {
    *          -50.573
 	 */
   for (i = 0; i<30; i++) {
-		Ant->freqs[i] = (double)i+1.0;
-
 		fgets(line, sizeof(line), fp);
-		sscanf(line, " %d %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
-				&iI, &efficiency, &Ant->pattern[i][0][0], &Ant->pattern[i][0][1], &Ant->pattern[i][0][2], &Ant->pattern[i][0][3], &Ant->pattern[i][0][4],
+		sscanf(line, " %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
+				&Ant->freqs[i], &efficiency, &Ant->pattern[i][0][0], &Ant->pattern[i][0][1], &Ant->pattern[i][0][2], &Ant->pattern[i][0][3], &Ant->pattern[i][0][4],
 				&Ant->pattern[i][0][5], &Ant->pattern[i][0][6], &Ant->pattern[i][0][7], &Ant->pattern[i][0][8], &Ant->pattern[i][0][9]);
 		for(j=10; j<90; j += 10) {
 			fgets(line, sizeof(line), fp);
@@ -255,7 +251,6 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, int silent) {
 		};
 		fgets(line, sizeof(line), fp);
 		sscanf(line, " %lf\n", &Ant->pattern[i][0][90]);
-
 
 		// Copy the array of elevation data to the rest of the data structure.
 		// This seems a little wasteful of memory; maybe we should define a 'directional'
