@@ -323,7 +323,7 @@ struct Antenna {
 	 * Int used to track the number of frequencies for which we have pattern data 
 	 * (e.g. the size of the freqs array).
 	 */
-	int numFreqs;
+	int freqn;
 
 	/*
 	 * An array to store the frequencies we have pattern data for.
@@ -587,6 +587,7 @@ void CircuitReliability(struct PathData *path);
 // PathMemory.c prototype
 DLLEXPORT int AllocatePathMemory(struct PathData *path);
 DLLEXPORT int FreePathMemory(struct PathData *path);
+DLLEXPORT int AllocateAntennaMemory(struct Antenna *ant, int freqn, int azin, int elen);
 
 // InputDump. c Prototype  
 DLLEXPORT int InputDump(struct PathData *path);

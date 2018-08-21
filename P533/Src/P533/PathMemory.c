@@ -7,6 +7,47 @@
 #include "P533.h"
 // End local includes
 
+/*
+ * Allocates the Antenna structure (Part of the PathData struct).  This 
+ * function is called when the antenna types have been defined which in
+ * turn define the dimensions of the required data structure.
+ */
+DLLEXPORT int AllocateAntennaMemory(struct Antenna *ant, int freqn, int azin, int elen) {
+	double *freqList;   // List of frequencies for which we have pattern data
+	double ***antpat;
+	int m, n;
+	
+	/* todojw
+	 * perform a check to make sure that ant is NULL, if not, free()
+	 */
+	
+	ant->freqn = freqn;
+	freqList = (double *) malloc(ant->freqn * sizeof(double *));
+	if(freqList != NULL) {
+		ant->freqs = freqList;
+	} else {
+		return RTN_ERRALLOCATEANT;
+	}
+
+	antpat = (double ***) malloc(ant->freqn * sizeof(double *));
+ 	for (m=0; m < ant->freqn; m++) {
+ 		antpat[m] = (double **) malloc(azin * sizeof(double *));
+ 		for (n=0; n<azin; n++) {
+ 			antpat[m][n] = (double*) malloc(elen * sizeof(double));
+ 		}
+ 	}
+	
+	if(antpat != NULL) {
+		ant->pattern = antpat;
+	} else {
+		return RTN_ERRALLOCATEANT;
+	}
+	
+	return RTN_ALLOCATEOK;
+
+}
+
+
 DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 	
 	/*
@@ -239,7 +280,7 @@ DLLEXPORT int FreePathMemory(struct PathData *path) {
 	
 	// Free antenna array
 	azimuth = 360;
-  for (m=0; m < path->A_tx.numFreqs; m++) {
+  for (m=0; m < path->A_tx.freqn; m++) {
 		for (n=0; n<azimuth; n++) {
 			free(path->A_tx.pattern[m][n]);
 		}
@@ -248,7 +289,7 @@ DLLEXPORT int FreePathMemory(struct PathData *path) {
 	free(path->A_tx.pattern);
 	free(path->A_tx.freqs);
 
-	for (m=0; m < path->A_rx.numFreqs; m++) {
+	for (m=0; m < path->A_rx.freqn; m++) {
 		for (n=0; n<azimuth; n++) {
 			free(path->A_rx.pattern[m][n]);
 		}

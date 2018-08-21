@@ -1156,18 +1156,14 @@ double AntennaGain(struct PathData path, struct Antenna Ant, double delta, int d
 
   int i, freqIndex;
   double minFreqDelta, freqDelta;
-  /* Determine the closest frequency for which we have pattern data to the
-   * required frequency.  We don't make any assumptions regarding order of
-   * frequencies so have to iterate over the whole array.
-   */
   
   freqIndex = 0;
   /* If we have pattern data for multiple frequencies, find the index of the
    * frequency closest to the path.frequency.
    */
-  if (Ant.numFreqs > 1) {
+  if (Ant.freqn > 1) {
     minFreqDelta = DBL_MAX;
-    for (i=0; i<Ant.numFreqs; i++) {
+    for (i=0; i<Ant.freqn; i++) {
       freqDelta = abs(Ant.freqs[i] - path.frequency);
       if (freqDelta < minFreqDelta) {
         minFreqDelta = freqDelta;
@@ -1213,12 +1209,12 @@ double AntennaGain(struct PathData path, struct Antenna Ant, double delta, int d
 	c = B - (int)B;			// The fractional part of the column
 
 	G = BilinearInterpolation(LL, LR, UL, UR, r, c);
-
+  /*
   printf("\nPath freq: %.3fMHz Pattern.freq: %.3fMHz (Index = %d)\n", path.frequency, Ant.freqs[freqIndex], freqIndex);
   printf("Bearing: %.3f deg Elevation: %.3fdeg\n", B, delta);
   printf("LL:%.3f LR: %.3f UL: %.3f UR: %.3f\n", LL, LR, UL, UR);
   printf("Gain:%.3f\n", G);
-
+  */
 	return G;
 
 };

@@ -7,6 +7,7 @@
 #include "P533.h"
 // End local includes
 
+
 DLLEXPORT void SetAntennaPatternVal(struct PathData * path, int TXorRX, int azimuth, int elevation, double value) {
 	/*
 	SetAntennaPatternVal() - Set a value in an antenna pattern. This is especially useful for
@@ -37,42 +38,19 @@ int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 	char line[256];		// Read input line
 	char instr[256];	// String temp
 
-	int i, j, m, n;			// Loop counters
+	int i, j;					// Loop counters
 	int azin, elen;		// Number of elevations and azimuths
-	int iazi;			// Offset azimuth counter
-	int iMBOS;			// Integer offset of the main beam azimuth
-	int iI = 0;			// Temp
+	int iazi;					// Offset azimuth counter
+	int iMBOS;				// Integer offset of the main beam azimuth
+	int iI = 0;				// Temp
 
 	double MaxG = 0.0;	// Maximum gain
-	double *freqList;   // List of frequencies for which we have pattern data
-	double ***antpat;
 
 	FILE * fp;
 	azin = 360;			// Fixed number of azimuths at 1-degree intervals
 	elen = 91;			// Fixed number of elevations at 1-degree intervals
 
-	Ant->numFreqs = 1;
-	freqList = (double *) malloc(Ant->numFreqs * sizeof(double *));
-	if(freqList != NULL) {
-		Ant->freqs = freqList;
-	} else {
-		return RTN_ERRALLOCATEANT;
-	}
-	// freq of 0 indicates the pattern is not frequency sensitive.
-	Ant->freqs[0] = 0;
-
-	antpat = (double ***) malloc(Ant->numFreqs * sizeof(double *));
- 	for (m=0; m < Ant->numFreqs; m++) {
- 		antpat[m] = (double **) malloc(azin * sizeof(double *));
- 		for (n=0; n<azin; n++) {
- 			antpat[m][n] = (double*) malloc(elen * sizeof(double));
- 		}
- 	}
-	if(antpat != NULL) {
-		Ant->pattern = antpat;
-	} else {
-		return RTN_ERRALLOCATEANT;
-	}
+	AllocateAntennaMemory(Ant, 1, azin, elen);
 
 	// Determine the azimuth direction that the antenna is pointing to find the index offset.
 	// Ideally the antenna pattern could be rotated to any position and then every gain value in the
@@ -100,11 +78,6 @@ int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 		return RTN_ERRCANTOPENANTFILE;
 	};
 
-
-	if (fp == NULL) {
-		return -1;
-	};
-
 	// The first line is the name of the antenna.
 	// fgets will return a string that has a trailing "\n" which needs to be stripped off
 	if (fgets(line, sizeof(line), fp) != NULL) {
@@ -126,9 +99,9 @@ int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 
 	// The next lines are parameters
 	fgets(line, sizeof(line), fp);		// Max Gain
-	sscanf(line, " %lf %s\n", &MaxG, &instr);
+	sscanf(line, " %lf %s\n", &MaxG, instr);
 	fgets(line, sizeof(line), fp);		// Antenna type
-	sscanf(line, " %d %s\n", &iI, &instr);
+	sscanf(line, " %d %s\n", &iI, instr);
 	// Make sure this is a VOACAP "Type 13" antenna file
 	if(iI != 13) {
 		return RTN_ERRNOTTYPE13;
@@ -136,7 +109,6 @@ int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 	fgets(line, sizeof(line), fp); // Efficiency
 	fgets(line, sizeof(line), fp); // Frequency
 	Ant->freqs[0] = atof(line);
-	//printf("Frequency: %f MHz",Ant->freqs[0]);
 
 	/*
 	 * There are 360 azimuth blocks that look like the following. The leading zero is the azimuth.
@@ -177,14 +149,12 @@ int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 };
 
 
-int ReadType14(struct Antenna *Ant, char * DataFilePath, double bearing, int silent) {
+int ReadType14(struct Antenna *Ant, char * DataFilePath, int silent) {
 	char line[256];			// Read input line
 	char instr[256];		// String temp
 
-	int i, j, f, m, n;	// Loop counters
+	int i, j;	// Loop counters
 	int azin, elen;			// Number of elevations and azimuths
-	double *freqList;   // List of frequencies for which we have pattern data
-	double ***antpat;   // Antenna Pattern
 
 	/*
 	 * todojw What do I need to do with antenna efficiency?  These appear to be
@@ -205,21 +175,7 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 	 * as is the case with standard voacap files.
 	 */
 
-	Ant->numFreqs = 30;
-	freqList = (double *) malloc(Ant->numFreqs * sizeof(double *));
-	if(freqList != NULL) {
-		Ant->freqs = freqList;
-	} else {
-		return RTN_ERRALLOCATEANT;
-	}
-	antpat = (double ***) malloc(Ant->numFreqs * sizeof(double *));
-	for (m=0; m < Ant->numFreqs; m++) {
- 		antpat[m] = (double **) malloc(azin * sizeof(double *));
- 		for (n=0; n<azin; n++) {
- 			antpat[m][n] = (double*) malloc(elen * sizeof(double));
- 		}
- 	}
-	if(antpat != NULL) Ant->pattern = antpat;
+	AllocateAntennaMemory(Ant, 30, azin, elen);
 
 	// Read a VOACAP antenna pattern Type 14 file
 	/*
@@ -238,12 +194,7 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 	if (fp == NULL) {
 		return RTN_ERRCANTOPENANTFILE;
 	};
-
-
-	if (fp == NULL) {
-		return -1;
-	};
-
+	
 	// The first line is the name of the antenna.
 	// fgets will return a string that has a trailing "\n" which needs to be stripped off
 	if (fgets(line, sizeof(line), fp) != NULL) {
@@ -264,9 +215,9 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 
 	// The next lines are parameters
 	fgets(line, sizeof(line), fp);		// Max Gain
-	sscanf(line, " %lf %s\n", &MaxG, &instr);
+	sscanf(line, " %lf %s\n", &MaxG, instr);
 	fgets(line, sizeof(line), fp);		// Antenna type
-	sscanf(line, " %d %s\n", &iI, &instr);
+	sscanf(line, " %d %s\n", &iI, instr);
 	// Make sure this is a VOACAP "Type 14" antenna file
 	if(iI != 14) {
 		return RTN_ERRNOTTYPE14;
@@ -289,28 +240,29 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
    *          -12.990-13.908-14.930-16.094-17.436-19.022-20.963-23.463-26.987-33.009
    *          -50.573
 	 */
-  for (f = 0; f<30; f++) {
-		Ant->freqs[f] = (double)f+1.0;
+  for (i = 0; i<30; i++) {
+		Ant->freqs[i] = (double)i+1.0;
 
 		fgets(line, sizeof(line), fp);
 		sscanf(line, " %d %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
-				&iI, &efficiency, &Ant->pattern[f][0][0], &Ant->pattern[f][0][1], &Ant->pattern[f][0][2], &Ant->pattern[f][0][3], &Ant->pattern[f][0][4],
-				&Ant->pattern[f][0][5], &Ant->pattern[f][0][6], &Ant->pattern[f][0][7], &Ant->pattern[f][0][8], &Ant->pattern[f][0][9]);
+				&iI, &efficiency, &Ant->pattern[i][0][0], &Ant->pattern[i][0][1], &Ant->pattern[i][0][2], &Ant->pattern[i][0][3], &Ant->pattern[i][0][4],
+				&Ant->pattern[i][0][5], &Ant->pattern[i][0][6], &Ant->pattern[i][0][7], &Ant->pattern[i][0][8], &Ant->pattern[i][0][9]);
 		for(j=10; j<90; j += 10) {
 			fgets(line, sizeof(line), fp);
 			sscanf(line, " %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
-				&Ant->pattern[f][0][j],   &Ant->pattern[f][0][j+1], &Ant->pattern[f][0][j+2], &Ant->pattern[f][0][j+3], &Ant->pattern[f][0][j+4],
-				&Ant->pattern[f][0][j+5], &Ant->pattern[f][0][j+6], &Ant->pattern[f][0][j+7], &Ant->pattern[f][0][j+8], &Ant->pattern[f][0][j+9]);
+				&Ant->pattern[i][0][j],   &Ant->pattern[i][0][j+1], &Ant->pattern[i][0][j+2], &Ant->pattern[i][0][j+3], &Ant->pattern[i][0][j+4],
+				&Ant->pattern[i][0][j+5], &Ant->pattern[i][0][j+6], &Ant->pattern[i][0][j+7], &Ant->pattern[i][0][j+8], &Ant->pattern[i][0][j+9]);
 		};
 		fgets(line, sizeof(line), fp);
-		sscanf(line, " %lf\n", &Ant->pattern[f][0][90]);
+		sscanf(line, " %lf\n", &Ant->pattern[i][0][90]);
+
 
 		// Copy the array of elevation data to the rest of the data structure.
 		// This seems a little wasteful of memory; maybe we should define a 'directional'
 		// parameter the Ant structure that would allow the Gain application to
 		// use a single slice for omni-directional antennas.  todojw
 		for (j=1; j<azin; j++) {
-			memcpy(Ant->pattern[f][j], Ant->pattern[f][0], elen * sizeof(double));
+			memcpy(Ant->pattern[i][j], Ant->pattern[i][0], elen * sizeof(double));
 		}
 	}
 	fclose(fp);
@@ -320,36 +272,16 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 
 void IsotropicPattern(struct Antenna *Ant, double G) {
 
-	int azin, elen;		// Number of elevations and azimuths
-	int i, j, m, n;			// Loop counters
-	double *freqList;   // List of frequencies for which we have pattern data
-	double ***antpat;
+	int azin, elen, freqn;			// Number of frequencies, elevations and azimuths
+	int i, j;						// Loop counters
 
-	azin = 360;			// Fixed number of azimuths at 1-degree intervals
-	elen = 91;			// Fixed number of elevations at 1-degree intervals
+	azin = 360;					// Fixed number of azimuths at 1-degree intervals
+	elen = 91;					// Fixed number of elevations at 1-degree intervals
+	freqn = 1;					// Number of frequencies to be read
 
-	Ant->numFreqs = 1;
-	freqList = (double *) malloc(Ant->numFreqs * sizeof(double *));
-	if(freqList != NULL) {
-		Ant->freqs = freqList;
-	} else {
-		return RTN_ERRALLOCATEANT;
-	}
-	// freq of 0 indicates the pattern is not frequency sensitive.
+	AllocateAntennaMemory(Ant, freqn, azin, elen);
+
 	Ant->freqs[0] = 0;
-
-	antpat = (double ***) malloc(Ant->numFreqs * sizeof(double *));
- 	for (m=0; m<Ant->numFreqs; m++) {
- 		antpat[m] = (double **) malloc(azin * sizeof(double *));
- 		for (n=0; n<azin; n++) {
- 			antpat[m][n] = (double*) malloc(elen * sizeof(double));
- 		}
- 	}
-	if(antpat != NULL) {
-		Ant->pattern = antpat;
-	} else {
-		return RTN_ERRALLOCATEANT;
-	}
 
 	for(i=0; i<azin; i++) {
 		for(j=0; j<elen; j++) {
