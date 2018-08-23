@@ -63,8 +63,6 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 	 			path->foF2var
 	 			path->dud
 	 			path->fam 
-	 			path->A_rx.B_pattern
-	 			path->A_tx.B_pattern
 	 
 	 		SUBROUTINES
 	 			None
@@ -148,12 +146,14 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 	}
 
 	/*
-	 * The TX and RX antenna arrays are alocated in the functions used to Parse
-	 * the input files (e.g. ReadType13) as the array size varies with the antenna
+	 * The TX and RX antenna arrays are allocated when parsing the
+	 * input files (e.g. ReadType13) as the array size varies with the antenna
 	 * type and the number of frequencies for which pattern data is available.
 	 *
 	 * The arrays are free'd in FreePathMemory.
 	 */
+ 	path->A_tx.pattern = NULL;
+	path->A_rx.pattern = NULL;
 
 	// Check for NULLs and save the pointers to the path structure.
 	if(foF2 != NULL) path->foF2 = foF2;
