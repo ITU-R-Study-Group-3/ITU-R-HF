@@ -22,13 +22,21 @@ DLLEXPORT void SetAntennaPatternVal(struct PathData * path, int TXorRX, int azim
 
 	*/
 	int frequencyIndex = 0;
-
+	
 	//If TXorRX == 0 set the transmitter's antenna pattern value.
 	if (TXorRX == 0){
+		if (path->A_tx.pattern == NULL) {
+			AllocateAntennaMemory(&path->A_tx, 1, 360, 91);
+			path->A_tx.freqs[0] = 0.0;
+		}
 		path->A_tx.pattern[frequencyIndex][azimuth][elevation] = value;
 	}
 	//At the moment anything but 0 is the RX.
 	else {
+		if (path->A_rx.pattern == NULL) {
+			AllocateAntennaMemory(&path->A_rx, 1, 360, 91);
+			path->A_rx.freqs[0] = 0.0;
+		}
 		path->A_rx.pattern[frequencyIndex][azimuth][elevation] = value;
 	}
 };
@@ -155,11 +163,13 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, int silent) {
 	char instr[256];		// String temp
 
 	int i, j;	// Loop counters
-	int azin, elen, freqn;			// Number of elevations and azimuths
+	int freqn, azin, elen;			// Number of elevations and azimuths
 
 	/*
-	 * todojw What do I need to do with antenna efficiency?  These appear to be
-	 * in dB.  I suspect that this needs to be added to the pattern gain values.
+	 * The efficiency value in type 13/14 antenna files is used by VOACAP when
+	 * determining receive noise values.  It is not used in P533/P372 and the 
+	 * values are discarded.  The variable is only used to make the content of 
+	 * the scanf() statements a little clearer.
 	 */
 
 	double efficiency;	// Antenna efficiency
@@ -169,9 +179,11 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, int silent) {
 
 	FILE * fp;
 
+	freqn = 30;					// 1-30Mhz in 1MHz intervals, as per standard voacap files.
 	azin = 360;					// Fixed number of azimuths at 1-degree intervals
 	elen = 91;					// Fixed number of elevations at 1-degree intervals
-	freqn = 30;					// 1-30Mhz in 1MHz intervals, as per standard voacap files.
+	
+	
 
 	AllocateAntennaMemory(Ant, freqn, azin, elen);
 
