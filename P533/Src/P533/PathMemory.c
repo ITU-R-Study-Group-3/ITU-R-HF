@@ -17,10 +17,6 @@ DLLEXPORT int AllocateAntennaMemory(struct Antenna *ant, int freqn, int azin, in
 	double ***antpat;
 	int m, n;
 	
-	/* todojw
-	 * perform a check to make sure that ant is NULL, if not, free()
-	 */
-	
 	ant->freqn = freqn;
 	freqList = (double *) malloc(ant->freqn * sizeof(double *));
 	if(freqList != NULL) {

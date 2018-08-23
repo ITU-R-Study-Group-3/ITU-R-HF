@@ -268,9 +268,6 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, int silent) {
 		sscanf(line, " %lf\n", &Ant->pattern[i][0][90]);
 
 		// Copy the array of elevation data to the rest of the data structure.
-		// This seems a little wasteful of memory; maybe we should define a 'directional'
-		// parameter the Ant structure that would allow the Gain application to
-		// use a single slice for omni-directional antennas.  todojw
 		for (j=1; j<azin; j++) {
 			memcpy(Ant->pattern[i][j], Ant->pattern[i][0], elen * sizeof(double));
 		}
