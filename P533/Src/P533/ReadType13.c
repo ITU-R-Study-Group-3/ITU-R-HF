@@ -12,6 +12,9 @@ DLLEXPORT void SetAntennaPatternVal(struct PathData * path, int TXorRX, int azim
 	/*
 	SetAntennaPatternVal() - Set a value in an antenna pattern. This is especially useful for
 		when you're calling this from managed code.
+		
+	If the pattern datastructure has not been initialied before calling this 
+	function, a single frequency data structure will be allocated.
 
 	INPUT
 		struct PathData
