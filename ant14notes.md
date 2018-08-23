@@ -29,14 +29,14 @@ The function `ReadType14()` has been added to the file ReadType13.c.  This funct
 ###Antenna Gain
 The `AntennaGain()` function has been modified to handle multiple frequencies.  The frequency of operation is read from the Path data structure and used to determine the index of the closest frequency available in the data structure.  
 
-### Issues
+### Antenna Efficiency
+Lane (2001, pp6-19 & 3-1) states that the efficiency values in each frequency block of Type 13/14 antenna files are used by VOACAP when determining the level of noise at the receive site.  P533/P372 does not consider receive antenna efficiency when determining noise levels so this value is ignored and not save as part of Antenna data structure.  The 'efficiency' variable is retained simply to make the scanf() a little more readable.
 
-* The Type 14 antenna files include a value of antenna efficiency for each frequency.  At the moment, this value is not actually used.  Should this value be added to the gain before insertion into the pattern data array?
-* As memory is allocated in the ReadTypexx() functions, it is possible that `SetAntennaPatternVal()` can be called before the pattern data structure is allocated.  Maybe this function could be modified to check for pattern==NULL and create a fresh structure accordingly.  The parameters list does not currently accommodate frequency to be defined and all entries are directed to frequency index 0.
+### SetAntennaPatternVal()
+As memory is allocated in the ReadTypexx() functions, it is possible that `SetAntennaPatternVal()` can be called before the pattern data structure is allocated.  SetAntennaPatternVal() has been modified to allocate a single frequency pattern data structure.
 
 ### Future Work/Improvements
 * It seems a little wasteful to duplicate the pattern data across 360 degrees when dealing with omni-directional antenna patterns.  It may be an idea to add a flag in the Ant structure to indicate that the antenna is directional.  If TRUE, the second dimension of the pattern data structure comprises 360 elements as it does now.  If set FALSE (omni-directional), the second dimension of the pattern data structure is an array of length one.  This flag can be used by the `AntennaGain()` function when accessing the gain for the specified azimuth/elevation.
 * Interpolate between gains if multiple frequency data is available. e.g. if path.freq = 15.6MHz, return a value of G derived by interpolating between gains of (say) 15 and 16MHz.  I'm not sure if this will offer significant or even measurable improvements in prediction accuracy.
 * At the moment `ReadType14()` only handles 'standard' VOACAP type 14 files containing 30 frequencies.  This could be improved to a double pass approach capable of reading an arbitrary number of frequencies.
-* Some references indicate that it is possible to include data for more than one frequency in a type 13 file.  I've never actually seen this 
-* Move the pattern memory allocation to a separate function that accepts three args representing the dimensions.  This would reduce some code duplication.  This could also be called from `SetAntennaPatternVal()` in the event the function is called prior to memory being allocated.
+* Some references indicate that it is possible to include data for more than one frequency in a type 13 file.  I've never actually seen this in practice though.
