@@ -629,8 +629,8 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
 
 		// Store the name of the antenna to the path structure.
 		strcpy(path->A_tx.Name, "ISOTROPIC");
-	} else if ((strncmp(ITURHFP.TXAntFilePath + strlen(ITURHFP.TXAntFilePath) - 4, ".t14", 4) == 0) ||
-	 						(strncmp(ITURHFP.TXAntFilePath + strlen(ITURHFP.TXAntFilePath) - 4, ".T14", 4) == 0)) { // Type 14 antenna
+	} else if ((strncmp(ITURHFP.TXAntFilePath + strlen(ITURHFP.TXAntFilePath) - 4, ".n14", 4) == 0) ||
+	 						(strncmp(ITURHFP.TXAntFilePath + strlen(ITURHFP.TXAntFilePath) - 4, ".N14", 4) == 0)) { // Type 14 antenna
 		retval = dllReadType14Func(&path->A_tx, ITURHFP.TXAntFilePath, ITURHFP.silent);
 		if (retval != RTN_READTYPE14OK) {
 			// Convert the error message from P533() to a ITURHFProp() error message
