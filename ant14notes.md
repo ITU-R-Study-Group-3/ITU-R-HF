@@ -18,7 +18,7 @@ pattern = \[0\]\[azi\]\[ele\] (Gain at 5.0MHz), \[1\]\[azi\]\[ele\] (Gain at 7.3
 As each antenna type (13, 14, Isotropic) can support different numbers of frequencies which are only known at run time, memory allocation for the pattern data structure has been moved from `AllocatePathMemory()` in PathMemory.c to a dedicated function, `AllocateAntennaMemory()`, called with the appropriate dimensions when parsing the data file. Type 13 and Isotropic files currently only support a single frequency, type 14 files support 30 frequencies. The corresponding calls to `free()` the pattern data structure remain in `FreePathMemory()` in PathMemory.c.  `FreePathMemory()` has been modified to accommodate the additional layer in the pattern data structure and also the `Ant.freqs` array.
 
 ### ReadInputConfiguration
-The `ReadInputConfiguration()` function has been modified to look for files with the suffix '.t14' or '.T14' and if so call up the `ReadType14()` function.  All other suffixes will call up `ReadType13()`.
+The `ReadInputConfiguration()` function has been modified to look for files with the suffix '.n14' or '.N14' and if so call up the `ReadType14()` function.  All other suffixes will call up `ReadType13()`.
 
 ### ReadType13() & IsotropicPattern()
 These functions have been modified to include memory allocation.  In the case of the `ReadType13()` function, the Ant.freqs array is populated with the frequency value read from forth parameter (line 6) in the input file.  In the case of the Isotropic antenna, a frequency of 0.00MHz has been used to indicate that the pattern does not change with frequency.  This convention is not actually used any where at the moment but may be useful later.
