@@ -35,8 +35,10 @@
 	iP533 dllP533;
 	iPathMemory dllAllocatePathMemory;
 	iPathMemory dllFreePathMemory;
+	iPathMemory dllAllocateAntennaMemory;
 	dBearing dllBearing;
 	iReadType13Func dllReadType13Func;
+	iReadType14Func dllReadType14Func;
 	vIsotropicPatternFunc dllIsotropicPatternFunc;
 	iReadIonParametersBinFunc dllReadIonParametersBinFunc;
 	iReadIonParametersTxtFunc dllReadIonParametersTxtFunc;
@@ -49,8 +51,10 @@
 	int (*dllP533)(struct PathData *);
 	int (*dllAllocatePathMemory)(struct PathData *);
 	int (*dllFreePathMemory)(struct PathData *);
+	int (*dllAllocateAntennaMemory)(struct Antenna *Ant, int freqn, int azin, int elen);
 	double (*dllBearing)(struct Location,struct Location);
-	int  (*dllReadType13Func)(struct Antenna *Ant, FILE *fp, double bearing, int silent);
+	int  (*dllReadType13Func)(struct Antenna *Ant, char *fp, double bearing, int silent);
+	int  (*dllReadType14Func)(struct Antenna *Ant, char *fp, int silent);
 	void (*dllIsotropicPatternFunc)(struct Antenna *Ant, double G);
 	int  (*dllReadIonParametersTxtFunc)(struct PathData *path, char DataFilePath[256], int silent);
         int  (*dllReadIonParametersBinFunc)(int month, float ****foF2, float ****M3kF2, char DataFilePath[256], int silent);

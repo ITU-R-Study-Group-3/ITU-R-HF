@@ -7,6 +7,43 @@
 #include "P533.h"
 // End local includes
 
+/*
+ * Allocates the Antenna structure (Part of the PathData struct).  This 
+ * function is called when the antenna types have been defined which in
+ * turn define the dimensions of the required data structure.
+ */
+DLLEXPORT int AllocateAntennaMemory(struct Antenna *ant, int freqn, int azin, int elen) {
+	double *freqList;   // List of frequencies for which we have pattern data
+	double ***antpat;
+	int m, n;
+	
+	ant->freqn = freqn;
+	freqList = (double *) malloc(ant->freqn * sizeof(double *));
+	if(freqList != NULL) {
+		ant->freqs = freqList;
+	} else {
+		return RTN_ERRALLOCATEANT;
+	}
+
+	antpat = (double ***) malloc(ant->freqn * sizeof(double *));
+ 	for (m=0; m < ant->freqn; m++) {
+ 		antpat[m] = (double **) malloc(azin * sizeof(double *));
+ 		for (n=0; n<azin; n++) {
+ 			antpat[m][n] = (double*) malloc(elen * sizeof(double));
+ 		}
+ 	}
+	
+	if(antpat != NULL) {
+		ant->pattern = antpat;
+	} else {
+		return RTN_ERRALLOCATEANT;
+	}
+	
+	return RTN_ALLOCATEOK;
+
+}
+
+
 DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 	
 	/*
@@ -22,8 +59,6 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 	 			path->foF2var
 	 			path->dud
 	 			path->fam 
-	 			path->A_rx.B_pattern
-	 			path->A_tx.B_pattern
 	 
 	 		SUBROUTINES
 	 			None
@@ -33,15 +68,12 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 	float ****foF2;			// foF2 ionospheric map
 	float ****M3kF2;		// M(3000)F2 ionospheric map
 	double *****foF2var;	// foF2 statistics
-	double **txantpat;		// Transmitter antenna pattern
-	double **rxantpat;		// Receiver antenna pattern
 
 	int retval;
 	int hrs, lng, lat, ssn;
 	int i, j, k, m;
 	int season;
 	int decile;
-	int azimuth, elevation;
 
 	/*
 	 * Allocate the ionospheric parameter arrays that will be used by the P533 engine.
@@ -110,28 +142,14 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 	}
 
 	/*
-	 * Allocate the TX and RX antenna arrays.
-	 * The antenna files are fixed at 1-degree increments.
-	 * Eventually this perhaps should be made for generic increments.
+	 * The TX and RX antenna arrays are allocated when parsing the
+	 * input files (e.g. ReadType13) as the array size varies with the antenna
+	 * type and the number of frequencies for which pattern data is available.
+	 *
+	 * The arrays are free'd in FreePathMemory.
 	 */
-	azimuth = 360; 
-	elevation = 91; 
-
-	/* 
-	 * Create the TX antenna array so you can pass it into the core P.533 process.
-	 */
-	txantpat = (double **) malloc(azimuth * sizeof(double *));
-	for (m=0; m<azimuth; m++) {
-		txantpat[m] = (double*) malloc(elevation * sizeof(double));
-	}
-
-	/* 
-	 * Create the RX antenna array so you can pass it into the core P.533 process. 
-	 */
-	rxantpat = (double **) malloc(azimuth * sizeof(double *));
-	for (m=0; m<azimuth; m++) {
-		rxantpat[m] = (double*) malloc(elevation * sizeof(double));
-	}
+ 	path->A_tx.pattern = NULL;
+	path->A_rx.pattern = NULL;
 
 	// Check for NULLs and save the pointers to the path structure.
 	if(foF2 != NULL) path->foF2 = foF2;
@@ -142,13 +160,6 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 
 	if(foF2var != NULL) path->foF2var = foF2var;
 	else return RTN_ERRALLOCATEFOF2VAR;
-
-	if(txantpat != NULL) path->A_tx.pattern = txantpat;
-	else return RTN_ERRALLOCATETX;
-
-	if(rxantpat != NULL) path->A_rx.pattern = rxantpat;
-	else return RTN_ERRALLOCATERX;
-
 
 	// P372.dll **********************************************************
     
@@ -210,7 +221,7 @@ DLLEXPORT int FreePathMemory(struct PathData *path) {
 
 	int retval;
 	int hrs, lng, lat, ssn;
-	int i, j, k, m;
+	int i, j, k, m, n;
 	int season;
 	int azimuth;
 	
@@ -264,17 +275,24 @@ DLLEXPORT int FreePathMemory(struct PathData *path) {
 	free(path->foF2var);
 	
 	// Free antenna array
-	azimuth = 360; 
-
-	for (m=0; m<azimuth; m++) {
+	azimuth = 360;
+  for (m=0; m < path->A_tx.freqn; m++) {
+		for (n=0; n<azimuth; n++) {
+			free(path->A_tx.pattern[m][n]);
+		}
 		free(path->A_tx.pattern[m]);
-	};
+    }
 	free(path->A_tx.pattern);
+	free(path->A_tx.freqs);
 
-	for (m=0; m<azimuth; m++) {
+	for (m=0; m < path->A_rx.freqn; m++) {
+		for (n=0; n<azimuth; n++) {
+			free(path->A_rx.pattern[m][n]);
+		}
 		free(path->A_rx.pattern[m]);
 	}
 	free(path->A_rx.pattern);
+	free(path->A_rx.freqs);
 
 	// Free the noise memory
 	retval = dllFreeNoiseMemory(&path->noiseP);

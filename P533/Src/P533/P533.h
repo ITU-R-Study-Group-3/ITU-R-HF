@@ -119,9 +119,11 @@
 #define RTN_ERRALLOCATETX				133 // ERROR: Allocating Memory for Tx Antenna Pattern
 #define RTN_ERRALLOCATERX				134 // ERROR: Allocating Memory for Rx Antenna Pattern
 #define RTN_ERRALLOCATENOISE            135 // ERROR: Allocating Memory for Noise Structure 
+#define RTN_ERRALLOCATEANT			136 // ERROR: Allocating Memory for Antenna Pattern
 
 // Return ERROR from ReadAntennaPatterns() ReadType13()
 #define RTN_ERRNOTTYPE13				140 // ERROR: Antenna File Format Error (Type 13)
+#define RTN_ERRNOTTYPE14				140 // ERROR: Antenna File Format Error (Type 14)
 #define	RTN_ERRCANTOPENANTFILE	        141 // ERROR: Can Not Open Recieve Antenna File
 
 // Return ERROR from ReadP1239()
@@ -142,6 +144,7 @@
 #define RTN_READP1239OK					5 // ReadP1239()
 #define RTN_READANTENNAPATTERNSOK		6 // ReadAntennaPatterns()
 #define RTN_READTYPE13OK				7 // ReadAntennaPatterns()
+#define RTN_READTYPE14OK				7 // ReadAntennaPatterns()
 #define	RTN_VALIDDATAOK					8 // ValidPath()
 
 #define	RTN_P533OK						0 // P533()
@@ -315,11 +318,24 @@ struct Beam {
 
 struct Antenna {
 	char Name[256];
-	// 2D double pointer to the antenna pattern data 
+
+	/*
+	 * Int used to track the number of frequencies for which we have pattern data 
+	 * (e.g. the size of the freqs array).
+	 */
+	int freqn;
+
+	/*
+	 * An array to store the frequencies we have pattern data for.
+	 */
+	double *freqs;
+
+	// 3D double pointer to the antenna pattern data
+	// [freq_index][azimuth][elevation]
 	// The following is assumed about the antenna pattern when the program is run:
-	//		i) The orientation is correct. The antenna pattern is in the orientation as it would be on the Earth. 
-	//		ii) The data is valid. It is the responsibility of the calling program to ensure this. 
-	double **pattern;		 
+	//		i) The orientation is correct. The antenna pattern is in the orientation as it would be on the Earth.
+	//		ii) The data is valid. It is the responsibility of the calling program to ensure this.
+	double ***pattern;
 };
 
 // Any "adjustment" to the contents of the structure PathData to make indices out of some of the variables, such as month and hour
@@ -571,6 +587,7 @@ void CircuitReliability(struct PathData *path);
 // PathMemory.c prototype
 DLLEXPORT int AllocatePathMemory(struct PathData *path);
 DLLEXPORT int FreePathMemory(struct PathData *path);
+DLLEXPORT int AllocateAntennaMemory(struct Antenna *ant, int freqn, int azin, int elen);
 
 // InputDump. c Prototype  
 DLLEXPORT int InputDump(struct PathData *path);

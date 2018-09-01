@@ -3,7 +3,7 @@
 #include <string.h>
 
 // Local includes
-#include "common.h"
+#include "Common.h"
 #include "Noise.h"
 // End Local includes 
 
