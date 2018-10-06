@@ -1,8 +1,8 @@
-ifeq ($(PREFIX),)
-    PREFIX := /usr/local
+ifeq ($(prefix),)
+    prefix := /usr/local
 endif
 
-export PREFIX
+export prefix
 
 TOPTARGETS := all clean install
 
