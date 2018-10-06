@@ -44,5 +44,5 @@ clean:
 	${RM} ${OBJS} $(SRCS:.c=.d)
 
 install: all
-	install -m 644 $(TARGET_LIB) $(DESTDIR)$(PREFIX)/lib/
+	install -m 644 $(TARGET_LIB) $(DESTDIR)$(prefix)/lib/
 
