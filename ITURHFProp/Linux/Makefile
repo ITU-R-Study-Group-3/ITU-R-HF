@@ -30,4 +30,4 @@ clean:
 	-${RM} ${TARGET} ${OBJS} $(SRCS:.c=.d)
 
 install: all
-	install -m 755 $(TARGET) $(DESTDIR)$(prefix)/bin
+	install -m 755 $(TARGET) $(prefix)/bin
