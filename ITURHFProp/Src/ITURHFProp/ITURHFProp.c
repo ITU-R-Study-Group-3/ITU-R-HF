@@ -73,6 +73,7 @@ int main(int argc, char *argv[]) {
 	// Initialization
 	ITURHFP.silent = FALSE;
 	ITURHFP.header = TRUE;
+	ITURHFP.csvOutput = FALSE;
 	InFileName[0] = EMPTY;
 	InFilePath[0] = EMPTY;
 	OutFileName[0] = EMPTY;
@@ -156,6 +157,9 @@ int main(int argc, char *argv[]) {
 	// Determine the desired user options on the command line
 	while ((argc > 1) && (argv[1][0] == '-')) {
 		switch (argv[1][1]) {
+			case 'c': //CSV OUTPUT
+				ITURHFP.csvOutput = TRUE;
+				break;
 			case 's': // Silent Mode
 				ITURHFP.silent = TRUE;
 				break;
@@ -321,7 +325,7 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 	  				iii) Frequency
 	  				iv)  Hours
 	  				v)   Months
-	  
+
 	  			INPUT
 	  				struct PathData *path
 	  				struct ITURHFProp *ITURHFP
@@ -330,8 +334,8 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 	  				Output files PDD or RPT that are time stamped with the data required.
 
 				EXTERNAL DLL
-					This program requires P533.dll and P372.dll 
-	  
+					This program requires P533.dll and P372.dll
+
 	 */
 
 	int i;
@@ -399,7 +403,7 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 		exit(1);
 	}
 	dllReadFamDud = dlsym(hLib, "ReadFamDud");
-#endif	
+#endif
 	// End P372.DLL Load ************************************************
 
 	// ********************** Month Loop **********************************************************

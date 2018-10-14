@@ -268,6 +268,7 @@ struct ITURHFProp {
 
 	int silent;					// Silent flag
 	int header;					// Print header flag
+	int csvOutput;			// Create a CSV fromatted output file.
 };
 
 // End structures *********************************************************************************
