@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
 	// Initialization
 	ITURHFP.silent = FALSE;
 	ITURHFP.header = TRUE;
-	ITURHFP.csvOutput = FALSE;
+	ITURHFP.csvRFC4180 = FALSE;
 	InFileName[0] = EMPTY;
 	InFilePath[0] = EMPTY;
 	OutFileName[0] = EMPTY;
@@ -158,13 +158,13 @@ int main(int argc, char *argv[]) {
 	while ((argc > 1) && (argv[1][0] == '-')) {
 		switch (argv[1][1]) {
 			case 'c': //CSV OUTPUT
-				ITURHFP.csvOutput = TRUE;
+				ITURHFP.csvRFC4180 = TRUE;
+				ITURHFP.header = FALSE;
 				break;
 			case 's': // Silent Mode
 				ITURHFP.silent = TRUE;
 				break;
 			case 't': // Remove the header Mode
-				ITURHFP.header = FALSE;
 				break;
 			case 'v': // Version - Display version and Exit
 				printf("ITURHFProp Version: %s\n", ITURHFPropVER);

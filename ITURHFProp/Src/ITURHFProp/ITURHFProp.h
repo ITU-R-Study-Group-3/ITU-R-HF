@@ -266,9 +266,9 @@ struct ITURHFProp {
 	char const *P533ver;		// P533() Version number
 	char const *P533compt;		// P533() Compile time
 
-	int silent;					// Silent flag
+	int silent;				// Silent flag
 	int header;					// Print header flag
-	int csvOutput;			// Create a CSV fromatted output file.
+	int csvRFC4180;			// Create an RFC4180 formatted output csv file.
 };
 
 // End structures *********************************************************************************
