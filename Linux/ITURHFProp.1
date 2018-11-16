@@ -1,0 +1,50 @@
+.\" Process this file with
+.\" groff -man -Tascii ITURHFProp.1
+.\"
+.TH ITURHFProp 1 "SEPTEMBER 2018" Linux "User Manuals"
+.SH NAME
+ITURHFProp \- A software method for the prediction of the performance 
+of HF circuits based on ITU Recommendation P.533-13
+.SH SYNOPSIS
+.B ITURHFProp [-shv] 
+.I input-file
+.B 
+.I [output-file]
+.SH DESCRIPTION
+.B ITURHFProp
+serves as an input and output data wrapper for the libp533.so library 
+used for the prediction of available frequencies, signal levels, and 
+reliability for analogue and digital-modulated HF systems.  The library
+takes into account not only the signal-to-noise ratio but also the 
+expected time and frequency spreads of the channel. This program 
+calculates the HF path parameters in accordance with Recommendation 
+ITU-R P.533-13.
+.SH OPTIONS
+.IP -s
+Silent.  Suppress printing progress messages while processing.
+.IP -h
+Help.  Print a help message and exit.
+.IP -v
+Version. Print the version number of ITURHFProp and the P533 library.  The
+.IP input-file
+Full path name of the input file. If no path is given the 
+current directory is assumed.
+.IP output-file
+Full path name of the output file. Note: Existing files will 
+be overwritten.  If no output file is indicated a default 
+output file, either a report or a path dump, will be created in
+the report file directory specified by the 
+.I RptFilePath 
+parameter in the input file.
+.SH ENVIRONMENT
+.B ITURHFProp
+does not make use of any environment variables.
+.SH DIAGNOSTICS
+A return code of 232 indicates that the application has executed 
+correctly.  In the event of an error, a return code and short 
+error message are printed to the console.  Refer to the README
+provided with the application for a complete list of return codes
+and their meaning.
+.SH AUTHOR
+This man page was created by James Watson, based on the README
+provided with the application written by Chris Behm 
