@@ -165,6 +165,7 @@ int main(int argc, char *argv[]) {
 				ITURHFP.silent = TRUE;
 				break;
 			case 't': // Remove the header Mode
+			  ITURHFP.header = FALSE;
 				break;
 			case 'v': // Version - Display version and Exit
 				printf("ITURHFProp Version: %s\n", ITURHFPropVER);
