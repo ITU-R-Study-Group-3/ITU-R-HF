@@ -123,6 +123,12 @@ int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
 	fgets(line, sizeof(line), fp);
 	sscanf(line, " %lf\n", &Ant->pattern[0][0][90]);
 
+	if (MaxG != 0.0) {
+		for(j=0; j<=90; j += 1) {
+			Ant->pattern[0][0][j] += MaxG;
+		};
+	};
+
 	// Copy the array of elevation data to the rest of the data structure.
 	for (j=1; j<azin; j++) {
 		memcpy(Ant->pattern[0][j], Ant->pattern[0][0], elen * sizeof(double));
