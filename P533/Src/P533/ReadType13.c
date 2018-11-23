@@ -338,6 +338,13 @@ int ReadType14(struct Antenna *Ant, FILE *fp, int silent) {
 		};
 		fgets(line, sizeof(line), fp);
 		sscanf(line, " %lf\n", &Ant->pattern[i][0][90]);
+		
+		// Add max gain value where required.
+		if (MaxG != 0.0) {
+			for(j=0; j<=90; j += 1) {
+				Ant->pattern[i][0][j] += MaxG;
+			};
+		};
 
 		// Copy the array of elevation data to the rest of the data structure.
 		for (j=1; j<azin; j++) {
