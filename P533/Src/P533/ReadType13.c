@@ -48,39 +48,36 @@ int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
 	char line[256];			// Read input line
 	char instr[256];		// String temp
 
-	int j;	// Loop counters
-	int freqn, azin, elen;			// Number of elevations and azimuths
+	const int freqn = 1;		// 1-30Mhz in 1MHz intervals, as per standard voacap files.
+	const int azin = 360;		// Fixed number of azimuths at 1-degree intervals
+	const int elen = 91;		// Fixed number of elevations at 1-degree intervals
 
-	int iI = 0;					// Temp
+	double MaxG = 0.0;			// Maximum gain
 
-	double MaxG = 0.0;	// Maximum gain
-
-	freqn = 1;					// 1-30Mhz in 1MHz intervals, as per standard voacap files.
-	azin = 360;					// Fixed number of azimuths at 1-degree intervals
-	elen = 91;					// Fixed number of elevations at 1-degree intervals
+	int j;									// Loop counter
 	
 	AllocateAntennaMemory(Ant, freqn, azin, elen);
 
 	/*
-     * Read a VOACAP antenna pattern Type 14 file
+   * Read a VOACAP antenna pattern Type 14 file
 	 * Typically, the whole file will look like the following (The file contains a 
-     * single gain block).
+   * single gain block).
 	 *
 	 * SWWhip for REC533  :Sample type 11  Gain Table versus Elevation Angle
-     *  3     3 parameters
-     *   0.00  [ 1] Max Gain dBi..:
-     *   11    [ 2] Antenna Type..: 91 values gain in elevation angle follows
-     *  -4.8   [ 3] Efficiency (for IONCAP)
-     *   -20.0   -14.0   -11.0    -7.6    -5.4    -4.0    -3.2    -2.5    -1.8    -1.6
-     *    -1.3    -1.1     -.9     -.6     -.5     -.4     -.2     -.1      .0      .0
-     *      .0      .0      .0      .0      .0      .0     -.1     -.2     -.2     -.2
-     *     -.3     -.3     -.4     -.5     -.5     -.6     -.7     -.8     -.8     -.9
-     *    -1.0    -1.1    -1.2    -1.4    -1.5    -1.6    -1.8    -1.9    -2.0    -2.1
-     *    -2.3    -2.4    -2.6    -2.7    -2.9    -3.1    -3.2    -3.4    -3.6    -3.7
-     *    -3.9    -4.2    -4.4    -4.7    -5.0    -5.4    -5.7    -6.0    -6.4    -6.7
-     *    -7.1    -7.5    -7.9    -8.4    -8.8    -9.3    -9.8   -10.4   -10.9   -11.4
-     *   -12.0   -12.6   -13.2   -13.9   -14.6   -15.4   -16.2   -17.2   -18.2   -19.6
-     *   -21.9
+   *  3     3 parameters
+   *   0.00  [ 1] Max Gain dBi..:
+   *   11    [ 2] Antenna Type..: 91 values gain in elevation angle follows
+   *  -4.8   [ 3] Efficiency (for IONCAP)
+   *   -20.0   -14.0   -11.0    -7.6    -5.4    -4.0    -3.2    -2.5    -1.8    -1.6
+   *    -1.3    -1.1     -.9     -.6     -.5     -.4     -.2     -.1      .0      .0
+   *      .0      .0      .0      .0      .0      .0     -.1     -.2     -.2     -.2
+   *     -.3     -.3     -.4     -.5     -.5     -.6     -.7     -.8     -.8     -.9
+   *    -1.0    -1.1    -1.2    -1.4    -1.5    -1.6    -1.8    -1.9    -2.0    -2.1
+   *    -2.3    -2.4    -2.6    -2.7    -2.9    -3.1    -3.2    -3.4    -3.6    -3.7
+   *    -3.9    -4.2    -4.4    -4.7    -5.0    -5.4    -5.7    -6.0    -6.4    -6.7
+   *    -7.1    -7.5    -7.9    -8.4    -8.8    -9.3    -9.8   -10.4   -10.9   -11.4
+   *   -12.0   -12.6   -13.2   -13.9   -14.6   -15.4   -16.2   -17.2   -18.2   -19.6
+   *   -21.9
 	 */
 
 	if (fp == NULL) {
@@ -108,9 +105,8 @@ int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
 	// The next lines are parameters
 	fgets(line, sizeof(line), fp);		// Max Gain
 	sscanf(line, " %lf %s\n", &MaxG, instr);
-	fgets(line, sizeof(line), fp);		// Antenna type
-	sscanf(line, " %d %s\n", &iI, instr);
-	fgets(line, sizeof(line), fp); // Efficiency
+	fgets(line, sizeof(line), fp);		// Antenna type (ignored)
+	fgets(line, sizeof(line), fp); 		// Efficiency (ignored)
 
 	Ant->freqs[0] = 0;
   
@@ -123,8 +119,9 @@ int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
 	fgets(line, sizeof(line), fp);
 	sscanf(line, " %lf\n", &Ant->pattern[0][0][90]);
 
+	// If max gain != 0.0 add it to the values read in from the table.
 	if (MaxG != 0.0) {
-		for(j=0; j<=90; j += 1) {
+		for(j=0; j<elen; j += 1) {
 			Ant->pattern[0][0][j] += MaxG;
 		};
 	};
@@ -177,7 +174,6 @@ int ReadType13(struct Antenna *Ant, FILE * fp, double bearing, int silent) {
 	 *
 	 */
 
-
 	// The first line is the name of the antenna.
 	// fgets will return a string that has a trailing "\n" which needs to be stripped off
 	if (fgets(line, sizeof(line), fp) != NULL) {
@@ -187,7 +183,6 @@ int ReadType13(struct Antenna *Ant, FILE * fp, double bearing, int silent) {
 		};
 	};
 
-	//Ant->numFreqs = 1;
 	strcpy(Ant->Name, line);	// Store it to the path structure.
 
 	// User feedback
