@@ -86,12 +86,14 @@ int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
 	
 	// The first line is the name of the antenna.
 	// fgets will return a string that has a trailing "\n" which needs to be stripped off
+	/*
 	if (fgets(line, sizeof(line), fp) != NULL) {
 		size_t len = strlen(line);
 		if (len > 0 && line[len - 1] == '\n') {
 			line[--len] = '\0';
 		};
-	};
+	};*/
+	line[strcspn(line, "\n")] = 0;
 
 	strcpy(Ant->Name, line);	// Store it to the path structure.
 
