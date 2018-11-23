@@ -48,7 +48,7 @@ int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
 	char line[256];			// Read input line
 	char instr[256];		// String temp
 
-	int i, j;	// Loop counters
+	int j;	// Loop counters
 	int freqn, azin, elen;			// Number of elevations and azimuths
 
 	int iI = 0;					// Temp
@@ -114,14 +114,14 @@ int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
 
 	Ant->freqs[0] = 0;
   
-    for(j=0; j<90; j += 10) {
+  for(j=0; j<90; j += 10) {
 		fgets(line, sizeof(line), fp);
 		sscanf(line, " %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
-			&Ant->pattern[i][0][j],   &Ant->pattern[i][0][j+1], &Ant->pattern[i][0][j+2], &Ant->pattern[i][0][j+3], &Ant->pattern[i][0][j+4],
-			&Ant->pattern[i][0][j+5], &Ant->pattern[i][0][j+6], &Ant->pattern[i][0][j+7], &Ant->pattern[i][0][j+8], &Ant->pattern[i][0][j+9]);
+			&Ant->pattern[0][0][j],   &Ant->pattern[0][0][j+1], &Ant->pattern[0][0][j+2], &Ant->pattern[0][0][j+3], &Ant->pattern[0][0][j+4],
+			&Ant->pattern[0][0][j+5], &Ant->pattern[0][0][j+6], &Ant->pattern[0][0][j+7], &Ant->pattern[0][0][j+8], &Ant->pattern[0][0][j+9]);
 	};
 	fgets(line, sizeof(line), fp);
-	sscanf(line, " %lf\n", &Ant->pattern[i][0][90]);
+	sscanf(line, " %lf\n", &Ant->pattern[0][0][90]);
 
 	// Copy the array of elevation data to the rest of the data structure.
 	for (j=1; j<azin; j++) {
