@@ -44,7 +44,102 @@ DLLEXPORT void SetAntennaPatternVal(struct PathData * path, int TXorRX, int azim
 	}
 };
 
-int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int silent) {
+int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
+	char line[256];			// Read input line
+	char instr[256];		// String temp
+
+	const int freqn = 1;		// 1-30Mhz in 1MHz intervals, as per standard voacap files.
+	const int azin = 360;		// Fixed number of azimuths at 1-degree intervals
+	const int elen = 91;		// Fixed number of elevations at 1-degree intervals
+
+	double MaxG = 0.0;			// Maximum gain
+
+	int j;									// Loop counter
+	
+	AllocateAntennaMemory(Ant, freqn, azin, elen);
+
+	/*
+   * Read a VOACAP antenna pattern Type 14 file
+	 * Typically, the whole file will look like the following (The file contains a 
+   * single gain block).
+	 *
+	 * SWWhip for REC533  :Sample type 11  Gain Table versus Elevation Angle
+   *  3     3 parameters
+   *   0.00  [ 1] Max Gain dBi..:
+   *   11    [ 2] Antenna Type..: 91 values gain in elevation angle follows
+   *  -4.8   [ 3] Efficiency (for IONCAP)
+   *   -20.0   -14.0   -11.0    -7.6    -5.4    -4.0    -3.2    -2.5    -1.8    -1.6
+   *    -1.3    -1.1     -.9     -.6     -.5     -.4     -.2     -.1      .0      .0
+   *      .0      .0      .0      .0      .0      .0     -.1     -.2     -.2     -.2
+   *     -.3     -.3     -.4     -.5     -.5     -.6     -.7     -.8     -.8     -.9
+   *    -1.0    -1.1    -1.2    -1.4    -1.5    -1.6    -1.8    -1.9    -2.0    -2.1
+   *    -2.3    -2.4    -2.6    -2.7    -2.9    -3.1    -3.2    -3.4    -3.6    -3.7
+   *    -3.9    -4.2    -4.4    -4.7    -5.0    -5.4    -5.7    -6.0    -6.4    -6.7
+   *    -7.1    -7.5    -7.9    -8.4    -8.8    -9.3    -9.8   -10.4   -10.9   -11.4
+   *   -12.0   -12.6   -13.2   -13.9   -14.6   -15.4   -16.2   -17.2   -18.2   -19.6
+   *   -21.9
+	 */
+
+	if (fp == NULL) {
+		return RTN_ERRCANTOPENANTFILE;
+	};
+	
+	// The first line is the name of the antenna.
+	// fgets will return a string that has a trailing "\n" which needs to be stripped off
+	/*
+	if (fgets(line, sizeof(line), fp) != NULL) {
+		size_t len = strlen(line);
+		if (len > 0 && line[len - 1] == '\n') {
+			line[--len] = '\0';
+		};
+	};*/
+	if (fgets(line, sizeof(line), fp) != NULL) {
+		line[strcspn(line, "\n")] = "\0";
+	};
+
+	strcpy(Ant->Name, line);	// Store it to the path structure.
+
+	// User feedback
+	if(silent != TRUE) {
+		printf("ReadType11: Reading antenna %.35s\n", Ant->Name);
+	};
+
+	fgets(line, sizeof(line), fp);		// Number of parameters
+
+	// The next lines are parameters
+	fgets(line, sizeof(line), fp);		// Max Gain
+	sscanf(line, " %lf %s\n", &MaxG, instr);
+	fgets(line, sizeof(line), fp);		// Antenna type (ignored)
+	fgets(line, sizeof(line), fp); 		// Efficiency (ignored)
+
+	Ant->freqs[0] = 0;
+  
+  for(j=0; j<90; j += 10) {
+		fgets(line, sizeof(line), fp);
+		sscanf(line, " %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
+			&Ant->pattern[0][0][j],   &Ant->pattern[0][0][j+1], &Ant->pattern[0][0][j+2], &Ant->pattern[0][0][j+3], &Ant->pattern[0][0][j+4],
+			&Ant->pattern[0][0][j+5], &Ant->pattern[0][0][j+6], &Ant->pattern[0][0][j+7], &Ant->pattern[0][0][j+8], &Ant->pattern[0][0][j+9]);
+	};
+	fgets(line, sizeof(line), fp);
+	sscanf(line, " %lf\n", &Ant->pattern[0][0][90]);
+
+	// If max gain != 0.0 add it to the values read in from the table.
+	if (MaxG != 0.0) {
+		for(j=0; j<elen; j += 1) {
+			Ant->pattern[0][0][j] += MaxG;
+		};
+	};
+
+	// Copy the array of elevation data to the rest of the data structure.
+	for (j=1; j<azin; j++) {
+		memcpy(Ant->pattern[0][j], Ant->pattern[0][0], elen * sizeof(double));
+	}
+	
+	return RTN_READANTENNAPATTERNSOK;
+};
+
+
+int ReadType13(struct Antenna *Ant, FILE * fp, double bearing, int silent) {
 
 	char line[256];		// Read input line
 	char instr[256];	// String temp
@@ -57,7 +152,6 @@ int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 
 	double MaxG = 0.0;	// Maximum gain
 
-	FILE * fp;
 	azin = 360;			// Fixed number of azimuths at 1-degree intervals
 	elen = 91;			// Fixed number of elevations at 1-degree intervals
 	freqn = 1;      // Assume data for a single frequency block
@@ -84,12 +178,6 @@ int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 	 *
 	 */
 
-	fp = fopen(DataFilePath, "r");
-
-	if (fp == NULL) {
-		return RTN_ERRCANTOPENANTFILE;
-	};
-
 	// The first line is the name of the antenna.
 	// fgets will return a string that has a trailing "\n" which needs to be stripped off
 	if (fgets(line, sizeof(line), fp) != NULL) {
@@ -99,7 +187,6 @@ int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 		};
 	};
 
-	//Ant->numFreqs = 1;
 	strcpy(Ant->Name, line);	// Store it to the path structure.
 
 	// User feedback
@@ -114,10 +201,6 @@ int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 	sscanf(line, " %lf %s\n", &MaxG, instr);
 	fgets(line, sizeof(line), fp);		// Antenna type
 	sscanf(line, " %d %s\n", &iI, instr);
-	// Make sure this is a VOACAP "Type 13" antenna file
-	if(iI != 13) {
-		return RTN_ERRNOTTYPE13;
-	};
 	fgets(line, sizeof(line), fp); // Efficiency
 	fgets(line, sizeof(line), fp); // Frequency
 	Ant->freqs[0] = atof(line);
@@ -155,13 +238,11 @@ int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int sil
 		sscanf(line, " %lf\n", &Ant->pattern[0][iazi][90]);
 	};
 
-	fclose(fp);
-	return RTN_READTYPE13OK;
-
+	return RTN_READANTENNAPATTERNSOK;
 };
 
 
-int ReadType14(struct Antenna *Ant, char * DataFilePath, int silent) {
+int ReadType14(struct Antenna *Ant, FILE *fp, int silent) {
 	char line[256];			// Read input line
 	char instr[256];		// String temp
 
@@ -180,18 +261,14 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, int silent) {
 
 	double MaxG = 0.0;	// Maximum gain
 
-	FILE * fp;
-
 	freqn = 30;					// 1-30Mhz in 1MHz intervals, as per standard voacap files.
 	azin = 360;					// Fixed number of azimuths at 1-degree intervals
 	elen = 91;					// Fixed number of elevations at 1-degree intervals
 	
-	
-
 	AllocateAntennaMemory(Ant, freqn, azin, elen);
 
-	// Read a VOACAP antenna pattern Type 14 file
 	/*
+     * Read a VOACAP antenna pattern Type 14 file
 	 * Typically, the header will look like the following:
 	 *
 	 * 3EL Yagi @10M
@@ -201,8 +278,6 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, int silent) {
    *  14.0  [ 3] Frequency
 	 *
 	 */
-
-	fp = fopen(DataFilePath, "r");
 
 	if (fp == NULL) {
 		return RTN_ERRCANTOPENANTFILE;
@@ -231,10 +306,6 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, int silent) {
 	sscanf(line, " %lf %s\n", &MaxG, instr);
 	fgets(line, sizeof(line), fp);		// Antenna type
 	sscanf(line, " %d %s\n", &iI, instr);
-	// Make sure this is a VOACAP "Type 14" antenna file
-	if(iI != 14) {
-		return RTN_ERRNOTTYPE14;
-	};
 	fgets(line, sizeof(line), fp); // Frequency
 
 	/*
@@ -266,18 +337,24 @@ int ReadType14(struct Antenna *Ant, char * DataFilePath, int silent) {
 		};
 		fgets(line, sizeof(line), fp);
 		sscanf(line, " %lf\n", &Ant->pattern[i][0][90]);
+		
+		// Add max gain value where required.
+		if (MaxG != 0.0) {
+			for(j=0; j<=90; j += 1) {
+				Ant->pattern[i][0][j] += MaxG;
+			};
+		};
 
 		// Copy the array of elevation data to the rest of the data structure.
 		for (j=1; j<azin; j++) {
 			memcpy(Ant->pattern[i][j], Ant->pattern[i][0], elen * sizeof(double));
 		}
 	}
-	fclose(fp);
-	return RTN_READTYPE14OK;
+	return RTN_READANTENNAPATTERNSOK;
 };
 
 
-void IsotropicPattern(struct Antenna *Ant, double G) {
+void IsotropicPattern(struct Antenna *Ant, double G, int silent) {
 
 	int azin, elen, freqn;			// Number of frequencies, elevations and azimuths
 	int i, j;						// Loop counters
@@ -286,8 +363,13 @@ void IsotropicPattern(struct Antenna *Ant, double G) {
 	elen = 91;					// Fixed number of elevations at 1-degree intervals
 	freqn = 1;					// Number of frequencies to be read
 
+
 	AllocateAntennaMemory(Ant, freqn, azin, elen);
 
+    // User feedback
+	if(silent != TRUE) {
+		printf("IsotropicPattern: Reading Isotropic antenna\n");
+	};
 	Ant->freqs[0] = 0;
 
 	for(i=0; i<azin; i++) {
