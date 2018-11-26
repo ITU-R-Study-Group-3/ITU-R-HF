@@ -3,9 +3,12 @@ CFLAGS = -fPIC -Wall -Wextra -O2 -g
 LDFLAGS = -lm -ldl
 RM = rm -f
 source_dir = ../Src/ITURHFProp/
-bin_dir = ../Bin/
 
-TARGET = $(bin_dir)ITURHFProp
+prefix = /usr/local
+exec_prefix = $(prefix)
+bindir = $(exec_prefix)/bin
+
+TARGET = ITURHFProp
 
 SRCS = $(source_dir)DumpPathData.c\
 	$(source_dir)ITURHFProp.c\
@@ -30,4 +33,5 @@ clean:
 	-${RM} ${TARGET} ${OBJS} $(SRCS:.c=.d)
 
 install: all
-	install -m 755 $(TARGET) $(prefix)/bin
+	install -d $(DESTDIR)$(bindir)/
+	install -m 755 $(TARGET) $(DESTDIR)$(bindir)/ITURHFProp

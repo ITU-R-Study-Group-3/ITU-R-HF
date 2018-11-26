@@ -4,7 +4,11 @@ bin_dir = ../Bin/
 CFLAGS = -fPIC -Wall -Wextra -O2 -g -I$(source_dir)
 LDFLAGS = -shared -lm -ldl 
 RM = rm -f
-TARGET_LIB = $(bin_dir)libp533.so
+TARGET_LIB = libp533.so
+
+prefix = /usr/local
+exec_prefix = $(prefix)
+libdir = $(exec_prefix)/lib
 
 SRCS = $(source_dir)Between7000kmand9000km.c \
        $(source_dir)ELayerScreeningFrequency.c \
@@ -44,5 +48,7 @@ clean:
 	${RM} ${OBJS} $(SRCS:.c=.d)
 
 install: all
-	install -m 644 $(TARGET_LIB) $(prefix)/lib/
+	install -d $(DESTDIR)$(libdir)/
+	install $(TARGET_LIB) $(DESTDIR)$(libdir)/$(TARGET_LIB)
+
 

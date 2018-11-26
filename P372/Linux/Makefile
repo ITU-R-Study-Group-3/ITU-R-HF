@@ -4,7 +4,11 @@ bin_dir = ../Bin/
 CFLAGS = -fPIC -Wall -Wextra -O2 -g -I$(source_dir)
 LDFLAGS = -shared -lm -ldl 
 RM = rm -f
-TARGET_LIB = $(bin_dir)libp372.so
+TARGET_LIB = libp372.so
+
+prefix = /usr/local
+exec_prefix = $(prefix)
+libdir = $(exec_prefix)/lib
 
 SRCS = $(source_dir)InitializeNoise.c \
        $(source_dir)Noise.c \
@@ -28,4 +32,5 @@ clean:
 	${RM} ${OBJS} $(SRCS:.c=.d)
 
 install: all
-	install -m 644 $(TARGET_LIB) $(prefix)/lib/
+	install -d $(DESTDIR)$(libdir)/
+	install $(TARGET_LIB) $(DESTDIR)$(libdir)/$(TARGET_LIB)
