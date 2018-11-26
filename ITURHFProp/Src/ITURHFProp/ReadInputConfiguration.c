@@ -578,6 +578,11 @@ void InitializeInput(struct ITURHFProp *ITURHFP, struct PathData *path) {
 int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
 
 	int retval;
+    int antType;
+    int lineCtr;
+    FILE *fp;
+	char line[256];		// Read input line
+	char instr[256];	// String temp
 
 	// User feedback
 	if(ITURHFP.silent != TRUE) {
@@ -590,74 +595,102 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
 	// Determine the type of receiver antenna file.
 	if(strcmp(ITURHFP.RXAntFilePath, "ISOTROPIC") == 0) { // Isotropic Antenna
 		ITURHFP.rxantfp = NULL;
-		dllIsotropicPatternFunc(&path->A_rx, ITURHFP.RXGOS);
-
+		dllIsotropicPatternFunc(&path->A_rx, ITURHFP.RXGOS, ITURHFP.silent);
 		// Store the name of the antenna to the path structure.
 		strcpy(path->A_rx.Name, "ISOTROPIC");
-	} else if ((strncmp(ITURHFP.RXAntFilePath + strlen(ITURHFP.RXAntFilePath) - 4, ".n14", 4) == 0) ||
-	 						(strncmp(ITURHFP.RXAntFilePath + strlen(ITURHFP.RXAntFilePath) - 4, ".N14", 4) == 0)) { // Type 14 antenna
-		retval = dllReadType14Func(&path->A_rx, ITURHFP.RXAntFilePath, ITURHFP.silent);
-		if (retval != RTN_READTYPE14OK) {
-			// Convert the error message from P533() to a ITURHFProp() error message
-			// since you know that you are opening a rx antenna file
-			if (retval == RTN_ERRCANTOPENANTFILE) {
-				return RTN_ERRCANTOPENRXANTFILE;
-			}
-			else {
-				return retval;
-			};
-		};
 	} else {
-		// The file exists and is open now fill the antenna array in the path.
-		retval = dllReadType13Func(&path->A_rx, ITURHFP.RXAntFilePath, ITURHFP.RXBearing, ITURHFP.silent);
-		if (retval != RTN_READTYPE13OK) {
-			// Convert the error message from P533() to a ITURHFProp() error message
-			// since you know that you are opening a rx antenna file
-			if (retval == RTN_ERRCANTOPENANTFILE) {
-				return RTN_ERRCANTOPENRXANTFILE;
-			}
-			else {
-				return retval;
+	    //If it's not an ISOTROPIC, open the file and take a look...
+	    /* VOACAP type antennas identify the antenna type on the forth
+	     * line; e.g;
+         *   14    [ 2] Antenna Type..: 30 x (efficiency + 91 gain values) follow
+         */
+	    fp = fopen(ITURHFP.RXAntFilePath, "r");
+		
+	    if (fp == NULL) {
+            if(ITURHFP.silent != TRUE) {
+				printf("Error opening Rx. antenna file %.65s\n", ITURHFP.RXAntFilePath);
 			};
-		};
-	};
+		    return RTN_ERRCANTOPENRXANTFILE;
+	    };
+
+	    for (lineCtr = 0 ; lineCtr<4 ; ++lineCtr) {
+		    fgets(line, sizeof(line), fp);		// Scroll to line 3, Antenna type
+	    }
+
+	    sscanf(line, " %d %s\n", &antType, instr);
+        rewind(fp);
+
+	    if(antType == 11) {
+		    retval = dllReadType11Func(&path->A_rx, fp, ITURHFP.silent);
+            fclose(fp);
+		    if(retval != RTN_READANTENNAPATTERNSOK) {
+				    return retval;
+            }
+		} else if(antType == 13) {
+		    retval = dllReadType13Func(&path->A_rx, fp, ITURHFP.RXBearing, ITURHFP.silent);
+            fclose(fp);
+		    if (retval != RTN_READANTENNAPATTERNSOK) {
+				    return retval;
+		    };
+	    } else if (antType == 14) {
+		    retval = dllReadType14Func(&path->A_rx, fp, ITURHFP.silent);
+            fclose(fp);
+		    if (retval != RTN_READANTENNAPATTERNSOK) {
+				    return retval;
+		    };
+        } else {
+            printf("Unsuppported antenna type: %d\n",antType);
+            return RTN_ERRCANTOPENRXANTFILE;
+        } 
+    }; // end of the rx antenna type
 
 	// Determine the type of transmitter antenna file.
 	if(strcmp(ITURHFP.TXAntFilePath, "ISOTROPIC") == 0) { // Isotropic Antenna
 		ITURHFP.txantfp = NULL;
-		dllIsotropicPatternFunc(&path->A_tx, ITURHFP.TXGOS);
-
+		dllIsotropicPatternFunc(&path->A_tx, ITURHFP.TXGOS, ITURHFP.silent);
 		// Store the name of the antenna to the path structure.
 		strcpy(path->A_tx.Name, "ISOTROPIC");
-	} else if ((strncmp(ITURHFP.TXAntFilePath + strlen(ITURHFP.TXAntFilePath) - 4, ".n14", 4) == 0) ||
-	 						(strncmp(ITURHFP.TXAntFilePath + strlen(ITURHFP.TXAntFilePath) - 4, ".N14", 4) == 0)) { // Type 14 antenna
-		retval = dllReadType14Func(&path->A_tx, ITURHFP.TXAntFilePath, ITURHFP.silent);
-		if (retval != RTN_READTYPE14OK) {
-			// Convert the error message from P533() to a ITURHFProp() error message
-			// since you know that you are opening a tx antenna file
-			if (retval == RTN_ERRCANTOPENANTFILE) {
-				return RTN_ERRCANTOPENRXANTFILE;
-			}
-			else {
-				return retval;
-			};
-		};
 	} else {
-		// The file exists and is open now fill the antenna array in the path.
-		retval = dllReadType13Func(&path->A_tx, ITURHFP.TXAntFilePath, ITURHFP.TXBearing, ITURHFP.silent);
-		if(retval != RTN_READTYPE13OK) {
-			// Convert the error message from P533() to a ITURHFProp() error message
-			// since you know that you are opening a tx antenna file
-			if (retval == RTN_ERRCANTOPENANTFILE) {
-				return RTN_ERRCANTOPENTXANTFILE;
-			}
-			else {
-				return retval;
-			};
-		};
-	};
+        fp = fopen(ITURHFP.TXAntFilePath, "r");
 
-	return RTN_READANTENNAPATTERNSOK;
+	    if (fp == NULL) {
+			if(ITURHFP.silent != TRUE) {
+				printf("Error opening Tx. antenna file %.65s\n", ITURHFP.TXAntFilePath);
+			};
+		    return RTN_ERRCANTOPENTXANTFILE;
+	    };
+	    for (lineCtr = 0 ; lineCtr<4 ; ++lineCtr) {
+		    fgets(line, sizeof(line), fp);		// Antenna type
+	    }
+	    sscanf(line, " %d %s\n", &antType, instr);
+
+        rewind(fp);
+
+	    if(antType == 11) {
+		    retval = dllReadType11Func(&path->A_tx, fp, ITURHFP.silent);
+            fclose(fp);
+		    if(retval != RTN_READANTENNAPATTERNSOK) {
+				    return retval;
+            }
+		} else if(antType == 13) {
+		    retval = dllReadType13Func(&path->A_tx, fp, ITURHFP.TXBearing, ITURHFP.silent);
+            fclose(fp);
+		    if(retval != RTN_READANTENNAPATTERNSOK) {
+				    return retval;
+            }
+		} else if (antType == 14) {
+		    retval = dllReadType14Func(&path->A_tx, fp, ITURHFP.silent);
+            fclose(fp);
+		    if (retval != RTN_READANTENNAPATTERNSOK) {
+				    return retval;
+		    };
+	    } else {
+			printf("Unsuppported antenna type: %d\n",antType);
+            return RTN_ERRCANTOPENTXANTFILE;
+	    };
+
+	    return RTN_READANTENNAPATTERNSOK;
+    }
 };
 
 

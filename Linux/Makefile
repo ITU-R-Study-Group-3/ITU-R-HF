@@ -4,13 +4,16 @@ endif
 
 export prefix
 
-TOPTARGETS := all clean install
+mandir = $(prefix)/share/man
+man1dir = $(mandir)/man1
+
+TOPTARGETS := all clean
 
 SUBDIRS := ../P533/Linux/ \
 	../P372/Linux/ \
 	../ITURHFProp/Linux
 
-data_dir = /usr/local/share/p533/data
+data_dir = $(prefix)/share/p533/data
 
 $(TOPTARGETS): $(SUBDIRS)
 $(SUBDIRS):
@@ -18,8 +21,10 @@ $(SUBDIRS):
 
 .PHONY: $(TOPTARGETS) $(SUBDIRS)
 
+install: $(SUBDIRS)
+	install ITURHFProp.1 $(man1dir)
+	
 install-data:
 	install -d $(data_dir)
 	install -m 744 -D ../P372/Data/*.txt $(data_dir)
 	install -m 744 -D ../P372/Data/*.bin $(data_dir)
-
