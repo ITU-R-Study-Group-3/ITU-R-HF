@@ -335,8 +335,8 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 		fgets(line, 256, fp);
 	};
 
-	// There are optional ways to enter the analysis rectangle. 
-	// Determine if the user choose to inpout the analysis rectangle 
+	// There are optional ways to enter the analysis rectangle.
+	// Determine if the user choose to inpout the analysis rectangle
 	// defined by the north west and south east corner
 	if ((ITURHFP->L_LR.lat != TOOBIG) && (ITURHFP->L_LR.lng != TOOBIG) &&
 		(ITURHFP->L_LL.lat == TOOBIG) && (ITURHFP->L_LL.lng == TOOBIG) &&
@@ -605,7 +605,7 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
          *   14    [ 2] Antenna Type..: 30 x (efficiency + 91 gain values) follow
          */
 	    fp = fopen(ITURHFP.RXAntFilePath, "r");
-		
+
 	    if (fp == NULL) {
             if(ITURHFP.silent != TRUE) {
 				printf("Error opening Rx. antenna file %.65s\n", ITURHFP.RXAntFilePath);
@@ -641,7 +641,7 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
         } else {
             printf("Unsuppported antenna type: %d\n",antType);
             return RTN_ERRCANTOPENRXANTFILE;
-        } 
+        }
     }; // end of the rx antenna type
 
 	// Determine the type of transmitter antenna file.
@@ -688,9 +688,8 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
 			printf("Unsuppported antenna type: %d\n",antType);
             return RTN_ERRCANTOPENTXANTFILE;
 	    };
-
-	    return RTN_READANTENNAPATTERNSOK;
     }
+		return RTN_READANTENNAPATTERNSOK;
 };
 
 
