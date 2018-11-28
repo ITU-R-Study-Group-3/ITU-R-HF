@@ -10,7 +10,9 @@ SUBDIRS := ../P533/Linux/ \
 	../P372/Linux/ \
 	../ITURHFProp/Linux
 
-data_dir = /usr/local/share/p533/data
+datarootdir = $(prefix)/share
+datadir = $(datarootdir)
+
 
 $(TOPTARGETS): $(SUBDIRS)
 $(SUBDIRS):
@@ -18,8 +20,8 @@ $(SUBDIRS):
 
 .PHONY: $(TOPTARGETS) $(SUBDIRS)
 
-install-data:
-	install -d $(data_dir)
-	install -m 744 -D ../P372/Data/*.txt $(data_dir)
-	install -m 744 -D ../P372/Data/*.bin $(data_dir)
+install:
+	install -d $(DESTDIR)$(datadir)/iturhfprop/data
+	install -m 744 -D ../P372/Data/*.txt $(DESTDIR)$(datadir)/iturhfprop/data
+	install -m 744 -D ../P372/Data/*.bin $(DESTDIR)$(datadir)/iturhfprop/data
 
