@@ -122,8 +122,6 @@
 #define RTN_ERRALLOCATEANT			136 // ERROR: Allocating Memory for Antenna Pattern
 
 // Return ERROR from ReadAntennaPatterns() ReadType13()
-#define RTN_ERRNOTTYPE13				140 // ERROR: Antenna File Format Error (Type 13)
-#define RTN_ERRNOTTYPE14				140 // ERROR: Antenna File Format Error (Type 14)
 #define	RTN_ERRCANTOPENANTFILE	        141 // ERROR: Can Not Open Recieve Antenna File
 
 // Return ERROR from ReadP1239()
@@ -143,8 +141,6 @@
 #define RTN_READIONPARAOK			    4 // ReadIonParameters()
 #define RTN_READP1239OK					5 // ReadP1239()
 #define RTN_READANTENNAPATTERNSOK		6 // ReadAntennaPatterns()
-#define RTN_READTYPE13OK				7 // ReadAntennaPatterns()
-#define RTN_READTYPE14OK				7 // ReadAntennaPatterns()
 #define	RTN_VALIDDATAOK					8 // ValidPath()
 
 #define	RTN_P533OK						0 // P533()
@@ -594,8 +590,10 @@ DLLEXPORT int AllocateAntennaMemory(struct Antenna *ant, int freqn, int azin, in
 DLLEXPORT int InputDump(struct PathData *path);
 
 //Antenna file AND COEFFICIENT routines
-DLLEXPORT int ReadType13(struct Antenna *Ant, char * DataFilePath, double bearing, int silent);
-DLLEXPORT void IsotropicPattern(struct Antenna *Ant, double G);
+DLLEXPORT int ReadType11(struct Antenna *Ant, FILE *fp, int silent);
+DLLEXPORT int ReadType13(struct Antenna *Ant, FILE *fp, double bearing, int silent);
+DLLEXPORT int ReadType14(struct Antenna *Ant, FILE *fp, int silent);
+DLLEXPORT void IsotropicPattern(struct Antenna *Ant, double G, int silent);
 DLLEXPORT int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFilePath[256], int silent);
 DLLEXPORT int ReadIonParametersTxt(struct PathData *path, char DataFilePath[256], int silent) ;
 DLLEXPORT int ReadP1239(struct PathData *path, const char * DataFilePath);

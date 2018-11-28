@@ -73,6 +73,7 @@ int main(int argc, char *argv[]) {
 	// Initialization
 	ITURHFP.silent = FALSE;
 	ITURHFP.header = TRUE;
+	ITURHFP.csvRFC4180 = FALSE;
 	InFileName[0] = EMPTY;
 	InFilePath[0] = EMPTY;
 	OutFileName[0] = EMPTY;
@@ -108,6 +109,7 @@ int main(int argc, char *argv[]) {
 	// Get the function InputDump() from the DLL.
 	dllInputDump = (iInputDump)GetProcAddress((HMODULE)hLib, "InputDump");
 	// Get functions that have been moved into DLL as utility for PMW integration
+	dllReadType11Func = (iReadType11Func)GetProcAddress((HMODULE)hLib,"ReadType11");
 	dllReadType13Func = (iReadType13Func)GetProcAddress((HMODULE)hLib,"ReadType13");
 	dllReadType14Func = (iReadType14Func)GetProcAddress((HMODULE)hLib,"ReadType14");
 	dllIsotropicPatternFunc = (vIsotropicPatternFunc)GetProcAddress((HMODULE)hLib,"IsotropicPattern");
@@ -130,7 +132,7 @@ int main(int argc, char *argv[]) {
 	dllFreePathMemory = dlsym(hLib,"FreePathMemory");
 	dllInputDump = dlsym(hLib, "InputDump");
 	dllBearing = dlsym(hLib,"Bearing");
-
+	dllReadType11Func = dlsym(hLib,"ReadType11");
 	dllReadType13Func = dlsym(hLib,"ReadType13");
 	dllReadType14Func = dlsym(hLib,"ReadType14");
 	dllIsotropicPatternFunc = dlsym(hLib,"IsotropicPattern");
@@ -156,11 +158,15 @@ int main(int argc, char *argv[]) {
 	// Determine the desired user options on the command line
 	while ((argc > 1) && (argv[1][0] == '-')) {
 		switch (argv[1][1]) {
+			case 'c': //CSV OUTPUT
+				ITURHFP.csvRFC4180 = TRUE;
+				ITURHFP.header = FALSE;
+				break;
 			case 's': // Silent Mode
 				ITURHFP.silent = TRUE;
 				break;
 			case 't': // Remove the header Mode
-				ITURHFP.header = FALSE;
+			  ITURHFP.header = FALSE;
 				break;
 			case 'v': // Version - Display version and Exit
 				printf("ITURHFProp Version: %s\n", ITURHFPropVER);
@@ -321,7 +327,7 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 	  				iii) Frequency
 	  				iv)  Hours
 	  				v)   Months
-	  
+
 	  			INPUT
 	  				struct PathData *path
 	  				struct ITURHFProp *ITURHFP
@@ -330,8 +336,8 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 	  				Output files PDD or RPT that are time stamped with the data required.
 
 				EXTERNAL DLL
-					This program requires P533.dll and P372.dll 
-	  
+					This program requires P533.dll and P372.dll
+
 	 */
 
 	int i;
@@ -399,7 +405,7 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 		exit(1);
 	}
 	dllReadFamDud = dlsym(hLib, "ReadFamDud");
-#endif	
+#endif
 	// End P372.DLL Load ************************************************
 
 	// ********************** Month Loop **********************************************************
