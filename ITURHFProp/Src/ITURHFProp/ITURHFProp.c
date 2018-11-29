@@ -494,9 +494,11 @@ void help(void)
 	printf("\n");
 	printf("ITUFHProp [Options] [Input File] [Output File]\n");
 	printf("\tOptions\n");
+	printf("\t\t-c CSV: Create an RFC4180 compliant CSV output file.\n");
+	printf("\t\t-h Help: Displays help\n");
 	printf("\t\t-s Silent Mode: Supresses display output except for error\n");
 	printf("\t\t   messages\n");
-	printf("\t\t-h Help: Displays help\n");
+	printf("\t\t-t Table: Print only the CSV table to the output file.\n");
 	printf("\t\t-v Version: Displays the version of ITURHFProp and P533\n");
 	printf("\n");
 	printf("\tInput File\n");
