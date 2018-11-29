@@ -6,7 +6,7 @@ LDFLAGS = -shared -lm -ldl
 RM = rm -f
 TARGET_LIB = libp533.so
 
-prefix = /usr/local
+prefix ?= /usr/local
 exec_prefix = $(prefix)
 libdir = $(exec_prefix)/lib
 

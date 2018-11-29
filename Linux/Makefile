@@ -1,7 +1,5 @@
-ifeq ($(prefix),)
-    prefix := /usr/local
-endif
 
+prefix ?= /usr/local
 export prefix
 
 mandir = $(prefix)/share/man

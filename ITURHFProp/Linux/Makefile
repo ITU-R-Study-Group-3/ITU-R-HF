@@ -4,7 +4,7 @@ LDFLAGS = -lm -ldl
 RM = rm -f
 source_dir = ../Src/ITURHFProp/
 
-prefix = /usr/local
+prefix ?= /usr/local
 exec_prefix = $(prefix)
 bindir = $(exec_prefix)/bin
 
