@@ -556,7 +556,9 @@ void InitializeInput(struct ITURHFProp *ITURHFP, struct PathData *path) {
 	for(i=0; i<NMBOFFREQS; i++) ITURHFP->frqs[i] = 99.0;
 	for(i=0; i<NMBOFHOURS; i++) ITURHFP->hrs[i] = 99;
 	for(i=0; i<NMBOFHOURS; i++) ITURHFP->months[i] = 99;
-	sprintf(ITURHFP->RptFilePath, ".");
+	#ifdef _WIN32
+	  sprintf(ITURHFP->RptFilePath, ".");
+	#endif
 	ITURHFP->RptFileFormat = RPT_ALL;
 	ITURHFP->L_LL.lat = TOOBIG;
 	ITURHFP->L_LL.lng = TOOBIG;
