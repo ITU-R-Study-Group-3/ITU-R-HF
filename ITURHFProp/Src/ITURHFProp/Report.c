@@ -534,6 +534,14 @@ void function_RPT_BMUFD(struct PathData path, struct ITURHFProp ITURHFP, int opt
 			fprintf(fp,",");
 			fprintf(fp, DBLFIELD, path.MUF10);
 			break;
+		case PRINT_RFC4180_DATA:
+			fprintf(fp,",");
+			fprintf(fp, RFC4180_DBLFIELD, path.MUF50);
+			fprintf(fp,",");
+			fprintf(fp, RFC4180_DBLFIELD, path.MUF90);
+			fprintf(fp,",");
+			fprintf(fp, RFC4180_DBLFIELD, path.MUF10);
+			break;
 	};
 
 	return;
