@@ -94,7 +94,7 @@ int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
 		};
 	};*/
 	if (fgets(line, sizeof(line), fp) != NULL) {
-		line[strcspn(line, "\n")] = "\0";
+		line[strcspn(line, "\n")] = '\0';
 	};
 
 	strcpy(Ant->Name, line);	// Store it to the path structure.
