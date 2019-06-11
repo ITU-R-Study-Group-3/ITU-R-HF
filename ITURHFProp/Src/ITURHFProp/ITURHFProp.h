@@ -7,8 +7,10 @@
 	typedef const char * (__cdecl *cP533Info)();
 	typedef int(__cdecl * iP533)(struct PathData * path);
 	typedef int(__cdecl * iPathMemory)(struct PathData * path);
-	typedef int(__cdecl * iReadType13Func)(struct Antenna *Ant, char * DataFilePath, double bearing, int silent);
-	typedef void(__cdecl * vIsotropicPatternFunc)(struct Antenna *Ant, double G);
+	typedef int(__cdecl* iReadType11Func)(struct Antenna* Ant, FILE* DataFilePath, int silent);
+	typedef int(__cdecl* iReadType13Func)(struct Antenna* Ant, FILE* DataFilePath, double bearing, int silent);
+	typedef int(__cdecl* iReadType14Func)(struct Antenna* Ant, FILE* DataFilePath, int silent);
+	typedef void(__cdecl * vIsotropicPatternFunc)(struct Antenna *Ant, double G, int silent);
 	typedef int(__cdecl * iReadFamDudFunc)(struct PathData *path, char * DataFilePath);
 	typedef int(__cdecl * iReadIonParametersBinFunc)(int month, float ****foF2, float ****M3kF2, char DataFilePath[256], int silent);
 	typedef int(__cdecl * iReadIonParametersTxtFunc)(struct PathData *path, char DataFilePath[256], int silent);
@@ -319,7 +321,7 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 // End ITURHFProp **********************************************************************************
 
 //////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2018         //
+//      Copyright  International Telecommunication Union (ITU) 2019         //
 //                     All rights reserved.                                 //
 // No part of this publication may be reproduced, by any means whatsoever,  //
 //              without written permission of ITU                           //

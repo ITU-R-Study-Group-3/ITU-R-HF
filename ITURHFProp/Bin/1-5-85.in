@@ -30,7 +30,13 @@ Path.FW 0.0
 Path.T0 0.0
 Path.F0 0.0
 Path.SorL "SHORTPATH"
-RptFilePath "C:\Users\behm\Documents\GitHub\GitHf\Reports\"
+<<<<<<< HEAD
+\\RptFilePath "C:\Users\cbehm\Documents\GitHub\ITU-R-HF\Reports\"
+\\RptFilePath "/media/sf_Behm/GitHub/ITU-R-HF/Reports/"
+=======
+RptFilePath "C:\Users\cbehm\Documents\GitHub\GitHf\Reports\"
+\\RptFilePath "/media/sf_GitHub/ITU-R-HF/Reports/"
+>>>>>>> 76fc4964e7ec74b4fd2cfeeae7578899fe961699
 \\RptFileFormat "RPT_E | RPT_PR | RPT_RXLOCATION | RPT_D | RPT_SNRXX | RPT_OCR | RPT_OCRS"
 \\RptFileFormat "RPT_ALL"
 RptFileFormat "RPT_NOISESOURCESD | RPT_NOISESOURCES | RPT_NOISETOTALD | RPT_NOISETOTAL"
@@ -44,4 +50,10 @@ UR.lat 51.1166666667
 UR.lng 7.26666666667
 latinc 1.0
 lnginc 1.0
-DataFilePath "C:\Users\behm\Documents\GitHub\GitHf\Data\"
+<<<<<<< HEAD
+DataFilePath "C:\Users\cbehm\Documents\GitHub\ITU-R-HF\P372\Data\"
+\\DataFilePath "../../P372/Data/"
+=======
+DataFilePath "C:\Users\cbehm\Documents\GitHub\GitHf\Data\"
+\\DataFilePath "/media/sf_GitHub/ITU-R-HF/Data/"
+>>>>>>> 76fc4964e7ec74b4fd2cfeeae7578899fe961699

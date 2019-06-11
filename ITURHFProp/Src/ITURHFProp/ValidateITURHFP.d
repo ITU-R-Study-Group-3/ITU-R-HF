@@ -1,1 +1,3 @@
-ValidateITURHFP.o: ValidateITURHFP.c Common.h P533.h Noise.h ITURHFProp.h
+ValidateITURHFP.o: ../Src/ITURHFProp/ValidateITURHFP.c \
+ ../Src/ITURHFProp/Common.h ../Src/ITURHFProp/P533.h \
+ ../Src/ITURHFProp/Noise.h ../Src/ITURHFProp/ITURHFProp.h

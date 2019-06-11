@@ -9,6 +9,11 @@
 	#define DLLEXPORT
 #endif
 
+// External Preprocessors Dependancies
+// The path structure constains the P372 noise structure
+#include "Noise.h"
+// End External Preprocessor Dependancies
+
 // Start P372.DLL typedef ******************************************************
 #ifdef _WIN32
 	#include <Windows.h>
@@ -39,11 +44,11 @@
 	void * hLib;
 	char * (*dllP372Version)();
 	char * (*dllP372CompileTime)();
-	int(*dllNoise)(struct NoiseParams *);
+	int(*dllNoise)(struct NoiseParams *, int, double, double, double);
 	int(*dllAllocateNoiseMemory)(struct NoiseParams *);
 	int(*dllFreeNoiseMemory)(struct NoiseParams *);
 	int(*dllReadFamDud)(struct NoiseParams *, const char *, int);
-	void(*dllInitiailizeNoise)(struct NoiseParams *);
+	void(*dllInitializeNoise)(struct NoiseParams *);
 #endif
 // End operating system preprocessor *******************************************
 
@@ -51,13 +56,8 @@
 
 // P533 *******************************************************************************************
 
-// External Preprocessors Dependancies
-// The path structure constains the P372 noise structure
-#include "Noise.h"
-// End External Preprocessor Dependancies
-
 // Version number
-#define P533VER		"P.533-13.8"
+#define P533VER		"P.533-14"
 
 // Have the preprocessor time stamp the compile time
 #define P533CT		__TIMESTAMP__
@@ -118,8 +118,8 @@
 #define RTN_ERRALLOCATEFOF2VAR			132 // ERROR: Allocating Memory for foF2 Variability
 #define RTN_ERRALLOCATETX				133 // ERROR: Allocating Memory for Tx Antenna Pattern
 #define RTN_ERRALLOCATERX				134 // ERROR: Allocating Memory for Rx Antenna Pattern
-#define RTN_ERRALLOCATENOISE    135 // ERROR: Allocating Memory for Noise Structure 
-#define RTN_ERRALLOCATEANT			136 // ERROR: Allocating Memory for Antenna Pattern
+#define RTN_ERRALLOCATENOISE            135 // ERROR: Allocating Memory for Noise Structure 
+#define RTN_ERRALLOCATEANT			    136 // ERROR: Allocating Memory for Antenna Pattern
 
 // Return ERROR from ReadAntennaPatterns() ReadType13()
 #define	RTN_ERRCANTOPENANTFILE	        141 // ERROR: Can Not Open Recieve Antenna File
@@ -333,7 +333,6 @@ struct Antenna {
 	//		ii) The data is valid. It is the responsibility of the calling program to ensure this.
 	double ***pattern;
 };
-
 
 // Any "adjustment" to the contents of the structure PathData to make indices out of some of the variables, such as month and hour
 // are done in InitializePath()
@@ -608,7 +607,7 @@ DLLEXPORT int sizeofPathDataStruct();
 // End P533 ***************************************************************************************
 
 //////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2018         //
+//      Copyright  International Telecommunication Union (ITU) 2019         //
 //                     All rights reserved.                                 //
 // No part of this publication may be reproduced, by any means whatsoever,  //
 //              without written permission of ITU                           //

@@ -35,6 +35,7 @@ int ReadP1239(struct PathData *path, const char * DataFilePath) {
 	fp = fopen (InFilePath, "r");  // Open the file. Home
 	if(fp == NULL) {
 		printf("ReadP1239: ERROR Can't find input file 'P1239-3 Decile Factors.txt'\n");
+		printf("\t\t<%s>\n", InFilePath);
 		return RTN_ERRCANTOPENP1239FILE;
 	};
 	
@@ -84,7 +85,7 @@ int ReadP1239(struct PathData *path, const char * DataFilePath) {
 };
 
 //////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2018         //
+//      Copyright  International Telecommunication Union (ITU) 2019         //
 //                     All rights reserved.                                 //
 // No part of this publication may be reproduced, by any means whatsoever,  //
 //               without written permission of ITU                          //

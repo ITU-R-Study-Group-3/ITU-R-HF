@@ -1,1 +1,1 @@
-Noise.o: ../src/P372/Noise.c ../src/P372/Common.h ../src/P372/Noise.h
+Noise.o: ../Src/P372/Noise.c ../Src/P372/common.h ../Src/P372/Noise.h

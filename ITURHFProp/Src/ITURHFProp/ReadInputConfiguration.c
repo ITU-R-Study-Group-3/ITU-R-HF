@@ -19,7 +19,7 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 	// This program reads data from a file and calls ITURHFProp().
 	// All inputs are in degrees.
 
-	int i,k;
+	int i;
 	int retval;
 
 	char line[256];
@@ -40,9 +40,6 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 	// Initailize the input values in the structure PathData path and
 	// structure ITURHFProp ITURHFP to default values.
 	InitializeInput(ITURHFP, path);
-
-	// k is the lines read counter
-	k = 1;
 
 	// Read the first line of the file.
 	fgets(line, 256, fp);
@@ -555,7 +552,7 @@ void InitializeInput(struct ITURHFProp *ITURHFP, struct PathData *path) {
 	sprintf(ITURHFP->RXAntFilePath, ".");
 	for(i=0; i<NMBOFFREQS; i++) ITURHFP->frqs[i] = 99.0;
 	for(i=0; i<NMBOFHOURS; i++) ITURHFP->hrs[i] = 99;
-	for(i=0; i<NMBOFHOURS; i++) ITURHFP->months[i] = 99;
+	for(i=0; i<NMBOFMONTHS; i++) ITURHFP->months[i] = 99;
 	#ifdef _WIN32
 	  sprintf(ITURHFP->RptFilePath, ".");
 	#endif
@@ -582,7 +579,9 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
 	int retval;
     int antType;
     int lineCtr;
+
     FILE *fp;
+	
 	char line[256];		// Read input line
 	char instr[256];	// String temp
 
@@ -696,7 +695,7 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
 
 
 //////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2018         //
+//      Copyright  International Telecommunication Union (ITU) 2019         //
 //                     All rights reserved.                                 //
 // No part of this publication may be reproduced, by any means whatsoever,  //
 //              without written permission of ITU                           //

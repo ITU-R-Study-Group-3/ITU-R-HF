@@ -59,10 +59,10 @@ DLLEXPORT int InputDump(struct PathData *path) {
 	printf("path->A_tx addr          0x%x\n",             (unsigned int)&path->A_tx);	
 	printf("path->A_tx.name addr     0x%x contents %s\n", (unsigned int)&path->A_tx.Name, path->A_tx.Name);	
 	printf("path->A_tx.pattern addr  0x%x\n",             (unsigned int)&path->A_tx.pattern);
-	printf("\tpath->A_tx.pattern[0][0] addr     0x%x contents %lf\n", (unsigned int)&(path->A_tx.pattern[0][0]), path->A_tx.pattern[0][0]);	
-	printf("\tpath->A_tx.pattern[0][90] addr    0x%x contents %lf\n", (unsigned int)&(path->A_tx.pattern[0][90]), path->A_tx.pattern[0][90]);	
-	printf("\tpath->A_tx.pattern[359][0] addr   0x%x contents %lf\n", (unsigned int)&(path->A_tx.pattern[359][0]), path->A_tx.pattern[359][0]);
-	printf("\tpath->A_tx.pattern[359][90] addr  0x%x contents %lf\n", (unsigned int)&(path->A_tx.pattern[359][90]), path->A_tx.pattern[359][90]);
+	printf("\tpath->A_tx.pattern[0][0][0] addr     0x%x contents %lf\n", (unsigned int)&(path->A_tx.pattern[0][0][0]), path->A_tx.pattern[0][0][0]);	
+	printf("\tpath->A_tx.pattern[0][0][90] addr    0x%x contents %lf\n", (unsigned int)&(path->A_tx.pattern[0][0][90]), path->A_tx.pattern[0][0][90]);	
+	printf("\tpath->A_tx.pattern[0][359][0] addr   0x%x contents %lf\n", (unsigned int)&(path->A_tx.pattern[0][359][0]), path->A_tx.pattern[0][359][0]);
+	printf("\tpath->A_tx.pattern[0][359][90] addr  0x%x contents %lf\n", (unsigned int)&(path->A_tx.pattern[0][359][90]), path->A_tx.pattern[0][359][90]);
 	printf("\n");
 	printf("path->L_rx addr          0x%x\n",              (unsigned int)&path->L_rx);	
 	printf("path->L_rx.lat addr      0x%x contents %lf\n", (unsigned int)&path->L_rx.lat, path->L_rx.lat);
@@ -71,10 +71,10 @@ DLLEXPORT int InputDump(struct PathData *path) {
 	printf("path->A_rx addr          0x%x\n",             (unsigned int)&path->A_rx);	
 	printf("path->A_rx.name addr     0x%x contents %s\n", (unsigned int)&path->A_rx.Name, path->A_rx.Name);	
 	printf("path->A_rx.pattern addr  0x%x\n",             (unsigned int)&path->A_rx.pattern);
-	printf("\tpath->A_rx.pattern[0][0] addr     0x%x contents %lf\n", (unsigned int)&path->A_rx.pattern[0][0], path->A_rx.pattern[0][0]);	
-	printf("\tpath->A_rx.pattern[0][90] addr    0x%x contents %lf\n", (unsigned int)&path->A_rx.pattern[0][90], path->A_rx.pattern[0][90]);	
-	printf("\tpath->A_rx.pattern[359][0] addr   0x%x contents %lf\n", (unsigned int)&path->A_rx.pattern[359][0], path->A_rx.pattern[359][0]);
-	printf("\tpath->A_rx.pattern[359][90] addr  0x%x contents %lf\n", (unsigned int)&path->A_rx.pattern[359][90], path->A_rx.pattern[359][90]);
+	printf("\tpath->A_rx.pattern[0][0][0] addr     0x%x contents %lf\n", (unsigned int)&path->A_rx.pattern[0][0][0], path->A_rx.pattern[0][0][0]);
+	printf("\tpath->A_rx.pattern[0][0][90] addr    0x%x contents %lf\n", (unsigned int)&path->A_rx.pattern[0][0][90], path->A_rx.pattern[0][0][90]);
+	printf("\tpath->A_rx.pattern[0][359][0] addr   0x%x contents %lf\n", (unsigned int)&path->A_rx.pattern[0][359][0], path->A_rx.pattern[0][359][0]);
+	printf("\tpath->A_rx.pattern[0][359][90] addr  0x%x contents %lf\n", (unsigned int)&path->A_rx.pattern[0][359][90], path->A_rx.pattern[0][359][90]);
 	printf("\n");
 	printf("path->foF2 addr          0x%x\n",                         (unsigned int)&path->foF2);	
 	printf("\tpath->foF2[0][0][0][0] addr       0x%x contents %lf\n", (unsigned int)&path->foF2[0][0][0][0], path->foF2[0][0][0][0]);
@@ -149,7 +149,7 @@ DLLEXPORT int InputDump(struct PathData *path) {
 };
 
 //////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2018         //
+//      Copyright  International Telecommunication Union (ITU) 2019         //
 //                     All rights reserved.                                 //
 // No part of this publication may be reproduced, by any means whatsoever,  //
 //              without written permission of ITU                           //

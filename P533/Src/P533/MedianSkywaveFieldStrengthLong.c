@@ -832,13 +832,13 @@ void PrintControlPointData(struct ControlPt CP, int i, int j) {
 	// Determine the tz of the control point
 	tz = (int)(CP.L.lng/(15.0*D2R));
 	ltime = fmod(CP.Sun.lsr+tz+24, 24);
-	printf("\tlocal sunrise      = % 02.2d:%02.2d (UTC) % 02.2d:%02.2d (Local)\n", hrs(CP.Sun.lsr), mns(CP.Sun.lsr), hrs(ltime), mns(ltime)); 
+	printf("\tlocal sunrise      = % 02d:%02d (UTC) % 02d:%02d (Local)\n", hrs(CP.Sun.lsr), mns(CP.Sun.lsr), hrs(ltime), mns(ltime)); 
 	ltime = fmod(CP.Sun.lsn+tz+24, 24);
-	printf("\tlocal solar noon   = % 02.2d:%02.2d (UTC) % 02.2d:%02.2d (Local)\n", hrs(CP.Sun.lsn), mns(CP.Sun.lsn), hrs(ltime), mns(ltime)); 
+	printf("\tlocal solar noon   = % 02d:%02d (UTC) % 02d:%02d (Local)\n", hrs(CP.Sun.lsn), mns(CP.Sun.lsn), hrs(ltime), mns(ltime)); 
 	ltime = fmod(CP.Sun.lss+tz+24, 24);
-	printf("\tlocal sunset       = % 02.2d:%02.2d (UTC) % 02.2d:%02.2d (Local)\n", hrs(CP.Sun.lss), mns(CP.Sun.lss), hrs(ltime), mns(ltime)); 
+	printf("\tlocal sunset       = % 02d:%02d (UTC) % 02d:%02d (Local)\n", hrs(CP.Sun.lss), mns(CP.Sun.lss), hrs(ltime), mns(ltime)); 
 	ltime = fmod(CP.ltime+tz+24, 24);
-	printf("\tlocal time         = % 02.2d:%02.2d (UTC) % 02.2d:%02.2d (Local)\n", hrs(CP.ltime), mns(CP.ltime), hrs(ltime), mns(ltime));
+	printf("\tlocal time         = % 02d:%02d (UTC) % 02d:%02d (Local)\n", hrs(CP.ltime), mns(CP.ltime), hrs(ltime), mns(ltime));
 };
 // Testing
 
@@ -911,7 +911,7 @@ int mns(double time) {
 // Testing
 
 //////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2018         //
+//      Copyright  International Telecommunication Union (ITU) 2019         //
 //                     All rights reserved.                                 //
 // No part of this publication may be reproduced, by any means whatsoever,  //
 //              without written permission of ITU                           //

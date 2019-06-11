@@ -43,4 +43,8 @@ UR.lat 51.1166666667
 UR.lng 7.26666666667
 latinc 1.0
 lnginc 1.0
-DataFilePath "../Data/"
+<<<<<<< HEAD
+DataFilePath "../../Data/"
+=======
+DataFilePath "../../P533/Data/"
+>>>>>>> 76fc4964e7ec74b4fd2cfeeae7578899fe961699

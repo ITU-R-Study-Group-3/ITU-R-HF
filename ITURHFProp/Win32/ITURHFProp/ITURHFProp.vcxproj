@@ -13,19 +13,19 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BDC92B8E-76FA-4D52-91CB-10F38764AE0E}</ProjectGuid>
     <RootNamespace>ITURHFProp</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
@@ -81,11 +81,7 @@ copy /y $(SolutionDir)..\..\..\P372\Bin\P372.dll $(SolutionDir)..\..\Bin\P372.dl
       </AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>copy /y C:\Users\Behm\Documents\GitHub\ITURHFProp\Win32\Combined\..\..\..\P533\Src\P533\P533.h C:\Users\Behm\Documents\GitHub\ITURHFProp\Win32\Combined\..\..\Src\ITURHFProp\P533.h
-copy /y C:\Users\Behm\Documents\GitHub\ITURHFProp\Win32\Combined\..\..\..\P372\Src\P372\Common.h C:\Users\Behm\Documents\GitHub\ITURHFProp\Win32\Combined\..\..\Src\ITURHFProp\Common.h
-copy /y C:\Users\Behm\Documents\GitHub\ITURHFProp\Win32\Combined\..\..\..\P372\Src\P372\Noise.h C:\Users\Behm\Documents\GitHub\ITURHFProp\Win32\Combined\..\..\Src\ITURHFProp\Noise.h
-copy /y C:\Users\Behm\Documents\GitHub\ITURHFProp\Win32\Combined\..\..\..\P533\Bin\P533.dll C:\Users\Behm\Documents\GitHub\ITURHFProp\Win32\Combined\..\..\Bin\P533.dll
-copy /y C:\Users\Behm\Documents\GitHub\ITURHFProp\Win32\Combined\..\..\..\P372\Bin\P372.dll C:\Users\Behm\Documents\GitHub\ITURHFProp\Win32\Combined\..\..\Bin\P372.dll</Command>
+      <Command>copy /y $(SolutionDir)..\..\..\P533\Src\P533\P533.h $(SolutionDir)..\..\Src\ITURHFProp\P533.h</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>copy $(TargetDir)$(TargetFileName) $(SolutionDir)..\..\bin\$(TargetFileName)</Command>

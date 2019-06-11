@@ -61,7 +61,7 @@ int ReadFamDud(struct PathData *path, const char * DataFilePath) {
 	
 
 	// Read the first header line.
-	fgets(line, 256, fp);
+	retval = fgets(line, 256, fp);
 	
 	//************************************************************************************
 	// Skip if2(10) & xf2(13,76,2)

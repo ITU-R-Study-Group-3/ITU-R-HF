@@ -1,2 +1,2 @@
-InitializeNoise.o: ../src/P372/InitializeNoise.c ../src/P372/common.h \
- ../src/P372/Noise.h
+InitializeNoise.o: ../Src/P372/InitializeNoise.c ../Src/P372/Common.h \
+ ../Src/P372/Noise.h

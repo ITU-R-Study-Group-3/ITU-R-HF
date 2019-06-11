@@ -1,9 +1,16 @@
 ---------------------------------------------------------------------------
  International Telecommunications Union - Radiocommunication Sector (ITU-R)
-   ITURHFProp         Ver Jan  5 2018	- Fri Jan  5 14:46:34 2018
-   HF Model (P533)    Ver P.533-13.7.0	- Fri Jan  5 14:40:44 2018
-   Noise Model (P372) Ver P.372-13.1.0	- Thu Jan  4 15:40:42 2018
-   Analysis Prepared  Fri Jan  5 15:28:17 2018
+<<<<<<< HEAD
+     ITURHFProp         Ver Jun  7 2019	- Sun May 19 07:30:58 2019
+     HF Model (P533)    Ver P.533-14	- Thu May 16 08:17:56 2019
+     Noise Model (P372) Ver P.372-13.3	- Thu May 16 08:17:06 2019
+     Analysis Prepared  Fri Jun  7 16:09:39 2019
+=======
+     ITURHFProp         Ver May 23 2019	- Sun May 19 15:30:56 2019
+     HF Model (P533)    Ver P.533-14	- Thu May 16 16:17:55 2019
+     Noise Model (P372) Ver P.372-13.3	- Thu May 16 16:17:05 2019
+     Analysis Prepared  Fri Jun  7 22:24:34 2019
+>>>>>>> 76fc4964e7ec74b4fd2cfeeae7578899fe961699
 
 ---------------------------------------------------------------------------
 
@@ -44,10 +51,10 @@
 
 ************************** ITURHFP Input Parameters *****************************
 
-	Upper left latitude   =  51.116667 N
-	Upper left longitude  =   7.266667 E
-	Lower right latitude  =  51.116667 N
-	Lower right longitude =   7.266667 E
+	Upper left (North West) latitude   =  51.116667 N
+	Upper left (North West) longitude  =   7.266667 E
+	Lower right (South East) latitude  =  51.116667 N
+	Lower right (South East) longitude =   7.266667 E
 	Number of frequencies = 1
 	Number of hours       = 1
 	Number of months      = 1
@@ -69,7 +76,7 @@ Column 08: DlA - Lower decile deviation of atmospheric noise (dB)
 Column 09: DuM - Upper decile deviation of man-made noise (dB)
 Column 10: DlM - Lower decile deviation of man-made noise (dB)
 Column 11: DuG - Upper decile deviation of atmospheric noise (dB)
-Column 12: DuG - Lower decile deviation of atmospheric noise (dB)
+Column 12: DlG - Lower decile deviation of atmospheric noise (dB)
 Column 13: DuT - Upper decile deviation of total noise (dB)
 Column 14: DlT - Lower decile deviation of total noise (dB)
 Column 15: FamT - Total noise (dB)
@@ -82,5 +89,5 @@ Column 15: FamT - Total noise (dB)
 
 **************************End Calculated Parameters ***********************
 
-Copyright  International Telecommunication Union (ITU) 2018
+Copyright  International Telecommunication Union (ITU) 2019
 All rights reserved.

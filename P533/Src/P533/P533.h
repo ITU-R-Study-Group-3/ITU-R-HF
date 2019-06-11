@@ -57,7 +57,7 @@
 // P533 *******************************************************************************************
 
 // Version number
-#define P533VER		"P.533-13.8"
+#define P533VER		"P.533-14"
 
 // Have the preprocessor time stamp the compile time
 #define P533CT		__TIMESTAMP__
@@ -119,7 +119,7 @@
 #define RTN_ERRALLOCATETX				133 // ERROR: Allocating Memory for Tx Antenna Pattern
 #define RTN_ERRALLOCATERX				134 // ERROR: Allocating Memory for Rx Antenna Pattern
 #define RTN_ERRALLOCATENOISE            135 // ERROR: Allocating Memory for Noise Structure 
-#define RTN_ERRALLOCATEANT			136 // ERROR: Allocating Memory for Antenna Pattern
+#define RTN_ERRALLOCATEANT			    136 // ERROR: Allocating Memory for Antenna Pattern
 
 // Return ERROR from ReadAntennaPatterns() ReadType13()
 #define	RTN_ERRCANTOPENANTFILE	        141 // ERROR: Can Not Open Recieve Antenna File
@@ -607,7 +607,7 @@ DLLEXPORT int sizeofPathDataStruct();
 // End P533 ***************************************************************************************
 
 //////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2018         //
+//      Copyright  International Telecommunication Union (ITU) 2019         //
 //                     All rights reserved.                                 //
 // No part of this publication may be reproduced, by any means whatsoever,  //
 //              without written permission of ITU                           //

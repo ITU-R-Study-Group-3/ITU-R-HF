@@ -63,7 +63,6 @@ int main(int argc, char *argv[]) {
 	struct PathData path;		// The structure that describes the path to calculate in P533().
 	struct ITURHFProp ITURHFP;	// The structure that describes the number and types of runs of P533() in the user defined analysis.
 
-	char InFileName[32];
 	char InFilePath[256];
 	char OutFileName[32];
 	char OutFilePath[256];
@@ -74,7 +73,6 @@ int main(int argc, char *argv[]) {
 	ITURHFP.silent = FALSE;
 	ITURHFP.header = TRUE;
 	ITURHFP.csvRFC4180 = FALSE;
-	InFileName[0] = EMPTY;
 	InFilePath[0] = EMPTY;
 	OutFileName[0] = EMPTY;
 	OutFilePath[0] = EMPTY;
@@ -515,7 +513,7 @@ void help(void)
 };
 
 //////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2018         //
+//      Copyright  International Telecommunication Union (ITU) 2019         //
 //                     All rights reserved.                                 //
 // No part of this publication may be reproduced, by any means whatsoever,  //
 //              without written permission of ITU                           //

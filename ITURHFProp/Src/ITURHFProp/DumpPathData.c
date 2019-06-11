@@ -351,13 +351,13 @@ void DumpPathData(struct PathData path, struct ITURHFProp ITURHFP) {
 		// Determine the tz of the control point
 		tz = (int)(path.CP[i].L.lng/(15.0*D2R));
 		ltime = fmod(path.CP[i].Sun.lsr+tz, 24);
-		fprintf(fp, "\tlocal sunrise      = % 02.2d:%02.2d (UTC) % 02.2d:%02.2d (Local)\n", hrs(path.CP[i].Sun.lsr), mns(path.CP[i].Sun.lsr), hrs(ltime), mns(ltime)); 
+		fprintf(fp, "\tlocal sunrise      = % 02d:%02d (UTC) % 02d:%02d (Local)\n", hrs(path.CP[i].Sun.lsr), mns(path.CP[i].Sun.lsr), hrs(ltime), mns(ltime)); 
 		ltime = fmod(path.CP[i].Sun.lsn+tz, 24);
-		fprintf(fp, "\tlocal solar noon   = % 02.2d:%02.2d (UTC) % 02.2d:%02.2d (Local)\n", hrs(path.CP[i].Sun.lsn), mns(path.CP[i].Sun.lsn), hrs(ltime), mns(ltime)); 
+		fprintf(fp, "\tlocal solar noon   = % 02d:%02d (UTC) % 02d:%02d (Local)\n", hrs(path.CP[i].Sun.lsn), mns(path.CP[i].Sun.lsn), hrs(ltime), mns(ltime)); 
 		ltime = fmod(path.CP[i].Sun.lss+tz, 24);
-		fprintf(fp, "\tlocal sunset       = % 02.2d:%02.2d (UTC) % 02.2d:%02.2d (Local)\n", hrs(path.CP[i].Sun.lss), mns(path.CP[i].Sun.lss), hrs(ltime), mns(ltime)); 
+		fprintf(fp, "\tlocal sunset       = % 02d:%02d (UTC) % 02d:%02d (Local)\n", hrs(path.CP[i].Sun.lss), mns(path.CP[i].Sun.lss), hrs(ltime), mns(ltime)); 
 		ltime = fmod(path.CP[i].ltime+tz, 24);
-		fprintf(fp, "\tlocal time         = % 02.2d:%02.2d (UTC) % 02.2d:%02.2d (Local)\n", hrs(path.CP[i].ltime), mns(path.CP[i].ltime), hrs(ltime), mns(ltime));
+		fprintf(fp, "\tlocal time         = % 02d:%02d (UTC) % 02d:%02d (Local)\n", hrs(path.CP[i].ltime), mns(path.CP[i].ltime), hrs(ltime), mns(ltime));
 	};
 
 	fprintf(fp, "**********************************************************\n");
@@ -403,13 +403,13 @@ void PrintITUHeader(FILE *fp, char * time, char const * P533Version, const char 
 
 void PrintITUTail(FILE *fp) {
 
-	fprintf(fp, "Copyright  International Telecommunication Union (ITU) 2018\n");
+	fprintf(fp, "Copyright  International Telecommunication Union (ITU) 2019\n");
 	fprintf(fp, "All rights reserved.\n");
 
 };
 
 //////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2018         //
+//      Copyright  International Telecommunication Union (ITU) 2019         //
 //                     All rights reserved.                                 //
 // No part of this publication may be reproduced, by any means whatsoever,  //
 //              without written permission of ITU                           //
