@@ -34,4 +34,4 @@ clean:
 
 install: all
 	install -d $(DESTDIR)$(libdir)/
-	install $(TARGET_LIB) $(DESTDIR)$(libdir)/$(TARGET_LIB)
+	install -m 755 $(TARGET_LIB) $(DESTDIR)$(libdir)/$(TARGET_LIB)
