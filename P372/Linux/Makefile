@@ -30,6 +30,7 @@ include $(SRCS:.c=.d)
 
 clean:
 	${RM} ${OBJS} $(SRCS:.c=.d)
+	${RM} ${TARGET_LIB}
 
 install: all
 	install -d $(DESTDIR)$(libdir)/
