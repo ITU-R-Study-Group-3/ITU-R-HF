@@ -276,6 +276,7 @@ DLLEXPORT int FreePathMemory(struct PathData *path) {
 	
 	// Free antenna array
 	azimuth = 360;
+	free(path->A_tx.freqs);
 	for (m=0; m < path->A_tx.freqn; m++) {
 		for (n=0; n<azimuth; n++) {
 			free(path->A_tx.pattern[m][n]);
@@ -284,6 +285,7 @@ DLLEXPORT int FreePathMemory(struct PathData *path) {
     }
 	free(path->A_tx.pattern);
 
+  free(path->A_rx.freqs);
 	for (m=0; m < path->A_rx.freqn; m++) {
 		for (n=0; n<azimuth; n++) {
 			free(path->A_rx.pattern[m][n]);
