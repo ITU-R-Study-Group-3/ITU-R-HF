@@ -1,0 +1,63 @@
+PathName "KRANJI       - BEIJING     "
+
+// All coordinates in decimal degrees.
+PathTXName "KRANJI      "
+Path.L_tx.lat    1.42
+Path.L_tx.lng  103.73
+TXAntFilePath "ISOTROPIC"
+TXGOS 0.0
+
+PathRXName "BEIJING     "
+Path.L_rx.lat   39.95
+Path.L_rx.lng  116.45
+//RXAntFilePath "ISOTROPIC"
+RXAntFilePath "C:\Users\Behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Data\Antenna\T13 Files\201-6_0.T13"
+RXGOS 0.0
+AntennaOrientation "TX2RX"
+
+Path.year 1981
+Path.month  1
+Path.hour 2
+Path.SSN 140
+Path.frequency  6.2
+Path.txpower 0.0 // 1 kW
+Path.BW 1000.0
+Path.SNRr 10.0
+Path.Relr 13
+Path.ManMadeNoise "RURAL"
+
+// Digital modulation
+Path.Modulation "ANALOG"
+Path.SIRr 0.0
+Path.A 5.0
+Path.TW 40.5
+Path.FW 5.0
+Path.T0 8.2
+Path.F0 3.3
+Path.SorL "SHORTPATH"
+
+// Output Specification (See README for options)
+RptFilePath "C:\Users\Behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Reports\"
+//RptFileFormat "RPT_D | RPT_BMUF | RPT_E | RPT_SNR | RPT_BCR"
+RptFileFormat "RPT_DUMPPATH"
+//RptFileFormat "RPT_D | RPT_ELE | RPT_BMUF | RPT_BMUFD | RPT_OPMUF | RPT_OPMUFD | RPT_E"
+
+// Output area to be examined. All corners must be specified. For pt-to-pt duplicate corners coordin
+LL.lat    40.0
+LL.lng   116.4
+LR.lat    40.0
+LR.lng   116.4
+UL.lat    40.0
+UL.lng   116.4
+UR.lat    40.0
+UR.lng   116.4
+
+// Lat and Long increment. Note: There is no lower limit
+latinc 5.0
+lnginc 5.0
+
+// DataFilePath is the base location of the Antennna, Coeff, P.1239 and IonMap files
+DataFilePath "C:\Users\Behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Data\"
+// End
+
+

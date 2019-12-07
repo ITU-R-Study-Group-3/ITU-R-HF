@@ -1,30 +1,10 @@
 ﻿          1 file(s) copied.
           1 file(s) copied.
-  Between7000kmand9000km.c
-  CalculateCPParameters.c
-  CircuitReliability.c
-  ELayerScreeningFrequency.c
-  Geometry.c
-  InitializePath.c
-  InputDump.c
-  Magfit.c
-  MedianAvailableReceiverPower.c
-  MedianSkywaveFieldStrengthLong.c
-  MedianSkywaveFieldStrengthShort.c
-  MUFBasic.c
-  MUFOperational.c
-  MUFVariability.c
-  P533.c
-  PathMemory.c
-  ReadIonParameters.c
-  ReadP1239.c
-  ReadType13.c
-  ValidatePath.c
-     Creating library F:\Behm\GitHub\ITU-R-HF\ITURHFProp\Win32\Combined\Release\P533.lib and object F:\Behm\GitHub\ITU-R-HF\ITURHFProp\Win32\Combined\Release\P533.exp
+     Creating library C:\Users\Behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Win32\Combined\Release\P533.lib and object C:\Users\Behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Win32\Combined\Release\P533.exp
   Generating code
   Previous IPDB not found, fall back to full compilation.
   All 85 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
-  P533.vcxproj -> F:\Behm\GitHub\ITU-R-HF\ITURHFProp\Win32\Combined\Release\P533.dll
+  P533.vcxproj -> C:\Users\Behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Win32\Combined\Release\P533.dll
           1 file(s) copied.
           1 file(s) copied.

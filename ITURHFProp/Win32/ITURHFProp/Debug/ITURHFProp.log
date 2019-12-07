@@ -3,11 +3,6 @@
           1 file(s) copied.
           1 file(s) copied.
           1 file(s) copied.
-  DumpPathData.c
-  ITURHFProp.c
   ReadInputConfiguration.c
-  Report.c
-  ValidateITURHFP.c
-  Generating Code...
-  ITURHFProp.vcxproj -> C:\Users\cbehm\Documents\GitHub\ITU-R-HF\ITURHFProp\Win32\Combined\Debug\ITURHFProp.exe
+  ITURHFProp.vcxproj -> C:\Users\Behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Win32\Combined\Debug\ITURHFProp.exe
           1 file(s) copied.

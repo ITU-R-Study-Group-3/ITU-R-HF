@@ -532,7 +532,7 @@ void InitializeInput(struct ITURHFProp *ITURHFP, struct PathData *path) {
 	path->txpower = 0.0;
 	path->BW = 0.0;
 	path->SNRr = 0.0;
-	path->SNRXXp = 0;
+	path->SNRXXp = 99;
 	path->noiseP.ManMadeNoise = NOISY;
 	path->Modulation = ANALOG;
 	path->SIRr = 0.0;
