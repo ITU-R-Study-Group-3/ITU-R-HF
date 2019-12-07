@@ -1,5 +1,9 @@
 CC = gcc
-CFLAGS = -fPIC -Wall -Wextra -O2 -g
+# Use the following for testing
+#CFLAGS = -fPIC -Wall -Wextra -O0 -g
+# Use the following for production
+CFLAGS = -fPIC -Wall -Wextra -O2
+
 LDFLAGS = -lm -ldl
 RM = rm -f
 source_dir = ../Src/ITURHFProp/
