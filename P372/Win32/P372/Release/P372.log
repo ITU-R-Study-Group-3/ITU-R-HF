@@ -1,4 +1,7 @@
-﻿     Creating library C:\Users\Behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Win32\Combined\Release\P372.lib and object C:\Users\Behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Win32\Combined\Release\P372.exp
+﻿  InitializeNoise.c
+  Noise.c
+  NoiseMemory.c
+     Creating library C:\Users\Behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Win32\Combined\Release\P372.lib and object C:\Users\Behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Win32\Combined\Release\P372.exp
   Generating code
   Previous IPDB not found, fall back to full compilation.
   All 20 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.

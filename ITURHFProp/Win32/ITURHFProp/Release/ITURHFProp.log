@@ -1,4 +1,9 @@
 ﻿          1 file(s) copied.
+  DumpPathData.c
+  ITURHFProp.c
+  ReadInputConfiguration.c
+  Report.c
+  ValidateITURHFP.c
   Generating code
   Previous IPDB not found, fall back to full compilation.
   All 65 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.

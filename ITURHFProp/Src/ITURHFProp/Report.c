@@ -14,6 +14,7 @@
 #define DBLFIELD		"% 7.2lf"
 #define DBLFIELD1		"% 9.4lf"
 #define DBLFIELD2		"% 9.2lf"
+#define DBLFIELD3		"% 9.3lf"
 #define STRFIELD		"%5s"
 
 #define RFC4180_DBLFIELD		"%.2lf"
@@ -179,7 +180,7 @@ void PrintRecord(struct PathData path, struct ITURHFProp ITURHFP, int option) {
 			fprintf(fp, " %02d", path.hour+1);
 			fprintf(fp,",");
 			// Frequency
-			fprintf(fp, DBLFIELD, path.frequency);
+			fprintf(fp, DBLFIELD3, path.frequency);
 			break;
 		case PRINT_RFC4180_DATA:
 			// Each record will require the month, hour, and frequency

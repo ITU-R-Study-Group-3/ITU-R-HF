@@ -1,0 +1,1257 @@
+﻿The default for SNRXX is now 99
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	new file:   ITURHFProp/Bin/1.8.84.out
+#	new file:   ITURHFProp/Bin/ITUHFProp.zip
+#	modified:   ITURHFProp/Bin/ITURHFProp.exe
+#	new file:   ITURHFProp/Bin/ITURHFProp.zip
+#	modified:   ITURHFProp/Bin/P372.dll
+#	modified:   ITURHFProp/Bin/P533.dll
+#	new file:   ITURHFProp/Bin/itu_old.in
+#	new file:   ITURHFProp/Bin/itu_old.out
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 11.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 12.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 13.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 14.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 15.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 16.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 17.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 18.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 19.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 20.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 21.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 22.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 23.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 24.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 25.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 26.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 27.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 28.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 29.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 3.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 30.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 4.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 5.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 6.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 7.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 8.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-1-0.5 ([141] Centre-fed at 9.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 11.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 12.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 13.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 14.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 15.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 16.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 17.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 18.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 19.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 20.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 21.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 22.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 23.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 24.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 25.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 26.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 27.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 28.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 29.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 3.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 30.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 4.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 5.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 6.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 7.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 8.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-2-0.5 ([146] Centre-fed at 9.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 11.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 12.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 13.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 14.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 15.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 16.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 17.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 18.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 19.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 20.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 21.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 22.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 23.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 24.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 25.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 26.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 27.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 28.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 29.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 3.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 30.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 4.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 5.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 6.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 7.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 8.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-0.5 ([156] Centre-fed at 9.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 11.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 12.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 13.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 14.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 15.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 16.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 17.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 18.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 19.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 20.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 21.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 22.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 23.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 24.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 25.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 26.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 27.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 28.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 29.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 3.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 30.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 4.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 5.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 6.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 7.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 8.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-2-4-1.0 ([158] Centre-fed at 9.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 11.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 12.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 13.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 14.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 15.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 16.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 17.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 18.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 19.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 20.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 21.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 22.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 23.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 24.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 25.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 26.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 27.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 28.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 29.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 3.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 30.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 4.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 5.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 6.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 7.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 8.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-1-0.5 ([201] Centre-fed at 9.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 11.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 12.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 13.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 14.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 15.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 16.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 17.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 18.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 19.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 20.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 21.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 22.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 23.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 24.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 25.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 26.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 27.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 28.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 29.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 3.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 30.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 4.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 5.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 6.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 7.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 8.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.3 ([205] Centre-fed at 9.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 11.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 12.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 13.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 14.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 15.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 16.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 17.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 18.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 19.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 20.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 21.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 22.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 23.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 24.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 25.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 26.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 27.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 28.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 29.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 3.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 30.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 4.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 5.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 6.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 7.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 8.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-0.5 ([206] Centre-fed at 9.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 11.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 12.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 13.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 14.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 15.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 16.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 17.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 18.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 19.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 20.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 21.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 22.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 23.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 24.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 25.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 26.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 27.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 28.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 29.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 3.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 30.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 4.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 5.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 6.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 7.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 8.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-2-1.0 ([208] Centre-fed at 9.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 11.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 12.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 13.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 14.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 15.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 16.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 17.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 18.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 19.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 20.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 21.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 22.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 23.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 24.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 25.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 26.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 27.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 28.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 29.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 3.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 30.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 4.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 5.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 6.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 7.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 8.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-3-0.5 ([211] Centre-fed at 9.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 11.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 12.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 13.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 14.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 15.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 16.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 17.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 18.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 19.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 20.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 21.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 22.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 23.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 24.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 25.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 26.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 27.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 28.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 29.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 3.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 30.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 4.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 5.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 6.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 7.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 8.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.3 ([215] Centre-fed at 9.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 11.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 12.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 13.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 14.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 15.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 16.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 17.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 18.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 19.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 20.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 21.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 22.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 23.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 24.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 25.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 26.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 27.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 28.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 29.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 3.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 30.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 4.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 5.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 6.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 7.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 8.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([216] Centre-fed at 9.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.5 ([996] Edge-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 11.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 12.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 13.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 14.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 15.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 16.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 17.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 18.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 19.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 20.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 21.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 22.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 23.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 24.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 25.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 26.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 27.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 28.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 29.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 3.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 30.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 4.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 5.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 6.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 7.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 8.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-0.8 ([217] Centre-fed at 9.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 11.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 12.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 13.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 14.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 15.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 16.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 17.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 18.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 19.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 20.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 21.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 22.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 23.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 24.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 25.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 26.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 27.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 28.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 29.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 3.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 30.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 4.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 5.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 6.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 7.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 8.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-4-1.0 ([218] Centre-fed at 9.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 11.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 12.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 13.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 14.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 15.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 16.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 17.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 18.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 19.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 20.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 21.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 22.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 23.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 24.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 25.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 26.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 27.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 28.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 29.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 3.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 30.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 4.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 5.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 6.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 7.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 8.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-4-6-0.5 ([226] Centre-fed at 9.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 10.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 11.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 12.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 13.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 14.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 15.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 16.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 17.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 18.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 19.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 20.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 21.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 22.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 23.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 24.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 25.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 26.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 27.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 28.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 29.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 3.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 30.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 4.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 5.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 6.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 7.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 8.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/AHRS-8-4-1.0 ([288] Centre-fed at 9.0 MHz - Aperiodic Screen Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 10.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 11.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 12.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 13.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 14.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 15.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 16.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 17.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 18.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 19.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 20.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 21.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 22.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 23.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 24.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 25.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 26.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 27.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 28.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 29.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 3.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 30.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 4.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 5.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 6.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 7.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 8.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-3-2-0.5 ([386] Centre-fed at 9.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 10.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 11.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 12.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 13.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 14.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 15.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 16.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 17.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 18.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 19.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 20.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 21.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 22.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 23.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 24.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 25.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 26.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 27.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 28.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 29.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 3.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 30.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 4.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 5.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 6.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 7.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 8.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/CHRS-4-3-0.5 ([411] Centre-fed at 9.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 10.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 11.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 12.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 13.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 14.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 15.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 16.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 17.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 18.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 19.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 20.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 21.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 22.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 23.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 24.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 25.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 26.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 27.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 28.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 29.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 3.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 30.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 4.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 5.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 6.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 7.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 8.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-0.5 ([616] Edge-fed at 9.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 10.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 11.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 12.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 13.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 14.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 15.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 16.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 17.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 18.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 19.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 20.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 21.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 22.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 23.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 24.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 25.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 26.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 27.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 28.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 29.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 3.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 30.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 4.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 5.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 6.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 7.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 8.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/NEC Files/EHRS-4-4-1.0 ([618] Edge-fed at 9.0 MHz - Tuned Dipole Reflector).nec
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/141-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/146-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/156-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/158-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/201-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/205-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/206-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/208-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/211-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/215-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/216-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/217-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/218-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/226-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/288-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/386-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/411-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/616-9_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-10_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-11_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-12_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-13_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-14_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-15_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-16_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-17_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-18_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-19_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-20_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-21_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-22_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-23_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-24_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-25_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-26_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-27_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-28_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-29_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-30_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-3_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-4_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-5_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-6_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-7_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-8_0.t13
+#	new file:   ITURHFProp/Data/Antenna/T13 Files/618-9_0.t13
+#	modified:   ITURHFProp/Src/ITURHFProp/Common.h
+#	modified:   ITURHFProp/Src/ITURHFProp/Noise.h
+#	modified:   ITURHFProp/Src/ITURHFProp/ReadInputConfiguration.c
+#	modified:   ITURHFProp/Win32/Combined/.vs/Combined/v16/.suo
+#	modified:   ITURHFProp/Win32/Combined/.vs/Combined/v16/Browse.VC.db
+#	modified:   ITURHFProp/Win32/Combined/.vs/Combined/v16/Solution.VC.db
+#	new file:   ITURHFProp/Win32/Combined/.vs/Combined/v16/ipch/AutoPCH/1b0814fde50e0b73/INITIALIZENOISE.ipch
+#	new file:   ITURHFProp/Win32/Combined/.vs/Combined/v16/ipch/AutoPCH/4e74d30367ce2293/DUMPPATHDATA.ipch
+#	new file:   ITURHFProp/Win32/Combined/.vs/Combined/v16/ipch/AutoPCH/6b297129e85bbdb/ITURHFPROP.ipch
+#	new file:   ITURHFProp/Win32/Combined/.vs/Combined/v16/ipch/AutoPCH/7cb9bcad40a8306b/P533.ipch
+#	new file:   ITURHFProp/Win32/Combined/.vs/Combined/v16/ipch/AutoPCH/be23bb2f6ded7b1e/READINPUTCONFIGURATION.ipch
+#	new file:   ITURHFProp/Win32/Combined/.vs/Combined/v16/ipch/AutoPCH/c9fdd888931433ed/READP1239.ipch
+#	new file:   ITURHFProp/Win32/Combined/.vs/Combined/v16/ipch/AutoPCH/cbd64a4df26904fd/VALIDATEPATH.ipch
+#	modified:   ITURHFProp/Win32/Combined/Debug/ITURHFProp.exe
+#	modified:   ITURHFProp/Win32/Combined/Debug/ITURHFProp.ilk
+#	modified:   ITURHFProp/Win32/Combined/Debug/ITURHFProp.pdb
+#	modified:   ITURHFProp/Win32/Combined/Debug/P372.dll
+#	modified:   ITURHFProp/Win32/Combined/Debug/P372.exp
+#	modified:   ITURHFProp/Win32/Combined/Debug/P372.ilk
+#	modified:   ITURHFProp/Win32/Combined/Debug/P372.lib
+#	modified:   ITURHFProp/Win32/Combined/Debug/P372.pdb
+#	modified:   ITURHFProp/Win32/Combined/Debug/P533.dll
+#	modified:   ITURHFProp/Win32/Combined/Debug/P533.exp
+#	modified:   ITURHFProp/Win32/Combined/Debug/P533.ilk
+#	modified:   ITURHFProp/Win32/Combined/Debug/P533.lib
+#	modified:   ITURHFProp/Win32/Combined/Debug/P533.pdb
+#	modified:   ITURHFProp/Win32/Combined/Release/ITURHFProp.exe
+#	modified:   ITURHFProp/Win32/Combined/Release/ITURHFProp.iobj
+#	modified:   ITURHFProp/Win32/Combined/Release/ITURHFProp.ipdb
+#	modified:   ITURHFProp/Win32/Combined/Release/ITURHFProp.pdb
+#	modified:   ITURHFProp/Win32/Combined/Release/P372.dll
+#	modified:   ITURHFProp/Win32/Combined/Release/P372.exp
+#	modified:   ITURHFProp/Win32/Combined/Release/P372.iobj
+#	modified:   ITURHFProp/Win32/Combined/Release/P372.ipdb
+#	modified:   ITURHFProp/Win32/Combined/Release/P372.lib
+#	modified:   ITURHFProp/Win32/Combined/Release/P372.pdb
+#	modified:   ITURHFProp/Win32/Combined/Release/P533.dll
+#	modified:   ITURHFProp/Win32/Combined/Release/P533.exp
+#	modified:   ITURHFProp/Win32/Combined/Release/P533.iobj
+#	modified:   ITURHFProp/Win32/Combined/Release/P533.ipdb
+#	modified:   ITURHFProp/Win32/Combined/Release/P533.lib
+#	modified:   ITURHFProp/Win32/Combined/Release/P533.pdb
+#	modified:   ITURHFProp/Win32/ITURHFProp/Debug/DumpPathData.obj
+#	modified:   ITURHFProp/Win32/ITURHFProp/Debug/ITURHFProp.log
+#	modified:   ITURHFProp/Win32/ITURHFProp/Debug/ITURHFProp.obj
+#	modified:   ITURHFProp/Win32/ITURHFProp/Debug/ITURHFProp.tlog/CL.command.1.tlog
+#	modified:   ITURHFProp/Win32/ITURHFProp/Debug/ITURHFProp.tlog/CL.read.1.tlog
+#	modified:   ITURHFProp/Win32/ITURHFProp/Debug/ITURHFProp.tlog/CL.write.1.tlog
+#	modified:   ITURHFProp/Win32/ITURHFProp/Debug/ITURHFProp.tlog/ITURHFProp.lastbuildstate
+#	modified:   ITURHFProp/Win32/ITURHFProp/Debug/ITURHFProp.tlog/link.command.1.tlog
+#	modified:   ITURHFProp/Win32/ITURHFProp/Debug/ITURHFProp.tlog/link.read.1.tlog
+#	modified:   ITURHFProp/Win32/ITURHFProp/Debug/ITURHFProp.tlog/link.write.1.tlog
+#	modified:   ITURHFProp/Win32/ITURHFProp/Debug/ReadInputConfiguration.obj
+#	modified:   ITURHFProp/Win32/ITURHFProp/Debug/Report.obj
+#	modified:   ITURHFProp/Win32/ITURHFProp/Debug/ValidateITURHFP.obj
+#	modified:   ITURHFProp/Win32/ITURHFProp/Debug/vc142.idb
+#	modified:   ITURHFProp/Win32/ITURHFProp/Debug/vc142.pdb
+#	modified:   ITURHFProp/Win32/ITURHFProp/ITURHFProp.vcxproj.user
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/DumpPathData.obj
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ITURHFProp.Build.CppClean.log
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ITURHFProp.log
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ITURHFProp.obj
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ITURHFProp.tlog/CL.command.1.tlog
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ITURHFProp.tlog/CL.read.1.tlog
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ITURHFProp.tlog/CL.write.1.tlog
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ITURHFProp.tlog/ITURHFProp.lastbuildstate
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ITURHFProp.tlog/ITURHFProp.write.1u.tlog
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ITURHFProp.tlog/link.command.1.tlog
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ITURHFProp.tlog/link.read.1.tlog
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ITURHFProp.tlog/link.write.1.tlog
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ReadInputConfiguration.obj
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/Report.obj
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ValidateITURHFP.obj
+#	deleted:    ITURHFProp/Win32/ITURHFProp/Release/vc141.pdb
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/vc142.pdb
+#	modified:   P372/Bin/P372.dll
+#	modified:   P372/Win32/P372/Debug/InitializeNoise.obj
+#	modified:   P372/Win32/P372/Debug/Noise.obj
+#	modified:   P372/Win32/P372/Debug/NoiseMemory.obj
+#	modified:   P372/Win32/P372/Debug/P372.log
+#	modified:   P372/Win32/P372/Debug/P372.tlog/CL.command.1.tlog
+#	modified:   P372/Win32/P372/Debug/P372.tlog/CL.read.1.tlog
+#	modified:   P372/Win32/P372/Debug/P372.tlog/CL.write.1.tlog
+#	modified:   P372/Win32/P372/Debug/P372.tlog/P372.lastbuildstate
+#	modified:   P372/Win32/P372/Debug/P372.tlog/P372.write.1u.tlog
+#	modified:   P372/Win32/P372/Debug/P372.tlog/link.command.1.tlog
+#	new file:   P372/Win32/P372/Debug/P372.tlog/link.delete.1.tlog
+#	modified:   P372/Win32/P372/Debug/P372.tlog/link.read.1.tlog
+#	modified:   P372/Win32/P372/Debug/P372.tlog/link.write.1.tlog
+#	new file:   P372/Win32/P372/Debug/vc142.idb
+#	new file:   P372/Win32/P372/Debug/vc142.pdb
+#	modified:   P372/Win32/P372/Release/InitializeNoise.obj
+#	modified:   P372/Win32/P372/Release/Noise.obj
+#	modified:   P372/Win32/P372/Release/NoiseMemory.obj
+#	modified:   P372/Win32/P372/Release/P372.Build.CppClean.log
+#	modified:   P372/Win32/P372/Release/P372.log
+#	modified:   P372/Win32/P372/Release/P372.tlog/CL.command.1.tlog
+#	modified:   P372/Win32/P372/Release/P372.tlog/CL.read.1.tlog
+#	modified:   P372/Win32/P372/Release/P372.tlog/CL.write.1.tlog
+#	modified:   P372/Win32/P372/Release/P372.tlog/P372.lastbuildstate
+#	modified:   P372/Win32/P372/Release/P372.tlog/P372.write.1u.tlog
+#	modified:   P372/Win32/P372/Release/P372.tlog/link.command.1.tlog
+#	modified:   P372/Win32/P372/Release/P372.tlog/link.read.1.tlog
+#	modified:   P372/Win32/P372/Release/P372.tlog/link.write.1.tlog
+#	new file:   P372/Win32/P372/Release/P372.vcxproj.FileListAbsolute.txt
+#	deleted:    P372/Win32/P372/Release/vc141.pdb
+#	new file:   P372/Win32/P372/Release/vc142.pdb
+#	modified:   P533/Bin/P533.dll
+#	modified:   P533/Src/P533/Common.h
+#	modified:   P533/Win32/P533/Debug/Between7000kmand9000km.obj
+#	modified:   P533/Win32/P533/Debug/CalculateCPParameters.obj
+#	modified:   P533/Win32/P533/Debug/CircuitReliability.obj
+#	modified:   P533/Win32/P533/Debug/ELayerScreeningFrequency.obj
+#	modified:   P533/Win32/P533/Debug/Geometry.obj
+#	modified:   P533/Win32/P533/Debug/InitializePath.obj
+#	modified:   P533/Win32/P533/Debug/InputDump.obj
+#	modified:   P533/Win32/P533/Debug/MUFBasic.obj
+#	modified:   P533/Win32/P533/Debug/MUFOperational.obj
+#	modified:   P533/Win32/P533/Debug/MUFVariability.obj
+#	modified:   P533/Win32/P533/Debug/Magfit.obj
+#	modified:   P533/Win32/P533/Debug/MedianAvailableReceiverPower.obj
+#	modified:   P533/Win32/P533/Debug/MedianSkywaveFieldStrengthLong.obj
+#	modified:   P533/Win32/P533/Debug/MedianSkywaveFieldStrengthShort.obj
+#	modified:   P533/Win32/P533/Debug/P533.log
+#	modified:   P533/Win32/P533/Debug/P533.obj
+#	modified:   P533/Win32/P533/Debug/P533.tlog/CL.command.1.tlog
+#	modified:   P533/Win32/P533/Debug/P533.tlog/CL.read.1.tlog
+#	modified:   P533/Win32/P533/Debug/P533.tlog/CL.write.1.tlog
+#	modified:   P533/Win32/P533/Debug/P533.tlog/P533.lastbuildstate
+#	modified:   P533/Win32/P533/Debug/P533.tlog/P533.write.1u.tlog
+#	modified:   P533/Win32/P533/Debug/P533.tlog/link.command.1.tlog
+#	new file:   P533/Win32/P533/Debug/P533.tlog/link.delete.1.tlog
+#	modified:   P533/Win32/P533/Debug/P533.tlog/link.read.1.tlog
+#	modified:   P533/Win32/P533/Debug/P533.tlog/link.write.1.tlog
+#	modified:   P533/Win32/P533/Debug/PathMemory.obj
+#	modified:   P533/Win32/P533/Debug/ReadIonParameters.obj
+#	modified:   P533/Win32/P533/Debug/ReadP1239.obj
+#	modified:   P533/Win32/P533/Debug/ReadType13.obj
+#	modified:   P533/Win32/P533/Debug/ValidatePath.obj
+#	new file:   P533/Win32/P533/Debug/vc142.idb
+#	new file:   P533/Win32/P533/Debug/vc142.pdb
+#	modified:   P533/Win32/P533/Release/Between7000kmand9000km.obj
+#	modified:   P533/Win32/P533/Release/CalculateCPParameters.obj
+#	modified:   P533/Win32/P533/Release/CircuitReliability.obj
+#	modified:   P533/Win32/P533/Release/ELayerScreeningFrequency.obj
+#	modified:   P533/Win32/P533/Release/Geometry.obj
+#	modified:   P533/Win32/P533/Release/InitializePath.obj
+#	modified:   P533/Win32/P533/Release/InputDump.obj
+#	modified:   P533/Win32/P533/Release/MUFBasic.obj
+#	modified:   P533/Win32/P533/Release/MUFOperational.obj
+#	modified:   P533/Win32/P533/Release/MUFVariability.obj
+#	modified:   P533/Win32/P533/Release/Magfit.obj
+#	modified:   P533/Win32/P533/Release/MedianAvailableReceiverPower.obj
+#	modified:   P533/Win32/P533/Release/MedianSkywaveFieldStrengthLong.obj
+#	modified:   P533/Win32/P533/Release/MedianSkywaveFieldStrengthShort.obj
+#	modified:   P533/Win32/P533/Release/P533.Build.CppClean.log
+#	modified:   P533/Win32/P533/Release/P533.log
+#	modified:   P533/Win32/P533/Release/P533.obj
+#	modified:   P533/Win32/P533/Release/P533.tlog/CL.command.1.tlog
+#	modified:   P533/Win32/P533/Release/P533.tlog/CL.read.1.tlog
+#	modified:   P533/Win32/P533/Release/P533.tlog/CL.write.1.tlog
+#	modified:   P533/Win32/P533/Release/P533.tlog/P533.lastbuildstate
+#	modified:   P533/Win32/P533/Release/P533.tlog/P533.write.1u.tlog
+#	modified:   P533/Win32/P533/Release/P533.tlog/link.command.1.tlog
+#	modified:   P533/Win32/P533/Release/P533.tlog/link.read.1.tlog
+#	modified:   P533/Win32/P533/Release/P533.tlog/link.write.1.tlog
+#	new file:   P533/Win32/P533/Release/P533.vcxproj.FileListAbsolute.txt
+#	modified:   P533/Win32/P533/Release/PathMemory.obj
+#	modified:   P533/Win32/P533/Release/ReadIonParameters.obj
+#	modified:   P533/Win32/P533/Release/ReadP1239.obj
+#	modified:   P533/Win32/P533/Release/ReadType13.obj
+#	modified:   P533/Win32/P533/Release/ValidatePath.obj
+#	deleted:    P533/Win32/P533/Release/vc141.pdb
+#	new file:   P533/Win32/P533/Release/vc142.pdb
+#
+
