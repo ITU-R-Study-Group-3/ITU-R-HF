@@ -1,0 +1,76 @@
+﻿Review of implementation Rec P.533-14 Eqn (9) and (10) F_prob output now 0 < F_prob <= 1
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	deleted:    ITURHFProp/Bin/ITUHFProp.zip
+#	modified:   ITURHFProp/Bin/ITURHFProp.exe
+#	modified:   ITURHFProp/Bin/ITURHFProp.zip
+#	modified:   ITURHFProp/Bin/P372.dll
+#	modified:   ITURHFProp/Bin/P533.dll
+#	modified:   ITURHFProp/Src/ITURHFProp/Report.c
+#	modified:   ITURHFProp/Win32/Combined/.vs/Combined/v16/.suo
+#	modified:   ITURHFProp/Win32/Combined/.vs/Combined/v16/Browse.VC.db
+#	new file:   ITURHFProp/Win32/Combined/.vs/Combined/v16/ipch/AutoPCH/647cdcc2c949026d/MEDIANSKYWAVEFIELDSTRENGTHSHORT.ipch
+#	new file:   ITURHFProp/Win32/Combined/.vs/Combined/v16/ipch/AutoPCH/6f2afc235cfab9cc/REPORT.ipch
+#	new file:   ITURHFProp/Win32/Combined/.vs/Combined/v16/ipch/AutoPCH/b2da13f72e73b672/MUFBASIC.ipch
+#	new file:   ITURHFProp/Win32/Combined/.vs/Combined/v16/ipch/AutoPCH/cbed063ba6025943/DUMPPATHDATA.ipch
+#	new file:   ITURHFProp/Win32/Combined/.vs/Combined/v16/ipch/AutoPCH/d34e81283dc87306/MUFVARIABILITY.ipch
+#	modified:   ITURHFProp/Win32/Combined/Release/ITURHFProp.exe
+#	modified:   ITURHFProp/Win32/Combined/Release/ITURHFProp.iobj
+#	modified:   ITURHFProp/Win32/Combined/Release/ITURHFProp.ipdb
+#	modified:   ITURHFProp/Win32/Combined/Release/ITURHFProp.pdb
+#	modified:   ITURHFProp/Win32/Combined/Release/P372.dll
+#	modified:   ITURHFProp/Win32/Combined/Release/P372.iobj
+#	modified:   ITURHFProp/Win32/Combined/Release/P372.ipdb
+#	modified:   ITURHFProp/Win32/Combined/Release/P372.pdb
+#	modified:   ITURHFProp/Win32/Combined/Release/P533.dll
+#	modified:   ITURHFProp/Win32/Combined/Release/P533.iobj
+#	modified:   ITURHFProp/Win32/Combined/Release/P533.ipdb
+#	modified:   ITURHFProp/Win32/Combined/Release/P533.pdb
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/DumpPathData.obj
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ITURHFProp.log
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ITURHFProp.obj
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ITURHFProp.tlog/link.read.1.tlog
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ReadInputConfiguration.obj
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/Report.obj
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/ValidateITURHFP.obj
+#	modified:   ITURHFProp/Win32/ITURHFProp/Release/vc142.pdb
+#	modified:   P372/Bin/P372.dll
+#	modified:   P372/Win32/P372/Release/InitializeNoise.obj
+#	modified:   P372/Win32/P372/Release/Noise.obj
+#	modified:   P372/Win32/P372/Release/NoiseMemory.obj
+#	modified:   P372/Win32/P372/Release/P372.log
+#	modified:   P372/Win32/P372/Release/P372.tlog/link.read.1.tlog
+#	modified:   P372/Win32/P372/Release/vc142.pdb
+#	modified:   P533/Bin/P533.dll
+#	modified:   P533/Src/P533/MUFVariability.c
+#	modified:   P533/Win32/P533/Release/Between7000kmand9000km.obj
+#	modified:   P533/Win32/P533/Release/CalculateCPParameters.obj
+#	modified:   P533/Win32/P533/Release/CircuitReliability.obj
+#	modified:   P533/Win32/P533/Release/ELayerScreeningFrequency.obj
+#	modified:   P533/Win32/P533/Release/Geometry.obj
+#	modified:   P533/Win32/P533/Release/InitializePath.obj
+#	modified:   P533/Win32/P533/Release/InputDump.obj
+#	modified:   P533/Win32/P533/Release/MUFBasic.obj
+#	modified:   P533/Win32/P533/Release/MUFOperational.obj
+#	modified:   P533/Win32/P533/Release/MUFVariability.obj
+#	modified:   P533/Win32/P533/Release/Magfit.obj
+#	modified:   P533/Win32/P533/Release/MedianAvailableReceiverPower.obj
+#	modified:   P533/Win32/P533/Release/MedianSkywaveFieldStrengthLong.obj
+#	modified:   P533/Win32/P533/Release/MedianSkywaveFieldStrengthShort.obj
+#	modified:   P533/Win32/P533/Release/P533.log
+#	modified:   P533/Win32/P533/Release/P533.obj
+#	modified:   P533/Win32/P533/Release/P533.tlog/link.read.1.tlog
+#	modified:   P533/Win32/P533/Release/PathMemory.obj
+#	modified:   P533/Win32/P533/Release/ReadIonParameters.obj
+#	modified:   P533/Win32/P533/Release/ReadP1239.obj
+#	modified:   P533/Win32/P533/Release/ReadType13.obj
+#	modified:   P533/Win32/P533/Release/ValidatePath.obj
+#	modified:   P533/Win32/P533/Release/vc142.pdb
+#	new file:   zycuw25e.yox.txt
+#
+

@@ -57,7 +57,7 @@
 // P533 *******************************************************************************************
 
 // Version number
-#define P533VER		"P.533-14"
+#define P533VER		"14.0"
 
 // Have the preprocessor time stamp the compile time
 #define P533CT		__TIMESTAMP__
