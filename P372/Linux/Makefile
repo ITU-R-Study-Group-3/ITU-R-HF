@@ -6,7 +6,7 @@ bin_dir = ../Bin/
 # Use the following for production
 CFLAGS = -fPIC -Wall -Wextra -O2 -I$(source_dir)
 
-LDFLAGS = -shared -lm -ldl 
+LDFLAGS = -shared -lm -ldl -z muldefs
 RM = rm -f
 TARGET_LIB = libp372.so
 

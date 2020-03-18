@@ -4,7 +4,7 @@ CC = gcc
 # Use the following for production
 CFLAGS = -fPIC -Wall -Wextra -O2
 
-LDFLAGS = -lm -ldl
+LDFLAGS = -lm -ldl -z muldefs
 RM = rm -f
 source_dir = ../Src/ITURHFProp/
 

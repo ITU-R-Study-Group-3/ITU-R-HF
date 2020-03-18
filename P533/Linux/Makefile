@@ -6,7 +6,7 @@ bin_dir = ../Bin/
 # Use the following for production
 CFLAGS = -fPIC -Wall -Wextra -O2 -I$(source_dir)
 
-LDFLAGS = -shared -lm -ldl 
+LDFLAGS = -shared -lm -ldl -z muldefs
 RM = rm -f
 TARGET_LIB = libp533.so
 
@@ -34,7 +34,7 @@ SRCS = $(source_dir)Between7000kmand9000km.c \
 	   $(source_dir)MUFVariability.c \
 	   $(source_dir)PathMemory.c \
 	   $(source_dir)ValidatePath.c
-	   
+
 OBJS = $(SRCS:.c=.o)
 
 .PHONY: all
@@ -48,7 +48,7 @@ $(SRCS:.c=.d):%.d:%.c
 include $(SRCS:.c=.d)
 
 .PHONY: clean
-clean: 
+clean:
 	${RM} ${OBJS} $(SRCS:.c=.d)
 	${RM} ${TARGET_LIB}
 
