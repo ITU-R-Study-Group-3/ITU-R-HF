@@ -1,6 +1,0 @@
-Visual Studio 2013 Notes
-P533
-Project->Properties->Configuration Properties->Preprocessor->Preprocessor Definitions "_CRT_SECURE_NO_WARNINGS"
-Project->Properties->Configuration Properties->General->Configuration Type "Dynamic Library (.DLL)"
-P372
-Project->Properties->Configuration Properties->General->Configuration Type "Dynamic Library (.DLL)"
