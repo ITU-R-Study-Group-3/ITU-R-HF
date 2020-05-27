@@ -401,10 +401,4 @@ void PrintITUHeader(FILE *fp, char * time, char const * P533Version, const char 
 	fprintf(fp, "\n");
 };
 
-void PrintITUTail(FILE *fp) {
-
-	fprintf(fp, "Copyright  International Telecommunication Union (ITU) 2019\n");
-	fprintf(fp, "All rights reserved.\n");
-
-};
 

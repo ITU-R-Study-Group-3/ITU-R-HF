@@ -302,7 +302,6 @@ int seconds(double coord);
 int hrs(double time);
 int mns(double time);
 void PrintITUHeader(FILE * fp, char * time, char const * P533Version, char const * P533CompT, char const * P372Version, char const * P372CompT);
-void PrintITUTail(FILE * fp);
 
 // Report.c Prototype
 void Report(struct PathData path, struct ITURHFProp ITURHFP);

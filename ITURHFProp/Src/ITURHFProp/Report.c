@@ -419,8 +419,6 @@ void PrintLastRecord(struct PathData path, struct ITURHFProp ITURHFP) {
 	fprintf(fp, "\n");
 	fprintf(fp, "**************************End Calculated Parameters ***********************\n\n");
 
-	PrintITUTail(ITURHFP.rptfp);
-
 	return;
 
 };
