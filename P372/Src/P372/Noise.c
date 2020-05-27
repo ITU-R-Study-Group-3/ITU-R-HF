@@ -57,6 +57,24 @@ int Noise(struct NoiseParams *noiseP, int hour, double lng, double lat, double f
 				GalacticNoise()
 				ManMadeNoise()
 
+
+			*********************************************************************************************
+			These software methods for the prediction of the performance of HF circuits based on
+			Recommendations ITU-R P.533-14 and P.372-13
+			The ITURHFProp, P533 and P372 software has been developed collaboratively by participants in ITU-R
+			Study Group 3. It may be used by implementers in their implementation of the Recommendation as well
+			as in revisions of the specific original Recommendation and in other ITU Recommendations, free from
+			any copyright assertions.
+
+			This software is provided “as is” WITH NO WARRANTIES, EXPRESS OR IMPLIED,
+			INCLUDING BUT NOT LIMITED TO, THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+			AND NON-INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS.
+
+			The ITU shall not be held liable in any event for any damages whatsoever (including, without
+			limitation, damages for loss of profits, business interruption, loss of information, or any other
+			pecuniary loss) arising out of or related to use of the software.
+			***************************************************************************************************
+
 	 */
 
 	double sigmaA; // Standard deviation of the atmospheric noise
@@ -822,10 +840,3 @@ char const * P372CompileTime() {
 
 };
 
-
-//////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2019         //
-//                     All rights reserved.                                 //
-// No part of this publication may be reproduced, by any means whatsoever,  //
-//              without written permission of ITU                           //
-//////////////////////////////////////////////////////////////////////////////

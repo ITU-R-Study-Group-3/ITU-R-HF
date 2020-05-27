@@ -320,9 +320,3 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 
 // End ITURHFProp **********************************************************************************
 
-//////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2019         //
-//                     All rights reserved.                                 //
-// No part of this publication may be reproduced, by any means whatsoever,  //
-//              without written permission of ITU                           //
-//////////////////////////////////////////////////////////////////////////////

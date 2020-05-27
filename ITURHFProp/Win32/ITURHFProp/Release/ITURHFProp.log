@@ -8,5 +8,5 @@
   Previous IPDB not found, fall back to full compilation.
   All 65 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
-  ITURHFProp.vcxproj -> C:\Users\Behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Win32\Combined\Release\ITURHFProp.exe
+  ITURHFProp.vcxproj -> G:\Behm\GitHub\ITU-R-HF\ITURHFProp\Win32\Combined\Release\ITURHFProp.exe
           1 file(s) copied.

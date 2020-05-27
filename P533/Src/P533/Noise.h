@@ -13,7 +13,7 @@
 /********************************* Defines ************************************/
 
 // Version number
-#define P372VER		"13.3"
+#define P372VER		"14.1"
 
 // Have the preprocessor time stamp the compile time
 #define P372CT		__TIMESTAMP__
@@ -93,9 +93,3 @@ DLLEXPORT char const * P372CompileTime();
 DLLEXPORT char const * P372Version();
 // End Prototypes
 
-//////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2019         //
-//                     All rights reserved.                                 //
-// No part of this publication may be reproduced, by any means whatsoever,  //
-//              without written permission of ITU                           //
-//////////////////////////////////////////////////////////////////////////////

@@ -84,9 +84,3 @@ int ReadP1239(struct PathData *path, const char * DataFilePath) {
 
 };
 
-//////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2019         //
-//                     All rights reserved.                                 //
-// No part of this publication may be reproduced, by any means whatsoever,  //
-//               without written permission of ITU                          //
-//////////////////////////////////////////////////////////////////////////////

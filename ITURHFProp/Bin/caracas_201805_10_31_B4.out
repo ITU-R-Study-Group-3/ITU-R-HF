@@ -1,9 +1,9 @@
 ---------------------------------------------------------------------------
  International Telecommunications Union - Radiocommunication Sector (ITU-R)
-     ITURHFProp         Ver May 11 2018	- Fri May 11 16:05:11 2018
-     HF Model (P533)    Ver P.533-13.7.0	- Fri Jan 12 16:10:02 2018
-     Noise Model (P372) Ver P.372-13.1.0	- Fri Jan 12 13:17:11 2018
-     Analysis Prepared  Fri May 11 16:05:26 2018
+     ITURHFProp         Ver Feb 21 2020	- Fri Jan 31 10:53:28 2020
+     HF Model (P533)    Ver 14.0	- Fri Jan 31 10:54:08 2020
+     Noise Model (P372) Ver 14.0	- Fri Jan 31 10:54:06 2020
+     Analysis Prepared  Mon Feb 24 12:34:37 2020
 
 ---------------------------------------------------------------------------
 
@@ -167,7 +167,7 @@
 	OPMUF      =  10.427 (MHz)
 	10% OPMUF  =  12.289 (MHz)
 	90% OPMUF  =  8.237 (MHz)
-	Fprob        =  3.797 (%)
+	Fprob        =  4.327 (%)
 	Lower decile =  0.790
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -188,7 +188,7 @@
 	OPMUF      =  8.876 (MHz)
 	10% OPMUF  =  10.462 (MHz)
 	90% OPMUF  =  7.012 (MHz)
-	Fprob        =  0.700 (%)
+	Fprob        =  2.017 (%)
 	Lower decile =  0.790
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -209,7 +209,7 @@
 	OPMUF      =  7.746 (MHz)
 	10% OPMUF  =  9.130 (MHz)
 	90% OPMUF  =  6.119 (MHz)
-	Fprob        =  0.000 (%)
+	Fprob        =  0.832 (%)
 	Lower decile =  0.790
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -230,7 +230,7 @@
 	OPMUF      =  6.939 (MHz)
 	10% OPMUF  =  8.178 (MHz)
 	90% OPMUF  =  5.482 (MHz)
-	Fprob        =  0.000 (%)
+	Fprob        =  0.151 (%)
 	Lower decile =  0.790
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -318,10 +318,10 @@
 	solar declination  =  18.558 (deg)
 	solar hour angle   = -225.313 (deg)
 	equation of time   =  3.706 (minutes)
-	local sunrise      =  09:33 (UTC)  05:33 (Local)
+	local sunrise      =  9:33 (UTC)  5:33 (Local)
 	local solar noon   =  16:01 (UTC)  12:01 (Local)
 	local sunset       =  22:29 (UTC)  18:29 (Local)
-	local time         =  01:00 (UTC) -03:00 (Local)
+	local time         =  1:00 (UTC) -3:00 (Local)
 **********************************************************
 *            Control Point   -      T + d0/2             *
 **********************************************************
@@ -339,10 +339,10 @@
 	solar declination  =  18.558 (deg)
 	solar hour angle   = -223.929 (deg)
 	equation of time   =  3.706 (minutes)
-	local sunrise      =  09:25 (UTC)  06:25 (Local)
+	local sunrise      =  9:25 (UTC)  6:25 (Local)
 	local solar noon   =  15:55 (UTC)  12:55 (Local)
 	local sunset       =  22:26 (UTC)  19:26 (Local)
-	local time         =  01:00 (UTC) -02:00 (Local)
+	local time         =  1:00 (UTC) -2:00 (Local)
 **********************************************************
 *            Control Point   -       MidPath             *
 **********************************************************
@@ -361,10 +361,10 @@
 	solar declination  =  18.558 (deg)
 	solar hour angle   = -206.989 (deg)
 	equation of time   =  3.706 (minutes)
-	local sunrise      =  07:47 (UTC)  05:47 (Local)
+	local sunrise      =  7:47 (UTC)  5:47 (Local)
 	local solar noon   =  14:47 (UTC)  12:47 (Local)
 	local sunset       =  21:48 (UTC)  19:48 (Local)
-	local time         =  01:00 (UTC) -01:00 (Local)
+	local time         =  1:00 (UTC) -1:00 (Local)
 **********************************************************
 *            Control Point   -      R - d0/2             *
 **********************************************************
@@ -382,10 +382,10 @@
 	solar declination  =  18.558 (deg)
 	solar hour angle   = -182.395 (deg)
 	equation of time   =  3.706 (minutes)
-	local sunrise      =  05:34 (UTC)  04:34 (Local)
+	local sunrise      =  5:34 (UTC)  4:34 (Local)
 	local solar noon   =  13:09 (UTC)  12:09 (Local)
 	local sunset       =  20:44 (UTC)  19:44 (Local)
-	local time         =  01:00 (UTC)  00:00 (Local)
+	local time         =  1:00 (UTC)  0:00 (Local)
 **********************************************************
 *            Control Point   -     R - 1000              *
 **********************************************************
@@ -403,10 +403,10 @@
 	solar declination  =  18.558 (deg)
 	solar hour angle   = -179.491 (deg)
 	equation of time   =  3.706 (minutes)
-	local sunrise      =  05:19 (UTC)  04:19 (Local)
+	local sunrise      =  5:19 (UTC)  4:19 (Local)
 	local solar noon   =  12:57 (UTC)  11:57 (Local)
 	local sunset       =  20:36 (UTC)  19:36 (Local)
-	local time         =  01:00 (UTC)  00:00 (Local)
+	local time         =  1:00 (UTC)  0:00 (Local)
 **********************************************************
 *               End DumpPathData()                       *
 **********************************************************
@@ -570,7 +570,7 @@
 	OPMUF      =  9.781 (MHz)
 	10% OPMUF  =  12.480 (MHz)
 	90% OPMUF  =  8.230 (MHz)
-	Fprob        =  4.098 (%)
+	Fprob        =  1.041 (%)
 	Lower decile =  0.841
 	Upper decile =  1.276
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -591,7 +591,7 @@
 	OPMUF      =  8.339 (MHz)
 	10% OPMUF  =  10.640 (MHz)
 	90% OPMUF  =  7.016 (MHz)
-	Fprob        =  1.020 (%)
+	Fprob        =  0.000 (%)
 	Lower decile =  0.841
 	Upper decile =  1.276
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -721,10 +721,10 @@
 	solar declination  =  18.579 (deg)
 	solar hour angle   = -195.313 (deg)
 	equation of time   =  3.705 (minutes)
-	local sunrise      =  09:33 (UTC)  05:33 (Local)
+	local sunrise      =  9:33 (UTC)  5:33 (Local)
 	local solar noon   =  16:01 (UTC)  12:01 (Local)
 	local sunset       =  22:29 (UTC)  18:29 (Local)
-	local time         =  03:00 (UTC) -01:00 (Local)
+	local time         =  3:00 (UTC) -1:00 (Local)
 **********************************************************
 *            Control Point   -      T + d0/2             *
 **********************************************************
@@ -742,10 +742,10 @@
 	solar declination  =  18.579 (deg)
 	solar hour angle   = -193.929 (deg)
 	equation of time   =  3.705 (minutes)
-	local sunrise      =  09:24 (UTC)  06:24 (Local)
+	local sunrise      =  9:24 (UTC)  6:24 (Local)
 	local solar noon   =  15:55 (UTC)  12:55 (Local)
 	local sunset       =  22:26 (UTC)  19:26 (Local)
-	local time         =  03:00 (UTC)  00:00 (Local)
+	local time         =  3:00 (UTC)  0:00 (Local)
 **********************************************************
 *            Control Point   -       MidPath             *
 **********************************************************
@@ -764,10 +764,10 @@
 	solar declination  =  18.579 (deg)
 	solar hour angle   = -176.989 (deg)
 	equation of time   =  3.705 (minutes)
-	local sunrise      =  07:47 (UTC)  05:47 (Local)
+	local sunrise      =  7:47 (UTC)  5:47 (Local)
 	local solar noon   =  14:47 (UTC)  12:47 (Local)
 	local sunset       =  21:48 (UTC)  19:48 (Local)
-	local time         =  03:00 (UTC)  01:00 (Local)
+	local time         =  3:00 (UTC)  1:00 (Local)
 **********************************************************
 *            Control Point   -      R - d0/2             *
 **********************************************************
@@ -785,10 +785,10 @@
 	solar declination  =  18.579 (deg)
 	solar hour angle   = -152.395 (deg)
 	equation of time   =  3.705 (minutes)
-	local sunrise      =  05:34 (UTC)  04:34 (Local)
+	local sunrise      =  5:34 (UTC)  4:34 (Local)
 	local solar noon   =  13:09 (UTC)  12:09 (Local)
 	local sunset       =  20:45 (UTC)  19:45 (Local)
-	local time         =  03:00 (UTC)  02:00 (Local)
+	local time         =  3:00 (UTC)  2:00 (Local)
 **********************************************************
 *            Control Point   -     R - 1000              *
 **********************************************************
@@ -806,10 +806,10 @@
 	solar declination  =  18.579 (deg)
 	solar hour angle   = -149.491 (deg)
 	equation of time   =  3.705 (minutes)
-	local sunrise      =  05:19 (UTC)  04:19 (Local)
+	local sunrise      =  5:19 (UTC)  4:19 (Local)
 	local solar noon   =  12:57 (UTC)  11:57 (Local)
 	local sunset       =  20:36 (UTC)  19:36 (Local)
-	local time         =  03:00 (UTC)  02:00 (Local)
+	local time         =  3:00 (UTC)  2:00 (Local)
 **********************************************************
 *               End DumpPathData()                       *
 **********************************************************
@@ -973,7 +973,7 @@
 	OPMUF      =  11.622 (MHz)
 	10% OPMUF  =  14.829 (MHz)
 	90% OPMUF  =  9.779 (MHz)
-	Fprob        =  7.507 (%)
+	Fprob        =  3.509 (%)
 	Lower decile =  0.841
 	Upper decile =  1.276
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -994,7 +994,7 @@
 	OPMUF      =  9.916 (MHz)
 	10% OPMUF  =  12.652 (MHz)
 	90% OPMUF  =  8.343 (MHz)
-	Fprob        =  4.366 (%)
+	Fprob        =  1.177 (%)
 	Lower decile =  0.841
 	Upper decile =  1.276
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -1015,7 +1015,7 @@
 	OPMUF      =  8.664 (MHz)
 	10% OPMUF  =  11.054 (MHz)
 	90% OPMUF  =  7.289 (MHz)
-	Fprob        =  1.749 (%)
+	Fprob        =  0.088 (%)
 	Lower decile =  0.841
 	Upper decile =  1.276
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -1124,10 +1124,10 @@
 	solar declination  =  18.599 (deg)
 	solar hour angle   = -165.313 (deg)
 	equation of time   =  3.704 (minutes)
-	local sunrise      =  09:33 (UTC)  05:33 (Local)
+	local sunrise      =  9:33 (UTC)  5:33 (Local)
 	local solar noon   =  16:01 (UTC)  12:01 (Local)
 	local sunset       =  22:29 (UTC)  18:29 (Local)
-	local time         =  05:00 (UTC)  01:00 (Local)
+	local time         =  5:00 (UTC)  1:00 (Local)
 **********************************************************
 *            Control Point   -      T + d0/2             *
 **********************************************************
@@ -1145,10 +1145,10 @@
 	solar declination  =  18.599 (deg)
 	solar hour angle   = -163.930 (deg)
 	equation of time   =  3.704 (minutes)
-	local sunrise      =  09:24 (UTC)  06:24 (Local)
+	local sunrise      =  9:24 (UTC)  6:24 (Local)
 	local solar noon   =  15:55 (UTC)  12:55 (Local)
 	local sunset       =  22:26 (UTC)  19:26 (Local)
-	local time         =  05:00 (UTC)  02:00 (Local)
+	local time         =  5:00 (UTC)  2:00 (Local)
 **********************************************************
 *            Control Point   -       MidPath             *
 **********************************************************
@@ -1167,10 +1167,10 @@
 	solar declination  =  18.599 (deg)
 	solar hour angle   = -146.989 (deg)
 	equation of time   =  3.704 (minutes)
-	local sunrise      =  07:47 (UTC)  05:47 (Local)
+	local sunrise      =  7:47 (UTC)  5:47 (Local)
 	local solar noon   =  14:47 (UTC)  12:47 (Local)
 	local sunset       =  21:48 (UTC)  19:48 (Local)
-	local time         =  05:00 (UTC)  03:00 (Local)
+	local time         =  5:00 (UTC)  3:00 (Local)
 **********************************************************
 *            Control Point   -      R - d0/2             *
 **********************************************************
@@ -1188,10 +1188,10 @@
 	solar declination  =  18.599 (deg)
 	solar hour angle   = -122.395 (deg)
 	equation of time   =  3.704 (minutes)
-	local sunrise      =  05:33 (UTC)  04:33 (Local)
+	local sunrise      =  5:33 (UTC)  4:33 (Local)
 	local solar noon   =  13:09 (UTC)  12:09 (Local)
 	local sunset       =  20:45 (UTC)  19:45 (Local)
-	local time         =  05:00 (UTC)  04:00 (Local)
+	local time         =  5:00 (UTC)  4:00 (Local)
 **********************************************************
 *            Control Point   -     R - 1000              *
 **********************************************************
@@ -1209,10 +1209,10 @@
 	solar declination  =  18.599 (deg)
 	solar hour angle   = -119.492 (deg)
 	equation of time   =  3.704 (minutes)
-	local sunrise      =  05:19 (UTC)  04:19 (Local)
+	local sunrise      =  5:19 (UTC)  4:19 (Local)
 	local solar noon   =  12:57 (UTC)  11:57 (Local)
 	local sunset       =  20:36 (UTC)  19:36 (Local)
-	local time         =  05:00 (UTC)  04:00 (Local)
+	local time         =  5:00 (UTC)  4:00 (Local)
 **********************************************************
 *               End DumpPathData()                       *
 **********************************************************
@@ -1376,7 +1376,7 @@
 	OPMUF      =  11.895 (MHz)
 	10% OPMUF  =  13.917 (MHz)
 	90% OPMUF  =  9.413 (MHz)
-	Fprob        =  6.245 (%)
+	Fprob        =  8.411 (%)
 	Lower decile =  0.791
 	Upper decile =  1.170
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -1397,7 +1397,7 @@
 	OPMUF      =  10.157 (MHz)
 	10% OPMUF  =  11.883 (MHz)
 	90% OPMUF  =  8.038 (MHz)
-	Fprob        =  3.144 (%)
+	Fprob        =  4.195 (%)
 	Lower decile =  0.791
 	Upper decile =  1.170
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -1418,7 +1418,7 @@
 	OPMUF      =  8.845 (MHz)
 	10% OPMUF  =  10.349 (MHz)
 	90% OPMUF  =  7.000 (MHz)
-	Fprob        =  0.495 (%)
+	Fprob        =  2.233 (%)
 	Lower decile =  0.791
 	Upper decile =  1.170
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -1439,7 +1439,7 @@
 	OPMUF      =  7.888 (MHz)
 	10% OPMUF  =  9.228 (MHz)
 	90% OPMUF  =  6.242 (MHz)
-	Fprob        =  0.000 (%)
+	Fprob        =  1.165 (%)
 	Lower decile =  0.791
 	Upper decile =  1.170
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -1527,10 +1527,10 @@
 	solar declination  =  18.619 (deg)
 	solar hour angle   = -135.314 (deg)
 	equation of time   =  3.703 (minutes)
-	local sunrise      =  09:32 (UTC)  05:32 (Local)
+	local sunrise      =  9:32 (UTC)  5:32 (Local)
 	local solar noon   =  16:01 (UTC)  12:01 (Local)
 	local sunset       =  22:29 (UTC)  18:29 (Local)
-	local time         =  07:00 (UTC)  03:00 (Local)
+	local time         =  7:00 (UTC)  3:00 (Local)
 **********************************************************
 *            Control Point   -      T + d0/2             *
 **********************************************************
@@ -1548,10 +1548,10 @@
 	solar declination  =  18.619 (deg)
 	solar hour angle   = -133.930 (deg)
 	equation of time   =  3.703 (minutes)
-	local sunrise      =  09:24 (UTC)  06:24 (Local)
+	local sunrise      =  9:24 (UTC)  6:24 (Local)
 	local solar noon   =  15:55 (UTC)  12:55 (Local)
 	local sunset       =  22:26 (UTC)  19:26 (Local)
-	local time         =  07:00 (UTC)  04:00 (Local)
+	local time         =  7:00 (UTC)  4:00 (Local)
 **********************************************************
 *            Control Point   -       MidPath             *
 **********************************************************
@@ -1570,10 +1570,10 @@
 	solar declination  =  18.619 (deg)
 	solar hour angle   = -116.990 (deg)
 	equation of time   =  3.703 (minutes)
-	local sunrise      =  07:47 (UTC)  05:47 (Local)
+	local sunrise      =  7:47 (UTC)  5:47 (Local)
 	local solar noon   =  14:47 (UTC)  12:47 (Local)
 	local sunset       =  21:48 (UTC)  19:48 (Local)
-	local time         =  07:00 (UTC)  05:00 (Local)
+	local time         =  7:00 (UTC)  5:00 (Local)
 **********************************************************
 *            Control Point   -      R - d0/2             *
 **********************************************************
@@ -1591,10 +1591,10 @@
 	solar declination  =  18.619 (deg)
 	solar hour angle   = -92.395 (deg)
 	equation of time   =  3.703 (minutes)
-	local sunrise      =  05:33 (UTC)  04:33 (Local)
+	local sunrise      =  5:33 (UTC)  4:33 (Local)
 	local solar noon   =  13:09 (UTC)  12:09 (Local)
 	local sunset       =  20:45 (UTC)  19:45 (Local)
-	local time         =  07:00 (UTC)  06:00 (Local)
+	local time         =  7:00 (UTC)  6:00 (Local)
 **********************************************************
 *            Control Point   -     R - 1000              *
 **********************************************************
@@ -1612,10 +1612,10 @@
 	solar declination  =  18.619 (deg)
 	solar hour angle   = -89.492 (deg)
 	equation of time   =  3.703 (minutes)
-	local sunrise      =  05:18 (UTC)  04:18 (Local)
+	local sunrise      =  5:18 (UTC)  4:18 (Local)
 	local solar noon   =  12:57 (UTC)  11:57 (Local)
 	local sunset       =  20:36 (UTC)  19:36 (Local)
-	local time         =  07:00 (UTC)  06:00 (Local)
+	local time         =  7:00 (UTC)  6:00 (Local)
 **********************************************************
 *               End DumpPathData()                       *
 **********************************************************
@@ -1779,7 +1779,7 @@
 	OPMUF      =  15.901 (MHz)
 	10% OPMUF  =  18.604 (MHz)
 	90% OPMUF  =  12.583 (MHz)
-	Fprob        =  95.289 (%)
+	Fprob        =  1.000 (%)
 	Lower decile =  0.791
 	Upper decile =  1.170
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -1800,7 +1800,7 @@
 	OPMUF      =  13.554 (MHz)
 	10% OPMUF  =  15.858 (MHz)
 	90% OPMUF  =  10.726 (MHz)
-	Fprob        =  10.586 (%)
+	Fprob        =  31.553 (%)
 	Lower decile =  0.791
 	Upper decile =  1.170
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -1821,7 +1821,7 @@
 	OPMUF      =  11.789 (MHz)
 	10% OPMUF  =  13.793 (MHz)
 	90% OPMUF  =  9.330 (MHz)
-	Fprob        =  7.799 (%)
+	Fprob        =  12.365 (%)
 	Lower decile =  0.791
 	Upper decile =  1.170
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -1842,7 +1842,7 @@
 	OPMUF      =  10.494 (MHz)
 	10% OPMUF  =  12.279 (MHz)
 	90% OPMUF  =  8.305 (MHz)
-	Fprob        =  5.489 (%)
+	Fprob        =  7.067 (%)
 	Lower decile =  0.791
 	Upper decile =  1.170
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -1930,10 +1930,10 @@
 	solar declination  =  18.640 (deg)
 	solar hour angle   = -105.314 (deg)
 	equation of time   =  3.702 (minutes)
-	local sunrise      =  09:32 (UTC)  05:32 (Local)
+	local sunrise      =  9:32 (UTC)  5:32 (Local)
 	local solar noon   =  16:01 (UTC)  12:01 (Local)
 	local sunset       =  22:29 (UTC)  18:29 (Local)
-	local time         =  09:00 (UTC)  05:00 (Local)
+	local time         =  9:00 (UTC)  5:00 (Local)
 **********************************************************
 *            Control Point   -      T + d0/2             *
 **********************************************************
@@ -1951,10 +1951,10 @@
 	solar declination  =  18.640 (deg)
 	solar hour angle   = -103.930 (deg)
 	equation of time   =  3.702 (minutes)
-	local sunrise      =  09:24 (UTC)  06:24 (Local)
+	local sunrise      =  9:24 (UTC)  6:24 (Local)
 	local solar noon   =  15:55 (UTC)  12:55 (Local)
 	local sunset       =  22:26 (UTC)  19:26 (Local)
-	local time         =  09:00 (UTC)  06:00 (Local)
+	local time         =  9:00 (UTC)  6:00 (Local)
 **********************************************************
 *            Control Point   -       MidPath             *
 **********************************************************
@@ -1973,10 +1973,10 @@
 	solar declination  =  18.640 (deg)
 	solar hour angle   = -86.990 (deg)
 	equation of time   =  3.702 (minutes)
-	local sunrise      =  07:47 (UTC)  05:47 (Local)
+	local sunrise      =  7:47 (UTC)  5:47 (Local)
 	local solar noon   =  14:47 (UTC)  12:47 (Local)
 	local sunset       =  21:48 (UTC)  19:48 (Local)
-	local time         =  09:00 (UTC)  07:00 (Local)
+	local time         =  9:00 (UTC)  7:00 (Local)
 **********************************************************
 *            Control Point   -      R - d0/2             *
 **********************************************************
@@ -1994,10 +1994,10 @@
 	solar declination  =  18.640 (deg)
 	solar hour angle   = -62.396 (deg)
 	equation of time   =  3.702 (minutes)
-	local sunrise      =  05:33 (UTC)  04:33 (Local)
+	local sunrise      =  5:33 (UTC)  4:33 (Local)
 	local solar noon   =  13:09 (UTC)  12:09 (Local)
 	local sunset       =  20:45 (UTC)  19:45 (Local)
-	local time         =  09:00 (UTC)  08:00 (Local)
+	local time         =  9:00 (UTC)  8:00 (Local)
 **********************************************************
 *            Control Point   -     R - 1000              *
 **********************************************************
@@ -2015,10 +2015,10 @@
 	solar declination  =  18.640 (deg)
 	solar hour angle   = -59.492 (deg)
 	equation of time   =  3.702 (minutes)
-	local sunrise      =  05:18 (UTC)  04:18 (Local)
+	local sunrise      =  5:18 (UTC)  4:18 (Local)
 	local solar noon   =  12:57 (UTC)  11:57 (Local)
 	local sunset       =  20:37 (UTC)  19:37 (Local)
-	local time         =  09:00 (UTC)  08:00 (Local)
+	local time         =  9:00 (UTC)  8:00 (Local)
 **********************************************************
 *               End DumpPathData()                       *
 **********************************************************
@@ -2182,7 +2182,7 @@
 	OPMUF      =  15.915 (MHz)
 	10% OPMUF  =  18.758 (MHz)
 	90% OPMUF  =  12.913 (MHz)
-	Fprob        =  94.815 (%)
+	Fprob        =  1.000 (%)
 	Lower decile =  0.811
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -2203,7 +2203,7 @@
 	OPMUF      =  13.505 (MHz)
 	10% OPMUF  =  15.917 (MHz)
 	90% OPMUF  =  10.957 (MHz)
-	Fprob        =  10.660 (%)
+	Fprob        =  28.910 (%)
 	Lower decile =  0.811
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -2224,7 +2224,7 @@
 	OPMUF      =  11.754 (MHz)
 	10% OPMUF  =  13.854 (MHz)
 	90% OPMUF  =  9.537 (MHz)
-	Fprob        =  7.886 (%)
+	Fprob        =  11.438 (%)
 	Lower decile =  0.811
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -2245,7 +2245,7 @@
 	OPMUF      =  10.466 (MHz)
 	10% OPMUF  =  12.335 (MHz)
 	90% OPMUF  =  8.492 (MHz)
-	Fprob        =  5.580 (%)
+	Fprob        =  6.499 (%)
 	Lower decile =  0.811
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -2333,10 +2333,10 @@
 	solar declination  =  18.660 (deg)
 	solar hour angle   = -75.314 (deg)
 	equation of time   =  3.701 (minutes)
-	local sunrise      =  09:32 (UTC)  05:32 (Local)
+	local sunrise      =  9:32 (UTC)  5:32 (Local)
 	local solar noon   =  16:01 (UTC)  12:01 (Local)
 	local sunset       =  22:29 (UTC)  18:29 (Local)
-	local time         =  11:00 (UTC)  07:00 (Local)
+	local time         =  11:00 (UTC)  7:00 (Local)
 **********************************************************
 *            Control Point   -      T + d0/2             *
 **********************************************************
@@ -2354,10 +2354,10 @@
 	solar declination  =  18.660 (deg)
 	solar hour angle   = -73.930 (deg)
 	equation of time   =  3.701 (minutes)
-	local sunrise      =  09:24 (UTC)  06:24 (Local)
+	local sunrise      =  9:24 (UTC)  6:24 (Local)
 	local solar noon   =  15:55 (UTC)  12:55 (Local)
 	local sunset       =  22:26 (UTC)  19:26 (Local)
-	local time         =  11:00 (UTC)  08:00 (Local)
+	local time         =  11:00 (UTC)  8:00 (Local)
 **********************************************************
 *            Control Point   -       MidPath             *
 **********************************************************
@@ -2376,10 +2376,10 @@
 	solar declination  =  18.660 (deg)
 	solar hour angle   = -56.990 (deg)
 	equation of time   =  3.701 (minutes)
-	local sunrise      =  07:47 (UTC)  05:47 (Local)
+	local sunrise      =  7:47 (UTC)  5:47 (Local)
 	local solar noon   =  14:47 (UTC)  12:47 (Local)
 	local sunset       =  21:48 (UTC)  19:48 (Local)
-	local time         =  11:00 (UTC)  09:00 (Local)
+	local time         =  11:00 (UTC)  9:00 (Local)
 **********************************************************
 *            Control Point   -      R - d0/2             *
 **********************************************************
@@ -2397,7 +2397,7 @@
 	solar declination  =  18.660 (deg)
 	solar hour angle   = -32.396 (deg)
 	equation of time   =  3.701 (minutes)
-	local sunrise      =  05:33 (UTC)  04:33 (Local)
+	local sunrise      =  5:33 (UTC)  4:33 (Local)
 	local solar noon   =  13:09 (UTC)  12:09 (Local)
 	local sunset       =  20:45 (UTC)  19:45 (Local)
 	local time         =  11:00 (UTC)  10:00 (Local)
@@ -2418,7 +2418,7 @@
 	solar declination  =  18.660 (deg)
 	solar hour angle   = -29.492 (deg)
 	equation of time   =  3.701 (minutes)
-	local sunrise      =  05:18 (UTC)  04:18 (Local)
+	local sunrise      =  5:18 (UTC)  4:18 (Local)
 	local solar noon   =  12:57 (UTC)  11:57 (Local)
 	local sunset       =  20:37 (UTC)  19:37 (Local)
 	local time         =  11:00 (UTC)  10:00 (Local)
@@ -2585,7 +2585,7 @@
 	OPMUF      =  15.980 (MHz)
 	10% OPMUF  =  18.835 (MHz)
 	90% OPMUF  =  12.966 (MHz)
-	Fprob        =  94.896 (%)
+	Fprob        =  1.000 (%)
 	Lower decile =  0.811
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -2606,7 +2606,7 @@
 	OPMUF      =  13.493 (MHz)
 	10% OPMUF  =  15.903 (MHz)
 	90% OPMUF  =  10.948 (MHz)
-	Fprob        =  10.643 (%)
+	Fprob        =  28.688 (%)
 	Lower decile =  0.811
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -2627,7 +2627,7 @@
 	OPMUF      =  11.724 (MHz)
 	10% OPMUF  =  13.818 (MHz)
 	90% OPMUF  =  9.513 (MHz)
-	Fprob        =  7.835 (%)
+	Fprob        =  11.284 (%)
 	Lower decile =  0.811
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -2648,7 +2648,7 @@
 	OPMUF      =  10.480 (MHz)
 	10% OPMUF  =  12.352 (MHz)
 	90% OPMUF  =  8.503 (MHz)
-	Fprob        =  5.606 (%)
+	Fprob        =  6.538 (%)
 	Lower decile =  0.811
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -2736,10 +2736,10 @@
 	solar declination  =  18.680 (deg)
 	solar hour angle   = -45.314 (deg)
 	equation of time   =  3.700 (minutes)
-	local sunrise      =  09:32 (UTC)  05:32 (Local)
+	local sunrise      =  9:32 (UTC)  5:32 (Local)
 	local solar noon   =  16:01 (UTC)  12:01 (Local)
 	local sunset       =  22:29 (UTC)  18:29 (Local)
-	local time         =  13:00 (UTC)  09:00 (Local)
+	local time         =  13:00 (UTC)  9:00 (Local)
 **********************************************************
 *            Control Point   -      T + d0/2             *
 **********************************************************
@@ -2757,7 +2757,7 @@
 	solar declination  =  18.680 (deg)
 	solar hour angle   = -43.931 (deg)
 	equation of time   =  3.700 (minutes)
-	local sunrise      =  09:24 (UTC)  06:24 (Local)
+	local sunrise      =  9:24 (UTC)  6:24 (Local)
 	local solar noon   =  15:55 (UTC)  12:55 (Local)
 	local sunset       =  22:26 (UTC)  19:26 (Local)
 	local time         =  13:00 (UTC)  10:00 (Local)
@@ -2779,7 +2779,7 @@
 	solar declination  =  18.680 (deg)
 	solar hour angle   = -26.990 (deg)
 	equation of time   =  3.700 (minutes)
-	local sunrise      =  07:47 (UTC)  05:47 (Local)
+	local sunrise      =  7:47 (UTC)  5:47 (Local)
 	local solar noon   =  14:47 (UTC)  12:47 (Local)
 	local sunset       =  21:48 (UTC)  19:48 (Local)
 	local time         =  13:00 (UTC)  11:00 (Local)
@@ -2800,7 +2800,7 @@
 	solar declination  =  18.680 (deg)
 	solar hour angle   = -2.396 (deg)
 	equation of time   =  3.700 (minutes)
-	local sunrise      =  05:33 (UTC)  04:33 (Local)
+	local sunrise      =  5:33 (UTC)  4:33 (Local)
 	local solar noon   =  13:09 (UTC)  12:09 (Local)
 	local sunset       =  20:45 (UTC)  19:45 (Local)
 	local time         =  13:00 (UTC)  12:00 (Local)
@@ -2821,7 +2821,7 @@
 	solar declination  =  18.680 (deg)
 	solar hour angle   =  0.507 (deg)
 	equation of time   =  3.700 (minutes)
-	local sunrise      =  05:18 (UTC)  04:18 (Local)
+	local sunrise      =  5:18 (UTC)  4:18 (Local)
 	local solar noon   =  12:57 (UTC)  11:57 (Local)
 	local sunset       =  20:37 (UTC)  19:37 (Local)
 	local time         =  13:00 (UTC)  12:00 (Local)
@@ -2988,7 +2988,7 @@
 	OPMUF      =  15.624 (MHz)
 	10% OPMUF  =  18.237 (MHz)
 	90% OPMUF  =  12.833 (MHz)
-	Fprob        =  94.209 (%)
+	Fprob        =  1.000 (%)
 	Lower decile =  0.821
 	Upper decile =  1.167
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -3009,7 +3009,7 @@
 	OPMUF      =  13.222 (MHz)
 	10% OPMUF  =  15.433 (MHz)
 	90% OPMUF  =  10.860 (MHz)
-	Fprob        =  10.043 (%)
+	Fprob        =  26.033 (%)
 	Lower decile =  0.821
 	Upper decile =  1.167
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -3030,7 +3030,7 @@
 	OPMUF      =  11.500 (MHz)
 	10% OPMUF  =  13.424 (MHz)
 	90% OPMUF  =  9.446 (MHz)
-	Fprob        =  7.258 (%)
+	Fprob        =  11.104 (%)
 	Lower decile =  0.821
 	Upper decile =  1.167
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -3051,7 +3051,7 @@
 	OPMUF      =  10.283 (MHz)
 	10% OPMUF  =  12.003 (MHz)
 	90% OPMUF  =  8.446 (MHz)
-	Fprob        =  5.041 (%)
+	Fprob        =  6.611 (%)
 	Lower decile =  0.821
 	Upper decile =  1.167
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -3139,7 +3139,7 @@
 	solar declination  =  18.701 (deg)
 	solar hour angle   = -15.315 (deg)
 	equation of time   =  3.699 (minutes)
-	local sunrise      =  09:32 (UTC)  05:32 (Local)
+	local sunrise      =  9:32 (UTC)  5:32 (Local)
 	local solar noon   =  16:01 (UTC)  12:01 (Local)
 	local sunset       =  22:29 (UTC)  18:29 (Local)
 	local time         =  15:00 (UTC)  11:00 (Local)
@@ -3160,7 +3160,7 @@
 	solar declination  =  18.701 (deg)
 	solar hour angle   = -13.931 (deg)
 	equation of time   =  3.699 (minutes)
-	local sunrise      =  09:24 (UTC)  06:24 (Local)
+	local sunrise      =  9:24 (UTC)  6:24 (Local)
 	local solar noon   =  15:55 (UTC)  12:55 (Local)
 	local sunset       =  22:26 (UTC)  19:26 (Local)
 	local time         =  15:00 (UTC)  12:00 (Local)
@@ -3182,7 +3182,7 @@
 	solar declination  =  18.701 (deg)
 	solar hour angle   =  3.009 (deg)
 	equation of time   =  3.699 (minutes)
-	local sunrise      =  07:47 (UTC)  05:47 (Local)
+	local sunrise      =  7:47 (UTC)  5:47 (Local)
 	local solar noon   =  14:47 (UTC)  12:47 (Local)
 	local sunset       =  21:48 (UTC)  19:48 (Local)
 	local time         =  15:00 (UTC)  13:00 (Local)
@@ -3203,7 +3203,7 @@
 	solar declination  =  18.701 (deg)
 	solar hour angle   =  27.604 (deg)
 	equation of time   =  3.699 (minutes)
-	local sunrise      =  05:33 (UTC)  04:33 (Local)
+	local sunrise      =  5:33 (UTC)  4:33 (Local)
 	local solar noon   =  13:09 (UTC)  12:09 (Local)
 	local sunset       =  20:45 (UTC)  19:45 (Local)
 	local time         =  15:00 (UTC)  14:00 (Local)
@@ -3224,7 +3224,7 @@
 	solar declination  =  18.701 (deg)
 	solar hour angle   =  30.507 (deg)
 	equation of time   =  3.699 (minutes)
-	local sunrise      =  05:18 (UTC)  04:18 (Local)
+	local sunrise      =  5:18 (UTC)  4:18 (Local)
 	local solar noon   =  12:57 (UTC)  11:57 (Local)
 	local sunset       =  20:37 (UTC)  19:37 (Local)
 	local time         =  15:00 (UTC)  14:00 (Local)
@@ -3391,7 +3391,7 @@
 	OPMUF      =  16.317 (MHz)
 	10% OPMUF  =  19.046 (MHz)
 	90% OPMUF  =  13.402 (MHz)
-	Fprob        =  95.065 (%)
+	Fprob        =  1.000 (%)
 	Lower decile =  0.821
 	Upper decile =  1.167
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -3412,7 +3412,7 @@
 	OPMUF      =  13.832 (MHz)
 	10% OPMUF  =  16.145 (MHz)
 	90% OPMUF  =  11.361 (MHz)
-	Fprob        =  10.945 (%)
+	Fprob        =  39.178 (%)
 	Lower decile =  0.821
 	Upper decile =  1.167
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -3433,7 +3433,7 @@
 	OPMUF      =  12.012 (MHz)
 	10% OPMUF  =  14.021 (MHz)
 	90% OPMUF  =  9.866 (MHz)
-	Fprob        =  8.125 (%)
+	Fprob        =  13.957 (%)
 	Lower decile =  0.821
 	Upper decile =  1.167
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -3454,7 +3454,7 @@
 	OPMUF      =  10.707 (MHz)
 	10% OPMUF  =  12.498 (MHz)
 	90% OPMUF  =  8.795 (MHz)
-	Fprob        =  5.840 (%)
+	Fprob        =  7.913 (%)
 	Lower decile =  0.821
 	Upper decile =  1.167
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -3542,7 +3542,7 @@
 	solar declination  =  18.721 (deg)
 	solar hour angle   =  14.685 (deg)
 	equation of time   =  3.698 (minutes)
-	local sunrise      =  09:32 (UTC)  05:32 (Local)
+	local sunrise      =  9:32 (UTC)  5:32 (Local)
 	local solar noon   =  16:01 (UTC)  12:01 (Local)
 	local sunset       =  22:29 (UTC)  18:29 (Local)
 	local time         =  17:00 (UTC)  13:00 (Local)
@@ -3563,7 +3563,7 @@
 	solar declination  =  18.721 (deg)
 	solar hour angle   =  16.069 (deg)
 	equation of time   =  3.698 (minutes)
-	local sunrise      =  09:24 (UTC)  06:24 (Local)
+	local sunrise      =  9:24 (UTC)  6:24 (Local)
 	local solar noon   =  15:55 (UTC)  12:55 (Local)
 	local sunset       =  22:26 (UTC)  19:26 (Local)
 	local time         =  17:00 (UTC)  14:00 (Local)
@@ -3585,7 +3585,7 @@
 	solar declination  =  18.721 (deg)
 	solar hour angle   =  33.009 (deg)
 	equation of time   =  3.698 (minutes)
-	local sunrise      =  07:47 (UTC)  05:47 (Local)
+	local sunrise      =  7:47 (UTC)  5:47 (Local)
 	local solar noon   =  14:47 (UTC)  12:47 (Local)
 	local sunset       =  21:48 (UTC)  19:48 (Local)
 	local time         =  17:00 (UTC)  15:00 (Local)
@@ -3606,7 +3606,7 @@
 	solar declination  =  18.721 (deg)
 	solar hour angle   =  57.603 (deg)
 	equation of time   =  3.698 (minutes)
-	local sunrise      =  05:33 (UTC)  04:33 (Local)
+	local sunrise      =  5:33 (UTC)  4:33 (Local)
 	local solar noon   =  13:09 (UTC)  12:09 (Local)
 	local sunset       =  20:45 (UTC)  19:45 (Local)
 	local time         =  17:00 (UTC)  16:00 (Local)
@@ -3627,7 +3627,7 @@
 	solar declination  =  18.721 (deg)
 	solar hour angle   =  60.507 (deg)
 	equation of time   =  3.698 (minutes)
-	local sunrise      =  05:18 (UTC)  04:18 (Local)
+	local sunrise      =  5:18 (UTC)  4:18 (Local)
 	local solar noon   =  12:57 (UTC)  11:57 (Local)
 	local sunset       =  20:37 (UTC)  19:37 (Local)
 	local time         =  17:00 (UTC)  16:00 (Local)
@@ -3794,7 +3794,7 @@
 	OPMUF      =  19.201 (MHz)
 	10% OPMUF  =  22.605 (MHz)
 	90% OPMUF  =  15.824 (MHz)
-	Fprob        =  98.165 (%)
+	Fprob        =  1.000 (%)
 	Lower decile =  0.824
 	Upper decile =  1.177
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -3815,7 +3815,7 @@
 	OPMUF      =  16.305 (MHz)
 	10% OPMUF  =  19.195 (MHz)
 	90% OPMUF  =  13.437 (MHz)
-	Fprob        =  94.985 (%)
+	Fprob        =  1.000 (%)
 	Lower decile =  0.824
 	Upper decile =  1.177
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -3836,7 +3836,7 @@
 	OPMUF      =  14.141 (MHz)
 	10% OPMUF  =  16.647 (MHz)
 	90% OPMUF  =  11.653 (MHz)
-	Fprob        =  11.557 (%)
+	Fprob        =  47.670 (%)
 	Lower decile =  0.824
 	Upper decile =  1.177
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -3857,7 +3857,7 @@
 	OPMUF      =  12.568 (MHz)
 	10% OPMUF  =  14.796 (MHz)
 	90% OPMUF  =  10.358 (MHz)
-	Fprob        =  9.200 (%)
+	Fprob        =  17.031 (%)
 	Lower decile =  0.824
 	Upper decile =  1.177
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -3945,7 +3945,7 @@
 	solar declination  =  18.741 (deg)
 	solar hour angle   =  44.685 (deg)
 	equation of time   =  3.696 (minutes)
-	local sunrise      =  09:32 (UTC)  05:32 (Local)
+	local sunrise      =  9:32 (UTC)  5:32 (Local)
 	local solar noon   =  16:01 (UTC)  12:01 (Local)
 	local sunset       =  22:29 (UTC)  18:29 (Local)
 	local time         =  19:00 (UTC)  15:00 (Local)
@@ -3966,7 +3966,7 @@
 	solar declination  =  18.741 (deg)
 	solar hour angle   =  46.068 (deg)
 	equation of time   =  3.696 (minutes)
-	local sunrise      =  09:24 (UTC)  06:24 (Local)
+	local sunrise      =  9:24 (UTC)  6:24 (Local)
 	local solar noon   =  15:55 (UTC)  12:55 (Local)
 	local sunset       =  22:26 (UTC)  19:26 (Local)
 	local time         =  19:00 (UTC)  16:00 (Local)
@@ -3988,7 +3988,7 @@
 	solar declination  =  18.741 (deg)
 	solar hour angle   =  63.009 (deg)
 	equation of time   =  3.696 (minutes)
-	local sunrise      =  07:47 (UTC)  05:47 (Local)
+	local sunrise      =  7:47 (UTC)  5:47 (Local)
 	local solar noon   =  14:47 (UTC)  12:47 (Local)
 	local sunset       =  21:48 (UTC)  19:48 (Local)
 	local time         =  19:00 (UTC)  17:00 (Local)
@@ -4009,7 +4009,7 @@
 	solar declination  =  18.741 (deg)
 	solar hour angle   =  87.603 (deg)
 	equation of time   =  3.696 (minutes)
-	local sunrise      =  05:33 (UTC)  04:33 (Local)
+	local sunrise      =  5:33 (UTC)  4:33 (Local)
 	local solar noon   =  13:09 (UTC)  12:09 (Local)
 	local sunset       =  20:46 (UTC)  19:46 (Local)
 	local time         =  19:00 (UTC)  18:00 (Local)
@@ -4030,7 +4030,7 @@
 	solar declination  =  18.741 (deg)
 	solar hour angle   =  90.507 (deg)
 	equation of time   =  3.696 (minutes)
-	local sunrise      =  05:18 (UTC)  04:18 (Local)
+	local sunrise      =  5:18 (UTC)  4:18 (Local)
 	local solar noon   =  12:57 (UTC)  11:57 (Local)
 	local sunset       =  20:37 (UTC)  19:37 (Local)
 	local time         =  19:00 (UTC)  18:00 (Local)
@@ -4197,7 +4197,7 @@
 	OPMUF      =  16.782 (MHz)
 	10% OPMUF  =  19.757 (MHz)
 	90% OPMUF  =  13.830 (MHz)
-	Fprob        =  95.552 (%)
+	Fprob        =  1.000 (%)
 	Lower decile =  0.824
 	Upper decile =  1.177
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -4218,7 +4218,7 @@
 	OPMUF      =  14.272 (MHz)
 	10% OPMUF  =  16.802 (MHz)
 	90% OPMUF  =  11.762 (MHz)
-	Fprob        =  11.742 (%)
+	Fprob        =  54.109 (%)
 	Lower decile =  0.824
 	Upper decile =  1.177
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -4239,7 +4239,7 @@
 	OPMUF      =  12.367 (MHz)
 	10% OPMUF  =  14.559 (MHz)
 	90% OPMUF  =  10.192 (MHz)
-	Fprob        =  8.877 (%)
+	Fprob        =  15.401 (%)
 	Lower decile =  0.824
 	Upper decile =  1.177
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -4260,7 +4260,7 @@
 	OPMUF      =  10.969 (MHz)
 	10% OPMUF  =  12.913 (MHz)
 	90% OPMUF  =  9.039 (MHz)
-	Fprob        =  6.487 (%)
+	Fprob        =  8.171 (%)
 	Lower decile =  0.824
 	Upper decile =  1.177
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -4348,7 +4348,7 @@
 	solar declination  =  18.761 (deg)
 	solar hour angle   =  74.684 (deg)
 	equation of time   =  3.695 (minutes)
-	local sunrise      =  09:32 (UTC)  05:32 (Local)
+	local sunrise      =  9:32 (UTC)  5:32 (Local)
 	local solar noon   =  16:01 (UTC)  12:01 (Local)
 	local sunset       =  22:29 (UTC)  18:29 (Local)
 	local time         =  21:00 (UTC)  17:00 (Local)
@@ -4369,7 +4369,7 @@
 	solar declination  =  18.761 (deg)
 	solar hour angle   =  76.068 (deg)
 	equation of time   =  3.695 (minutes)
-	local sunrise      =  09:24 (UTC)  06:24 (Local)
+	local sunrise      =  9:24 (UTC)  6:24 (Local)
 	local solar noon   =  15:55 (UTC)  12:55 (Local)
 	local sunset       =  22:26 (UTC)  19:26 (Local)
 	local time         =  21:00 (UTC)  18:00 (Local)
@@ -4391,7 +4391,7 @@
 	solar declination  =  18.761 (deg)
 	solar hour angle   =  93.008 (deg)
 	equation of time   =  3.695 (minutes)
-	local sunrise      =  07:47 (UTC)  05:47 (Local)
+	local sunrise      =  7:47 (UTC)  5:47 (Local)
 	local solar noon   =  14:47 (UTC)  12:47 (Local)
 	local sunset       =  21:48 (UTC)  19:48 (Local)
 	local time         =  21:00 (UTC)  19:00 (Local)
@@ -4412,7 +4412,7 @@
 	solar declination  =  18.761 (deg)
 	solar hour angle   =  117.603 (deg)
 	equation of time   =  3.695 (minutes)
-	local sunrise      =  05:33 (UTC)  04:33 (Local)
+	local sunrise      =  5:33 (UTC)  4:33 (Local)
 	local solar noon   =  13:09 (UTC)  12:09 (Local)
 	local sunset       =  20:46 (UTC)  19:46 (Local)
 	local time         =  21:00 (UTC)  20:00 (Local)
@@ -4433,7 +4433,7 @@
 	solar declination  =  18.761 (deg)
 	solar hour angle   =  120.506 (deg)
 	equation of time   =  3.695 (minutes)
-	local sunrise      =  05:18 (UTC)  04:18 (Local)
+	local sunrise      =  5:18 (UTC)  4:18 (Local)
 	local solar noon   =  12:57 (UTC)  11:57 (Local)
 	local sunset       =  20:37 (UTC)  19:37 (Local)
 	local time         =  21:00 (UTC)  20:00 (Local)
@@ -4600,7 +4600,7 @@
 	OPMUF      =  14.144 (MHz)
 	10% OPMUF  =  16.670 (MHz)
 	90% OPMUF  =  11.174 (MHz)
-	Fprob        =  9.845 (%)
+	Fprob        =  20.847 (%)
 	Lower decile =  0.790
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -4621,7 +4621,7 @@
 	OPMUF      =  12.030 (MHz)
 	10% OPMUF  =  14.179 (MHz)
 	90% OPMUF  =  9.504 (MHz)
-	Fprob        =  6.615 (%)
+	Fprob        =  8.294 (%)
 	Lower decile =  0.790
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -4642,7 +4642,7 @@
 	OPMUF      =  10.455 (MHz)
 	10% OPMUF  =  12.323 (MHz)
 	90% OPMUF  =  8.260 (MHz)
-	Fprob        =  3.851 (%)
+	Fprob        =  4.380 (%)
 	Lower decile =  0.790
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -4663,7 +4663,7 @@
 	OPMUF      =  9.314 (MHz)
 	10% OPMUF  =  10.978 (MHz)
 	90% OPMUF  =  7.358 (MHz)
-	Fprob        =  1.616 (%)
+	Fprob        =  2.572 (%)
 	Lower decile =  0.790
 	Upper decile =  1.179
 	E Layer Screen Frequency  =  0.000 (MHz)
@@ -4751,7 +4751,7 @@
 	solar declination  =  18.781 (deg)
 	solar hour angle   =  104.684 (deg)
 	equation of time   =  3.694 (minutes)
-	local sunrise      =  09:32 (UTC)  05:32 (Local)
+	local sunrise      =  9:32 (UTC)  5:32 (Local)
 	local solar noon   =  16:01 (UTC)  12:01 (Local)
 	local sunset       =  22:29 (UTC)  18:29 (Local)
 	local time         =  23:00 (UTC)  19:00 (Local)
@@ -4772,7 +4772,7 @@
 	solar declination  =  18.781 (deg)
 	solar hour angle   =  106.068 (deg)
 	equation of time   =  3.694 (minutes)
-	local sunrise      =  09:24 (UTC)  06:24 (Local)
+	local sunrise      =  9:24 (UTC)  6:24 (Local)
 	local solar noon   =  15:55 (UTC)  12:55 (Local)
 	local sunset       =  22:26 (UTC)  19:26 (Local)
 	local time         =  23:00 (UTC)  20:00 (Local)
@@ -4794,7 +4794,7 @@
 	solar declination  =  18.781 (deg)
 	solar hour angle   =  123.008 (deg)
 	equation of time   =  3.694 (minutes)
-	local sunrise      =  07:46 (UTC)  05:46 (Local)
+	local sunrise      =  7:46 (UTC)  5:46 (Local)
 	local solar noon   =  14:47 (UTC)  12:47 (Local)
 	local sunset       =  21:48 (UTC)  19:48 (Local)
 	local time         =  23:00 (UTC)  21:00 (Local)
@@ -4815,7 +4815,7 @@
 	solar declination  =  18.781 (deg)
 	solar hour angle   =  147.602 (deg)
 	equation of time   =  3.694 (minutes)
-	local sunrise      =  05:32 (UTC)  04:32 (Local)
+	local sunrise      =  5:32 (UTC)  4:32 (Local)
 	local solar noon   =  13:09 (UTC)  12:09 (Local)
 	local sunset       =  20:46 (UTC)  19:46 (Local)
 	local time         =  23:00 (UTC)  22:00 (Local)
@@ -4836,7 +4836,7 @@
 	solar declination  =  18.781 (deg)
 	solar hour angle   =  150.506 (deg)
 	equation of time   =  3.694 (minutes)
-	local sunrise      =  05:18 (UTC)  04:18 (Local)
+	local sunrise      =  5:18 (UTC)  4:18 (Local)
 	local solar noon   =  12:57 (UTC)  11:57 (Local)
 	local sunset       =  20:37 (UTC)  19:37 (Local)
 	local time         =  23:00 (UTC)  22:00 (Local)

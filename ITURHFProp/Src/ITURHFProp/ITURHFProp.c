@@ -44,18 +44,34 @@ char mod[512];
 
 int main(int argc, char *argv[]) {
 	/*
-	 * ITURHFProp Demonstration Program - main() - This is a dummy program whose sole purpose to pass user-simulated data to the program ITURHFProp for testing.
-	 *		It is assumed that this program will be replaced with a program which gets user input via a GUI or
-	 *		that the P533 DLL will be used directly. This routine acts as an example of how the P533() model is used and what has to
-	 *		be loaded in order to successfully conduct an analysis.
-	 *		This routine is where changes to structure ITURHFProp ITURHFP are made and then passed to ITURHFProp().
-	 *
-	 *			INPUT
-	 *				User data for an analysis using ITURHFProp() and P533() in the input file specified on command line.
-	 *
-	 *			OUTPUT
-	 *				Typically an output Report or a path data dump file.
-	 *
+	  ITURHFProp Demonstration Program - main() - This is a dummy program whose sole purpose to pass user-simulated data to the program ITURHFProp for testing.
+	 		It is assumed that this program will be replaced with a program which gets user input via a GUI or
+	 		that the P533 DLL will be used directly. This routine acts as an example of how the P533() model is used and what has to
+	 		be loaded in order to successfully conduct an analysis.
+	 		This routine is where changes to structure ITURHFProp ITURHFP are made and then passed to ITURHFProp().
+	 
+	 			INPUT
+	 				User data for an analysis using ITURHFProp() and P533() in the input file specified on command line.
+	 
+	 			OUTPUT
+	 				Typically an output Report or a path data dump file.
+	 
+	  ********************************************************************************************
+	  These software methods for the prediction of the performance of HF circuits based on
+	  Recommendations ITU-R P.533-14 and P.372-13
+	  The ITURHFProp, P533 and P372 software has been developed collaboratively by participants in ITU-R
+	  Study Group 3. It may be used by implementers in their implementation of the Recommendation as well
+	  as in revisions of the specific original Recommendation and in other ITU Recommendations, free from
+	  any copyright assertions.
+	 
+	  This software is provided “as is” WITH NO WARRANTIES, EXPRESS OR IMPLIED,
+	  INCLUDING BUT NOT LIMITED TO, THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+	  AND NON-INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS.
+	 
+	  The ITU shall not be held liable in any event for any damages whatsoever (including, without
+	  limitation, damages for loss of profits, business interruption, loss of information, or any other
+	  pecuniary loss) arising out of or related to use of the software.
+	  **************************************************************************************************
 	 */
 
 	int retval;	// Return value
@@ -512,9 +528,3 @@ void help(void)
 	printf("\n");
 };
 
-//////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2019         //
-//                     All rights reserved.                                 //
-// No part of this publication may be reproduced, by any means whatsoever,  //
-//              without written permission of ITU                           //
-//////////////////////////////////////////////////////////////////////////////

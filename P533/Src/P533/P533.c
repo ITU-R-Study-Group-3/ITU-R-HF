@@ -109,29 +109,49 @@
 				dllInitializeNoise()
 
 			STANDARDS
-				ITU-R P.533-12 (06/13)
-				ITU-R P.1239-2 (2009)
-				ITU-R P.1240-1 (2007)
-				ITU-R P.371-8 (1999)
-				ITU-R P.372-10 (10/09)
-				ITU-R P.842-4 (02/07)
-				ITU-R P.1057-2 (2007)
-				ITU-R P.1144-5 (10/09)
-				ITU-R F.339-7 (02/06)
+				ITU-R P.533-14 (08/19)
+				ITU-R P.1239-3 (02/12)
+				ITU-R P.1240-2 (07/15)
+				ITU-R P.371-8 (07/99)
+				ITU-R P.372-14 (08/19)
+				ITU-R P.842-5 (09/13)
+				ITU-R P.1057-6 (08/19)
+				ITU-R P.1144-10 (08/19)
+				ITU-R F.339-8 (02/13)
 
 			COMPILER
-				Microsoft Visual Studio 2015
+				Microsoft Visual Studio 2019
 
 			OS
-				Windows 7 Professional
+				Windows 10 Professional
 
 			WETWARE
 				Behm
 				Boulder, Colorado
-				(2013-8)
+				(2013-20)
 
 			This project would not have been possible without the expertise and wisdom of Professor Les Barclay,
 			Dr. Thomas Damboldt, Peter Suessmann and George Engelbrecht. I am indebted to them all.
+
+			Special thanks to James Watson for his continued efforts to make this project more accurate, flexable,
+			and accessable. 
+
+			*********************************************************************************************
+			These software methods for the prediction of the performance of HF circuits based on
+			Recommendations ITU-R P.533-14 and P.372-13
+			The ITURHFProp, P533 and P372 software has been developed collaboratively by participants in ITU-R
+			Study Group 3. It may be used by implementers in their implementation of the Recommendation as well
+			as in revisions of the specific original Recommendation and in other ITU Recommendations, free from
+			any copyright assertions.
+			
+			This software is provided “as is” WITH NO WARRANTIES, EXPRESS OR IMPLIED,
+			INCLUDING BUT NOT LIMITED TO, THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+			AND NON-INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS.
+			
+			The ITU shall not be held liable in any event for any damages whatsoever (including, without
+			limitation, damages for loss of profits, business interruption, loss of information, or any other
+			pecuniary loss) arising out of or related to use of the software.
+	        ***************************************************************************************************
 
 
 		*/
@@ -302,9 +322,3 @@ DLLEXPORT int sizeofPathDataStruct() {
 
 }
 
-//////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2019         //
-//                     All rights reserved.                                 //
-// No part of this publication may be reproduced, by any means whatsoever,  //
-//              without written permission of ITU                           //
-//////////////////////////////////////////////////////////////////////////////

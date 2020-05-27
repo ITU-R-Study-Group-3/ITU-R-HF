@@ -388,13 +388,13 @@ void PrintITUHeader(FILE *fp, char * time, char const * P533Version, const char 
 
 	fprintf(fp, "---------------------------------------------------------------------------\n");
 	fprintf(fp, " International Telecommunications Union - Radiocommunication Sector (ITU-R)\n");
-	fprintf(fp, "     ITURHFProp         Ver %s\t- %s\n", ITURHFPropVER, ITURHFPropCT);
-	fprintf(fp, "     HF Model (P533)    Ver %s\t- %s\n", P533Version, P533CompT);
+	fprintf(fp, "     ITURHFProp         Ver %s\n", ITURHFPropVER);
+	fprintf(fp, "     HF Model (P533)    Ver %s\n", P533Version);
 	// If the output is going to stderr then P533() has not run yet so P372.DLL has not loaded
-	// so we do not know the P372.DLL version or compile time yet. If the P372Version and P372CompT
-	// are both null than don't print them out
-	if ((strcmp(P372Version, "") && strcmp(P372CompT, ""))) {
-		fprintf(fp, "     Noise Model (P372) Ver %s\t- %s\n", P372Version, P372CompT);
+	// so we do not know the P372.DLL version or compile time yet. If the P372Version 
+	// null than don't print it out
+	if (strcmp(P372Version, "")) {
+		fprintf(fp, "     Noise Model (P372) Ver %s\n", P372Version);
 	};
 	fprintf(fp, "     Analysis Prepared  %s\n", time);
 	fprintf(fp, "---------------------------------------------------------------------------\n");
@@ -408,9 +408,3 @@ void PrintITUTail(FILE *fp) {
 
 };
 
-//////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2019         //
-//                     All rights reserved.                                 //
-// No part of this publication may be reproduced, by any means whatsoever,  //
-//              without written permission of ITU                           //
-//////////////////////////////////////////////////////////////////////////////

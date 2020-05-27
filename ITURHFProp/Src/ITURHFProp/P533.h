@@ -57,7 +57,7 @@
 // P533 *******************************************************************************************
 
 // Version number
-#define P533VER		"14.0"
+#define P533VER		"14.1"
 
 // Have the preprocessor time stamp the compile time
 #define P533CT		__TIMESTAMP__
@@ -606,9 +606,3 @@ DLLEXPORT int sizeofPathDataStruct();
 
 // End P533 ***************************************************************************************
 
-//////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2019         //
-//                     All rights reserved.                                 //
-// No part of this publication may be reproduced, by any means whatsoever,  //
-//              without written permission of ITU                           //
-//////////////////////////////////////////////////////////////////////////////

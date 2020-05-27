@@ -280,10 +280,3 @@ int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFi
 	return RTN_READIONPARAOK;
 
 };
-
-//////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2019         //
-//                     All rights reserved.                                 //
-// No part of this publication may be reproduced, by any means whatsoever,  //
-//              without written permission of ITU                           //
-//////////////////////////////////////////////////////////////////////////////

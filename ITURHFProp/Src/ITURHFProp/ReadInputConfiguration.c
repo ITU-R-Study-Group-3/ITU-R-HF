@@ -693,10 +693,3 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
 		return RTN_READANTENNAPATTERNSOK;
 };
 
-
-//////////////////////////////////////////////////////////////////////////////
-//      Copyright  International Telecommunication Union (ITU) 2019         //
-//                     All rights reserved.                                 //
-// No part of this publication may be reproduced, by any means whatsoever,  //
-//              without written permission of ITU                           //
-//////////////////////////////////////////////////////////////////////////////

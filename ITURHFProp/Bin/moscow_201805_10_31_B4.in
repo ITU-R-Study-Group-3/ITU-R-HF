@@ -2,12 +2,12 @@ PathName "United Kingdom to Moscow"
 PathTXName "Moscow"
 Path.L_tx.lat 55.75
 Path.L_tx.lng 37.58
-TXAntFilePath "E:\ITUHFPROP\Data\Antenna\dipole_14mhz_10m_aagl.13"
+TXAntFilePath "/media/sf_ITU-R-HF/ITURHFProp/Bin/dipole_14mhz_10m_aagl.13"
 TXGOS 0.0
 PathRXName "Birmingham"
 Path.L_rx.lat 52.4862
 Path.L_rx.lng -1.8904
-RXAntFilePath "E:\ITUHFPROP\Data\Antenna\dipole_14mhz_10m_aagl.13"
+RXAntFilePath "/media/sf_ITU-R-HF/ITURHFProp/Bin/dipole_14mhz_10m_aagl.13"
 RXGOS 0.0
 AntennaOrientation "TX2RX"
 TXBearing 0.0
