@@ -81,7 +81,7 @@
 
 // Note: All error numbers in the calculation engine P533() are < 1000
 
-// Return ERROR >= 100
+// Return ERROR >= 100 and < 150
 
 // Returns from ValidData()
 #define RTN_ERRYEAR						100	// ERROR: Invalid Input Year
@@ -110,41 +110,42 @@
 #define RTN_ERRRXANTENNAPATTERN			123 // ERROR: Invalid Input Receive Antenna Pattern
 #define RTN_ERRTXANTENNAPATTERN			124 // ERROR: Invalid Input Transmit Antenna Pattern
 #define	RTN_ERRSNRXXP					125 // ERROR: Invalid Input SNRXX Percentage
-// END returns from ValidData()
+// END returns from ValidData() 
 
 // Return ERROR from AllocatePathMemory(), FreePathMemory() and InputDump()
-#define RTN_ERRALLOCATEFOF2				130 // ERROR: Allocating Memory for foF2
-#define RTN_ERRALLOCATEM3KF2			131 // ERROR: Allocating Memory for M(3000)F2
-#define RTN_ERRALLOCATEFOF2VAR			132 // ERROR: Allocating Memory for foF2 Variability
-#define RTN_ERRALLOCATETX				133 // ERROR: Allocating Memory for Tx Antenna Pattern
-#define RTN_ERRALLOCATERX				134 // ERROR: Allocating Memory for Rx Antenna Pattern
-#define RTN_ERRALLOCATENOISE            135 // ERROR: Allocating Memory for Noise Structure 
-#define RTN_ERRALLOCATEANT			    136 // ERROR: Allocating Memory for Antenna Pattern
+#define RTN_ERRALLOCATEFOF2				131 // ERROR: Allocating Memory for foF2
+#define RTN_ERRALLOCATEM3KF2			132 // ERROR: Allocating Memory for M(3000)F2
+#define RTN_ERRALLOCATEFOF2VAR			133 // ERROR: Allocating Memory for foF2 Variability
+#define RTN_ERRALLOCATETX				134 // ERROR: Allocating Memory for Tx Antenna Pattern
+#define RTN_ERRALLOCATERX				135 // ERROR: Allocating Memory for Rx Antenna Pattern
+#define RTN_ERRALLOCATENOISE            136 // ERROR: Allocating Memory for Noise Structure 
+#define RTN_ERRALLOCATEANT			    137 // ERROR: Allocating Memory for Antenna Pattern
 
 // Return ERROR from ReadAntennaPatterns() ReadType13()
-#define	RTN_ERRCANTOPENANTFILE	        141 // ERROR: Can Not Open Recieve Antenna File
+#define	RTN_ERRCANTOPENANTFILE	        138 // ERROR: Can Not Open Recieve Antenna File
 
 // Return ERROR from ReadP1239()
-#define RTN_ERRCANTOPENP1239FILE		160 // ERROR: Can Not Open foF2 Variability file "P1239-2 Decile Factors.txt"
-#define RTN_ERRNOTP12393				161 // ERROR: Invalid P.1239-3 File
+#define RTN_ERRCANTOPENP1239FILE		139 // ERROR: Can Not Open foF2 Variability file "P1239-2 Decile Factors.txt"
+#define RTN_ERRNOTP12393				140 // ERROR: Invalid P.1239-3 File
 
 // Return ERROR from ReadIonParametersTxt()
-#define RTN_ERRREADIONPARAMETERS		170 // ERROR: Can Not Open Ionospheric Parameters File
+#define RTN_ERRREADIONPARAMETERS		141 // ERROR: Can Not Open Ionospheric Parameters File
 
 // Return ERROR from P533()
-#define RTN_ERRP372DLL					180 // ERROR: Can Not Open P372.DLL
+#define RTN_ERRP372DLL					142 // ERROR: Can Not Open P372.DLL
 
-// Return OKAY < 100
-#define RTN_ALLOCATEOK					1 // AllocatePathMemory()
-#define RTN_PATHFREED					2 // PathMemory.c FreePathMemory(()
-#define RTN_INPUTDUMPOK					3 // InputDump()
-#define RTN_READIONPARAOK			    4 // ReadIonParameters()
-#define RTN_READP1239OK					5 // ReadP1239()
-#define RTN_READANTENNAPATTERNSOK		6 // ReadAntennaPatterns()
-#define	RTN_VALIDDATAOK					8 // ValidPath()
+// Return OKAY > 10 and <= 20
+#define RTN_ALLOCATEOK					11 // AllocatePathMemory()
+#define RTN_PATHFREED					12 // PathMemory.c FreePathMemory(()
+#define RTN_INPUTDUMPOK					13 // InputDump()
+#define RTN_READIONPARAOK			    14 // ReadIonParameters()
+#define RTN_READP1239OK					15 // ReadP1239()
+#define RTN_READANTENNAPATTERNSOK		16 // ReadAntennaPatterns()
+#define	RTN_VALIDDATAOK					17 // ValidPath()
 
-#define	RTN_P533OK						0 // P533()
+#define	RTN_P533OK						10 // P533()
 
+// End Returns ******************************************************************** 
 // End Returns ******************************************************************** 
 
 // Control point index names for readability
