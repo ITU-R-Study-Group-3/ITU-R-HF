@@ -3,7 +3,7 @@
 	#define DLLEXPORT __declspec(dllexport)
 #endif
 #ifdef __linux__
-	#define DLLEXPORT 
+	#define DLLEXPORT
 #endif
 #ifdef __APPLE__
 	#define DLLEXPORT
@@ -35,12 +35,12 @@
 #define RTN_ERRALLOCATEFAKP				204 // ERROR: Allocating Memory for FakP
 #define RTN_ERRALLOCATEFAKABP			205 // ERROR: Allocating Memory for FakABP
 
-// Return OKAY < 10
+// Return OKAY > 1 and <= 5
 #define RTN_ALLOCATEOK					1 // AllocatePathMemory()
-#define RTN_READFAMDUDOK			    2 // ReadFamDud()
+#define RTN_READFAMDUDOK			  2 // ReadFamDud()
 #define RTN_NOISEFREED					3 // NoiseMemory.c FreeNoiseMemory()
-#define RTN_NOISEOK						4 // Noise()
-#define RTN_NOISEMANMADEOK				5 // Noise() Man-made noise override
+#define RTN_NOISEOK						  4 // Noise()
+#define RTN_NOISEMANMADEOK			5 // Noise() Man-made noise override
 
 
 /******************************* End Defines **********************************/
@@ -81,7 +81,7 @@ struct NoiseParams {
 
 };
 
-// End Structures 
+// End Structures
 
 // Prototypes
 DLLEXPORT int AllocateNoiseMemory(struct NoiseParams *noiseP);
@@ -92,4 +92,3 @@ DLLEXPORT void InitializeNoise(struct NoiseParams *noiseP);
 DLLEXPORT char const * P372CompileTime();
 DLLEXPORT char const * P372Version();
 // End Prototypes
-
