@@ -18,7 +18,7 @@ DLLEXPORT int AllocateAntennaMemory(struct Antenna *ant, int freqn, int azin, in
 	int m, n;
 	
 	ant->freqn = freqn;
-	freqList = (double *) malloc(ant->freqn * sizeof(double *));
+	freqList = (double *) malloc(ant->freqn * sizeof(double));
 	if(freqList != NULL) {
 		ant->freqs = freqList;
 	} else {
@@ -39,7 +39,7 @@ DLLEXPORT int AllocateAntennaMemory(struct Antenna *ant, int freqn, int azin, in
 		return RTN_ERRALLOCATEANT;
 	}
 	
-	return RTN_ALLOCATEOK;
+	return RTN_ALLOCATEP533OK;
 
 }
 
@@ -193,12 +193,12 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 	
 	// Allocate the memory in the noise structure
 	retval = dllAllocateNoiseMemory(&path->noiseP);
-	if (retval != RTN_ALLOCATEOK) {
+	if (retval != RTN_ALLOCATEP372OK) {
 		return RTN_ERRALLOCATENOISE;
 	}
 	// P372.dll **********************************************************
 
-	return RTN_ALLOCATEOK;
+	return RTN_ALLOCATEP533OK;
 
 };
 

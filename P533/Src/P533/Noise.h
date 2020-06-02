@@ -38,11 +38,11 @@
 #define RTN_ERRALLOCATEFAKABP			205 // ERROR: Allocating Memory for FakABP
 
 // Return OKAY > 1 and <= 5
-#define RTN_ALLOCATEOK					1 // AllocatePathMemory()
-#define RTN_READFAMDUDOK			  2 // ReadFamDud()
-#define RTN_NOISEFREED					3 // NoiseMemory.c FreeNoiseMemory()
-#define RTN_NOISEOK						  4 // Noise()
-#define RTN_NOISEMANMADEOK			5 // Noise() Man-made noise override
+#define RTN_ALLOCATEP372OK				21 // AllocatePathMemory()
+#define RTN_READFAMDUDOK				22 // ReadFamDud()
+#define RTN_NOISEFREED					23 // NoiseMemory.c FreeNoiseMemory()
+#define RTN_NOISEOK						24 // Noise()
+#define RTN_NOISEMANMADEOK				25 // Noise() Man-made noise override
 
 
 /******************************* End Defines **********************************/

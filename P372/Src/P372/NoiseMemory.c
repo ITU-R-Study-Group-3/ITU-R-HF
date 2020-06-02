@@ -84,7 +84,7 @@ int AllocateNoiseMemory(struct NoiseParams *noiseP) {
   else
 	  return RTN_ERRALLOCATEFAKABP;
 
-  return RTN_ALLOCATEOK;
+  return RTN_ALLOCATEP372OK;
 
 };
 

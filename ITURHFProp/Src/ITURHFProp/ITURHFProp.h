@@ -175,7 +175,7 @@
 #define RTN_VALIDATEITURHFPOK		32 // ValidateITURHFP()
 #define RTN_RICOK					33 // ReadInputConfiguration()
 
-#define RTN_MAINOK				0 // Okay Calculation Completed
+#define RTN_MAINOK					35 // Okay Calculation Completed
 
 // End Return *********************************************************
 

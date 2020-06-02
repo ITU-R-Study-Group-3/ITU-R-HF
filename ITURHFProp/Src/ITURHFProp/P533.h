@@ -135,7 +135,7 @@
 #define RTN_ERRP372DLL					142 // ERROR: Can Not Open P372.DLL
 
 // Return OKAY > 10 and <= 20
-#define RTN_ALLOCATEOK					1 // AllocatePathMemory()
+#define RTN_ALLOCATEP533OK				11 // AllocatePathMemory()
 #define RTN_PATHFREED					12 // PathMemory.c FreePathMemory(()
 #define RTN_INPUTDUMPOK					13 // InputDump()
 #define RTN_READIONPARAOK			    14 // ReadIonParameters()
