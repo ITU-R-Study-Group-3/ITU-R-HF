@@ -16,7 +16,7 @@
 // Testing
 
 // Local Defines
-#define NOIL			8.72
+#define NOIL			9.14
 #define PEN				TRUE // Use penetration points for absorption
 //#define PEN			FALSE // Use the absorption method in P.533-12
 // End Local Defines
