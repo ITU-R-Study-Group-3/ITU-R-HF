@@ -22,7 +22,7 @@
 	// AllocateNoiseMemory() & FreeNoiseMemory()
 	typedef int(__cdecl * iNoiseMemory)(struct NoiseParams * noiseP);
 	// Noise()
-	typedef void(__cdecl * iNoise)(struct NoiseParams * noiseP, int hour, double lng, double lat, double frequency);
+	typedef int(__cdecl * iNoise)(struct NoiseParams * noiseP, int hour, double lng, double lat, double frequency);
 	// ReadFamDud()
 	typedef int(__cdecl * iReadFamDud)(struct NoiseParams * noiseP, const char *DataFilePath, int month);
 	// InitializeNoise()
