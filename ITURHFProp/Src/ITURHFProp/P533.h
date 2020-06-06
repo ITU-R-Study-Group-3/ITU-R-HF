@@ -3,7 +3,7 @@
 	#define DLLEXPORT __declspec(dllexport)
 #endif
 #ifdef __linux__
-	#define DLLEXPORT 
+	#define DLLEXPORT
 #endif
 #ifdef __APPLE__
 	#define DLLEXPORT
@@ -65,10 +65,10 @@
 /*
  * Conventions
  *	Latitude and Longitude used by P533 are to be in radians under the following convention:
- *			latitude (-90.0 - +90.0) 
- *				        S=-     N=+  
- *			longitude (-180.0 - +180.0)           
- *				         W=-      E=+  
+ *			latitude (-90.0 - +90.0)
+ *				        S=-     N=+
+ *			longitude (-180.0 - +180.0)
+ *				         W=-      E=+
  */
 
 // Indicies for magfit() The gyrofrequency and magnetic dip are calculated at a height
@@ -81,7 +81,7 @@
 
 // Note: All error numbers in the calculation engine P533() are < 1000
 
-// Return ERROR >= 100
+// Return ERROR >= 100 and < 150
 
 // Returns from ValidData()
 #define RTN_ERRYEAR						100	// ERROR: Invalid Input Year
@@ -113,49 +113,50 @@
 // END returns from ValidData()
 
 // Return ERROR from AllocatePathMemory(), FreePathMemory() and InputDump()
-#define RTN_ERRALLOCATEFOF2				130 // ERROR: Allocating Memory for foF2
-#define RTN_ERRALLOCATEM3KF2			131 // ERROR: Allocating Memory for M(3000)F2
-#define RTN_ERRALLOCATEFOF2VAR			132 // ERROR: Allocating Memory for foF2 Variability
-#define RTN_ERRALLOCATETX				133 // ERROR: Allocating Memory for Tx Antenna Pattern
-#define RTN_ERRALLOCATERX				134 // ERROR: Allocating Memory for Rx Antenna Pattern
-#define RTN_ERRALLOCATENOISE            135 // ERROR: Allocating Memory for Noise Structure 
-#define RTN_ERRALLOCATEANT			    136 // ERROR: Allocating Memory for Antenna Pattern
+#define RTN_ERRALLOCATEFOF2				131 // ERROR: Allocating Memory for foF2
+#define RTN_ERRALLOCATEM3KF2			132 // ERROR: Allocating Memory for M(3000)F2
+#define RTN_ERRALLOCATEFOF2VAR			133 // ERROR: Allocating Memory for foF2 Variability
+#define RTN_ERRALLOCATETX				134 // ERROR: Allocating Memory for Tx Antenna Pattern
+#define RTN_ERRALLOCATERX				135 // ERROR: Allocating Memory for Rx Antenna Pattern
+#define RTN_ERRALLOCATENOISE            136 // ERROR: Allocating Memory for Noise Structure
+#define RTN_ERRALLOCATEANT			    137 // ERROR: Allocating Memory for Antenna Pattern
 
 // Return ERROR from ReadAntennaPatterns() ReadType13()
-#define	RTN_ERRCANTOPENANTFILE	        141 // ERROR: Can Not Open Recieve Antenna File
+#define	RTN_ERRCANTOPENANTFILE	        138 // ERROR: Can Not Open Recieve Antenna File
 
 // Return ERROR from ReadP1239()
-#define RTN_ERRCANTOPENP1239FILE		160 // ERROR: Can Not Open foF2 Variability file "P1239-2 Decile Factors.txt"
-#define RTN_ERRNOTP12393				161 // ERROR: Invalid P.1239-3 File
+#define RTN_ERRCANTOPENP1239FILE		139 // ERROR: Can Not Open foF2 Variability file "P1239-2 Decile Factors.txt"
+#define RTN_ERRNOTP12393				140 // ERROR: Invalid P.1239-3 File
 
 // Return ERROR from ReadIonParametersTxt()
-#define RTN_ERRREADIONPARAMETERS		170 // ERROR: Can Not Open Ionospheric Parameters File
+#define RTN_ERRREADIONPARAMETERS		141 // ERROR: Can Not Open Ionospheric Parameters File
 
 // Return ERROR from P533()
-#define RTN_ERRP372DLL					180 // ERROR: Can Not Open P372.DLL
+#define RTN_ERRP372DLL					142 // ERROR: Can Not Open P372.DLL
 
-// Return OKAY < 100
-#define RTN_ALLOCATEOK					1 // AllocatePathMemory()
-#define RTN_PATHFREED					2 // PathMemory.c FreePathMemory(()
-#define RTN_INPUTDUMPOK					3 // InputDump()
-#define RTN_READIONPARAOK			    4 // ReadIonParameters()
-#define RTN_READP1239OK					5 // ReadP1239()
-#define RTN_READANTENNAPATTERNSOK		6 // ReadAntennaPatterns()
-#define	RTN_VALIDDATAOK					8 // ValidPath()
+// Return OKAY > 10 and <= 20
+#define RTN_ALLOCATEP533OK				11 // AllocatePathMemory()
+#define RTN_PATHFREED					12 // PathMemory.c FreePathMemory(()
+#define RTN_INPUTDUMPOK					13 // InputDump()
+#define RTN_READIONPARAOK			    14 // ReadIonParameters()
+#define RTN_READP1239OK					15 // ReadP1239()
+#define RTN_READANTENNAPATTERNSOK		16 // ReadAntennaPatterns()
+#define	RTN_VALIDDATAOK					17 // ValidPath()
 
-#define	RTN_P533OK						0 // P533()
+#define	RTN_P533OK						10 // P533()
 
-// End Returns ******************************************************************** 
+// End Returns ********************************************************************
+// End Returns ********************************************************************
 
 // Control point index names for readability
 // These are defined from the sense of the short model
 // Please note these change meaning when the long model is exclusively used
 // i.e when the path->distance is > 9000 km. This is done for diagnostic purposes.
-#define T1k		0	// T + 1000 (km)	
+#define T1k		0	// T + 1000 (km)
 // Note: Alternative use in long model penetration point closest to the trasmitter at the current hour
 #define Td02	1	// T + d0/2 (km)
 // Note: Alternative use in long model as T + dM/2
-#define MP		2	// path mid-path (km) 
+#define MP		2	// path mid-path (km)
 #define	Rd02	3	// R - d0/2 (km)
 // Note: Alternative use in lone model as R - dM/2
 #define	R1k		4	// R - 1000 (km)
@@ -189,7 +190,7 @@
 // For the determination of the lowest order E and F2 mode
 #define NOLOWESTMODE	99
 
-// For the determination of the dominant mode 
+// For the determination of the dominant mode
 #define NODOMINANTMODE	99
 
 // Noise calculation (See ITU-R P.372)
@@ -241,12 +242,12 @@
 
 /*
  *	The naming convention of structures is that the first letter is capitalized and instances of that structure in other
- *	structures use all-cap abbreviations. Thus, a ControlPt structure in a mode structure is a CP_ and a location structure 
- *	is a L or L_. This note may help as one delves into the code. 
- * 
- *  The CP[MP] structure in the path is a special midpoint control point. 
+ *	structures use all-cap abbreviations. Thus, a ControlPt structure in a mode structure is a CP_ and a location structure
+ *	is a L or L_. This note may help as one delves into the code.
  *
- *  The lowest index of the Md_F2 and Md_E structure arrays are to be the lowest order mode where the lowest order mode is 
+ *  The CP[MP] structure in the path is a special midpoint control point.
+ *
+ *  The lowest index of the Md_F2 and Md_E structure arrays are to be the lowest order mode where the lowest order mode is
  *  the lowest index + 1
  *
  */
@@ -267,11 +268,11 @@ struct SolarParameters {
 };
 
 struct ControlPt {
-	struct Location L; 
+	struct Location L;
 	double distance;// This is the distance (km) from the transmitter to the CP and not the hop range
-	double foE;		// E layer critical frequency (MHz) 
-	double foF2;	// F2 layer critical frequency (MHz) 
-	double M3kF2;	// F2 layer critical frequency @ 3000 km (MHz) 
+	double foE;		// E layer critical frequency (MHz)
+	double foF2;	// F2 layer critical frequency (MHz)
+	double M3kF2;	// F2 layer critical frequency @ 3000 km (MHz)
 	double dip[2];	// Magnetic dip (radians)
 	double fH[2];	// Gyrofrequency (MHz)
 	double ltime;	// Local time (hours)
@@ -296,14 +297,14 @@ struct Mode {
 	double deltau;	// Upper decile for the MUF calculations
 	// Other parameters associated with the mode
 	double hr;		// Reflection height for the mode
-	double fs;		// E-Layer screening frequency for F2 modes only(MHz) 
+	double fs;		// E-Layer screening frequency for F2 modes only(MHz)
 	double Lb;		// < 9000 km path basic loss
 	double Ew;		// < 9000 km field strength(dB(1 uV/m))
 	double ele;		// Elevation angle
 	double Prw;		// Receiver power (dBW)
 	double Grw;		// Receive antenna gain (dBi)
 	double tau;		// Time delay
-	int MC; 
+	int MC;
 };
 
 struct Beam {
@@ -316,7 +317,7 @@ struct Antenna {
 	char Name[256];
 
 	/*
-	 * Int used to track the number of frequencies for which we have pattern data 
+	 * Int used to track the number of frequencies for which we have pattern data
 	 * (e.g. the size of the freqs array).
 	 */
 	int freqn;
@@ -346,7 +347,7 @@ struct PathData {
 	char rxname[256];	// The receiver name
 
 	int year;
-	int month;			// Note: This is 0 - 11 
+	int month;			// Note: This is 0 - 11
 	int hour;			// Note: This is an hour index 0 - 23
 						//       Where 1 - 24 UTC is required add one and rollover
 	int SSN;			// 12-month smoothed sun sport number a.k.a. R12
@@ -368,7 +369,7 @@ struct PathData {
 	double F0;			// Frequency dispersion at a level -10 dB relative to the peak signal amplitude
 	double T0;			// Time spread at a level -10 dB relative to the peak signal amplitude
 
-	// Parameters for digitial modulation performance 
+	// Parameters for digitial modulation performance
 	double A;			// Required A ratio (dB)
 	double TW;			// Time window (msec)
 	double FW;			// Frequency window (Hz)
@@ -379,14 +380,14 @@ struct PathData {
 	// End User Provided Input *********************************************************************
 
 	// Array pointers ******************************************************************************
-	// The advantage of having these pointers in the PathData structure is that p533() can be 
-	// re-entered with the data allocations intact since they are determined and loaded externally 
-	// to p533(). This is done to make area coverage calculations, multiple hours and/or 
-	// any calculations that require the path be examined for another location or time within the 
-	// current month. If the month changes foF2 and M3kF2 will have to be reloaded, while the pointer 
+	// The advantage of having these pointers in the PathData structure is that p533() can be
+	// re-entered with the data allocations intact since they are determined and loaded externally
+	// to p533(). This is done to make area coverage calculations, multiple hours and/or
+	// any calculations that require the path be examined for another location or time within the
+	// current month. If the month changes foF2 and M3kF2 will have to be reloaded, while the pointer
 	// foF2var does not since it is for the entire year
 	// Pointers to array extracted from the coefficients in ~/IonMap directory
-	float ****foF2;			// foF2 
+	float ****foF2;			// foF2
 	float ****M3kF2;		// M(3000)F2
 	// Pointer to array extracted from the file "P1239-2 Decile Factors.txt"
 	double *****foF2var;	// foF2 Variablity from ITU-R P.1239-2 TABLE 2 and TABLE 3
@@ -395,16 +396,16 @@ struct PathData {
 
 	// Calculated Parameters **********************************************************************
 	int season;			// This is used for MUF calculations
-	double distance;	// This is the great circle distance (km) between the rx and tx 
+	double distance;	// This is the great circle distance (km) between the rx and tx
 	double ptick;		// Slant range
 	double dmax;		// d sub max (km) determined as a function of the midpoint of the path and other parameter
 	double B;			// Intermediate value when calculating dmax also determined at midpoint of the path
-	double ele;			// For paths that are longer than 9000 km this is the composite elevation angle 
+	double ele;			// For paths that are longer than 9000 km this is the composite elevation angle
 
 	// MUFs
 	double BMUF;	// Basic MUF (MHz)
 	double MUF50;	// MUF exceeded for 50% of the days of the month (MHz)
-	double MUF90;	// MUF exceeded for 90% of the days of the month (MHz) 
+	double MUF90;	// MUF exceeded for 90% of the days of the month (MHz)
 	double MUF10;	// MUF exceeded for 10% of the days of the month (MHz)
 	double OPMUF;	// Operation MUF (MHz)
 	double OPMUF90; // OPMUF exceeded for 90% of the days of the month (MHz)
@@ -419,13 +420,13 @@ struct PathData {
 	double Es;	// The overall resultant equivalent median sky-wave field strength for path->distance < 7000 km
 	double El;	// The overall resultant median field strength for paths->distance > 9000 km
 	double Ei;	// For paths->distance between 7000 and 9000 km the interpolated resultant median field strength
-	double Ep;	// The Path Field Strength (dBu) Depending on the path distance this is either Es, El or Ei. 
+	double Ep;	// The Path Field Strength (dBu) Depending on the path distance this is either Es, El or Ei.
 	double Pr;	// Median available receiver power
 
 	// Short path (< 7000 km) parameters
 	double Lz;		// 	"Not otherwise included" loss
-	
-	// Long path (> 9000 km) parameters 
+
+	// Long path (> 9000 km) parameters
 	double E0;		// The free-space field strength for 3 MW EIRP
 	double Gap;		// Focusing on long distance gain (dB)
 	double Ly;		// "Not otherwise included" loss
@@ -442,7 +443,7 @@ struct PathData {
 	double DlSN; // Lower decile deviation of the signal-to-noise ratio (dB)
 
 	// Signal-to-noise at the required reliability
-	double SNRXX; // 
+	double SNRXX; //
 
 	// Digitially modulated system stats
 	double SIR;  // Signal-to-interference ratio (db)
@@ -456,13 +457,13 @@ struct PathData {
 	double BCR;		// Basic circuit reliability
 	double OCR;		// Overall circuit reliability without scattering
 	double OCRs;	// Overall circuit reliability with scattering
-	double MIR;		// Multimode interference 
+	double MIR;		// Multimode interference
 	double probocc; // Probability of scattering occuring
 
 	// Antenna related parameters
 
-	// Grw 
-	//	path->distance <= 7000 km 
+	// Grw
+	//	path->distance <= 7000 km
 	//		Grw is the "lossless receiving antenna of gain Grw
 	//		(dB relative to an isotropic radiator) in the direction of signal incidence"
 	//		Grw will be the dominant mode gain
@@ -476,17 +477,17 @@ struct PathData {
 
 	// There are a maximum of 5 CP from P.533-12 Table 1d)
 	// See #define above for "Control point index names for readability"
-	struct ControlPt CP[5]; 
+	struct ControlPt CP[5];
 
-	// ITU-R P.533-12 5.2.1 modes considered "Up to three E modes (for paths up to 4000 km) and 
+	// ITU-R P.533-12 5.2.1 modes considered "Up to three E modes (for paths up to 4000 km) and
 	// up to six F2 modes are selected"
 	// In part three of P.533-12 it would have been easier to make all nine modes in one array for digitally
 	// modulated systems. To increase the readability and because the method often treats layers differently
-	// the modes are separated by layer. 
-	struct Mode Md_F2[MAXF2MDS]; 
+	// the modes are separated by layer.
+	struct Mode Md_F2[MAXF2MDS];
 	struct Mode Md_E[MAXEMDS];
 
-	// The following are conveniences for examining data 
+	// The following are conveniences for examining data
 	// The variables *DMptr and DMidx are set in MedianAvailableReceiverPower()
 	struct Mode *DMptr; // Pointer to the dominant mode
 	int DMidx;			// Index to the dominant mode (0-2) E layer (3-8) F2 layer
@@ -496,7 +497,7 @@ struct PathData {
 
 	// P372.DLL Information
 	char const *P372ver;		// P372() Version number
-	char const *P372compt;		// P372() Compile time 
+	char const *P372compt;		// P372() Compile time
 
 	// End Calculated Parameters *****************************************************************************
 };
@@ -506,13 +507,13 @@ struct PathData {
 // Prototypes *************************************************************************************
 
 // Note: The arguments passed are by reference (pointer) if the subroutine changes the argument within it.
-//       Otherwise arguments are passed by value. There are a few cases that the only reason that the arguments 
-//		 are passed by reference was because the next level program required it. 
-// Any subroutines prototyped here are used external to the file that contains them. There may be local subroutines in 
-// each program file, consult them for more details. These subroutines were developed as the code was being written 
-// in the order necessary. If the order is maintained then the correspondence will be be preserved between the code and 
+//       Otherwise arguments are passed by value. There are a few cases that the only reason that the arguments
+//		 are passed by reference was because the next level program required it.
+// Any subroutines prototyped here are used external to the file that contains them. There may be local subroutines in
+// each program file, consult them for more details. These subroutines were developed as the code was being written
+// in the order necessary. If the order is maintained then the correspondence will be be preserved between the code and
 // the recommendation ITU-R P.533-12. In that regard the order of execution of the subroutines is important since
-// calculations in P.533-12 build on one another. 
+// calculations in P.533-12 build on one another.
 
 // CalculateCPParameters.c Prototype
 void CalculateCPParameters(struct PathData *path, struct ControlPt *here);
@@ -533,7 +534,7 @@ DLLEXPORT char const * P533Version();
 // Geometry.c Prototypes
 DLLEXPORT void GreatCirclePoint(struct Location here, struct Location there, struct ControlPt *midpnt, double distance, double fraction);
 DLLEXPORT double GreatCircleDistance(struct Location here, struct Location there);
-DLLEXPORT void GeomagneticCoords(struct Location here, struct Location *there); 
+DLLEXPORT void GeomagneticCoords(struct Location here, struct Location *there);
 DLLEXPORT double Bearing(struct Location here, struct Location there);
 
 // ValidataPath.c Prototypes
@@ -543,9 +544,9 @@ int ValidatePath(struct PathData *path);
 void magfit(struct ControlPt *here, double height);
 
 // MUFBasic Prototype
-//	Note MUFBasic() determines the control points T + d0/2 and R - d0/2 
+//	Note MUFBasic() determines the control points T + d0/2 and R - d0/2
 void MUFBasic(struct PathData *path);
-double CalcCd(double d, double dmax); 
+double CalcCd(double d, double dmax);
 double CalcF2DMUF(struct ControlPt *CP, double distance, double dmax, double B);
 double Calcdmax(struct ControlPt *CP);
 double CalcB(struct ControlPt *CP);
@@ -562,7 +563,7 @@ void ELayerScreeningFrequency(struct PathData *path);
 double ElevationAngle(double dh, double hr);
 double IncidenceAngle(double deltaf, double hr);
 
-// MedianSkywaveFieldStrengthShort.c Prototype 
+// MedianSkywaveFieldStrengthShort.c Prototype
 void MedianSkywaveFieldStrengthShort(struct PathData *path);
 double AntennaGain(struct PathData path, struct Antenna Ant, double delta, int direction);
 void ZeroCP(struct ControlPt *CP);
@@ -585,7 +586,7 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path);
 DLLEXPORT int FreePathMemory(struct PathData *path);
 DLLEXPORT int AllocateAntennaMemory(struct Antenna *ant, int freqn, int azin, int elen);
 
-// InputDump. c Prototype  
+// InputDump. c Prototype
 DLLEXPORT int InputDump(struct PathData *path);
 
 //Antenna file AND COEFFICIENT routines
@@ -605,4 +606,3 @@ DLLEXPORT int sizeofPathDataStruct();
 // End Prototypes *********************************************************************************
 
 // End P533 ***************************************************************************************
-

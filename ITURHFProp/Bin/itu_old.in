@@ -10,8 +10,7 @@ TXGOS 0.0
 PathRXName "BEIJING     "
 Path.L_rx.lat   39.95
 Path.L_rx.lng  116.45
-//RXAntFilePath "ISOTROPIC"
-RXAntFilePath "C:\Users\Behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Data\Antenna\T13 Files\201-6_0.T13"
+RXAntFilePath "ISOTROPIC"
 RXGOS 0.0
 AntennaOrientation "TX2RX"
 
@@ -37,7 +36,7 @@ Path.F0 3.3
 Path.SorL "SHORTPATH"
 
 // Output Specification (See README for options)
-RptFilePath "C:\Users\Behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Reports\"
+RptFilePath "G:\Behm\GitHub\ITU-R-HF\ITURHFProp\Reports\"
 //RptFileFormat "RPT_D | RPT_BMUF | RPT_E | RPT_SNR | RPT_BCR"
 RptFileFormat "RPT_DUMPPATH"
 //RptFileFormat "RPT_D | RPT_ELE | RPT_BMUF | RPT_BMUFD | RPT_OPMUF | RPT_OPMUFD | RPT_E"
@@ -57,7 +56,7 @@ latinc 5.0
 lnginc 5.0
 
 // DataFilePath is the base location of the Antennna, Coeff, P.1239 and IonMap files
-DataFilePath "C:\Users\Behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Data\"
+DataFilePath "G:\Behm\GitHub\ITU-R-HF\ITURHFProp\Data\"
 // End
 
 

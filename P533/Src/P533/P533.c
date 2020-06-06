@@ -260,8 +260,9 @@
 	/************************************************************/
 
 	// Call noise from the P372.dll
-	dllNoise(&path->noiseP, path->hour, path->L_rx.lng, path->L_rx.lat, path->frequency);
-	
+	retval = dllNoise(&path->noiseP, path->hour, path->L_rx.lng, path->L_rx.lat, path->frequency);
+	if (retval != RTN_NOISEOK) return retval; // check that the input parameters are correct
+
 	CircuitReliability(path);
 
 	return RTN_P533OK;  // Return no errors

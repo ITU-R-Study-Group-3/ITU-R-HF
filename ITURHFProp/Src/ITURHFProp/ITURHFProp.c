@@ -231,7 +231,7 @@ int main(int argc, char *argv[]) {
 
 	// Create the foF2, M3kF2, foF2var and antenna arrays for the path structure.
 	retval = dllAllocatePathMemory(&path);
-	if(retval != RTN_ALLOCATEOK) {
+	if(retval != RTN_ALLOCATEP533OK) {
 		printf("Main: Error %d from dllAllocatePathMemory\n", retval);
 		return retval;
 	};

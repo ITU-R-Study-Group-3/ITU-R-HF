@@ -138,43 +138,44 @@
 //		ValidateITURHFP()
 //      main()
 
-//	Return ERROR number >= 1100
-#define RTN_ERROPENOUTPUTFILE		1100 // ERROR: Can Not Open Output File
-#define RTN_ERRP533DLL				1101 // ERROR: Can Not Find P533.DLL
-#define	RTN_ERRCANTOPENRXANTFILE	1102 // ERROR: Can Not Open Recieve Antenna File
-#define	RTN_ERRCANTOPENTXANTFILE	1103 // ERROR: Can Not Open Transmit Antenna File
-#define RTN_ERRANTENNAORN			1104 // ERROR: Antenna Orientation
-#define RTN_ERRTXBEARING			1105 // ERROR: Transmit Bearing
-#define RTN_ERRRXBEARING			1106 // ERROR: Receive Bearing
-#define RTN_ERRRXGOS				1107 // ERROR: Receive Gain Offset
-#define RTN_ERRTXGOS				1108 // ERROR: Transmit Gain Offset
-#define RTN_ERRLLLAT				1109 // ERROR: Invalid Lower Left Latitude
-#define RTN_ERRLRLAT				1110 // ERROR: Invalid Lower Right Latitude
-#define RTN_ERRULLAT				1111 // ERROR: Invalid Upper Left Latitude
-#define RTN_ERRURLAT				1112 // ERROR: Invalid Upper Right Latitude
-#define RTN_ERRLLLNG				1113 // ERROR: Invalid Lower Left Longitude
-#define RTN_ERRLRLNG				1114 // ERROR: Invalid Lower Right Longitude
-#define RTN_ERRULLNG				1115 // ERROR: Invalid Upper Left Longitude
-#define RTN_ERRURLNG				1116 // ERROR: Invalid Upper Right Longitude
-#define RTN_ERRLLAT					1117 // ERROR: Invalid Area Left Latitude
-#define RTN_ERRULAT					1118 // ERROR: Invalid Area Right Latitude
-#define RTN_ERRLLNG					1119 // ERROR: Invalid Area Left Longitude
-#define RTN_ERRRLNG					1120 // ERROR: Invalid Area Right Longitude
-#define RTN_ERRLL					1121 // ERROR: Invalid Area Lower Latitude
-#define RTN_ERRUL					1122 // ERROR: Invalid Area Upper Latitude
-#define RTN_ERRLR					1123 // ERROR: Invalid Area Left Longitude
-#define RTN_ERRUR					1124 // ERROR: Invalid Area Right Longitude
+// Return ERROR >= 50 and < 80
+
+#define RTN_ERROPENOUTPUTFILE		50 // ERROR: Can Not Open Output File
+#define RTN_ERRP533DLL				51 // ERROR: Can Not Find P533.DLL
+#define	RTN_ERRCANTOPENRXANTFILE	52 // ERROR: Can Not Open Recieve Antenna File
+#define	RTN_ERRCANTOPENTXANTFILE	53 // ERROR: Can Not Open Transmit Antenna File
+#define RTN_ERRANTENNAORN			54 // ERROR: Antenna Orientation
+#define RTN_ERRTXBEARING			55 // ERROR: Transmit Bearing
+#define RTN_ERRRXBEARING			56 // ERROR: Receive Bearing
+#define RTN_ERRRXGOS				57 // ERROR: Receive Gain Offset
+#define RTN_ERRTXGOS				58 // ERROR: Transmit Gain Offset
+#define RTN_ERRLLLAT				59 // ERROR: Invalid Lower Left Latitude
+#define RTN_ERRLRLAT				60 // ERROR: Invalid Lower Right Latitude
+#define RTN_ERRULLAT				61 // ERROR: Invalid Upper Left Latitude
+#define RTN_ERRURLAT				62 // ERROR: Invalid Upper Right Latitude
+#define RTN_ERRLLLNG				63 // ERROR: Invalid Lower Left Longitude
+#define RTN_ERRLRLNG				64 // ERROR: Invalid Lower Right Longitude
+#define RTN_ERRULLNG				65 // ERROR: Invalid Upper Left Longitude
+#define RTN_ERRURLNG				66 // ERROR: Invalid Upper Right Longitude
+#define RTN_ERRLLAT					67 // ERROR: Invalid Area Left Latitude
+#define RTN_ERRULAT					68 // ERROR: Invalid Area Right Latitude
+#define RTN_ERRLLNG					69 // ERROR: Invalid Area Left Longitude
+#define RTN_ERRRLNG					70 // ERROR: Invalid Area Right Longitude
+#define RTN_ERRLL					71 // ERROR: Invalid Area Lower Latitude
+#define RTN_ERRUL					72 // ERROR: Invalid Area Upper Latitude
+#define RTN_ERRLR					73 // ERROR: Invalid Area Left Longitude
+#define RTN_ERRUR					74 // ERROR: Invalid Area Right Longitude
 
 // Returns ERROR for ITURHFProp - main()
-#define RTN_ERRCOMMANDLINEARG		1200 // ERROR: Invalid Command Line
-#define RTN_ERRNOINPUTFILE			1201 // ERROR: Missing Input File
+#define RTN_ERRCOMMANDLINEARG		75 // ERROR: Invalid Command Line
+#define RTN_ERRNOINPUTFILE			76// ERROR: Missing Input File
 
-// Returns OKAY numbers Returns < 1100
-#define RTN_ITURHFPropOK			1001 // ITURHFProp()
-#define RTN_VALIDATEITURHFPOK		1002 // ValidateITURHFP()
-#define RTN_RICOK					1003 // ReadInputConfiguration()
+// Returns OKAY numbers Returns > 30 and <= 40
+#define RTN_ITURHFPropOK			32 // ITURHFProp()
+#define RTN_VALIDATEITURHFPOK		32 // ValidateITURHFP()
+#define RTN_RICOK					33 // ReadInputConfiguration()
 
-#define RTN_MAINOK					1000 // Okay Calculation Completed
+#define RTN_MAINOK					35 // Okay Calculation Completed
 
 // End Return *********************************************************
 
@@ -318,4 +319,3 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 // End prototypes *********************************************************************************
 
 // End ITURHFProp **********************************************************************************
-
