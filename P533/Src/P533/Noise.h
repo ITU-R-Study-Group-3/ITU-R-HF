@@ -37,7 +37,7 @@
 #define RTN_ERRALLOCATEFAKP				204 // ERROR: Allocating Memory for FakP
 #define RTN_ERRALLOCATEFAKABP			205 // ERROR: Allocating Memory for FakABP
 
-// Return OKAY > 1 and <= 5
+// Return OKAY > 20 and <= 30
 #define RTN_ALLOCATEP372OK				21 // AllocatePathMemory()
 #define RTN_READFAMDUDOK				22 // ReadFamDud()
 #define RTN_NOISEFREED					23 // NoiseMemory.c FreeNoiseMemory()

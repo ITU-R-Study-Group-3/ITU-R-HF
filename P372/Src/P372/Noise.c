@@ -224,7 +224,7 @@ void AtmosphericNoise(struct NoiseParams *noiseP, int hour, double lng,
 
 	 		INPUT
 	 			struct NoiseParams *noiseP
-				int hour
+				int hour (GMT)
 				double lng
 				double lat
 				double frequency

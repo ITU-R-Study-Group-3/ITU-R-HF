@@ -307,12 +307,10 @@ int main(int argc, char *argv[]) {
 	// Run ITURHFProp now that the input file has been validated.
 	retval = ITURHFProp(&path, &ITURHFP);
 	if(retval != RTN_ITURHFPropOK) {
-		printf(" path hour %d\n", path.hour);
+		printf("path hour %d\n", path.hour);
 		printf("Main: Error %d from ITURHFProp\n", retval);
 		return retval;
 	};
-
-
 
 	// Clean up
 	// Close the output file
@@ -370,7 +368,7 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 	// Determine the maximum frequency
 	ITURHFP->ifrqend = 0;
 	for(i=0; i<NMBOFFREQS; i++) {
-		if((1.6 <= ITURHFP->frqs[i]) && (ITURHFP->frqs[i] <= 30.0)) ITURHFP->ifrqend += 1;
+		if((1 <= ITURHFP->frqs[i]) && (ITURHFP->frqs[i] <= 30.0)) ITURHFP->ifrqend += 1;
 	};
 
 	// Determine the maximum month

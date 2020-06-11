@@ -1027,7 +1027,7 @@ double FindLh(struct ControlPt CP, double dh, int hour, int month) {
 	
 	// Testing
 	if(BARF) {
-		printf(  "\nMSFSS: Lh[%d][%d][%d][%d] %f CP.L.lat %f CP.L.lng %f \n", txrange, season, gmlat, mplt, Lh[txrange][season][gmlat][mplt], CP.L.lat, CP.L.lng);
+		printf("\nMSFSS: Lh[%d][%d][%d][%d] %f CP.L.lat %f CP.L.lng %f \n", txrange, season, gmlat, mplt, Lh[txrange][season][gmlat][mplt], CP.L.lat, CP.L.lng);
 		printf("MSFSS: Geomag Lat %f (deg)\n", Gn.lat*R2D);
 		printf("MSFSS: MidPath hour %d\n", hour);
 	};
