@@ -27,6 +27,7 @@
 #define	QUIET		5.0
 
 
+// Return ERROR >= 200 and < 220
 
 // Return ERROR from ReadFamDud()
 #define RTN_ERROPENCOEFFFILE			201 // ERROR: Can Not Open Coefficient File
@@ -37,7 +38,7 @@
 #define RTN_ERRALLOCATEFAKP				204 // ERROR: Allocating Memory for FakP
 #define RTN_ERRALLOCATEFAKABP			205 // ERROR: Allocating Memory for FakABP
 
-// Return OKAY > 1 and <= 5
+// Return OKAY > 20 and <= 30
 #define RTN_ALLOCATEP372OK				21 // AllocatePathMemory()
 #define RTN_READFAMDUDOK				22 // ReadFamDud()
 #define RTN_NOISEFREED					23 // NoiseMemory.c FreeNoiseMemory()

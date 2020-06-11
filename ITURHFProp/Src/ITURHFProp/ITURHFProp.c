@@ -370,7 +370,7 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 	// Determine the maximum frequency
 	ITURHFP->ifrqend = 0;
 	for(i=0; i<NMBOFFREQS; i++) {
-		if((1.6 <= ITURHFP->frqs[i]) && (ITURHFP->frqs[i] <= 30.0)) ITURHFP->ifrqend += 1;
+		if((1.0 <= ITURHFP->frqs[i]) && (ITURHFP->frqs[i] <= 30.0)) ITURHFP->ifrqend += 1;
 	};
 
 	// Determine the maximum month
