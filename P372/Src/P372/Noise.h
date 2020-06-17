@@ -36,7 +36,9 @@
 #define RTN_ERRALLOCATEDUD				202 // ERROR: Allocating Memory for DuD
 #define RTN_ERRALLOCATEFAM				203 // ERROR: Allocating Memory for Fam
 #define RTN_ERRALLOCATEFAKP				204 // ERROR: Allocating Memory for FakP
-#define RTN_ERRALLOCATEFAKABP			205 // ERROR: Allocating Memory for FakABP
+#define RTN_ERRALLOCATEFAKABP			205 // ERROR: Allocating Memory for FakABP// Return ERROR from P533()
+#define RTN_ERRP372DLL					206 // ERROR: Can Not Open P372.DLL
+#define RTN_ERRALLOCATENOISE            207 // ERROR: Allocating Memory for Noise Structure
 
 // Return OKAY > 20 and <= 30
 #define RTN_ALLOCATEP372OK				21 // AllocatePathMemory()

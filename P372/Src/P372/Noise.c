@@ -115,7 +115,7 @@ int Noise(struct NoiseParams *noiseP, int hour, double lng, double lat, double f
 
 		noiseP->FamT = -noiseP->ManMadeNoise;
 
-		return RTN_NOISEMANMADEOK;
+		return RTN_NOISEOK;
 
 	};
 	// *********************************************************************** //

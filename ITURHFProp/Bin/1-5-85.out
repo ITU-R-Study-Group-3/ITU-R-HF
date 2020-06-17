@@ -1,16 +1,9 @@
 ---------------------------------------------------------------------------
  International Telecommunications Union - Radiocommunication Sector (ITU-R)
-<<<<<<< HEAD
-     ITURHFProp         Ver Jun  7 2019	- Sun May 19 07:30:58 2019
-     HF Model (P533)    Ver P.533-14	- Thu May 16 08:17:56 2019
-     Noise Model (P372) Ver P.372-13.3	- Thu May 16 08:17:06 2019
-     Analysis Prepared  Fri Jun  7 16:09:39 2019
-=======
-     ITURHFProp         Ver May 23 2019	- Sun May 19 15:30:56 2019
-     HF Model (P533)    Ver P.533-14	- Thu May 16 16:17:55 2019
-     Noise Model (P372) Ver P.372-13.3	- Thu May 16 16:17:05 2019
-     Analysis Prepared  Fri Jun  7 22:24:34 2019
->>>>>>> 76fc4964e7ec74b4fd2cfeeae7578899fe961699
+     ITURHFProp         Ver Jun 17 2020
+     HF Model (P533)    Ver 14.1
+     Noise Model (P372) Ver 14.1
+     Analysis Prepared  Wed Jun 17 10:09:07 2020
 
 ---------------------------------------------------------------------------
 
@@ -68,26 +61,80 @@
 Column 01: Month
 Column 02: Hour
 Column 03: Frequency (MHz)
-Column 04: FaA - Atmospheric noise (dB)
-Column 05: FaM - Man-made noise (dB)
-Column 06: FaG - Galactic noise (dB)
-Column 07: DuA - Upper decile deviation of atmospheric noise (dB)
-Column 08: DlA - Lower decile deviation of atmospheric noise (dB)
-Column 09: DuM - Upper decile deviation of man-made noise (dB)
-Column 10: DlM - Lower decile deviation of man-made noise (dB)
-Column 11: DuG - Upper decile deviation of atmospheric noise (dB)
-Column 12: DlG - Lower decile deviation of atmospheric noise (dB)
-Column 13: DuT - Upper decile deviation of total noise (dB)
-Column 14: DlT - Lower decile deviation of total noise (dB)
-Column 15: FamT - Total noise (dB)
+Column 04: Receiver latitude (deg)
+Column 05: Receiver longitude (deg)
+Column 06: D - Path distance (km)
+Column 07: dmax - Path maximum hop distance (km)
+Column 08: ptick - Slant Path distance (km)
+Column 09: ele - Path minimum Rx elevation angle (deg)
+Column 10: BMUF - Path basic MUF (MHz)
+Column 11: MUF50 - 50% Path basic MUF (MHz)
+Column 12: MUF90 - 90% Path basic MUF (MHz)
+Column 13: MUF10 - 10% Path basic MUF (MHz)
+Column 14: OPMUF - Operation MUF (MHz)
+Column 15: OPMUF90 - 90% Operation MUF (MHz)
+Column 16: OPMUF10 - 10% Operation MUF (MHz)
+Column 17: Lowest order mode for the F2 layer
+Column 18: Lowest order mode for the E layer
+Column 19: E - Path Field Strength (dB(1uV/m))
+Column 20: Pr - Median receiver power (dB)
+Column 21: Grw - Receive Antenna Gain (dbi)
+Column 22: FaA - Atmospheric noise (dB)
+Column 23: FaM - Man-made noise (dB)
+Column 24: FaG - Galactic noise (dB)
+Column 25: DuA - Upper decile deviation of atmospheric noise (dB)
+Column 26: DlA - Lower decile deviation of atmospheric noise (dB)
+Column 27: DuM - Upper decile deviation of man-made noise (dB)
+Column 28: DlM - Lower decile deviation of man-made noise (dB)
+Column 29: DuG - Upper decile deviation of atmospheric noise (dB)
+Column 30: DlG - Lower decile deviation of atmospheric noise (dB)
+Column 31: DuT - Upper decile deviation of total noise (dB)
+Column 32: DlT - Lower decile deviation of total noise (dB)
+Column 33: FamT - Total noise (dB)
+Column 34: SNR - Median signal-to-noise ratio (dB)
+Column 35: DuSN - Upper decile deviation of signal-to-noise ratio (dB)
+Column 36: DlSN - Lower decile deviation of signal-to-noise ratio (dB)
+Column 37: SNRXXp - Signal-to-noise ratio at 10% of month
+Column 38: SIR - Signal-to-interference ratio (dB)
+Column 39: DuSI - Upper decile deviation of signal-to-interference ratio (dB)
+Column 40: DlSI - Lower decile deviation of signal-to-interference ratio (dB)
+Column 41: RSN - Probability that the required SNR is achieved (%)
+Column 42: RT - Probability that the required time spread T0 is not exceeded (%)
+Column 43: RF - Probability that the required frequency spread f0 is not exceeded (%)
+Column 44: BCR - Basic circuit reliability (%)
+Column 45: OCR - Overall circuit reliability not considering scattering (%)
+Column 46: OCRs - Overall circuit reliability considering scattering (%)
+Column 47: Probocc - Probability of scattering (%)
+Column 48: MIR - Multimode Interference (%)
+Column 49: Dominant mode
+Column 50: Dominant mode - Elevation angle (deg)
+Column 51: Dominant mode - Delay (mS)
+Column 52: Dominant mode - Loss (dB)
+Column 53: Dominant mode - Propagation probability (%)
+Column 54: Dominant mode - Virtual height (km)
+Column 55: Dominant mode - Median received power (dB)
+Column 56: Dominant mode - Receiver Antenna Gain (dBi)
+Column 57: Dominant mode - Field Strength (dB(1uV/m))
+Column 58: Dominant mode - Basic MUF (MHz)
+Column 59: Short Path (<=7000 km) Field Strength (dB(1uV/m))
+Column 60: Long Path (>9000km) Field Strength (dB(1uV/m))
+Column 61: Free-space Field Strength 3 MW e.i.r.p. (dB(1uV/m)
+Column 62: Increased Long Distance Field Strength due to Focusing (dB)
+Column 63: "Not otherwise included loss" (dB)
+Column 64: Upper Reference Frequency (MHz)
+Column 65: Lower Reference Frequency (MHz)
+Column 66: Correction Factor at T + d0/2
+Column 67: Correction Factor at R - d0/2
+Column 68: Max Antenna Gain G_tl (0 - 8 deg)
+Column 69: Max Antenna Gain G_rw (0 - 8 deg)
+Column 70: Mean gyrofrequency
+Column 71: Scale factor f(f ,fL, fM, fH)
 
 ************************** End Data Format ********************************
 
 ************************ Calculated Parameters ****************************
 
-05, 20,   6.10,  50.81,  45.45,  33.94,   6.35,   6.27,   9.20,   4.60,   2.00,   2.00,   6.56,   5.57,  52.28
+05, 20,    6.100,  51.1167,   7.2667,   174.73, 4000.00,  3549.06,  72.77,   6.47,   6.47,   5.42,   7.44,   7.12,   5.97,   8.18,  1F2 ,   1E ,  36.73, -86.18,   0.00,  50.81,  45.45,  33.94,   6.35,   6.27,   9.20,   4.60,   2.00,   2.00,   6.56,   5.57,  52.28,  35.83,  11.04,  16.09,  46.87,-307.00,-307.00,-307.00,   0.00,   0.00,   0.00,  99.30,   0.00,   0.00,   0.00,-307.00,  1F2 ,  72.77,   0.00, 116.27,   0.71, 184.86, -86.87,   0.00,  36.04,   6.47,  36.7252,-307.0000,-307.0000,-307.0000,   0.0000,   0.0000,   0.0000,   0.0000,   0.0000,-307.0000,   0.0000,   0.0000,-307.0000
 
 **************************End Calculated Parameters ***********************
 
-Copyright  International Telecommunication Union (ITU) 2019
-All rights reserved.

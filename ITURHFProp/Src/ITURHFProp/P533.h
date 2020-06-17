@@ -118,7 +118,6 @@
 #define RTN_ERRALLOCATEFOF2VAR			133 // ERROR: Allocating Memory for foF2 Variability
 #define RTN_ERRALLOCATETX				134 // ERROR: Allocating Memory for Tx Antenna Pattern
 #define RTN_ERRALLOCATERX				135 // ERROR: Allocating Memory for Rx Antenna Pattern
-#define RTN_ERRALLOCATENOISE            136 // ERROR: Allocating Memory for Noise Structure
 #define RTN_ERRALLOCATEANT			    137 // ERROR: Allocating Memory for Antenna Pattern
 
 // Return ERROR from ReadAntennaPatterns() ReadType13()
@@ -131,8 +130,6 @@
 // Return ERROR from ReadIonParametersTxt()
 #define RTN_ERRREADIONPARAMETERS		141 // ERROR: Can Not Open Ionospheric Parameters File
 
-// Return ERROR from P533()
-#define RTN_ERRP372DLL					142 // ERROR: Can Not Open P372.DLL
 
 // Return OKAY > 10 and <= 20
 #define RTN_ALLOCATEP533OK				11 // AllocatePathMemory()
