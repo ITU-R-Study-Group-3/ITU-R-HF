@@ -96,4 +96,5 @@ DLLEXPORT int ReadFamDud(struct NoiseParams *noiseP, const char *DataFilePath, i
 DLLEXPORT void InitializeNoise(struct NoiseParams *noiseP);
 DLLEXPORT char const * P372CompileTime();
 DLLEXPORT char const * P372Version();
+//DLLEXPORT 
 // End Prototypes

@@ -27,6 +27,8 @@ typedef int(__cdecl* iNoise)(struct NoiseParams* noiseP, int hour, double lng, d
 typedef int(__cdecl* iReadFamDud)(struct NoiseParams* noiseP, const char* DataFilePath, int month);
 // InitializeNoise()
 typedef void(__cdecl* vInitializeNoise)(struct NoiseParams* noiseP);
+// ITURNoise()
+typedef int(__stdcall* iITURNoise)(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
 #endif
 // End P372.DLL typedef ********************************************************
 
@@ -64,5 +66,14 @@ typedef void(__cdecl* vInitializeNoise)(struct NoiseParams* noiseP);
 #define RTN_ERRCOMMANDLINEARGS			105 // ERROR: Insufficient Number of Command Line Arguments
 
 // Successfull return codes 
-#define RTN_ITURNOISEOK		90
+#define RTN_ITURNOISEOK					90
 // End ITURNoise return codes
+
+// ITURNoise Print Flag 
+#define ITUHEADER			0 // Prints the full header 
+#define CSVOUTPUT			1 // Prints out simple csv
+#define CSVOUTPUTNHEADER	2 // Print out header with the simple csv
+#define SILENT				3 // Do not print
+
+
+int ITURNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
