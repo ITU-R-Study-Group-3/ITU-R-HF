@@ -26,6 +26,9 @@
 #define NOISY		4.0
 #define	QUIET		5.0
 
+// MakeNoise()
+#define NOPRINT		0
+#define PRINTHEADER 1
 
 // Return ERROR >= 200 and < 220
 
@@ -46,6 +49,7 @@
 #define RTN_NOISEFREED					23 // NoiseMemory.c FreeNoiseMemory()
 #define RTN_NOISEOK						24 // Noise()
 #define RTN_NOISEMANMADEOK				25 // Noise() Man-made noise override
+#define RTN_MAKENOISEOK					26 // MakeNoise() Stand alone P372 caller 
 
 
 /******************************* End Defines **********************************/
@@ -96,5 +100,51 @@ DLLEXPORT int ReadFamDud(struct NoiseParams *noiseP, const char *DataFilePath, i
 DLLEXPORT void InitializeNoise(struct NoiseParams *noiseP);
 DLLEXPORT char const * P372CompileTime();
 DLLEXPORT char const * P372Version();
-//DLLEXPORT 
+DLLEXPORT int __stdcall MakeNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
 // End Prototypes
+
+
+// Start P372.DLL typedef ******************************************************
+#ifdef _WIN32
+	#include <Windows.h>
+	// P372Version() & P372CompileTime()
+	typedef const char* (__cdecl* cP372Info)();
+	// AllocateNoiseMemory() & FreeNoiseMemory()
+	typedef int(__cdecl* iNoiseMemory)(struct NoiseParams* noiseP);
+	// Noise()
+	typedef int(__cdecl* iNoise)(struct NoiseParams* noiseP, int hour, double lng, double lat, double frequency);
+	// ReadFamDud()
+	typedef int(__cdecl* iReadFamDud)(struct NoiseParams* noiseP, const char* DataFilePath, int month);
+	// InitializeNoise()
+	typedef void(__cdecl* vInitializeNoise)(struct NoiseParams* noiseP);
+	// MakeNoise()
+	typedef int(__stdcall* iMakeNoise)(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
+
+#endif
+// End P372.DLL typedef ********************************************************
+
+#ifdef _WIN32
+	HINSTANCE hLib;
+	cP372Info dllP372Version;
+	cP372Info dllP372CompileTime;
+	iNoise dllNoise;
+	iNoiseMemory dllAllocateNoiseMemory;
+	iNoiseMemory dllFreeNoiseMemory;
+	iReadFamDud dllReadFamDud;
+	vInitializeNoise dllInitializeNoise;
+	iMakeNoise dllMakeNoise;
+#elif __linux__ || __APPLE__
+	#include <dlfcn.h>
+	void* hLib;
+	char* (*dllP372Version)();
+	char* (*dllP372CompileTime)();
+	int(*dllNoise)(struct NoiseParams*, int, double, double, double);
+	int(*dllAllocateNoiseMemory)(struct NoiseParams*);
+	int(*dllFreeNoiseMemory)(struct NoiseParams*);
+	int(*dllReadFamDud)(struct NoiseParams*, const char*, int);
+	void(*dllInitializeNoise)(struct NoiseParams*);
+#endif
+// End operating system preprocessor *******************************************
+
+// End P372.DLL typedef ******************************************************
+

@@ -2,19 +2,86 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <errno.h>
 
 // Local includes
 #include "Common.h"
+#include "Noise.h"
 #include "ITURNoise.h"
 // End Local includes
 
+#define PRINTALL 100
+#define PRINTCSV 101
+
 // Local Prototypes
-void PrintFam(struct NoiseParams* noiseP, int month, int hour, double lng, double lat, double freq);
+void PrintCSVLine(int month, int hour, double lat, double lng, double* out);
+void PrintCSVHeader(const char* P372ver, const char* P372compt);
+void PrintUsage();
+void WriteCSVLine(FILE* fp, int month, int hour, double lat, double lng, struct NoiseParams* noiseP);
+void PrintCSVLine(int month, int hour, double lat, double lng, double* out);
+int RunMonths(char* datafilepath);
 // End Local Prototypes
 
 int main(int argc, char* argv[]) {
+/*
 
-	int pntflag = SILENT;
+	main() - This program takes command line arguements and runs the P372 calculation engine
+             
+		INPUT
+			Argument 1:  month (1 to 12)\n");
+			Argument 2:  hour (1 to 24 (UTC))\n");
+			Argument 3:  latitude (degrees)\n");
+			Argument 4:  longitude (degrees)\n");
+			Argument 5:  man-made noise 0-5 or value of man-made noise (dB)\n");
+			                 CITY         0.0\n");
+			                 RESIDENTIAL  1.0\n");
+			                 RURAL		2.0\n");
+			                 QUIETRURAL	3.0\n");
+			                 NOISY		4.0\n");
+			                 QUIET		5.0\n");
+			Argument 6:  data file path in double quotes without trailing back slash\n");
+			Argument 7:  print flag 0-3\n");
+			                 PRINTHEADER 0 Prints the full header\n");
+			                 PRINTCSV	   1 Prints out simple csv\n");
+			                 PRINTALL	   2 Print out header with the simple csv\n");
+			                 NOPRINT	   3 Do not print\n");
+		OUTPUT
+			The output is printed to stdout depending on the print flag
+
+		Example: ITURNoise 1 14 1.0 40.0 165.0 0 \"G:\\User\\Data\" \n");
+		                   Calculation made for January 14th hour (UTC)\n");
+		                   at 40 degrees North and 165 degrees East\n");
+
+	    ******************************************************************************
+				ITU-R Study Group 3: Radiowave Propagation
+		******************************************************************************
+						Analysis: 19/6/20 - 13:34:31
+						P372 Version:      14.1
+						P372 Compile Time: Fri Jun 19 10:57:00 2020
+		******************************************************************************
+
+				JAN : 13 (UTC) at 40.000000 (deg lat) 165.000000 (deg long)
+				[FaA]  Noise Component (Atmospheric): 60.732650
+				[DuA]  Upper Decile    (Atmospheric): 10.600910
+				[DlA]  Upper Decile    (Atmospheric): 8.277667
+				[FaM]  Noise Component    (Man-Made): 76.800000
+				[DuM]  Upper Decile       (Man-Made): 11.000000
+				[DlM]  Lower Decile       (Man-Made): 6.700000
+				[FaG]  Noise Component    (Galactic): 52.000000
+				[DuG]  Upper Decile       (Galactic): 2.000000
+				[DlG]  Lower Decile       (Galactic): 2.000000
+				[FamT] Noise                 (Total): 76.986526
+				[DuT]  Upper Decile          (Total): 10.940193
+				[DlT]  Lower Decile          (Total): 6.573930
+
+		******************************************************************************
+
+	Behm/2020
+
+*/
+
+	int pntflag = PRINTALL;
+	int mnpntflag = PRINTHEADER;
 
 	int month;
 	int hour;
@@ -28,6 +95,23 @@ int main(int argc, char* argv[]) {
 
 	char datafilepath[256];
 
+	const char* P372ver;
+	const char* P372compt;
+
+	if (argc == 2) {
+
+		// Then the user wants to run all the tables necessary to create the
+		// Atmospheric noise Figures in Recommendation P.372-14 
+		// Assume that the only argument given is the path to the data files
+		sprintf(&datafilepath[0], "%s\\", argv[1]);
+
+		RunMonths(&datafilepath[0]);
+
+		return RTN_ITURNOISEOK;
+
+	}; 
+
+	// Are there enough command line arguments to proceed?
 	if (argc > 6) {
 		month = atoi(argv[1]) - 1;
 		if ((month < 0) && (month > 11)) {
@@ -71,95 +155,110 @@ int main(int argc, char* argv[]) {
 
 		if (argc >= 8) {
 			pntflag = atoi(argv[8]);
+			if (pntflag == 0) {
+				pntflag = PRINTHEADER;
+			}
+			else if (pntflag == 1) {
+				pntflag = PRINTCSV;
+			}
+			else if (pntflag == 2) {
+				pntflag = PRINTBLOCK;
+			}
+			else if (pntflag == 3) {
+				pntflag = NOPRINT;
+			}
+			else if (pntflag == 4) {
+				pntflag = PRINTCSVALL;
+			}
 		};
 
-		retval = ITURNoise(month, hour, lat, lng, freq, mmnoise, datafilepath, &out[0], pntflag);
+		if (pntflag == PRINTALL) {
+			mnpntflag = PRINTHEADER;
+		};
 
-		if(retval == RTN_ITURNOISEOK) {
-			if (pntflag == CSVOUTPUTNHEADER) {
+	// Load the Noise routines in P372.dll ******************************
+#ifdef _WIN32
+		int mod[512];
+		// Get the handle to the P372 DLL.
+		hLib = LoadLibrary("P372.dll");
+		if (hLib == NULL) {
+			printf("ITURNoise: AllocatePathMemory: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
+			return RTN_ERRP372DLL;
+		};
+		// Get the handle to the DLL library, hLib.
+		GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
+		// Get the P372Version() process from the DLL.
+		dllP372Version = (cP372Info)GetProcAddress((HMODULE)hLib, "P372Version");
+		// Get the P372CompileTime() process from the DLL.
+		dllP372CompileTime = (cP372Info)GetProcAddress((HMODULE)hLib, "P372CompileTime");
+		dllMakeNoise = (iMakeNoise)GetProcAddress((HMODULE)hLib, "_MakeNoise@52");
+#elif __linux__ || __APPLE__
+		void* hLib;
+		hLib = dlopen("libp372.so", RTLD_NOW);
+		if (!hLib) {
+			printf("Couldn't load libp372.so, exiting.\n");
+			exit(1);
+		};
+		dllAllocateNoiseMemory = dlsym(hLib, "AllocateNoiseMemory");
+		dllP372Version = dlsym(hLib, "P372Version");
+		dllP372CompileTime = dlsym(hLib, "P372CompileTime");
+		dllNoise = dlsym(hLib, "Noise");
+		dllAllocateNoiseMemory = dlsym(hLib, "AllocateNoiseMemory");
+		dllFreeNoiseMemory = dlsym(hLib, "FreeNoiseMemory");
+		dllInitializeNoise = dlsym(hLib, "InitializeNoise");
+		dllReadFamDud = dlsym(hLib, "ReadFamDud");
+#endif	
+	
+		// Load the version and compile time of the P372.DLL
+		P372ver = dllP372Version();
+		P372compt = dllP372CompileTime();
 
-				printf("Column 1: Month\n");
-				printf("Column 2: Hour (UTC)\n");
-				printf("Column 3: Latitude (deg)\n");
-				printf("Column 4: Longitude (deg)\n");
-				printf("Column 5: [FaA]  Noise Component (Atmospheric)\n");
-				printf("Column 6: [DuA]  Upper Decile    (Atmospheric)\n");
-				printf("Column 7: [DlA]  Upper Decile    (Atmospheric)\n");
-				printf("Column 8: [FaM]  Noise Component    (Man-Made)\n");
-				printf("Column 9: [DuM]  Upper Decile       (Man-Made)\n");
-				printf("Column 10:[DlM]  Lower Decile       (Man-Made) \n");
-				printf("Column 11:[FaG]  Noise Component    (Galactic) \n");
-				printf("Column 12:[DuG]  Upper Decile       (Galactic) \n");
-				printf("Column 13:[DlG]  Lower Decile       (Galactic) \n");
-				printf("Column 2: [FamT] Noise                 (Total)\n");
-				printf("Column 2: [DuT]  Upper Decile          (Total)\n");
-				printf("Column 2: [DlT]  Lower Decile          (Total)\n");
-				printf("******************************************************************************\n");
+		// Run MakeNoise() which calculates the noise parameters for a single point 
+		retval = dllMakeNoise(month, hour, lat, lng, freq, mmnoise, datafilepath, &out[0], mnpntflag);
 
+		if(retval == RTN_MAKENOISEOK) {
+			if (pntflag == PRINTCSVALL) {
+
+
+				PrintCSVHeader(P372ver, P372compt);
 			};
-			if ((pntflag == CSVOUTPUT) || (pntflag == CSVOUTPUTNHEADER)) {
-				printf("%d, %d, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f\n", month + 1, hour + 1, lat * R2D, lng * R2D, out[0], out[1], out[2], out[3], out[4], out[5], out[6], out[7], out[8], out[9], out[10], out[11]);
+			if (pntflag == PRINTCSV) {
+				PrintCSVLine(month, hour, lat, lng, &out[0]);
 			};
 		}
 	}
 	else {
-
 		printf("ITURNoise: ERROR: Insufficient number (%d) of command line arguments, 7 required.\n", argc);
 		printf("\n");
-		printf("USEAGE ITURNoise [month] [hour] [latitude] [longitude] [man-made noise] [data file path] [print flag]\n");
-		printf("\tArgument 1:  month (1 to 12)\n");
-		printf("\tArgument 2:  hour (1 to 24 (UTC))\n");
-		printf("\tArgument 3:  latitude (degrees)\n");
-		printf("\tArgument 4:  longitude (degrees)\n");
-		printf("\tArgument 5:  man-made noise 0-5 or value of man-made noise (dB)\n");
-		printf("\t                 CITY         0.0\n");
-		printf("\t                 RESIDENTIAL  1.0\n");
-		printf("\t                 RURAL		2.0\n");
-		printf("\t                 QUIETRURAL	3.0\n");
-		printf("\t                 NOISY		4.0\n");
-		printf("\t                 QUIET		5.0\n");
-		printf("\tArgument 6:  data file path in double quotes without trailing back slash\n");
-		printf("\tArgument 7:  print flag 0-3\n");
-		printf("\t                 ITUHEADER        0 Prints the full header\n");
-		printf("\t                 CSVOUTPUT		1 Prints out simple csv\n");
-		printf("\t                 CSVOUTPUTNHEADER	2 Print out header with the simple csv\n");
-		printf("\t                 SILENT			3 Do not print\n");
-		printf("\n");
-		printf("Example: ITURNoise 1 14 1.0 40.0 165.0 0 \"G:\\User\\Data\" \n");
-		printf("                   Calculation made for January 14th hour (UTC)\n");
-		printf("                   at 40 degrees North and 165 degrees East\n");
-		printf("\n");
+		PrintUsage();
 		return RTN_ERRCOMMANDLINEARGS;
 
 	};
+
+	FreeLibrary(hLib);
  
 return retval;
 
 };
 
-int ITURNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char * datafilepath, double * out, int pntflag) {
-	
+int RunMonths(char * datafilepath) {
+
 	/*
-	
-		ITURNoise - 
-	
+		RunMonths - Outputs the files necessary to parse to create Recommendation 
+					P.372-14 Figures of atmospheric noise
 	
 	*/
-	
-	
-	// P372.dll **********************************************************
+
 
 	// Load the Noise routines in P372.dll ******************************
 #ifdef _WIN32
-	int mod[512];
 	// Get the handle to the P372 DLL.
 	hLib = LoadLibrary("P372.dll");
 	if (hLib == NULL) {
-		printf("ITURNoise: AllocatePathMemory: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
+		printf("ITURHFProp: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
 		return RTN_ERRP372DLL;
 	};
-	// Get the handle to the DLL library, hLib.
-	GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
+	int mod[512];
 	// Get the handle to the DLL library, hLib.
 	GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
 	// Get the P372Version() process from the DLL.
@@ -178,18 +277,17 @@ int ITURNoise(int month, int hour, double lat, double lng, double freq, double m
 	if (!hLib) {
 		printf("Couldn't load libp372.so, exiting.\n");
 		exit(1);
-	};
-	dllAllocateNoiseMemory = dlsym(hLib, "AllocateNoiseMemory");
+	}
+	dllReadFamDud = dlsym(hLib, "ReadFamDud");
 	dllP372Version = dlsym(hLib, "P372Version");
 	dllP372CompileTime = dlsym(hLib, "P372CompileTime");
 	dllNoise = dlsym(hLib, "Noise");
 	dllAllocateNoiseMemory = dlsym(hLib, "AllocateNoiseMemory");
 	dllFreeNoiseMemory = dlsym(hLib, "FreeNoiseMemory");
 	dllInitializeNoise = dlsym(hLib, "InitializeNoise");
-	dllReadFamDud = dlsym(hLib, "ReadFamDud");
-#endif	
+#endif
 
-	// End P372.DLL Load ************************************************
+	FILE* fp;
 
 	int retval;
 
@@ -198,11 +296,15 @@ int ITURNoise(int month, int hour, double lat, double lng, double freq, double m
 
 	struct NoiseParams noiseP;
 
+	double freq;
+
 	struct tm* ntime;
 	time_t tm;
 
 	char ntimestr[64];
-	
+
+	char outputfilename[256];
+
 	// Allocate the memory in the noise structure
 	retval = dllAllocateNoiseMemory(&noiseP);
 	if (retval != RTN_ALLOCATEP372OK) {
@@ -212,10 +314,129 @@ int ITURNoise(int month, int hour, double lat, double lng, double freq, double m
 	// Initialize Noise from the P372.dll
 	dllInitializeNoise(&noiseP);
 	// End Initialize Noise
-	
+
 	// Load the version and compile time of the P372.DLL
 	P372ver = dllP372Version();
 	P372compt = dllP372CompileTime();
+
+	// Get the time to time stamp the output files.
+	tm = time(NULL);
+	ntime = localtime(&tm);
+	sprintf(ntimestr, "%0d%0d%0dd-%02d%02d%02dt",
+		ntime->tm_mday, ntime->tm_mon + 1, ntime->tm_year - 100,
+		ntime->tm_hour, ntime->tm_min, ntime->tm_sec);
+
+	// Initialize variables
+	noiseP.ManMadeNoise = RURAL;
+	freq = 1;
+
+	for (int m = 0; m < 12; m+=4) {
+
+		// Read in the atmospheric coefficients for the particular month.
+		// The subroutine dllReadFamDud() is from P372.dll
+		retval = dllReadFamDud(&noiseP, datafilepath, m);
+		if (retval != RTN_READFAMDUDOK) {
+			return retval;
+		};
+		
+		for (int h = 0; h < 23; h+=4) {
+			
+			// Open a new output file
+			sprintf(outputfilename, ".\\%0dm%0dh-%s.csv", m, h, ntimestr);
+			fp = fopen(outputfilename, "w");
+			if (fp == NULL) {
+				printf("ITURNoise: Error: Can't open output file %s (%s)\n", outputfilename, strerror(errno));
+				return RTN_ERRCANTOPENFILE;
+			};
+			
+			// The file is open proceed
+			// User feedback
+			printf("ITURNoise: Writing to file %s\n", outputfilename);
+
+			// Write the column headings to the file
+			fprintf(fp, "month, hour, latitude, longitude, FaA, DuA, DlA\n");
+			
+			for (int ilng = -180; ilng <= 180; ilng++) { //
+				for (int ilat = -90; ilat <= 90; ilat++) { //
+					
+					double rlat = ilat * D2R;
+					double rlng = ilng * D2R;
+					
+					// Call noise from the P372.dll
+					retval = dllNoise(&noiseP, h, rlng, rlat, freq);
+					if (retval != RTN_NOISEOK) return retval; // check that the input parameters are correct
+					
+					// Write the data out to the file
+					WriteCSVLine(fp, m, h, rlat, rlng, &noiseP);
+
+				}; // End Latitude loop
+			}; //  End Longitude loop
+			fclose(fp);
+		}; // End hour for
+	}; // End month for
+
+	FreeLibrary(hLib);
+
+	return RTN_ATMOSFILESOK;
+	   
+	 // End P372.DLL Load ************************************************
+};
+
+void PrintUsage() {
+	/*
+		PrintUsage - Prints a brief summary of how to use ITURNoise()
+
+			INPUT
+				none
+
+			OUTPUT
+				none
+	
+	*/
+	printf("USEAGE ITURNoise [month] [hour] [latitude] [longitude] [man-made noise] [data file path] [print flag]\n");
+	printf("\tArgument 1:  month (1 to 12)\n");
+	printf("\tArgument 2:  hour (1 to 24 (UTC))\n");
+	printf("\tArgument 3:  latitude (degrees)\n");
+	printf("\tArgument 4:  longitude (degrees)\n");
+	printf("\tArgument 5:  man-made noise 0-5 or value of man-made noise (dB)\n");
+	printf("\t                 CITY         0.0\n");
+	printf("\t                 RESIDENTIAL  1.0\n");
+	printf("\t                 RURAL		2.0\n");
+	printf("\t                 QUIETRURAL	3.0\n");
+	printf("\t                 NOISY		4.0\n");
+	printf("\t                 QUIET		5.0\n");
+	printf("\tArgument 6:  data file path in double quotes without trailing back slash\n");
+	printf("\tArgument 7:  print flag 0-3\n");
+	printf("\t                 PRINTHEADER 0 Prints the full header\n");
+	printf("\t                 PRINTCSV	   1 Prints out simple csv\n");
+	printf("\t                 PRINTALL	   2 Print out header with the simple csv\n");
+	printf("\t                 NOPRINT	   3 Do not print\n");
+	printf("\n");
+	printf("Example: ITURNoise 1 14 1.0 40.0 165.0 0 \"G:\\User\\Data\" \n");
+	printf("                   Calculation made for January 14th hour (UTC)\n");
+	printf("                   at 40 degrees North and 165 degrees East\n");
+	printf("\n");
+
+	return;
+
+};
+
+void PrintCSVHeader(const char* P372ver, const char* P372compt) {
+	/*
+	PrintCSVHeader - Prints a summary of the CSV output columns 
+
+		INPUT
+			none
+
+		OUTPUT
+			none
+
+	*/
+
+	struct tm* ntime;
+	time_t tm;
+
+	char ntimestr[64];
 
 	// Get the time to time stamp the output files.
 	tm = time(NULL);
@@ -224,72 +445,78 @@ int ITURNoise(int month, int hour, double lat, double lng, double freq, double m
 		ntime->tm_mday, ntime->tm_mon + 1, ntime->tm_year - 100,
 		ntime->tm_hour, ntime->tm_min, ntime->tm_sec);
 
-	// Read in the atmospheric coefficients for the particular month.
-	// The subroutine dllReadFamDud() is from P372.dll
-	retval = dllReadFamDud(&noiseP, datafilepath, month);
-	if (retval != RTN_READFAMDUDOK) {
-		return retval;
-	};
+	printf("******************************************************************************\n");
+	printf("\t\tITU-R Study Group 3: Radiowave Propagation\n");
+	printf("******************************************************************************\n");
+	printf("\t\tAnalysis: %s\n", ntimestr);;
+	printf("\t\tP372 Version:      %s\n", P372ver);
+	printf("\t\tP372 Compile Time: %s\n", P372compt);
+	printf("******************************************************************************\n");
 
-	noiseP.ManMadeNoise = mmnoise;
+	printf("Column 1: Month\n");
+	printf("Column 2: Hour (UTC)\n");
+	printf("Column 3: Latitude (deg)\n");
+	printf("Column 4: Longitude (deg)\n");
+	printf("Column 5: [FaA]  Noise Component (Atmospheric)\n");
+	printf("Column 6: [DuA]  Upper Decile    (Atmospheric)\n");
+	printf("Column 7: [DlA]  Upper Decile    (Atmospheric)\n");
+	printf("Column 8: [FaM]  Noise Component    (Man-Made)\n");
+	printf("Column 9: [DuM]  Upper Decile       (Man-Made)\n");
+	printf("Column 10:[DlM]  Lower Decile       (Man-Made) \n");
+	printf("Column 11:[FaG]  Noise Component    (Galactic) \n");
+	printf("Column 12:[DuG]  Upper Decile       (Galactic) \n");
+	printf("Column 13:[DlG]  Lower Decile       (Galactic) \n");
+	printf("Column 2: [FamT] Noise                 (Total)\n");
+	printf("Column 2: [DuT]  Upper Decile          (Total)\n");
+	printf("Column 2: [DlT]  Lower Decile          (Total)\n");
+	printf("******************************************************************************\n");
 
-	// Call noise from the P372.dll
-	retval = dllNoise(&noiseP, hour, lng, lat, freq);
-	if (retval != RTN_NOISEOK) return retval; // check that the input parameters are correct
-
-	*out      = noiseP.FaA;
-	*(out+1)  = noiseP.DuA;
-	*(out+2)  = noiseP.DlA;
-	*(out+3)  = noiseP.FaM;
-	*(out+4)  = noiseP.DuM;
-	*(out+5)  = noiseP.DlM;
-	*(out+6)  = noiseP.FaG;
-	*(out+7)  = noiseP.DuG;
-	*(out+8)  = noiseP.DlG;
-	*(out+9) = noiseP.FamT;
-	*(out+10) = noiseP.DuT;
-	*(out+11) = noiseP.DlT;
-
-	// Check to see if there is a pntflag
-	if ((pntflag != SILENT) && (pntflag != ITUHEADER) && (pntflag != CSVOUTPUTNHEADER)) {
-		pntflag = SILENT;
-	};
-
-	if ((pntflag == ITUHEADER) || (pntflag == CSVOUTPUTNHEADER)) {
-		printf("******************************************************************************\n");
-		printf("\t\tITU-R Study Group 3: Radiowave Propagation\n");
-		printf("******************************************************************************\n");
-		printf("\t\tAnalysis: %s\n", ntimestr);;
-		printf("\t\tP372 Version:      %s\n", P372ver);
-		printf("\t\tP372 Compile Time: %s\n", P372compt);
-		printf("******************************************************************************\n");
-	};
-
-	if (pntflag == ITUHEADER) {
-		PrintFam(&noiseP, month, hour, lng, lat, freq);
-		printf("******************************************************************************\n");
-	};
-	
-	return RTN_ITURNOISEOK;
+	return;
 
 };
 
+void PrintCSVLine(int month, int hour, double lat, double lng, double* out) {
+	/*
+	PrintUsage - Prints a CSV line to a file
 
-void PrintFam(struct NoiseParams* noiseP, int month, int hour, double lng, double lat, double freq) {	
-	const char* monthnames[] = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
-	printf("\n");
-	printf("\t%s : %d (UTC) at %f (deg lat) %f (deg long)\n", monthnames[month], hour, lat * R2D, lng * R2D);
-	printf("\t[FaA]  Noise Component (Atmospheric): %f\n", noiseP->FaA);
-	printf("\t[DuA]  Upper Decile    (Atmospheric): %f\n", noiseP->DuA);
-	printf("\t[DlA]  Upper Decile    (Atmospheric): %f\n", noiseP->DlA);
-	printf("\t[FaM]  Noise Component    (Man-Made): %f\n", noiseP->FaM);
-	printf("\t[DuM]  Upper Decile       (Man-Made): %f\n", noiseP->DuM);
-	printf("\t[DlM]  Lower Decile       (Man-Made): %f\n", noiseP->DlM);
-	printf("\t[FaG]  Noise Component    (Galactic): %f\n", noiseP->FaG);
-	printf("\t[DuG]  Upper Decile       (Galactic): %f\n", noiseP->DuG);
-	printf("\t[DlG]  Lower Decile       (Galactic): %f\n", noiseP->DlG);
-	printf("\t[FamT] Noise                 (Total): %f\n", noiseP->FamT);
-	printf("\t[DuT]  Upper Decile          (Total): %f\n", noiseP->DuT);
-	printf("\t[DlT]  Lower Decile          (Total): %f\n", noiseP->DlT);
-	printf("\n");
+		INPUT
+			FILE *fp		Pointer to a file
+			int month		Month index (0 to 11)
+			int hour		Hour inde (0 to 23)
+			double lat		Latitude (radians)
+			double lng		Longitude (radians)
+			double * out    Pointer to a 12 element array that contains the P372 calculation
+
+		OUTPUT
+			none
+
+	*/
+
+	printf("%d, %d, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f\n", month + 1, hour + 1, lat * R2D, lng * R2D, out[0], out[1], out[2], out[3], out[4], out[5], out[6], out[7], out[8], out[9], out[10], out[11]);
+
+	return;
+
+};
+
+void WriteCSVLine(FILE* fp, int month, int hour, double lat, double lng, struct NoiseParams *noiseP) {
+	/*
+	PrintUsage - Prints a CSV line to a file
+
+		INPUT
+			FILE *fp		Pointer to a file
+			int month		Month index (0 to 11)
+			int hour		Hour inde (0 to 23)
+			double lat		Latitude (radians)
+			double lng		Longitude (radians)
+			double * out    Pointer to a 12 element array that contains the P372 calculation
+
+		OUTPUT
+			none
+
+	*/
+
+	fprintf(fp, "%d, %d, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f\n", month + 1, hour + 1, lat * R2D, lng * R2D, noiseP->FaA, noiseP->DuA, noiseP->DlA);
+
+	return;
+
 };

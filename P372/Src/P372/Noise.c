@@ -13,7 +13,9 @@ void AtmosphericNoise(struct NoiseParams *noiseP, int hour, double lng,
 											double lat, double frequency);
 void GalacticNoise(struct NoiseParams *noiseP, double frequency);
 void ManMadeNoise(struct NoiseParams *noiseP, double frequency);
-void GetFamParameters(struct NoiseParams *noiseP, struct FamStats *FS,											double lng, double lat, double frequency);
+void GetFamParameters(struct NoiseParams *noiseP, struct FamStats *FS,		
+	double lng, double lat, double frequency);
+void PrintFam(struct NoiseParams* noiseP, int month, int hour, double lng, double lat, double freq);
 // End Local prototypes
 
 int Noise(struct NoiseParams *noiseP, int hour, double lng, double lat, double frequency) {
@@ -372,7 +374,7 @@ void GetFamParameters(struct NoiseParams *noiseP, struct FamStats *FS,
 		ZZ[j] = 0.0; // Initialize ZZ[j]
 		R = 0.0;
 		for(k=0; k<ln; k++) {
-			R = R + sin((k+1)*q)*noiseP->fakp[FS->tmblk][k][j];
+			R = R + sin((k+1.0)*q)*noiseP->fakp[FS->tmblk][k][j];
 		};
 		ZZ[j] = R + noiseP->fakp[FS->tmblk][15][j];
 	};
@@ -383,7 +385,7 @@ void GetFamParameters(struct NoiseParams *noiseP, struct FamStats *FS,
 
 	R = 0.0;
 	for(j=0; j<lm; j++) {
-		R = R + sin((j+1)*q)*ZZ[j];
+		R = R + sin((j+1.0)*q)*ZZ[j];
 	};
 	// Final Fourier series calculation (Note the linear nomalization using fakabp values)
 	Fam1MHz = R + noiseP->fakabp[FS->tmblk][0] + noiseP->fakabp[FS->tmblk][1]*q;
@@ -804,14 +806,14 @@ char const * P372Version() {
 
 	P372Version() - Returns the version of the P533 DLL
 
-	INPUT
-	None
+		INPUT
+			None
 
-	OUTPUT
-	returns a pointer to the version character string
+		OUTPUT
+			returns a pointer to the version character string
 
-	SUBROUTINES
-	None
+		SUBROUTINES
+			None
 
 	*/
 
@@ -825,14 +827,14 @@ char const * P372CompileTime() {
 
 	P533CompileTime() - Returns the compile time of the P533 DLL
 
-	INPUT
-	None
+		INPUT
+			None
 
-	OUTPUT
-	returns a pointer to the version character string
+		OUTPUT
+			returns a pointer to the version character string
 
-	SUBROUTINES
-	None
+		SUBROUTINES
+			None
 
 	*/
 

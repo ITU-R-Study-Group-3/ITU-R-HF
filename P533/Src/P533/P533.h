@@ -14,46 +14,6 @@
 #include "Noise.h"
 // End External Preprocessor Dependancies
 
-// Start P372.DLL typedef ******************************************************
-#ifdef _WIN32
-	#include <Windows.h>
-	// P372Version() & P372CompileTime()
-	typedef const char * (__cdecl * cP372Info)();
-	// AllocateNoiseMemory() & FreeNoiseMemory()
-	typedef int(__cdecl * iNoiseMemory)(struct NoiseParams * noiseP);
-	// Noise()
-	typedef int(__cdecl * iNoise)(struct NoiseParams * noiseP, int hour, double lng, double lat, double frequency);
-	// ReadFamDud()
-	typedef int(__cdecl * iReadFamDud)(struct NoiseParams * noiseP, const char *DataFilePath, int month);
-	// InitializeNoise()
-	typedef void(__cdecl * vInitializeNoise)(struct NoiseParams * noiseP);
-#endif
-// End P372.DLL typedef ********************************************************
-
-#ifdef _WIN32
-	HINSTANCE hLib;
-	cP372Info dllP372Version;
-	cP372Info dllP372CompileTime;
-	iNoise dllNoise;
-	iNoiseMemory dllAllocateNoiseMemory;
-	iNoiseMemory dllFreeNoiseMemory;
-	iReadFamDud dllReadFamDud;
-	vInitializeNoise dllInitializeNoise;
-#elif __linux__ || __APPLE__
-#include <dlfcn.h>
-	void * hLib;
-	char * (*dllP372Version)();
-	char * (*dllP372CompileTime)();
-	int(*dllNoise)(struct NoiseParams *, int, double, double, double);
-	int(*dllAllocateNoiseMemory)(struct NoiseParams *);
-	int(*dllFreeNoiseMemory)(struct NoiseParams *);
-	int(*dllReadFamDud)(struct NoiseParams *, const char *, int);
-	void(*dllInitializeNoise)(struct NoiseParams *);
-#endif
-// End operating system preprocessor *******************************************
-
-// End P372.DLL typedef ******************************************************
-
 // P533 *******************************************************************************************
 
 // Version number

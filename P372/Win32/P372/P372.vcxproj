@@ -80,6 +80,7 @@ copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\p372\bin\$(TargetFile
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\P372\InitializeNoise.c" />
+    <ClCompile Include="..\..\Src\P372\MakeNoise.c" />
     <ClCompile Include="..\..\Src\P372\Noise.c" />
     <ClCompile Include="..\..\Src\P372\NoiseMemory.c" />
   </ItemGroup>
