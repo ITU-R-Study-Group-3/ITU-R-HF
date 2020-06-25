@@ -74,7 +74,7 @@ int AllocateNoiseMemory(struct NoiseParams *noiseP) {
   else
 	  return RTN_ERRALLOCATEFAM;
 
-	if(fakp != NULL)
+  if(fakp != NULL)
     noiseP->fakp = fakp;
   else
 	  return RTN_ERRALLOCATEFAKP;

@@ -14,46 +14,6 @@
 #include "Noise.h"
 // End External Preprocessor Dependancies
 
-// Start P372.DLL typedef ******************************************************
-#ifdef _WIN32
-	#include <Windows.h>
-	// P372Version() & P372CompileTime()
-	typedef const char * (__cdecl * cP372Info)();
-	// AllocateNoiseMemory() & FreeNoiseMemory()
-	typedef int(__cdecl * iNoiseMemory)(struct NoiseParams * noiseP);
-	// Noise()
-	typedef int(__cdecl * iNoise)(struct NoiseParams * noiseP, int hour, double lng, double lat, double frequency);
-	// ReadFamDud()
-	typedef int(__cdecl * iReadFamDud)(struct NoiseParams * noiseP, const char *DataFilePath, int month);
-	// InitializeNoise()
-	typedef void(__cdecl * vInitializeNoise)(struct NoiseParams * noiseP);
-#endif
-// End P372.DLL typedef ********************************************************
-
-#ifdef _WIN32
-	HINSTANCE hLib;
-	cP372Info dllP372Version;
-	cP372Info dllP372CompileTime;
-	iNoise dllNoise;
-	iNoiseMemory dllAllocateNoiseMemory;
-	iNoiseMemory dllFreeNoiseMemory;
-	iReadFamDud dllReadFamDud;
-	vInitializeNoise dllInitializeNoise;
-#elif __linux__ || __APPLE__
-#include <dlfcn.h>
-	void * hLib;
-	char * (*dllP372Version)();
-	char * (*dllP372CompileTime)();
-	int(*dllNoise)(struct NoiseParams *, int, double, double, double);
-	int(*dllAllocateNoiseMemory)(struct NoiseParams *);
-	int(*dllFreeNoiseMemory)(struct NoiseParams *);
-	int(*dllReadFamDud)(struct NoiseParams *, const char *, int);
-	void(*dllInitializeNoise)(struct NoiseParams *);
-#endif
-// End operating system preprocessor *******************************************
-
-// End P372.DLL typedef ******************************************************
-
 // P533 *******************************************************************************************
 
 // Version number
@@ -118,7 +78,6 @@
 #define RTN_ERRALLOCATEFOF2VAR			133 // ERROR: Allocating Memory for foF2 Variability
 #define RTN_ERRALLOCATETX				134 // ERROR: Allocating Memory for Tx Antenna Pattern
 #define RTN_ERRALLOCATERX				135 // ERROR: Allocating Memory for Rx Antenna Pattern
-#define RTN_ERRALLOCATENOISE            136 // ERROR: Allocating Memory for Noise Structure
 #define RTN_ERRALLOCATEANT			    137 // ERROR: Allocating Memory for Antenna Pattern
 
 // Return ERROR from ReadAntennaPatterns() ReadType13()
@@ -131,8 +90,6 @@
 // Return ERROR from ReadIonParametersTxt()
 #define RTN_ERRREADIONPARAMETERS		141 // ERROR: Can Not Open Ionospheric Parameters File
 
-// Return ERROR from P533()
-#define RTN_ERRP372DLL					142 // ERROR: Can Not Open P372.DLL
 
 // Return OKAY > 10 and <= 20
 #define RTN_ALLOCATEP533OK				11 // AllocatePathMemory()

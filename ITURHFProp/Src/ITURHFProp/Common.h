@@ -32,3 +32,9 @@
 #define DBL_MIN         2.2250738585072014E-308
 #define DBL_EPSILON     2.2204460492503131E-016
 
+//////////////////////////////////////////////////////////////////////////////
+//      Copyright  International Telecommunication Union (ITU) 2018         //
+//                     All rights reserved.                                 //
+// No part of this publication may be reproduced, by any means whatsoever,  //
+//              without written permission of ITU                           //
+//////////////////////////////////////////////////////////////////////////////

@@ -13,7 +13,9 @@ void AtmosphericNoise(struct NoiseParams *noiseP, int hour, double lng,
 											double lat, double frequency);
 void GalacticNoise(struct NoiseParams *noiseP, double frequency);
 void ManMadeNoise(struct NoiseParams *noiseP, double frequency);
-void GetFamParameters(struct NoiseParams *noiseP, struct FamStats *FS,											double lng, double lat, double frequency);
+void GetFamParameters(struct NoiseParams *noiseP, struct FamStats *FS,		
+	double lng, double lat, double frequency);
+void PrintFam(struct NoiseParams* noiseP, int month, int hour, double lng, double lat, double freq);
 // End Local prototypes
 
 int Noise(struct NoiseParams *noiseP, int hour, double lng, double lat, double frequency) {
@@ -115,7 +117,7 @@ int Noise(struct NoiseParams *noiseP, int hour, double lng, double lat, double f
 
 		noiseP->FamT = -noiseP->ManMadeNoise;
 
-		return RTN_NOISEMANMADEOK;
+		return RTN_NOISEOK;
 
 	};
 	// *********************************************************************** //
@@ -372,7 +374,7 @@ void GetFamParameters(struct NoiseParams *noiseP, struct FamStats *FS,
 		ZZ[j] = 0.0; // Initialize ZZ[j]
 		R = 0.0;
 		for(k=0; k<ln; k++) {
-			R = R + sin((k+1)*q)*noiseP->fakp[FS->tmblk][k][j];
+			R = R + sin((k+1.0)*q)*noiseP->fakp[FS->tmblk][k][j];
 		};
 		ZZ[j] = R + noiseP->fakp[FS->tmblk][15][j];
 	};
@@ -383,7 +385,7 @@ void GetFamParameters(struct NoiseParams *noiseP, struct FamStats *FS,
 
 	R = 0.0;
 	for(j=0; j<lm; j++) {
-		R = R + sin((j+1)*q)*ZZ[j];
+		R = R + sin((j+1.0)*q)*ZZ[j];
 	};
 	// Final Fourier series calculation (Note the linear nomalization using fakabp values)
 	Fam1MHz = R + noiseP->fakabp[FS->tmblk][0] + noiseP->fakabp[FS->tmblk][1]*q;
@@ -804,14 +806,14 @@ char const * P372Version() {
 
 	P372Version() - Returns the version of the P533 DLL
 
-	INPUT
-	None
+		INPUT
+			None
 
-	OUTPUT
-	returns a pointer to the version character string
+		OUTPUT
+			returns a pointer to the version character string
 
-	SUBROUTINES
-	None
+		SUBROUTINES
+			None
 
 	*/
 
@@ -825,18 +827,127 @@ char const * P372CompileTime() {
 
 	P533CompileTime() - Returns the compile time of the P533 DLL
 
-	INPUT
-	None
+		INPUT
+			None
 
-	OUTPUT
-	returns a pointer to the version character string
+		OUTPUT
+			returns a pointer to the version character string
 
-	SUBROUTINES
-	None
+		SUBROUTINES
+			None
 
 	*/
 
 	return P372CT;
+
+};
+
+void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double lng,
+	double lat, double frequency) {
+
+	/*
+
+	  AtmosphericNoise_LT() This is a utility subroutine is used to generate the atmospheric noise figures in Rec P.372-14
+	        This is a modification of AtmosphericNoise() above that uses the local time as the input and outputs
+			the full statistics of atmospheric noise.  
+
+			INPUT
+				struct NoiseParams *noiseP This is used solely to pass in the arrays for the atmospheric noise 
+				struct FamStats *FamS
+				int lrxmt	 Local time
+				double lng   (rad)
+				double lat   (rad)
+				double frequency (MHz)
+
+			OUTPUT
+				FamS->Fa  Atmospheric noise
+				FamS->Du  Upper decile deviation of atmospheric noise
+				FamS->Dl  Lower decile deviation of atmospheric noise
+				FamS->SigmaFam  Standard deviation of values, Fam
+				FamS->SigmaDu   Standard deviations of values of Du
+				FamS->SigmaDl   Standard deviations of values of Dl
+
+			SUBROUTINES
+				GetFamParameters()
+
+		This routine is based on portions of the REC533() routines: GENFAM(), GENOIS1(), ANOIS1() and NOISY().
+
+	 */
+
+	double slp; // Interpolation factor
+	double fa; // Linear noise power above kTB in 1 MHz
+
+	struct FamStats FS_now; //
+	struct FamStats FS_adj; //
+
+	// The atmospheric noise is determined by i) finding the atmospheric noise at the current time
+	// block at the reciever local mean time, ii) finding the noise for the "adjacent" time block and
+	// then iii) iterating between the two noise values.
+
+	// Determine the timeblock, tmblk, and "adjacent" time block, FS_adj.tmblk
+	if (lrxmt < 20.0) {
+		FS_now.tmblk = (int)(lrxmt / 4.0 + 1.0); // Set the timeblock to the correct 4 hour block
+	}
+	else { // lrxmt >= 20.0
+		FS_now.tmblk = 6;
+	};
+
+	// Determine "adjacent" time block, FS_adj.tmblk
+	FS_adj.tmblk = (4 * FS_now.tmblk - 2) / 2;
+
+	if (lrxmt < FS_adj.tmblk) {
+		FS_adj.tmblk = FS_now.tmblk - 1;
+	}
+	else if (lrxmt == FS_adj.tmblk) {
+		FS_adj.tmblk = FS_now.tmblk;
+	}
+	else if (lrxmt > FS_adj.tmblk) {
+		FS_adj.tmblk = FS_now.tmblk + 1;
+	};
+
+	if (FS_adj.tmblk <= 0) {
+		FS_adj.tmblk = 6; // Error condition
+	}
+	else if (FS_adj.tmblk > 6) {
+		FS_adj.tmblk = 1; // If FS_adj.tmblk is greater than 6 roll it back to 1
+	};
+
+	// The time block calculation above is from REC533 ANOIS1.FOR where
+	//		KJ = FS_now.tmblk
+	//		JK = FS_adj.tmblk
+	// Since the time blocks will be used as indexes into C arrays they must be decremented
+	FS_adj.tmblk = FS_adj.tmblk - 1;
+	FS_now.tmblk = FS_now.tmblk - 1;
+
+	GetFamParameters(noiseP, &FS_now, lng, lat, frequency);
+	GetFamParameters(noiseP, &FS_adj, lng, lat, frequency);
+
+	// Interpolate is based on the local reciever mean time, lrxmt, and the 4 hour timeblock
+	slp = fmod(lrxmt, 4.0) / 4.0;
+
+	// Load the  return structure 
+	fa = pow(10.0, (FS_now.FA / 10.0)) + (pow(10.0, (FS_adj.FA / 10.0)) - pow(10.0, (FS_now.FA / 10.0))) * slp;
+	FamS->FA = 10.0 * log10(fa);
+	
+	fa = pow(10.0, (FS_now.Du / 10.0)) + (pow(10.0, (FS_adj.Du / 10.0)) - pow(10.0, (FS_now.Du / 10.0))) * slp;
+	FamS->Du = 10.0 * log10(fa);
+
+	fa = pow(10.0, (FS_now.Dl / 10.0)) + (pow(10.0, (FS_adj.Dl / 10.0)) - pow(10.0, (FS_now.Dl / 10.0))) * slp;
+	FamS->Dl = 10.0 * log10(fa);
+
+	fa = pow(10.0, (FS_now.SigmaDl / 10.0)) + (pow(10.0, (FS_adj.SigmaDl / 10.0)) - pow(10.0, (FS_now.SigmaDl / 10.0))) * slp;
+	FamS->SigmaDl = 10.0 * log10(fa);
+
+	fa = pow(10.0, (FS_now.SigmaDu / 10.0)) + (pow(10.0, (FS_adj.SigmaDu / 10.0)) - pow(10.0, (FS_now.SigmaDu / 10.0))) * slp;
+	FamS->SigmaDu = 10.0 * log10(fa);
+
+	fa = pow(10.0, (FS_now.SigmaFam / 10.0)) + (pow(10.0, (FS_adj.SigmaFam / 10.0)) - pow(10.0, (FS_now.SigmaFam / 10.0))) * slp;
+	FamS->SigmaFam = 10.0 * log10(fa);
+
+	// The time block for in the FamS structure is irrelevant to return so set it to 99 as an indicator
+	FamS->tmblk = 99;
+
+	return;
 
 };
 
