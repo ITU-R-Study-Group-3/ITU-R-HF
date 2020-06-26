@@ -3,6 +3,10 @@
 #include <string.h>
 #include <time.h>
 #include <errno.h>
+#include <math.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+//#include <unistd.h>
 
 // Local includes
 #include "Common.h"
@@ -243,10 +247,22 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 	/*
 		RunMonths - Outputs the files necessary to parse to create Recommendation 
-					P.372-14 Figures of atmospheric noise
+					P.372-14 Figures of atmospheric noise.
+
+			INPUT
+				char * datafilepath Pointer to the CCIR data files 
+
+			OUTPUT
+				12 P.372-14 Atmospheric Noice a) Figure Data Files
+				12 P.372-14 Atmospheric Noice b) Figure Data Files
+				12 P.372-14 Atmospheric Noice c) Figure Data Files
+
+		CAUTION: This routine relies on the code in Noise.c and specifically the 
+		subroutine AtmosphericNoise(). Any modifications to AtmosphericNoise()
+		need to be accounted for here and in utility program AtmosphericNoise_LT()
+		which was a direct copy of AtmosphericNoice() as of June 2020 Ver 14.1.		
 	
 	*/
-
 
 	// Load the Noise routines in P372.dll ******************************
 #ifdef _WIN32
@@ -288,6 +304,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 	FILE* fp;
 
+	int i;
 	int retval;
 	int fn = 41; // Number of elements in the f_log array below
 
@@ -301,10 +318,18 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	double rlat, rlng;
 
 	// Frequency array that will be used for b) and c) Figure data generation 
-	double f_log[41] = { 0.01, 0.015, 0.02, 0.025, 0.03, 0.35, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09,
-		0.1, 0.15, 0.02, 0.25, 0.3, 0.35, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9,
+	double f_log[41] = { 0.01, 0.015, 0.02, 0.025, 0.03, 0.035, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09,
+		0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9,
 		1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0,
 		10.0, 15.0, 20.0, 25.0, 30.0};
+
+	// Variables specific to the code fragment from AtmosphericNoise() 
+	// for the b) figure data generation
+	double pz, px, cz;
+	double u[2];
+	double Fam[11]; // Output array for b) figure data generation
+	double Fam1MHz;
+	// End Variables for code fragment from AtmosphericNoise() 
 
 	struct tm* ntime;
 	time_t tm;
@@ -312,6 +337,38 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	char ntimestr[64];
 
 	char outputfilename[256];
+	char acsvfilepath[256];
+	char bcsvfilepath[256];
+	char ccsvfilepath[256];
+	char command[256];
+
+	struct stat st = { 0 };
+	
+	// Open output file directories if necessary
+	// The file structure for output files is static
+	sprintf(acsvfilepath, "%s", ".\\P372_figures\\a\\csv\\");
+	sprintf(bcsvfilepath, "%s", ".\\P372_figures\\b\\csv\\");
+	sprintf(ccsvfilepath, "%s", ".\\P372_figures\\c\\csv\\");
+
+	// Check to see if the A csv directory exists
+	if (stat(acsvfilepath, &st) == -1) {
+		sprintf(command, "mkdir %s", acsvfilepath);
+		system(command);
+	};
+
+	// Check to see if the B csv directory exists
+	if (stat(bcsvfilepath, &st) == -1) {
+		sprintf(command, "mkdir %s", bcsvfilepath);
+		system(command);
+	};
+
+	// Check to see if the C csv directory exists
+	if (stat(ccsvfilepath, &st) == -1) {
+		sprintf(command, "mkdir %s", ccsvfilepath);
+		system(command);
+	};
+
+	// End opening output file directories
 
 	// Allocate the memory in the noise structure
 	retval = dllAllocateNoiseMemory(&noiseP);
@@ -357,7 +414,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 						Generate a) Figure Data
        Expected values of atmospheric noise, Fam (dB above kT_0B at 1MHz)
     **********************************************************************/
-
+	
 	for (int m = 0; m < 12; m+=3) {
 
 		// Read in the atmospheric coefficients for the particular month.
@@ -367,9 +424,9 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 			return retval;
 		};
 			
-		for (int h = 1; h <= 23; h+=4) { // hour local time
+		for (int h = 0; h <= 23; h+=4) { // hour local time
 	
-			sprintf(outputfilename, ".\\A_%0dm%0dh-%s.csv", m+1, h, ntimestr);
+			sprintf(outputfilename, "%sa_%0dm%0dh.csv", acsvfilepath, m+1, h);
 			fp = fopen(outputfilename, "w");
 			if (fp == NULL) {
 				printf("ITURNoise: Error: Can't open output file %s (%s)\n", outputfilename, strerror(errno));
@@ -381,7 +438,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 			printf("Writing file %s\n", outputfilename);
 
 			// Write the column headings to the file
-			fprintf(fp, "month,hour,freq,latitude,longitude,FaA,DuA,DlA,sigmaFaA,sigmaDuA,sigmaDlA\n");
+			fprintf(fp, "month,hour,freq,latitude,longitude,FaA\n");
 			
 			for (int ilat = -90; ilat <= 90; ilat++) { //
 				rlat = ilat * D2R;
@@ -393,7 +450,8 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 					dllAtmosphericNoise_LT(&noiseP, &FamS, h, rlng, rlat, freq);
 										
 					// Write the data out to the file
-					WriteCSVLine(fp, m, h, freq, rlat, rlng, &FamS);
+					fprintf(fp, "%d, %d, %5.4f, %5.4f, %5.4f, %5.4f\n", 
+						m + 1, h, freq, rlat * R2D, rlng * R2D, FamS.FA);
 
 				}; //  End Longitude loop
 			}; // End Latitude loop
@@ -402,26 +460,22 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 		}; // End hour for
 	}; // End month for
-
+	
 	/********************* End Generate a) Figure Data *******************/
-
 	
 	// User feedback
 	printf("ITURNoise: Data for a) Figures Complete\n");
-	printf("\nBegin Data Generation for b) and c) Figures\n");
+	printf("\nBegin Data Generation for b) Figures\n");
 
-	/*********************************************************************
-						   Generate b) Figure Data
-		           Variation of radio noise with Frequency
-				                     and
-						   Generate c) Figure Data
-					Data Noise Variability and Character
-	**********************************************************************/
-
-	// We need one location for this calculation
+	// For the b) and c) plots a location is required
 	//             Boulder, Colorado
 	rlat = 40.015744 * D2R;
 	rlng = -105.27932 * D2R;
+
+	/*********************************************************************
+						   Generate b) Figure Data
+				   Variation of radio noise with Frequency
+	**********************************************************************/
 
 	for (int m = 0; m < 12; m += 3) {
 
@@ -432,9 +486,106 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 			return retval;
 		};
 
-		for (int h = 1; h <= 23; h += 4) { // hour local time
+		for (int h = 0; h <= 23; h += 4) { // hour local time
 
-			sprintf(outputfilename, ".\\BnC_%0dm%0dh-%s.csv", m + 1, h, ntimestr);
+			sprintf(outputfilename, "%sa_%0dm%0dh.csv", bcsvfilepath, m + 1, h);
+			fp = fopen(outputfilename, "w");
+			if (fp == NULL) {
+				printf("ITURNoise: Error: Can't open output file %s (%s)\n", outputfilename, strerror(errno));
+				return RTN_ERRCANTOPENFILE;
+			};
+
+			// The file is open proceed
+			// User feedback
+			printf("Writing file %s\n", outputfilename);
+
+			// Write the column headings to the file
+			fprintf(fp, "month,hour,freq,latitude,longitude,Fam5,Fam10,Fam20,Fam30,Fam40,Fam50,Fam60,Fam70,Fam80,Fam90,Fam100\n");
+
+			for (int f = 0; f < fn; f++) { //
+				for (int F1 = 0; F1 <= 10; F1++) {
+
+					// Fam1MHz range 10 to 100 dB by 10 dB except the first
+					if (F1 == 0) {
+						Fam1MHz = 5.0;
+					}
+					else {
+						Fam1MHz = F1 * 10.0;
+					};
+
+					// Set the time block to the current local time, the h loop
+					FamS.tmblk = (int)(h / 4.0); // Set the timeblock to the correct 4 hour block
+
+					//*** Code from AtmosphericNoise() **********************************
+
+					// Determine if the reciever latitude is positive or negative
+					if (rlat < 0) {
+						i = FamS.tmblk + 6; // TIMEBLOCKINDX=TIMEBLOCKINDX+6
+					}
+					else {
+						i = FamS.tmblk; // TIMEBLOCKINDX=TIMEBLOCKINDX
+					};
+
+					// for K = 0 then U1 = -0.75
+					// for K = 1 then U1 = U
+					u[0] = -0.75;
+					u[1] = (8.0 * pow(2.0, log10(f_log[f])) - 11.0) / 4.0; // U = (8. * 2.**X - 11.)/4. where X = ALOG10(FREQ)
+					// Please See Page 5
+					// NBS Tech Note 318 Lucas and Harper
+					// "A Numerical Representation of CCIR Report 322 High Frequeny (3-30 Mc/s) Atmospheric Radio Noise Data"
+					for (int k = 0; k < 2; k++) {
+						pz = u[k] * noiseP.fam[i][0] + noiseP.fam[i][1]; // PZ = U1*FAM(1,TIMEBLOCKINDX) + FAM(2,TIMEBLOCKINDX)
+						px = u[k] * noiseP.fam[i][7] + noiseP.fam[i][8]; // PX = U1*FAM(8,TIMEBLOCKINDX) + FAM(9,TIMEBLOCKINDX)
+
+						for (int j = 2; j < 7; j++) {
+							pz = u[k] * pz + noiseP.fam[i][j];			// PZ = U1*PZ + FAM(I,TIMEBLOCKINDX)
+							px = u[k] * px + noiseP.fam[i][j + 7];		// PX = U1*PX + FAM(I+7,TIMEBLOCKINDX)
+						}; // j=2,6
+
+						if (k == 0) {
+							cz = Fam1MHz * (2.0 - pz) - px;
+							// U1 = U
+						};
+					}; // k=0,1
+
+					// Frequency variation of atmospheric noise
+					Fam[F1] = cz * pz + px;
+					//*** Code from AtmosphericNoise() **********************************
+
+				}; // End Fam1MHz loop
+
+				// Print out all Fam1MHz data for this frequency
+				fprintf(fp, "%d, %d, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f\n", 
+					m+1,h,f_log[f],rlat*R2D,rlng*R2D,Fam[0],Fam[1],Fam[2],Fam[3],Fam[4],Fam[5],Fam[6],Fam[7],Fam[8],Fam[9],Fam[10]);
+			
+			}; // End f loop
+		}; // End h loop
+
+		fclose(fp);
+
+	}; // End m loop
+
+	// User feedback
+	printf("ITURNoise: Data for b) Figures Complete\n");
+	printf("\nBegin Data Generation for c) Figures\n");
+
+	/*********************************************************************
+						   Generate c) Figure Data
+					Data Noise Variability and Character
+	**********************************************************************/
+	
+	for (int m = 0; m < 12; m += 3) {
+
+		// Read in the atmospheric coefficients for the particular month.
+		// The subroutine dllReadFamDud() is from P372.dll
+		retval = dllReadFamDud(&noiseP, datafilepath, m);
+		if (retval != RTN_READFAMDUDOK) {
+			return retval;
+		};
+
+		for (int h = 0; h <= 23; h += 4) { // hour local time
+
+			sprintf(outputfilename, "%sc_%0dm%0dh.csv", ccsvfilepath, m + 1, h);
 			fp = fopen(outputfilename, "w");
 			if (fp == NULL) {
 				printf("ITURNoise: Error: Can't open output file %s (%s)\n", outputfilename, strerror(errno));
@@ -455,7 +606,8 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 				dllAtmosphericNoise_LT(&noiseP, &FamS, h, rlng, rlat, f_log[f]);
 
 				// Write the data out to the file
-				WriteCSVLine(fp, m, h, f_log[f], rlat, rlng, &FamS);
+				fprintf(fp, "%d, %d, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f\n", 
+					m+1, h, f_log[f], rlat* R2D, rlng* R2D, FamS.FA, FamS.Du, FamS.Dl, FamS.SigmaFam, FamS.SigmaDu, FamS.SigmaDu);
 
 			}; // End frequency loop
 
@@ -463,11 +615,11 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 		}; // End hour for
 	}; // End month for
-
-	/****************** End Generate b) and c) Figure Data ***************/
+	
+	/****************** End Generate c) Figure Data ***************/
 
 	// User feedback
-	printf("ITURNoise: Data for b) and c) Figures Complete\n");
+	printf("ITURNoise: Data for c) Figures Complete\n");
 	printf("\n*** End ITURNoise Data Generation ***\n");
 
 	FreeLibrary(hLib);
@@ -593,25 +745,3 @@ void PrintCSVLine(int month, int hour, double lat, double lng, double* out) {
 
 };
 
-void WriteCSVLine(FILE* fp, int month, int hour, double freq, double lat, double lng, struct FamStats *FamS) {
-	/*
-	PrintUsage - Prints a CSV line to a file
-
-		INPUT
-			FILE *fp		Pointer to a file
-			int month		Month index (0 to 11)
-			int hour		Hour inde (0 to 23)
-			double lat		Latitude (radians)
-			double lng		Longitude (radians)
-			double * out    Pointer to a 12 element array that contains the P372 calculation
-
-		OUTPUT
-			none
-
-	*/
-
-	fprintf(fp, "%d, %d, %3.2f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f\n", month + 1, hour + 1, freq, lat * R2D, lng * R2D, FamS->FA, FamS->Du, FamS->Dl, FamS->SigmaFam, FamS->SigmaDu, FamS->SigmaDu);
-
-	return;
-
-};

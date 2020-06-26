@@ -15,7 +15,6 @@ void GalacticNoise(struct NoiseParams *noiseP, double frequency);
 void ManMadeNoise(struct NoiseParams *noiseP, double frequency);
 void GetFamParameters(struct NoiseParams *noiseP, struct FamStats *FS,		
 	double lng, double lat, double frequency);
-void PrintFam(struct NoiseParams* noiseP, int month, int hour, double lng, double lat, double freq);
 // End Local prototypes
 
 int Noise(struct NoiseParams *noiseP, int hour, double lng, double lat, double frequency) {

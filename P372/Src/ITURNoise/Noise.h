@@ -89,23 +89,6 @@ struct NoiseParams {
   double ***dud;
 };
 
-// Hybid structure that is part FamStats and NoiseParams for the 
-// program AtmosphericNoise_LT()
-struct FamStats_LT {
-	double FA;			// Atmospheric noise in dB above kT0b at 1 MHz
-	double SigmaFam;	// Standard deviation of values, Fam
-	double Du;			// Ratio of upper decile to median value, Fam
-	double SigmaDu;		// Standard deviations of values of Du
-	double Dl;			// Ratio of median value, Fam, to lower decile
-	double SigmaDl;		// Standard deviation of values of Dl
-
-	// Atmospheric data arrays
-	double*** fakp;
-	double** fakabp;
-	double** fam;
-	double*** dud;
-};
-
 // End Structures
 
 // Prototypes
@@ -116,7 +99,7 @@ DLLEXPORT int ReadFamDud(struct NoiseParams *noiseP, const char *DataFilePath, i
 DLLEXPORT void InitializeNoise(struct NoiseParams *noiseP);
 DLLEXPORT char const * P372CompileTime();
 DLLEXPORT char const * P372Version();
-DLLEXPORT void AtmosphericNoise_LT(struct FamStats_LT* FamS, int lrxmt, double lng, double lat, double frequency);
+DLLEXPORT void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double lng, double lat, double frequency);
 DLLEXPORT int __stdcall MakeNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
 // End Prototypes
 

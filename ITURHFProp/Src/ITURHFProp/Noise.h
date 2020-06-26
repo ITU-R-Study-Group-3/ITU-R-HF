@@ -87,7 +87,6 @@ struct NoiseParams {
   double **fakabp;
   double **fam;
   double ***dud;
-
 };
 
 // End Structures
