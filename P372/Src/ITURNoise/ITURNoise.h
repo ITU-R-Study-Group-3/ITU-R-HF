@@ -7,6 +7,7 @@
 #define RTN_ERRDATAFILEPATH				104 // ERROR: Invalid Input Data File Path
 #define RTN_ERRCOMMANDLINEARGS			105 // ERROR: Insufficient Number of Command Line Arguments
 #define RTN_ERRCANTOPENFILE				106 // ERROR: Can't open output file
+#define RTN_ERRBADDATAFILEPATH          107 // ERROR: Data file path does not exist
 
 // Successfull return codes 
 #define RTN_ITURNOISEOK					 90 // Normal successful exit
@@ -14,7 +15,6 @@
 // End ITURNoise return codes
 
 // ITURNoise Print Flag 
-#define PRINTBLOCK	100 // Print everything
 #define PRINTCSV	101 // Print just csv output line for single run
 #define PRINTCSVALL 102 // Print CSV header and line
 

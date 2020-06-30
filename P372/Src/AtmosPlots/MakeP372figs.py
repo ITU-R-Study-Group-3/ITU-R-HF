@@ -103,11 +103,6 @@ def Makeafigs(cdafile):
     
     zz = np.asarray(z)
     
-    # Find the extrema of this data. 
-    # These valuses will be used to constrain the b) Figure 
-    minFam1MHz = min(z)
-    maxFam1MHz = max(z)
-    
     '''
         The data in the files scan from bottom-to-top (-90 to 90 degrees latitude)
         then left-to-right (-180 to 180 degrees longitude)
@@ -174,9 +169,9 @@ def Makeafigs(cdafile):
     fig.clear()
     plt.close(fig)    
 
-    return minFam1MHz, maxFam1MHz
+    return
 
-def Makebfigs(cdbfile, minFam1MHz, maxFam1MHz):
+def Makebfigs(cdbfile):
     
     # User Feedback
     print('MakeP372Figs: Creating b figure for %s' % cdbfile)
@@ -205,25 +200,17 @@ def Makebfigs(cdbfile, minFam1MHz, maxFam1MHz):
     z.append(dfcd['Fam100'].tolist())
     
     x = dfcd['freq'].tolist()
-    
-    # Determine the relevant indecies for the Fam!MHz data plotted in a) Figure
-    if(minFam1MHz > 0 and minFam1MHz < 10):
-        loFam1MHz = 0
-    else:
-        loFam1MHz = int(((ceil(minFam1MHz)-ceil(minFam1MHz)%10)+10)/10)-1
-    hiFam1MHz = int(((floor(maxFam1MHz)-floor(maxFam1MHz)%10)+10)/10)
-    if(hiFam1MHz > 11):
-        hiFam1MHz = 11
         
     fig = plt.figure()
     
     ax = plt.gca()
     
     ax.set_prop_cycle
-    
-    for pidx in range(loFam1MHz, hiFam1MHz):
-        strlabel = '%2d' % (pidx*10)
-        ax.plot(x, z[pidx],  label=strlabel, lw=0.5)
+
+    # Ignore Fam5    
+    for pidx in range(1, 11):
+            strlabel = '%2d' % (pidx*10)
+            ax.plot(x, z[pidx],  label=strlabel, lw=0.5)
         
     ax.set_xscale('log')
     
@@ -238,7 +225,8 @@ def Makebfigs(cdbfile, minFam1MHz, maxFam1MHz):
     plt.ylim(-20, 180)
     plt.xlim(0.01, 30.0)
       
-    ax.grid(which='both', axis='both')
+    ax.grid(which='major', axis='both', linewidth=0.5)
+    ax.grid(which='minor', axis='both', linewidth=0.1)
     
     ax.set_xticks(bc_xtick)
     ax.set_xticklabels(bc_xlabel)
@@ -315,7 +303,8 @@ def Makecfigs(cdcfile):
     for ymin in ax.yaxis.get_minorticklocs():
       ax.axhline(y=ymin, lw=0.1)
       
-    ax.grid(which='both', axis='both')
+    ax.grid(which='major', axis='both', linewidth=0.5)
+    ax.grid(which='minor', axis='both', linewidth=0.1)
     
     ax.set_xticks(bc_xtick)
     ax.set_xticklabels(bc_xlabel)
@@ -374,23 +363,32 @@ def openoutputdirectories():
     return
 
 def MakeP372figs():
-
+    
+    print("****************************************\n")
+    print("********** BEGIN MakeP732figs **********\n")
+    print("****************************************\n")
+    
     if os.path.isdir(acsvfilepath):
     
         # Create the output directories
         openoutputdirectories()
         # Now make the a figures
+        '''
         afiles = glob.glob(acsvfilepath + '*.csv')
         for file in afiles:
-            minFam1MHz, maxFam1MHz = Makeafigs(file)
-            
+            Makeafigs(file)
+        '''
         bfiles = glob.glob(bcsvfilepath + '*.csv')
         for file in bfiles:
-            Makebfigs(file, minFam1MHz, maxFam1MHz)
+            Makebfigs(file)
            
         cfiles = glob.glob(ccsvfilepath + '*.csv')
         for file in cfiles:
             Makecfigs(file)
+            
+        print("****************************************\n")
+        print("*********** END MakeP732figs ***********\n")
+        print("****************************************\n")
     else:
         print('MakeP372Figs: Directory %s not accessible' % acsvfilepath)
 

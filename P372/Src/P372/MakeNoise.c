@@ -8,10 +8,10 @@
 #include "Noise.h"
 
 // Local Prototypes
-void PrintFam(struct NoiseParams* noiseP, int month, int hour, double lng, double lat, double freq);
+void PrintFam(FILE* fp, struct NoiseParams* noiseP, int month, int hour, double lng, double lat, double freq, char* ntimestr, const char* P372ver, const char* P372compt);
 // End Local Prototypes
 
-int __stdcall MakeNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag) {
+int MakeNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag) {
 
 	/*
 
@@ -26,19 +26,22 @@ int __stdcall MakeNoise(int month, int hour, double lat, double lng, double freq
 				double mmnoise
 				char* datafilepath
 				int pntflag
-				
-			OUTPUT
-				double* out           Pointer to an array of 12 doubles 
 
-			
+			OUTPUT
+				double* out           Pointer to an array of 12 doubles
+
+
 	*/
 
 	// End P372.DLL Load ************************************************
+
+	FILE* fp;
 
 	int retval;
 
 	const char* P372ver;
 	const char* P372compt;
+	char outputfile[256];
 
 	struct NoiseParams noiseP;
 
@@ -95,48 +98,58 @@ int __stdcall MakeNoise(int month, int hour, double lat, double lng, double freq
 	*(out + 11) = noiseP.DlT;
 
 	// Check to see if there is a pntflag
-	if ((pntflag != NOPRINT) && (pntflag != PRINTHEADER)) {
-		pntflag = NOPRINT;
+	if ((pntflag != MNNOPRINT) && (pntflag != MNPRINTTOFILE) && (pntflag != MNPRINTTOSTDOUT)) {
+		// The caller wants MakeNoise() to be silent and will presumably 
+		// use the output parameters elsewhere
+		pntflag = MNNOPRINT;
 	};
 
-	if (pntflag == PRINTHEADER) {
-		printf("******************************************************************************\n");
-		printf("\t\tITU-R Study Group 3: Radiowave Propagation\n");
-		printf("******************************************************************************\n");
-		printf("\t\tAnalysis: %s\n", ntimestr);;
-		printf("\t\tP372 Version:      %s\n", P372ver);
-		printf("\t\tP372 Compile Time: %s\n", P372compt);
-		printf("******************************************************************************\n");
-	};
-
-	if (pntflag != NOPRINT) {
-		PrintFam(&noiseP, month, hour, lng, lat, freq);
-		printf("******************************************************************************\n");
+	// Does the caller desirer output?
+	if (pntflag == MNPRINTTOSTDOUT) {
+		PrintFam(stdout, &noiseP, month, hour, lng, lat, freq, ntimestr, P372ver, P372compt);
+	}
+	else if (pntflag == MNPRINTTOFILE) {
+		sprintf(outputfile, ".\\MakeNoiseOut.txt");
+		fp = fopen(outputfile, "w");
+		if (fp == NULL) {
+			printf("ITURNoise: Error: Can't open output file %s (%s)\n", outputfile, strerror(errno));
+			return RTN_ERRMNCANTOPENFILE;
+		};
+		printf("MakeNoise: Writing output file %s\n", outputfile);
+		PrintFam(fp, &noiseP, month, hour, lng, lat, freq, ntimestr, P372ver, P372compt);
 	};
 
 	return RTN_MAKENOISEOK;
 
 };
 
-
-void PrintFam(struct NoiseParams* noiseP, int month, int hour, double lng, double lat, double freq) {
+void PrintFam(FILE *fp, struct NoiseParams* noiseP, int month, int hour, double lng, double lat, double freq, char *ntimestr, const char* P372ver, const char* P372compt) {
 	
 	const char* monthnames[] = { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" };
-	printf("\n");
-	printf("\t%s : %d (UTC) at %f (deg lat) %f (deg long)\n", monthnames[month], hour, lat * R2D, lng * R2D);
-	printf("\t[FaA]  Noise Component (Atmospheric): %f\n", noiseP->FaA);
-	printf("\t[DuA]  Upper Decile    (Atmospheric): %f\n", noiseP->DuA);
-	printf("\t[DlA]  Upper Decile    (Atmospheric): %f\n", noiseP->DlA);
-	printf("\t[FaM]  Noise Component    (Man-Made): %f\n", noiseP->FaM);
-	printf("\t[DuM]  Upper Decile       (Man-Made): %f\n", noiseP->DuM);
-	printf("\t[DlM]  Lower Decile       (Man-Made): %f\n", noiseP->DlM);
-	printf("\t[FaG]  Noise Component    (Galactic): %f\n", noiseP->FaG);
-	printf("\t[DuG]  Upper Decile       (Galactic): %f\n", noiseP->DuG);
-	printf("\t[DlG]  Lower Decile       (Galactic): %f\n", noiseP->DlG);
-	printf("\t[FamT] Noise                 (Total): %f\n", noiseP->FamT);
-	printf("\t[DuT]  Upper Decile          (Total): %f\n", noiseP->DuT);
-	printf("\t[DlT]  Lower Decile          (Total): %f\n", noiseP->DlT);
-	printf("\n");
+
+	fprintf(fp ,"******************************************************************************\n");
+	fprintf(fp ,"\t\tITU-R Study Group 3: Radiowave Propagation\n");
+	fprintf(fp ,"******************************************************************************\n");
+	fprintf(fp ,"\t\tAnalysis: %s\n", ntimestr);;
+	fprintf(fp ,"\t\tP372 Version:      %s\n", P372ver);
+	fprintf(fp ,"\t\tP372 Compile Time: %s\n", P372compt);
+	fprintf(fp ,"******************************************************************************\n");
+	fprintf(fp, "\n");
+	fprintf(fp ,"\t%s : %d (UTC) at %f (deg lat) %f (deg long)\n", monthnames[month], hour, lat * R2D, lng * R2D);
+	fprintf(fp ,"\t[FaA]  Noise Component (Atmospheric): %f\n", noiseP->FaA);
+	fprintf(fp ,"\t[DuA]  Upper Decile    (Atmospheric): %f\n", noiseP->DuA);
+	fprintf(fp ,"\t[DlA]  Upper Decile    (Atmospheric): %f\n", noiseP->DlA);
+	fprintf(fp ,"\t[FaM]  Noise Component    (Man-Made): %f\n", noiseP->FaM);
+	fprintf(fp ,"\t[DuM]  Upper Decile       (Man-Made): %f\n", noiseP->DuM);
+	fprintf(fp ,"\t[DlM]  Lower Decile       (Man-Made): %f\n", noiseP->DlM);
+	fprintf(fp ,"\t[FaG]  Noise Component    (Galactic): %f\n", noiseP->FaG);
+	fprintf(fp ,"\t[DuG]  Upper Decile       (Galactic): %f\n", noiseP->DuG);
+	fprintf(fp ,"\t[DlG]  Lower Decile       (Galactic): %f\n", noiseP->DlG);
+	fprintf(fp ,"\t[FamT] Noise                 (Total): %f\n", noiseP->FamT);
+	fprintf(fp ,"\t[DuT]  Upper Decile          (Total): %f\n", noiseP->DuT);
+	fprintf(fp ,"\t[DlT]  Lower Decile          (Total): %f\n", noiseP->DlT);
+	fprintf(fp ,"\n");
+	fprintf(fp, "******************************************************************************\n");
 
 	return;
 };

@@ -27,65 +27,66 @@ int RunAtmosNoiseMonths(char* datafilepath);
 // End Local Prototypes
 
 int main(int argc, char* argv[]) {
-/*
+	/*
 
-	main() - This program takes command line arguements and runs the P372 calculation engine
-             
-		INPUT
-			Argument 1:  month (1 to 12)\n");
-			Argument 2:  hour (1 to 24 (UTC))\n");
-			Argument 3:  latitude (degrees)\n");
-			Argument 4:  longitude (degrees)\n");
-			Argument 5:  man-made noise 0-5 or value of man-made noise (dB)\n");
-			                 CITY         0.0\n");
-			                 RESIDENTIAL  1.0\n");
-			                 RURAL		2.0\n");
-			                 QUIETRURAL	3.0\n");
-			                 NOISY		4.0\n");
-			                 QUIET		5.0\n");
-			Argument 6:  data file path in double quotes without trailing back slash\n");
-			Argument 7:  print flag 0-3\n");
-			                 PRINTHEADER	1 Prints the full header\n");
-			                 PRINTCSV		3 Prints out simple csv\n");
-			                 PRINTALL		2 Print out header with the simple csv\n");
-			                 NOPRINT		0 Do not print\n");
-		OUTPUT
-			The output is printed to stdout depending on the print flag
+		main() - This program takes command line arguements and runs the P372 calculation engine
 
-		Example: ITURNoise 1 14 1.0 40.0 165.0 0 \"G:\\User\\Data\" \n");
-		                   Calculation made for January 14th hour (UTC)\n");
-		                   at 40 degrees North and 165 degrees East\n");
+			INPUT
+				Argument 1:  month (1 to 12)\n");
+				Argument 2:  hour (1 to 24 (UTC))\n");
+				Argument 3:  frequency (0.01 to 30 MHz)
+				Argument 4:  latitude (degrees)\n");
+				Argument 5:  longitude (degrees)\n");
+				Argument 6:  man-made noise 0-5 or value of man-made noise (dB)\n");
+								 CITY         0.0\n");
+								 RESIDENTIAL  1.0\n");
+								 RURAL		2.0\n");
+								 QUIETRURAL	3.0\n");
+								 NOISY		4.0\n");
+								 QUIET		5.0\n");
+				Argument 7:  data file path in double quotes without trailing back slash\n");
+				Argument 8:  print flag 0-3\n");
+								 PRINTHEADER	1 Prints the full header\n");
+								 PRINTCSV		3 Prints out simple csv\n");
+								 PRINTALL		2 Print out header with the simple csv\n");
+								 NOPRINT		0 Do not print\n");
+			OUTPUT
+				The output is printed to stdout depending on the print flag
 
-	    ******************************************************************************
-				ITU-R Study Group 3: Radiowave Propagation
-		******************************************************************************
-						Analysis: 19/6/20 - 13:34:31
-						P372 Version:      14.1
-						P372 Compile Time: Fri Jun 19 10:57:00 2020
-		******************************************************************************
+			Example: ITURNoise 1 14 1.0 40.0 165.0 0 \"G:\\User\\Data\" \n");
+							   Calculation made for January 14th hour (UTC)\n");
+							   at 40 degrees North and 165 degrees East\n");
 
-				JAN : 13 (UTC) at 40.000000 (deg lat) 165.000000 (deg long)
-				[FaA]  Noise Component (Atmospheric): 60.732650
-				[DuA]  Upper Decile    (Atmospheric): 10.600910
-				[DlA]  Upper Decile    (Atmospheric): 8.277667
-				[FaM]  Noise Component    (Man-Made): 76.800000
-				[DuM]  Upper Decile       (Man-Made): 11.000000
-				[DlM]  Lower Decile       (Man-Made): 6.700000
-				[FaG]  Noise Component    (Galactic): 52.000000
-				[DuG]  Upper Decile       (Galactic): 2.000000
-				[DlG]  Lower Decile       (Galactic): 2.000000
-				[FamT] Noise                 (Total): 76.986526
-				[DuT]  Upper Decile          (Total): 10.940193
-				[DlT]  Lower Decile          (Total): 6.573930
+			******************************************************************************
+					ITU-R Study Group 3: Radiowave Propagation
+			******************************************************************************
+							Analysis: 19/6/20 - 13:34:31
+							P372 Version:      14.1
+							P372 Compile Time: Fri Jun 19 10:57:00 2020
+			******************************************************************************
 
-		******************************************************************************
+					JAN : 13 (UTC) at 40.000000 (deg lat) 165.000000 (deg long)
+					[FaA]  Noise Component (Atmospheric): 60.732650
+					[DuA]  Upper Decile    (Atmospheric): 10.600910
+					[DlA]  Upper Decile    (Atmospheric): 8.277667
+					[FaM]  Noise Component    (Man-Made): 76.800000
+					[DuM]  Upper Decile       (Man-Made): 11.000000
+					[DlM]  Lower Decile       (Man-Made): 6.700000
+					[FaG]  Noise Component    (Galactic): 52.000000
+					[DuG]  Upper Decile       (Galactic): 2.000000
+					[DlG]  Lower Decile       (Galactic): 2.000000
+					[FamT] Noise                 (Total): 76.986526
+					[DuT]  Upper Decile          (Total): 10.940193
+					[DlT]  Lower Decile          (Total): 6.573930
 
-	Behm/2020
+			******************************************************************************
 
-*/
+		Behm/2020
 
-	int pntflag = PRINTALL;
-	int mnpntflag = PRINTHEADER;
+	*/
+
+	int pntflag = MNPRINTTOSTDOUT;
+	int mnpntflag = MNPRINTTOSTDOUT;
 
 	int month;
 	int hour;
@@ -102,6 +103,8 @@ int main(int argc, char* argv[]) {
 	const char* P372ver;
 	const char* P372compt;
 
+	struct stat sb;
+
 	if (argc == 2) {
 
 		// Then the user wants to run all the tables necessary to create the
@@ -113,10 +116,11 @@ int main(int argc, char* argv[]) {
 
 		return RTN_ITURNOISEOK;
 
-	}; 
+	}; // argc == 2
 
 	// Are there enough command line arguments to proceed?
 	if (argc > 6) {
+
 		month = atoi(argv[1]) - 1;
 		if ((month < 0) && (month > 11)) {
 			printf("ITURNoise: Error: Month (%d) Out of Range (1 to 12) ", month + 1);
@@ -156,85 +160,98 @@ int main(int argc, char* argv[]) {
 		mmnoise = atof(argv[6]); // 
 
 		sprintf(&datafilepath[0], "%s\\", argv[7]);
+		if (stat(datafilepath, &sb)) { // Check to see if the directory exists
+			printf("ITURNoise: Error: Data file path %s does not exist\n", datafilepath);
+			return RTN_ERRBADDATAFILEPATH;
+		};
 
-		if (argc >= 8) {
+		if (argc >= 9) {
 			pntflag = atoi(argv[8]);
-			if (pntflag == 1) {
-				pntflag = PRINTHEADER;
-			}
-			else if (pntflag == 2) {
-				pntflag = PRINTCSV;
-			}
-			else if (pntflag == 4) {
-				pntflag = PRINTBLOCK;
-			}
-			else if (pntflag == 0) {
-				pntflag = NOPRINT;
-			}
-			else if (pntflag == 3) {
+		
+			switch (pntflag) {
+			case 0:
+				// Passthru print flag to  MakeNoise()
+				mnpntflag = MNNOPRINT;
+				break; 
+			case 1:
+				// Passthru print flag to  MakeNoise()
+				mnpntflag = MNPRINTTOSTDOUT;
+				break; 
+			case 2: 
+				// Passthru print flag to  MakeNoise()
+				mnpntflag = MNPRINTTOFILE;
+				break;
+			case 3:
 				pntflag = PRINTCSVALL;
+				break;
+			case 4:
+				pntflag = PRINTCSV;
+				break;
+			default: 
+				// Passthru print flag to  MakeNoise()
+				mnpntflag = MNPRINTTOSTDOUT;
 			}
 		};
 
-		if (pntflag == PRINTALL) {
-			mnpntflag = PRINTHEADER;
+		if ((pntflag == PRINTCSV) || (pntflag == PRINTCSVALL)) {
+			// Tell MakeNoise() not to print that the printing will be here
+			mnpntflag = MNNOPRINT;
 		};
 
 	// Load the Noise routines in P372.dll ******************************
 #ifdef _WIN32
-		int mod[512];
-		// Get the handle to the P372 DLL.
-		hLib = LoadLibrary("P372.dll");
-		if (hLib == NULL) {
-			printf("ITURNoise: AllocatePathMemory: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
-			return RTN_ERRP372DLL;
-		};
-		// Get the handle to the DLL library, hLib.
-		GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
-		// Get the P372Version() process from the DLL.
-		dllP372Version = (cP372Info)GetProcAddress((HMODULE)hLib, "P372Version");
-		// Get the P372CompileTime() process from the DLL.
-		dllP372CompileTime = (cP372Info)GetProcAddress((HMODULE)hLib, "P372CompileTime");
-		dllMakeNoise = (iMakeNoise)GetProcAddress((HMODULE)hLib, "_MakeNoise@52");
+			int mod[512];
+			// Get the handle to the P372 DLL.
+			hLib = LoadLibrary("P372.dll");
+			if (hLib == NULL) {
+				printf("ITURNoise: AllocatePathMemory: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
+				return RTN_ERRP372DLL;
+			};
+			// Get the handle to the DLL library, hLib.
+			GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
+			// Get the P372Version() process from the DLL.
+			dllP372Version = (cP372Info)GetProcAddress((HMODULE)hLib, "P372Version");
+			// Get the P372CompileTime() process from the DLL.
+			dllP372CompileTime = (cP372Info)GetProcAddress((HMODULE)hLib, "P372CompileTime");
+			dllMakeNoise = (iMakeNoise)GetProcAddress((HMODULE)hLib, "__MakeNoise@52");
 #elif __linux__ || __APPLE__
-		void* hLib;
-		hLib = dlopen("libp372.so", RTLD_NOW);
-		if (!hLib) {
-			printf("Couldn't load libp372.so, exiting.\n");
-			exit(1);
-		};
-		dllAllocateNoiseMemory = dlsym(hLib, "AllocateNoiseMemory");
-		dllP372Version = dlsym(hLib, "P372Version");
-		dllP372CompileTime = dlsym(hLib, "P372CompileTime");
-		dllNoise = dlsym(hLib, "Noise");
-		dllAllocateNoiseMemory = dlsym(hLib, "AllocateNoiseMemory");
-		dllFreeNoiseMemory = dlsym(hLib, "FreeNoiseMemory");
-		dllInitializeNoise = dlsym(hLib, "InitializeNoise");
-		dllReadFamDud = dlsym(hLib, "ReadFamDud");
+			void* hLib;
+			hLib = dlopen("libp372.so", RTLD_NOW);
+			if (!hLib) {
+				printf("Couldn't load libp372.so, exiting.\n");
+				exit(1);
+			};
+			dllAllocateNoiseMemory = dlsym(hLib, "AllocateNoiseMemory");
+			dllP372Version = dlsym(hLib, "P372Version");
+			dllP372CompileTime = dlsym(hLib, "P372CompileTime");
+			dllNoise = dlsym(hLib, "Noise");
+			dllAllocateNoiseMemory = dlsym(hLib, "AllocateNoiseMemory");
+			dllFreeNoiseMemory = dlsym(hLib, "FreeNoiseMemory");
+			dllInitializeNoise = dlsym(hLib, "InitializeNoise");
+			dllReadFamDud = dlsym(hLib, "ReadFamDud");
 #endif	
 	
-		// Load the version and compile time of the P372.DLL
-		P372ver = dllP372Version();
-		P372compt = dllP372CompileTime();
+			// Load the version and compile time of the P372.DLL
+			P372ver = dllP372Version();
+			P372compt = dllP372CompileTime();
 
-		// Run MakeNoise() which calculates the noise parameters for a single point 
-		retval = dllMakeNoise(month, hour, lat, lng, freq, mmnoise, datafilepath, &out[0], mnpntflag);
+			// Run MakeNoise() which calculates the noise parameters for a single point 
+			retval = dllMakeNoise(month, hour, lat, lng, freq, mmnoise, datafilepath, &out[0], mnpntflag);
 
-		if(retval == RTN_MAKENOISEOK) {
-			if (pntflag == PRINTCSVALL) {
-				PrintCSVHeader(P372ver, P372compt);
+			if (retval == RTN_MAKENOISEOK) {
+				if (pntflag == PRINTCSVALL) {
+					PrintCSVHeader(P372ver, P372compt);
+				};
+				if ((pntflag == PRINTCSV) || (pntflag == PRINTCSVALL)){
+					PrintCSVLine(month, hour, lat, lng, &out[0]);
+				};
 			};
-			if (pntflag == PRINTCSV) {
-				PrintCSVLine(month, hour, lat, lng, &out[0]);
-			};
-		}
 	}
 	else {
 		printf("ITURNoise: ERROR: Insufficient number (%d) of command line arguments, 7 required.\n", argc);
 		printf("\n");
 		PrintUsage();
 		return RTN_ERRCOMMANDLINEARGS;
-
 	};
 
 	FreeLibrary(hLib);

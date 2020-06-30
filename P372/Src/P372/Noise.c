@@ -950,3 +950,46 @@ void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int 
 
 };
 
+
+/********************************************************************************************************/
+/*** BEGIN Windows __stdcall Interface routines to the Noise.c routines *********************************/
+/********************************************************************************************************/
+// All these silly functions do is allow that __stdcall can access __cdel functions. So that the P372.dll 
+// can interface to Windows program like Excel
+int __stdcall _AllocateNoiseMemory(struct NoiseParams* noiseP) {
+	int retval = AllocateNoiseMemory(noiseP);
+	return retval;
+};
+int __stdcall _FreeNoiseMemory(struct NoiseParams* noiseP) {
+	int retval = FreeNoiseMemory(noiseP);
+	return retval;
+};
+int __stdcall _Noise(struct NoiseParams* noiseP, int hour, double lng, double lat, double frequency) {
+	int retval = Noise(noiseP, hour, lng, lat, frequency);
+	return retval;
+};
+int __stdcall _ReadFamDud(struct NoiseParams* noiseP, const char* DataFilePath, int month) {
+	int retval = ReadFamDud(noiseP, DataFilePath, month);
+	return retval;
+};
+void __stdcall _InitializeNoise(struct NoiseParams* noiseP) {
+	InitializeNoise(noiseP);
+};
+char const* __stdcall _P372CompileTime() {
+	P372CompileTime();
+	return P372CT;
+};
+char  const* __stdcall _P372Version() {
+	P372Version();
+	return P372VER;
+};
+void __stdcall _AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double lng, double lat, double frequency) {
+	AtmosphericNoise_LT(noiseP, FamS, lrxmt, lng, lat, frequency);
+};
+int __stdcall _MakeNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag) {
+	int retval = MakeNoise(month, hour, lat, lng, freq, mmnoise, datafilepath, out, pntflag);
+	return retval;
+};
+/********************************************************************************************************/
+/*** END Windows __stdcall Interface routines to the Noise.c routines ***********************************/
+/********************************************************************************************************/
