@@ -96,22 +96,24 @@ struct NoiseParams {
 // _cdecl exports
 DLLEXPORT int AllocateNoiseMemory(struct NoiseParams *noiseP);
 DLLEXPORT int FreeNoiseMemory(struct NoiseParams *noiseP);
-DLLEXPORT int Noise(struct NoiseParams *noiseP, int hour, double lng, double lat, double frequency);
+DLLEXPORT int Noise(struct NoiseParams *noiseP, int hour, double rlng, double rlat, double frequency);
 DLLEXPORT int ReadFamDud(struct NoiseParams *noiseP, const char *DataFilePath, int month);
 DLLEXPORT void InitializeNoise(struct NoiseParams *noiseP);
 DLLEXPORT char const * P372CompileTime();
 DLLEXPORT char const * P372Version();
-DLLEXPORT void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double lng, double lat, double frequency);
+DLLEXPORT void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double rlng, double rlat, double frequency);
+// Note: MakeNoise() requires decimal degrees lat and lng
 DLLEXPORT int MakeNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
 // _stdcall exports
 DLLEXPORT int __stdcall _AllocateNoiseMemory(struct NoiseParams* noiseP);
 DLLEXPORT int __stdcall _FreeNoiseMemory(struct NoiseParams* noiseP);
-DLLEXPORT int __stdcall _Noise(struct NoiseParams* noiseP, int hour, double lng, double lat, double frequency);
+DLLEXPORT int __stdcall _Noise(struct NoiseParams* noiseP, int hour, double rlng, double rlat, double frequency);
 DLLEXPORT int __stdcall _ReadFamDud(struct NoiseParams* noiseP, const char* DataFilePath, int month);
 DLLEXPORT void __stdcall _InitializeNoise(struct NoiseParams* noiseP);
 DLLEXPORT char  const* __stdcall _P372CompileTime();
 DLLEXPORT char  const* __stdcall _P372Version();
-DLLEXPORT void __stdcall _AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double lng, double lat, double frequency);
+DLLEXPORT void __stdcall _AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double rlng, double rlat, double frequency);
+// Note: MakeNoise() requires decimal degrees lat and lng as input
 DLLEXPORT int __stdcall _MakeNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
 // End Prototypes
 

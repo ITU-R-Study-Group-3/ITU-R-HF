@@ -18,11 +18,9 @@
 #define PRINTCSV 101
 
 // Local Prototypes
-void PrintCSVLine(int month, int hour, double lat, double lng, double* out);
+void PrintCSVLine(int month, int hour, double freq, double rlat, double rlng, double* out);
 void PrintCSVHeader(const char* P372ver, const char* P372compt);
 void PrintUsage();
-void WriteCSVLine(FILE* fp, int month, int hour, double freq, double lat, double lng, struct FamStats* FamS);
-void PrintCSVLine(int month, int hour, double lat, double lng, double* out);
 int RunAtmosNoiseMonths(char* datafilepath);
 // End Local Prototypes
 
@@ -92,8 +90,8 @@ int main(int argc, char* argv[]) {
 	int hour;
 	int retval;
 
-	double lat;
-	double lng;
+	double lat, lng;
+	double rlat, rlng;
 	double freq;
 	double mmnoise;
 	double out[12];
@@ -145,7 +143,7 @@ int main(int argc, char* argv[]) {
 			return RTN_ERRMONTH;
 		}
 		else {
-			lat = lat * D2R;
+			rlat = lat * D2R;
 		};
 
 		lng = atof(argv[5]);
@@ -154,7 +152,7 @@ int main(int argc, char* argv[]) {
 			return RTN_ERRMONTH;
 		}
 		else {
-			lng = lng * D2R;
+			rlng = lng * D2R;
 		};
 
 		mmnoise = atof(argv[6]); // 
@@ -243,7 +241,7 @@ int main(int argc, char* argv[]) {
 					PrintCSVHeader(P372ver, P372compt);
 				};
 				if ((pntflag == PRINTCSV) || (pntflag == PRINTCSVALL)){
-					PrintCSVLine(month, hour, lat, lng, &out[0]);
+					PrintCSVLine(month, hour, freq, rlat, rlng, &out[0]);
 				};
 			};
 	}
@@ -717,29 +715,30 @@ void PrintCSVHeader(const char* P372ver, const char* P372compt) {
 	printf("\t\tP372 Compile Time: %s\n", P372compt);
 	printf("******************************************************************************\n");
 
-	printf("Column 1: Month\n");
-	printf("Column 2: Hour (UTC)\n");
-	printf("Column 3: Latitude (deg)\n");
-	printf("Column 4: Longitude (deg)\n");
-	printf("Column 5: [FaA]  Noise Component (Atmospheric)\n");
-	printf("Column 6: [DuA]  Upper Decile    (Atmospheric)\n");
-	printf("Column 7: [DlA]  Upper Decile    (Atmospheric)\n");
-	printf("Column 8: [FaM]  Noise Component    (Man-Made)\n");
-	printf("Column 9: [DuM]  Upper Decile       (Man-Made)\n");
-	printf("Column 10:[DlM]  Lower Decile       (Man-Made) \n");
-	printf("Column 11:[FaG]  Noise Component    (Galactic) \n");
-	printf("Column 12:[DuG]  Upper Decile       (Galactic) \n");
-	printf("Column 13:[DlG]  Lower Decile       (Galactic) \n");
-	printf("Column 2: [FamT] Noise                 (Total)\n");
-	printf("Column 2: [DuT]  Upper Decile          (Total)\n");
-	printf("Column 2: [DlT]  Lower Decile          (Total)\n");
+	printf("Column 1:  Month\n");
+	printf("Column 2:  Hour (UTC)\n");
+	printf("Column 3:  Frequency (MHz)\n");
+	printf("Column 4:  Latitude (deg)\n");
+	printf("Column 5:  Longitude (deg)\n");
+	printf("Column 6:  [FaA]  Noise Component (Atmospheric)\n");
+	printf("Column 7:  [DuA]  Upper Decile    (Atmospheric)\n");
+	printf("Column 8:  [DlA]  Upper Decile    (Atmospheric)\n");
+	printf("Column 9:  [FaM]  Noise Component    (Man-Made)\n");
+	printf("Column 10: [DuM]  Upper Decile       (Man-Made)\n");
+	printf("Column 11: [DlM]  Lower Decile       (Man-Made) \n");
+	printf("Column 12: [FaG]  Noise Component    (Galactic) \n");
+	printf("Column 13: [DuG]  Upper Decile       (Galactic) \n");
+	printf("Column 14: [DlG]  Lower Decile       (Galactic) \n");
+	printf("Column 15: [FamT] Noise                 (Total)\n");
+	printf("Column 16: [DuT]  Upper Decile          (Total)\n");
+	printf("Column 17: [DlT]  Lower Decile          (Total)\n");
 	printf("******************************************************************************\n");
 
 	return;
 
 };
 
-void PrintCSVLine(int month, int hour, double lat, double lng, double* out) {
+void PrintCSVLine(int month, int hour, double freq, double rlat, double rlng, double* out) {
 	/*
 	PrintUsage - Prints a CSV line to a file
 
@@ -747,8 +746,9 @@ void PrintCSVLine(int month, int hour, double lat, double lng, double* out) {
 			FILE *fp		Pointer to a file
 			int month		Month index (0 to 11)
 			int hour		Hour inde (0 to 23)
-			double lat		Latitude (radians)
-			double lng		Longitude (radians)
+			double freq		Frequency (MHz)
+			double rlat		Latitude (radians)
+			double rlng		Longitude (radians)
 			double * out    Pointer to a 12 element array that contains the P372 calculation
 
 		OUTPUT
@@ -756,7 +756,7 @@ void PrintCSVLine(int month, int hour, double lat, double lng, double* out) {
 
 	*/
 
-	printf("%d, %d, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f\n", month + 1, hour, lat * R2D, lng * R2D, out[0], out[1], out[2], out[3], out[4], out[5], out[6], out[7], out[8], out[9], out[10], out[11]);
+	printf("%d, %d, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f\n", month + 1, hour, freq, rlat * R2D, rlng * R2D, out[0], out[1], out[2], out[3], out[4], out[5], out[6], out[7], out[8], out[9], out[10], out[11]);
 
 	return;
 
