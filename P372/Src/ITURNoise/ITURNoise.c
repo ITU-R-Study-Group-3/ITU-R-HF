@@ -120,19 +120,19 @@ int main(int argc, char* argv[]) {
 	if (argc > 6) {
 
 		month = atoi(argv[1]) - 1;
-		if ((month < 0) && (month > 11)) {
+		if ((month < 0) || (month > 11)) {
 			printf("ITURNoise: Error: Month (%d) Out of Range (1 to 12) ", month + 1);
 			return RTN_ERRMONTH;
 		};
 
 		hour = atoi(argv[2]) - 1;
-		if ((hour < 0) && (hour > 23)) {
+		if ((hour < 0) || (hour > 23)) {
 			printf("ITURNoise: Error: Hour (%d (UTC)) Out of Range (1 to 24 UTC) ", hour + 1);
 			return RTN_ERRMONTH;
 		};
 
 		freq = atof(argv[3]);
-		if ((freq < 0.01) && (freq > 30)) {
+		if ((freq < 0.01) || (freq > 30)) {
 			printf("ITURNoise: Error: Frequency (%5.4f (MHz)) Out of Range (0.01 to 30 MHz) ", freq);
 			return RTN_ERRMONTH;
 		};

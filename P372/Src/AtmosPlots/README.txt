@@ -43,7 +43,7 @@ The program ITURNoise.exe is a utility program that has two modes which
 Mode 1 – Noise Calculation for a Single Location
 To return the noise parameters for a single location, mode 1) above, 7 command line arguments are required. Below is an example of running ITURNoise.exe to return noise for a single location
 
-C:\> : ITURNoise 1 14 1.0 40.0 165.0 0 \"G:\\User\\Data\" \ 0
+C:\>ITURNoise 1 14 1.0 40.0 165.0 0 "G:\User\Data\" 0
 
 Argument 1 is an integer that indicates the month (1 to 12) of interest. In the example above the desired month is January. 
 Argument 2 is an integer that indicates the hour (1 to 24) UTC at the receive point. In most cases this will require the calculation of the time UTC from the longitude at that receive point. In the example above the receive point is 11 hours (165? E/(15?/hr) ahead of UTC so to determine the noise for the 12th local time hour the 1st hour UTC is chosen. 
@@ -71,34 +71,37 @@ No argument	Prints detailed output to stdout
 4		Prints CSV output to stdout
 
 Example ITURNoise() Output
+**********************************************************
+        ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+        Analysis: 1/7/20 - 12:47:04
+        P372 Version:      14.2
+        P372 Compile Time: Wed Jul  1 11:00:38 2020
+**********************************************************
 
-******************************************************************************
-                ITU-R Study Group 3: Radiowave Propagation
-******************************************************************************
-                Analysis: 29/6/20 - 12:17:29
-                P372 Version:      14.2
-                P372 Compile Time: Thu Jun 25 12:45:54 2020
-******************************************************************************
+        JANUARY  : 14 (UTC)
+        40.0000 (deg lat) 165.0000 (deg long)
+        1.000 (MHz)
 
-        JAN : 13 (UTC) at 40.000000 (deg lat) 165.000000 (deg long)
-        [FaA]  Noise Component (Atmospheric): 60.732650
-        [DuA]  Upper Decile    (Atmospheric): 10.600910
-        [DlA]  Upper Decile    (Atmospheric): 8.277667
-        [FaM]  Noise Component    (Man-Made): 76.800000
-        [DuM]  Upper Decile       (Man-Made): 11.000000
-        [DlM]  Lower Decile       (Man-Made): 6.700000
-        [FaG]  Noise Component    (Galactic): 52.000000
-        [DuG]  Upper Decile       (Galactic): 2.000000
-        [DlG]  Lower Decile       (Galactic): 2.000000
-        [FamT] Noise                 (Total): 76.986526
-        [DuT]  Upper Decile          (Total): 10.940193
-        [DlT]  Lower Decile          (Total): 6.573930
+        [FaA]  Noise Component (Atmospheric): 60.733
+        [DuA]  Upper Decile    (Atmospheric): 10.601
+        [DlA]  Upper Decile    (Atmospheric): 8.278
+        [FaM]  Noise Component    (Man-Made): 76.800
+        [DuM]  Upper Decile       (Man-Made): 11.000
+        [DlM]  Lower Decile       (Man-Made): 6.700
+        [FaG]  Noise Component    (Galactic): 52.000
+        [DuG]  Upper Decile       (Galactic): 2.000
+        [DlG]  Lower Decile       (Galactic): 2.000
+        [FamT] Noise                 (Total): 76.987
+        [DuT]  Upper Decile          (Total): 10.940
+        [DlT]  Lower Decile          (Total): 6.574
 
-*******************************************************************************
-
+**********************************************************
 
 Mode 2 – Generate Atmospheric Noise Figure Data Output
-There is one command line argument required for mode 2): the data file path in quotes without the trailing back slash (See Argument 6 above). Mode 2 creates the following directory structure in the current directory.
+There is one command line argument required for mode 2): the data file path in quotes without the trailing back slash (See Argument 6 above). The following would generate the figure data in the root directory.
+C:\>ITURNoise "G:\User\Data\"
+Mode 2 creates the following directory structure in the current directory or directory where it is run.
 
 .\ ----- P372_figures --|-- a ----- csv
                         |
