@@ -1,7 +1,7 @@
 Recommendation P.372 Calculation Engine and Associated Utility Programs
-This document is a brief description of P372.DLL, ITURNoise(), and MakeP732figs() programs. Please consult the source of ITURNoise() to see more details of the  interfacing to the P372.DLL. This document is provided as an overview of these programs and an initial descripting of their use. This description below outlines the programs in the order above. 
-P372
-Functions within P372.DLL
+This document is a brief description of P372.DLL, ITURNoise.exe, and MakeP732figs.py programs. Please consult the source of ITURNoise() to see more details of the interfacing to the P372.DLL. (See https://github.com/ITU-R-Study-Group-3/ITU-R-HF). This document is provided as an overview of these programs and an initial descripting of their use. 
+P372.DLL
+Functions within P372.DLL can  be accessed from either the _cdecl or __stdcall calling conventions. 
 __cdecl Calling convention
 	AllocateNoiseMemory
 	AtmosphericNoise_LT
@@ -22,7 +22,7 @@ __stdcall Calling convention
 	__P372CompileTime@0
 	__P372Version@0
 	__ReadFamDud@12
-The input parameters to these subroutines are in the following form. For additional details please see noise.h in the ITU-R-HF repo. See https://github.com/ITU-R-Study-Group-3/ITU-R-HF
+The input parameters to these subroutines are in the following forms. 
 int AllocateNoiseMemory(struct NoiseParams *noiseP);
 int FreeNoiseMemory(struct NoiseParams *noiseP);
 int Noise(struct NoiseParams *noiseP, int hour, double lng, double lat, double frequency);
@@ -32,16 +32,17 @@ char const * P372CompileTime();
 char const * P372Version();
 void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double lng, double lat, double frequency);
 int MakeNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
+For additional details please see noise.h in the ITU-R-HF repo. 
 
 
-ITURNoise
-The program ITURNoise.exe is a utility program that has two modes which 
-	1) returns the combined total noise, total noise upper decile, 
-	and total noise lower decile., from the constituent parts of noise: 
-	galactic, atmospheric, and man-made noise calculation given, or
-2) generates the data necessary to create Recommendation P.372-14 Figures 13-36: a), b), and c)
+ITURNoise.exe
+The program ITURNoise.exe is a utility program that has two modes: 
+	Mode 1 which returns the combined total noise, total noise upper decile, 
+	and total noise lower decile., and the constituent parts of the total noise: 
+	galactic, atmospheric, and man-made noise calculation or
+Mode 2 generates the data necessary to create Recommendation P.372-14 Figures 13 through 36: a), b), and c)
 Mode 1 – Noise Calculation for a Single Location
-To return the noise parameters for a single location, mode 1) above, 7 command line arguments are required. Below is an example of running ITURNoise.exe to return noise for a single location
+To return the noise parameters for a single location, Mode 1 above, 7 command line arguments are required. Below is an example of running ITURNoise.exe to return noise for a single location
 
 C:\>ITURNoise 1 14 1.0 40.0 165.0 0 "G:\User\Data\" 0
 
@@ -99,7 +100,7 @@ Example ITURNoise() Output
 **********************************************************
 
 Mode 2 – Generate Atmospheric Noise Figure Data Output
-There is one command line argument required for mode 2): the data file path in quotes without the trailing back slash (See Argument 6 above). The following would generate the figure data in the root directory.
+There is one command line argument required for Mode 2, the data file path in quotes without the trailing back slash (Please see the description of Mode1 Argument 6 above). The following example would generate the figure data in the root directory.
 C:\>ITURNoise "G:\User\Data\"
 Mode 2 creates the following directory structure in the current directory or directory where it is run.
 
@@ -112,9 +113,10 @@ Mode 2 creates the following directory structure in the current directory or dir
 There are 72 figure data files that are created, 24 per category (a), b), and c)). The naming convention for the output files follow x_ymzh.csv, where x is the figure data type (a, b, or c), y is the month (1, 4, 7, or 10), and h is the local time hour (0, 4, 8, 12, 16, or 20).
 
 
-MakeP372figs()
+MakeP372figs.py
+MakeP372figs.py was developed for Python 3.7.7 and is dependent on the Python libraries os, glob, numpy, cartopy, matplotlib, math, and pandas. At present MakeP372figs.py only runs on Windows. 
 Generation of the Recommendation P.372-14 Figure files
-The data files, and P372_figures directory structure, are required as input for the Python program MakeP372figs.py in the ./P372/Src/AtmosPlots which produces the figures. When the program MakeP372figs.py is run from a directory, that immediately contains the directory structure P372_figures above, the following output directories will be created 
+The data files, and P372_figures directory structure, are required as input for the Python program MakeP372figs.py. When the program MakeP372figs.py is run from a directory, that immediately contains the directory structure P372_figures above, the following output directories will be created 
        
 .\ ----- P372_figures --|-- a --|-- svg
                         |       |-- png
@@ -128,14 +130,12 @@ The data files, and P372_figures directory structure, are required as input for 
                                 |-- png
                                 |-- pdf
 
-MakeP372figs.py writes each figure in three common formats: scalable vector graphics (SVG), portable networks graphics (PNG), and portable document format (PDF). The later are produced at 300 dpi.
+MakeP372figs.py writes each figure in three common formats: scalable vector graphics (SVG), portable networks graphics (PNG), and portable document format (PDF). The later two are produced at 300 dpi.
 Note that the P.372-14 13-36 a) Figures are labeled relative to the season in the northern hemisphere.
 	Winter 		(December-January-February)
 	Spring 		(March-April-May)
  	Summer 	(June-July-August)
 	Autumn 	(September-October-November)
-Thus, the a) Figures are not hemispherically seasonal as the P.372-14 a) Figures are, but relative to the month only. The figure data files represented are for the central month of the Northern hemispherically seasons above. Specifically, the a) figure data generated by ITUNoise() in mode 2) are January (Winter), April (Spring), July (Summer), and October (Autumn). Also note the a) Figures created by MakeP372figs.py have longitude range from 180 degrees west longitude to 180 degrees east longitude instead of the current a) Figure range from 60 degrees east longitude to 60 degrees east longitude. The b) and c) Figures are very similar to the published figures in P.372-14 with the exception of the c) Figures which no longer include V_dm, “Expected value of median deviation of average voltage.” 
+Thus, the a) Figures are not hemispherically seasonal as the P.372-14 a) Figures are, but relative to the month only. The figure data files represented are for the central month of the Northern hemispherically seasons above. Specifically, the a) figure data generated by ITUNoise() in Mode 2 are January (Winter), April (Spring), July (Summer), and October (Autumn). Also note the a) Figures created by MakeP372figs.py have longitude range from 180 degrees west longitude to 180 degrees east longitude instead of the current a) Figure range from 60 degrees west longitude to 60 degrees east longitude. The b) and c) Figures are very similar to the published figures in P.372-14 with the exception that the new c) Figures no longer include V_dm, “Expected value of median deviation of average voltage.” 
 
-
-behm/June 2020
- 
+behm/June 2020 

@@ -503,7 +503,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 		for (int h = 0; h <= 23; h += 4) { // hour local time
 
-			sprintf(outputfilename, "%sa_%0dm%0dh.csv", bcsvfilepath, m + 1, h);
+			sprintf(outputfilename, "%sb_%0dm%0dh.csv", bcsvfilepath, m + 1, h);
 			fp = fopen(outputfilename, "w");
 			if (fp == NULL) {
 				printf("ITURNoise: Error: Can't open output file %s (%s)\n", outputfilename, strerror(errno));
@@ -653,31 +653,41 @@ void PrintUsage() {
 
 			OUTPUT
 				none
-	
+
 	*/
-	printf("USEAGE ITURNoise [month] [hour] [latitude] [longitude] [man-made noise] [data file path] [print flag]\n");
+	printf("******************************************************************************\n");
+	printf("\t\tITU-R Study Group 3: Radiowave Propagation\n");
+	printf("******************************************************************************\n");
+	printf("\n");
+	printf("USEAGE: ITURNoise [month] [hour] [frequency] [latitude] [longitude]\n");
+	printf("\t\t[man-made noise] [data file path] [print flag]\n");
+	printf("\n");
 	printf("\tArgument 1:  month (1 to 12)\n");
 	printf("\tArgument 2:  hour (1 to 24 (UTC))\n");
-	printf("\tArgument 3:  latitude (degrees)\n");
-	printf("\tArgument 4:  longitude (degrees)\n");
-	printf("\tArgument 5:  man-made noise 0-5 or value of man-made noise (dB)\n");
-	printf("\t                 CITY         0.0\n");
-	printf("\t                 RESIDENTIAL  1.0\n");
-	printf("\t                 RURAL		2.0\n");
-	printf("\t                 QUIETRURAL	3.0\n");
-	printf("\t                 NOISY		4.0\n");
-	printf("\t                 QUIET		5.0\n");
-	printf("\tArgument 6:  data file path in double quotes without trailing back slash\n");
-	printf("\tArgument 7:  print flag 0-3\n");
-	printf("\t                 PRINTHEADER 0 Prints the full header\n");
-	printf("\t                 PRINTCSV	   1 Prints out simple csv\n");
-	printf("\t                 PRINTALL	   2 Print out header with the simple csv\n");
-	printf("\t                 NOPRINT	   3 Do not print\n");
+	printf("\tArgument 3:  frequency (0.01 to 30.0 (MHz))\n");
+	printf("\tArgument 4:  latitude (degrees decimal)\n");
+	printf("\tArgument 5:  longitude (degrees decimal)\n");
+	printf("\tArgument 6:  man-made noise 0-5 or value of man-made noise (- dB)\n");
+	printf("\t\t0.0\tCity\n");
+	printf("\t\t1.0\tResidential\n");
+	printf("\t\t2.0\tRural\n");
+	printf("\t\t3.0\tQuiet Rural\n");
+	printf("\t\t4.0\tNoisy\n");
+	printf("\t\t5.0\tQuiet\n");
+	printf("\tArgument 7:  data file path within double quotes without trailing back slash\n");
+	printf("\tArgument 8:  print flag 0-4 [Optional]\n");
+	printf("\t\t0\tNo Output\n");
+	printf("\t\t1\tPrint Detailed output to stdout\n");
+	printf("\t\t2\tPrint Detailed outpout to file .\\MakeNoiseOut.txt\n");
+	printf("\t\t3\tPrint CSV output with Header\n");
+	printf("\t\t4\tPrint CSV output without Header\n");
 	printf("\n");
-	printf("Example: ITURNoise 1 14 1.0 40.0 165.0 0 \"G:\\User\\Data\" \n");
-	printf("                   Calculation made for January 14th hour (UTC)\n");
-	printf("                   at 40 degrees North and 165 degrees East\n");
+	printf("Example: ITURNoise 1 14 1.0 40.0 165.0 0 \"G:\\User\\Data\" 1\n");
+	printf("\t\tCalculation made for January 14th hour (UTC) \n");
+    printf("\t\tat 40 degrees North and 165 degrees East\n");
+	printf("\t\tfor 1.0 MHz print detailed output to stdout\n");
 	printf("\n");
+	printf("******************************************************************************\n");
 
 	return;
 
