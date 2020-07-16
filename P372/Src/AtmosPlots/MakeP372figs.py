@@ -61,13 +61,13 @@ def parsefilename(file):
     h = int(mh.split('m')[1].split('h')[0])
     
     if m == 12 or m == 1 or m == 2:
-        season = 'Winter'
+        season = 'DEC-JAN-FEB'
     elif m == 3 or m == 4 or m == 5:
-        season = 'Spring'
+        season = 'MAR-APR-MAY'
     elif m == 6 or m == 7 or m == 8:
-        season = 'Summer'
+        season = 'JUN-JUL-AUG'
     elif m == 9 or m == 10 or m == 11:
-        season = 'Autumn'
+        season = 'SEP-OCT-NOV'
     
     if h >= 0 and h < 4:
         time_lt = '0000-0400_LT'
@@ -373,11 +373,11 @@ def MakeP372figs():
         # Create the output directories
         openoutputdirectories()
         # Now make the a figures
-        '''
+        
         afiles = glob.glob(acsvfilepath + '*.csv')
         for file in afiles:
             Makeafigs(file)
-        '''
+        
         bfiles = glob.glob(bcsvfilepath + '*.csv')
         for file in bfiles:
             Makebfigs(file)
