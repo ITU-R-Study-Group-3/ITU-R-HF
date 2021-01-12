@@ -950,7 +950,7 @@ void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int 
 
 };
 
-
+#ifdef _WIN32
 /********************************************************************************************************/
 /*** BEGIN Windows __stdcall Interface routines to the Noise.c routines *********************************/
 /********************************************************************************************************/
@@ -993,3 +993,4 @@ int __stdcall _MakeNoise(int month, int hour, double lat, double lng, double fre
 /********************************************************************************************************/
 /*** END Windows __stdcall Interface routines to the Noise.c routines ***********************************/
 /********************************************************************************************************/
+#endif
