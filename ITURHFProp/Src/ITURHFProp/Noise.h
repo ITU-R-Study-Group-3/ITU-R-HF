@@ -92,8 +92,29 @@ struct NoiseParams {
 
 // End Structures
 
+// Start P372.DLL typedef ******************************************************
+#ifdef _WIN32
+#include <Windows.h>
+// P372Version() & P372CompileTime()
+typedef const char* (__cdecl* cP372Info)();
+// AllocateNoiseMemory() & FreeNoiseMemory()
+typedef int(__cdecl* iNoiseMemory)(struct NoiseParams* noiseP);
+// Noise()
+typedef int(__cdecl* iNoise)(struct NoiseParams* noiseP, int hour, double lng, double lat, double frequency);
+// ReadFamDud()
+typedef int(__cdecl* iReadFamDud)(struct NoiseParams* noiseP, const char* DataFilePath, int month);
+// InitializeNoise()
+typedef void(__cdecl* vInitializeNoise)(struct NoiseParams* noiseP);
+// AtmosphericNoise_LT()
+typedef void(__cdecl* vAtmosphericNoise_LT)(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double lng, double lat, double frequency);
+// MakeNoise()
+typedef int(__stdcall* iMakeNoise)(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
+
+#endif
+// End P372.DLL typedef ********************************************************
+
 // Prototypes
-#if defined(__linux__) || defined(__APPLE__)
+#if defined(__linux__) || defined(__APPLE__) || defined(_WIN32)
 // _cdecl exports
 DLLEXPORT int AllocateNoiseMemory(struct NoiseParams *noiseP);
 DLLEXPORT int FreeNoiseMemory(struct NoiseParams *noiseP);
@@ -119,28 +140,6 @@ DLLEXPORT void __stdcall _AtmosphericNoise_LT(struct NoiseParams* noiseP, struct
 DLLEXPORT int __stdcall _MakeNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
 #endif
 // End Prototypes
-
-
-// Start P372.DLL typedef ******************************************************
-#ifdef _WIN32
-	#include <Windows.h>
-	// P372Version() & P372CompileTime()
-	typedef const char* (__cdecl* cP372Info)();
-	// AllocateNoiseMemory() & FreeNoiseMemory()
-	typedef int(__cdecl* iNoiseMemory)(struct NoiseParams* noiseP);
-	// Noise()
-	typedef int(__cdecl* iNoise)(struct NoiseParams* noiseP, int hour, double lng, double lat, double frequency);
-	// ReadFamDud()
-	typedef int(__cdecl* iReadFamDud)(struct NoiseParams* noiseP, const char* DataFilePath, int month);
-	// InitializeNoise()
-	typedef void(__cdecl* vInitializeNoise)(struct NoiseParams* noiseP);
-	// AtmosphericNoise_LT()
-	typedef void(__cdecl* vAtmosphericNoise_LT)(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double lng, double lat, double frequency);
-	// MakeNoise()
-	typedef int(__stdcall* iMakeNoise)(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
-
-#endif
-// End P372.DLL typedef ********************************************************
 
 #ifdef _WIN32
 	HINSTANCE hLib;
