@@ -114,8 +114,7 @@ typedef int(__stdcall* iMakeNoise)(int month, int hour, double lat, double lng, 
 // End P372.DLL typedef ********************************************************
 
 // Prototypes
-#if defined(__linux__) || defined(__APPLE__) || defined(_WIN32)
-// _cdecl exports
+// _cdecl exports for all environments __linux__ && __APPLE__ && _WIN32
 DLLEXPORT int AllocateNoiseMemory(struct NoiseParams *noiseP);
 DLLEXPORT int FreeNoiseMemory(struct NoiseParams *noiseP);
 DLLEXPORT int Noise(struct NoiseParams *noiseP, int hour, double rlng, double rlat, double frequency);
@@ -126,8 +125,9 @@ DLLEXPORT char const * P372Version();
 DLLEXPORT void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double rlng, double rlat, double frequency);
 // Note: MakeNoise() requires decimal degrees lat and lng
 DLLEXPORT int MakeNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
-#elif _WIN32
-// _stdcall exports
+
+#if _WIN32
+// _stdcall exports dummies used to provide entry points in the DLL for MS excel
 DLLEXPORT int __stdcall _AllocateNoiseMemory(struct NoiseParams* noiseP);
 DLLEXPORT int __stdcall _FreeNoiseMemory(struct NoiseParams* noiseP);
 DLLEXPORT int __stdcall _Noise(struct NoiseParams* noiseP, int hour, double rlng, double rlat, double frequency);

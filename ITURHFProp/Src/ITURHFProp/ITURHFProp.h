@@ -23,7 +23,7 @@
 	// GreatCircleDistance()
 	typedef double(__cdecl * dGreatCircleDistance)(struct Location here, struct Location there);
 	// Bearing()
-	typedef double(__cdecl * dBearing)(struct Location here, struct Location there);
+	typedef double(__cdecl * dBearing)(struct Location here, struct Location there, int direction);
 	// GeomagneticCoords()
 	typedef void(__cdecl * vGeomagneticCoords)(struct Location here, struct Location *there);
 
@@ -55,7 +55,7 @@
 	int (*dllAllocatePathMemory)(struct PathData *);
 	int (*dllFreePathMemory)(struct PathData *);
 	int (*dllAllocateAntennaMemory)(struct Antenna *Ant, int freqn, int azin, int elen);
-	double (*dllBearing)(struct Location,struct Location);
+	double (*dllBearing)(struct Location,struct Location,int direction);
 	int  (*dllReadType11Func)(struct Antenna *Ant, FILE *fp, int silent);
 	int  (*dllReadType13Func)(struct Antenna *Ant, FILE *fp, double bearing, int silent);
 	int  (*dllReadType14Func)(struct Antenna *Ant, FILE *fp, int silent);

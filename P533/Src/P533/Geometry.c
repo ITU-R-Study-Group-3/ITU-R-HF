@@ -105,7 +105,7 @@ DLLEXPORT void GeomagneticCoords(struct Location here, struct Location *there) {
 
 };
 
-DLLEXPORT double Bearing(struct Location here, struct Location there) {
+DLLEXPORT double Bearing(struct Location here, struct Location there, int direction) {
 
 /*
 
@@ -114,6 +114,7 @@ DLLEXPORT double Bearing(struct Location here, struct Location there) {
  		INPUT
  			here - Location of the origin of calculation
  			there - Location of the terminus of the calculation
+			direction - Either the short or long way round
  
  		OUTPUT
  			returns the bearing from here to there
@@ -134,7 +135,13 @@ DLLEXPORT double Bearing(struct Location here, struct Location there) {
 
 	bearing = atan2(numerator, denominator);
 
-	bearing = fmod((2.0*PI + bearing), 2.0*PI);
+	bearing = fmod((2.0 * PI + bearing), 2.0 * PI);
+
+	if (direction == LONGPATH) {
+        // Flip the bearing around since you are looking at the long way round
+		// Then modulo 2*PI
+		bearing = fmod((2.0 * PI + (bearing + PI)), 2.0 * PI);
+	};
 
 	return bearing;
 };

@@ -304,104 +304,115 @@ void PrintHeader(struct PathData path, struct ITURHFProp ITURHFP) {
 	fprintf(fp, "***************************** P533 Input Parameters ****************************\n");
 	fprintf(fp, "\n");
 	fprintf(fp, "\t%s\n", path.name);
-	fprintf(fp, "\tYear = %d\n", path.year);
-	fprintf(fp, "\tMonth = %s\n", months[path.month]);
-	fprintf(fp, "\tHour = %d (hour UTC)\n", path.hour + 1);
-	fprintf(fp, "\tSSN (R12) = %d\n", path.SSN);
-	fprintf(fp, "\tDistance = %lf (km)\n", path.distance);
-	fprintf(fp, "\tdmax = %lf (km)\n", path.dmax);
-	fprintf(fp, "\tTx power = %lf\n", path.txpower);
-	fprintf(fp, "\tTx Location %s\n", path.txname);
-	fprintf(fp, "\tTx latitude  = %10.6lf %c\n", fabs(path.L_tx.lat*R2D), NS(path.L_tx.lat));
-	fprintf(fp, "\tTx longitude = %10.6lf %c\n", fabs(path.L_tx.lng*R2D), EW(path.L_tx.lng));
-	fprintf(fp, "\tRx Location %s\n", path.rxname);
-	fprintf(fp, "\tRx latitude  = %10.6lf %c\n", fabs(path.L_rx.lat*R2D), NS(path.L_rx.lat));
-	fprintf(fp, "\tRx longitude = %10.6lf %c\n", fabs(path.L_rx.lng*R2D), EW(path.L_rx.lng));
-	fprintf(fp, "\tlocal time Rx   = %d (hour UTC)\n", (int)fmod((path.hour + 1 + (int)(path.L_rx.lng/(15.0*D2R)))+24,24.0));
-	fprintf(fp, "\tlocal time Tx   = %d (hour UTC)\n", (int)fmod((path.hour + 1 + (int)(path.L_tx.lng/(15.0*D2R)))+24,24.0));
-	fprintf(fp, "\tFrequency       = %lf\n", path.frequency);
-	fprintf(fp, "\tBandwidth       = %lf\n", path.BW);
+	fprintf(fp, "\tYear          : %d\n", path.year);
+	fprintf(fp, "\tMonth         : %s\n", months[path.month]);
+	fprintf(fp, "\tHour          : %d (hour UTC)\n", path.hour + 1);
+	fprintf(fp, "\tSSN (R12)     : %d\n", path.SSN);
+	fprintf(fp, "\tDistance      : %lf (km)\n", path.distance);
+	fprintf(fp, "\tdmax          : %lf (km)\n", path.dmax);
+	fprintf(fp, "\tTx power      : %lf\n", path.txpower);
+	fprintf(fp, "\tTx Location     %s\n", path.txname);
+	fprintf(fp, "\tTx latitude   : %10.6lf %c\n", fabs(path.L_tx.lat*R2D), NS(path.L_tx.lat));
+	fprintf(fp, "\tTx longitude  : %10.6lf %c\n", fabs(path.L_tx.lng*R2D), EW(path.L_tx.lng));
+	fprintf(fp, "\tRx Location     %s\n", path.rxname);
+	fprintf(fp, "\tRx latitude   : %10.6lf %c\n", fabs(path.L_rx.lat*R2D), NS(path.L_rx.lat));
+	fprintf(fp, "\tRx longitude  : %10.6lf %c\n", fabs(path.L_rx.lng*R2D), EW(path.L_rx.lng));
+	fprintf(fp, "\tlocal time Rx : %d (hour UTC)\n", (int)fmod((path.hour + 1 + (int)(path.L_rx.lng/(15.0*D2R)))+24,24.0));
+	fprintf(fp, "\tlocal time Tx : %d (hour UTC)\n", (int)fmod((path.hour + 1 + (int)(path.L_tx.lng/(15.0*D2R)))+24,24.0));
+	fprintf(fp, "\tFrequency     : %lf\n", path.frequency);
+	fprintf(fp, "\tBandwidth     : %lf\n", path.BW);
 
 	if(path.Modulation == ANALOG) {
 		strcpy(outstr, "ANALOG");
-		fprintf(fp, "\tModulation = %s\n", outstr);
+		fprintf(fp, "\tModulation : %s\n", outstr);
 	}
 	else {
 		strcpy(outstr, "DIGITAL");
-		fprintf(fp, "\tModulation = %s\n", outstr);
+		fprintf(fp, "\tModulation : %s\n", outstr);
 	};
 
-	fprintf(fp, "\tRequired signal-to-noise ratio = %lf\n", path.SNRr);
-	fprintf(fp, "\tRequired %% of month signal-to-noise ratio = % d\n", path.SNRXXp);
-	fprintf(fp, "\tRequired signal-to-interference ratio = %lf\n", path.SIRr);
+	fprintf(fp, "\tRequired signal-to-noise ratio : %lf\n", path.SNRr);
+	fprintf(fp, "\tRequired %% of month signal-to-noise ratio : % d\n", path.SNRXXp);
+	fprintf(fp, "\tRequired signal-to-interference ratio : %lf\n", path.SIRr);
 
 	if(path.noiseP.ManMadeNoise == CITY) {
 		strcpy(outstr, "CITY");
-		fprintf(fp, "\tMan-made noise = %s\n", outstr);
+		fprintf(fp, "\tMan-made noise : %s\n", outstr);
 	}
 	else if(path.noiseP.ManMadeNoise == RESIDENTIAL) {
 		strcpy(outstr, "RESIDENTIAL");
-		fprintf(fp, "\tMan-made noise = %s\n", outstr);
+		fprintf(fp, "\tMan-made noise : %s\n", outstr);
 	}
 	else if(path.noiseP.ManMadeNoise == RURAL) {
 		strcpy(outstr, "RURAL");
-		fprintf(fp, "\tMan-made noise = %s\n", outstr);
+		fprintf(fp, "\tMan-made noise : %s\n", outstr);
 	}
 	else if(path.noiseP.ManMadeNoise == QUIETRURAL) {
 		strcpy(outstr, "QUIETRURAL");
-		fprintf(fp, "\tMan-made noise = %s\n", outstr);
+		fprintf(fp, "\tMan-made noise : %s\n", outstr);
 	}
 	else if(path.noiseP.ManMadeNoise == NOISY) {
 		strcpy(outstr, "NOISY");
-		fprintf(fp, "\tMan-made noise = %s\n", outstr);
+		fprintf(fp, "\tMan-made noise : %s\n", outstr);
 	}
 	else if(path.noiseP.ManMadeNoise == QUIET) {
 		strcpy(outstr, "QUIET");
-		fprintf(fp, "\tMan-made noise = %s\n", outstr);
+		fprintf(fp, "\tMan-made noise : %s\n", outstr);
 	}
 	else {
-		fprintf(fp, "\tMan-made noise = %lf (dB)\n", path.noiseP.ManMadeNoise);
+		fprintf(fp, "\tMan-made noise : %lf (dB)\n", path.noiseP.ManMadeNoise);
 	}
 
 	if(path.Modulation == DIGITAL) {
-		fprintf(fp, "\tFrequency dispersion for simple BCR (F0) = %lf\n", path.F0);			// Frequency dispersion at a level -10 dB relative to the peak signal amplitude
-		fprintf(fp, "\tTime spread for simple BCR (T0) = %lf\n", path.T0);
-		fprintf(fp, "\tRequired Amplitude ratio (A) = %lf\n", path.A);
-		fprintf(fp, "\tTime window (usec) = %lf\n", path.TW);
-		fprintf(fp, "\tFrequency window (Hz) = %lf\n", path.FW);
+		fprintf(fp, "\tFrequency dispersion for simple BCR (F0) : %lf\n", path.F0);			// Frequency dispersion at a level -10 dB relative to the peak signal amplitude
+		fprintf(fp, "\tTime spread for simple BCR (T0) : %lf\n", path.T0);
+		fprintf(fp, "\tRequired Amplitude ratio (A) : %lf\n", path.A);
+		fprintf(fp, "\tTime window (usec) : %lf\n", path.TW);
+		fprintf(fp, "\tFrequency window (Hz) : %lf\n", path.FW);
 	};
 
 	if(ITURHFP.AntennaOrientation == TX2RX) {
-		fprintf(fp, "\tAntenna configuration: Transmitter main beam to receiver main beam\n");
+		fprintf(fp, "\tAntenna configuration : Transmitter main beam to receiver main beam\n");
 	}
 	else if(ITURHFP.AntennaOrientation == MANUAL) {
-		fprintf(fp, "\tAntenna configuration: User determined\n");
+		fprintf(fp, "\tAntenna configuration : User determined\n");
 	}
 	else {
-		fprintf(fp, "\tAntenna configuration: UNKNOWN\n");
+		fprintf(fp, "\tAntenna configuration : UNKNOWN\n");
 	};
 
-	fprintf(fp, "\tTransmit antenna %.40s\n", path.A_tx.Name);
-	fprintf(fp, "\tTransmit antenna bearing = %lf\n", ITURHFP.TXBearing*R2D);
-	fprintf(fp, "\tTransmit antenna gain offset = %lf\n", ITURHFP.TXGOS);
-	fprintf(fp, "\tReceive antenna  %.40s\n", path.A_rx.Name);
-	fprintf(fp, "\tReceive antenna bearing = %lf\n", ITURHFP.RXBearing*R2D);
-	fprintf(fp, "\tReceive antenna gain offset = %lf\n", ITURHFP.RXGOS);
+	if (path.SorL == SHORTPATH) {
+		strcpy(outstr, "SHORTPATH");
+	}
+	else if (path.SorL == LONGPATH) {
+		strcpy(outstr, "LONGPATH");
+	}
+	else {
+		strcpy(outstr, "ERROR");
+	};
+	fprintf(fp, "\tPath Direction : %s\n", outstr);
+
+	fprintf(fp, "\tTransmit antenna               %.40s\n", path.A_tx.Name);
+	fprintf(fp, "\tTransmit antenna bearing     : %lf\n", ITURHFP.TXBearing*R2D);
+	fprintf(fp, "\tTransmit antenna gain offset : %lf\n", ITURHFP.TXGOS);
+	fprintf(fp, "\tReceive antenna                %.40s\n", path.A_rx.Name);
+	fprintf(fp, "\tReceive antenna bearing      : %lf\n", ITURHFP.RXBearing*R2D);
+	fprintf(fp, "\tReceive antenna gain offset  : %lf\n", ITURHFP.RXGOS);
 
 	fprintf(fp, "\n");
 	fprintf(fp, "************************ End P533 Input Parameters *****************************\n");
 	fprintf(fp, "\n");
 	fprintf(fp, "************************** ITURHFP Input Parameters *****************************\n");
 	fprintf(fp, "\n");
-	fprintf(fp, "\tUpper left (North West) latitude   = %10.6lf %c\n", fabs(ITURHFP.L_UL.lat*R2D), NS(ITURHFP.L_UL.lat*R2D));
-	fprintf(fp, "\tUpper left (North West) longitude  = %10.6lf %c\n", fabs(ITURHFP.L_UL.lng*R2D), EW(ITURHFP.L_UL.lng*R2D));
-	fprintf(fp, "\tLower right (South East) latitude  = %10.6lf %c\n", fabs(ITURHFP.L_LR.lat*R2D), NS(ITURHFP.L_LR.lat*R2D));
-	fprintf(fp, "\tLower right (South East) longitude = %10.6lf %c\n", fabs(ITURHFP.L_LR.lng*R2D), EW(ITURHFP.L_LR.lng*R2D));
-	fprintf(fp, "\tNumber of frequencies = %d\n", ITURHFP.ifrqend);
-	fprintf(fp, "\tNumber of hours       = %d\n", ITURHFP.ihrend);
-	fprintf(fp, "\tNumber of months      = %d\n", ITURHFP.imnthend);
-	fprintf(fp, "\tLatitude increment    = %lf (deg)\n", ITURHFP.latinc*R2D);
-	fprintf(fp, "\tLongitude increment   = %lf (deg)\n", ITURHFP.lnginc*R2D);
+	fprintf(fp, "\tUpper left (North West) latitude   : %10.6lf %c\n", fabs(ITURHFP.L_UL.lat*R2D), NS(ITURHFP.L_UL.lat*R2D));
+	fprintf(fp, "\tUpper left (North West) longitude  : %10.6lf %c\n", fabs(ITURHFP.L_UL.lng*R2D), EW(ITURHFP.L_UL.lng*R2D));
+	fprintf(fp, "\tLower right (South East) latitude  : %10.6lf %c\n", fabs(ITURHFP.L_LR.lat*R2D), NS(ITURHFP.L_LR.lat*R2D));
+	fprintf(fp, "\tLower right (South East) longitude : %10.6lf %c\n", fabs(ITURHFP.L_LR.lng*R2D), EW(ITURHFP.L_LR.lng*R2D));
+	fprintf(fp, "\tNumber of frequencies : %d\n", ITURHFP.ifrqend);
+	fprintf(fp, "\tNumber of hours       : %d\n", ITURHFP.ihrend);
+	fprintf(fp, "\tNumber of months      : %d\n", ITURHFP.imnthend);
+	fprintf(fp, "\tLatitude increment    : %lf (deg)\n", ITURHFP.latinc*R2D);
+	fprintf(fp, "\tLongitude increment   : %lf (deg)\n", ITURHFP.lnginc*R2D);
 	fprintf(fp, "\n");
 	fprintf(fp, "************************** ITURHFP Input Parameters *****************************\n");
 	fprintf(fp, "\n");

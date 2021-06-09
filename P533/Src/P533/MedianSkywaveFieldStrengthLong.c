@@ -451,7 +451,7 @@ void FindMUFsandfM(struct PathData *path, struct ControlPt CP[MAXCP][24], int ho
 
 	// Before proceeding, finding the forward azimuth at the midpoint is required.
 	// The azimuth is used to interpolate the W, X and Y values to calculate K.
-	A = Bearing(path->CP[MP].L, path->L_rx);
+	A = Bearing(path->CP[MP].L, path->L_rx, SHORTPATH);
 
 	// Now use A to interpolate the W, X and Y values.
 	if(A > PI) {

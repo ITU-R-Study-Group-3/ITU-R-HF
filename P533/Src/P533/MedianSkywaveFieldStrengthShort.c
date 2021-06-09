@@ -1180,10 +1180,10 @@ double AntennaGain(struct PathData path, struct Antenna Ant, double delta, int d
 	// Determine the bearing
 	// From the tx to rx.
 	if (direction == TXTORX) {
-		B = Bearing(path.L_tx, path.L_rx)*R2D; // degrees
+		B = Bearing(path.L_tx, path.L_rx, path.SorL)*R2D; // degrees
 	}
 	else if (direction == RXTOTX) {
-		B = Bearing(path.L_rx, path.L_tx)*R2D; // degrees
+		B = Bearing(path.L_rx, path.L_tx, path.SorL)*R2D; // degrees
 	}
 
 	// Now determine the gain at the elevation, delta
@@ -1207,12 +1207,14 @@ double AntennaGain(struct PathData path, struct Antenna Ant, double delta, int d
 	c = B - (int)B;			// The fractional part of the column
 
 	G = BilinearInterpolation(LL, LR, UL, UR, r, c);
-  /*
-  printf("\nPath freq: %.3fMHz Pattern.freq: %.3fMHz (Index = %d)\n", path.frequency, Ant.freqs[freqIndex], freqIndex);
-  printf("Bearing: %.3f deg Elevation: %.3fdeg\n", B, delta);
-  printf("LL:%.3f LR: %.3f UL: %.3f UR: %.3f\n", LL, LR, UL, UR);
-  printf("Gain:%.3f\n", G);
-  */
+
+	/*
+	printf("\nPath freq: %.3fMHz Pattern.freq: %.3fMHz (Index = %d)\n", path.frequency, Ant.freqs[freqIndex], freqIndex);
+	printf("Bearing: %.3f deg Elevation: %.3fdeg\n", B, delta);
+	printf("LL:%.3f LR: %.3f UL: %.3f UR: %.3f\n", LL, LR, UL, UR);
+	printf("Gain:%.3f\n", G);
+	*/
+	
 	return G;
 
 };

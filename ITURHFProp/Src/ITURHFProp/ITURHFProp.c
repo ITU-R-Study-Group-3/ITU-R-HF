@@ -36,7 +36,7 @@ char mod[512];
 	int (*dllP533)(struct PathData *);
 	int (*dllAllocatePathMemory)(struct PathData *);
 	int (*dllFreePathMemory)(struct PathData *);
-	double (*dllBearing)(struct Location,struct Location);
+	double (*dllBearing)(struct Location,struct Location,int direction);
 	int (*dllInputDump)(struct PathData *);
 #endif
 
@@ -246,8 +246,8 @@ int main(int argc, char *argv[]) {
 	// Now that the input has been loaded the location of the transmitter and receiver are known
 	// so the bearing of the antennas can be determined if necessary.
 	if(ITURHFP.AntennaOrientation == TX2RX) {
-		ITURHFP.TXBearing = dllBearing(path.L_tx, path.L_rx); // Point the transmitter at the receiver.
-		ITURHFP.RXBearing = dllBearing(path.L_rx, path.L_tx); // Point the receiver at the transmitter.
+		ITURHFP.TXBearing = dllBearing(path.L_tx, path.L_rx, path.SorL); // Point the transmitter at the receiver.
+		ITURHFP.RXBearing = dllBearing(path.L_rx, path.L_tx, path.SorL); // Point the receiver at the transmitter.
 	};
 
 	retval = ValidateITURHFP(ITURHFP);

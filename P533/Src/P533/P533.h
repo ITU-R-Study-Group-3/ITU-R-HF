@@ -17,7 +17,7 @@
 // P533 *******************************************************************************************
 
 // Version number
-#define P533VER		"14.1"
+#define P533VER		"14.2"
 
 // Have the preprocessor time stamp the compile time
 #define P533CT		__TIMESTAMP__
@@ -492,7 +492,7 @@ DLLEXPORT char const * P533Version();
 DLLEXPORT void GreatCirclePoint(struct Location here, struct Location there, struct ControlPt *midpnt, double distance, double fraction);
 DLLEXPORT double GreatCircleDistance(struct Location here, struct Location there);
 DLLEXPORT void GeomagneticCoords(struct Location here, struct Location *there);
-DLLEXPORT double Bearing(struct Location here, struct Location there);
+DLLEXPORT double Bearing(struct Location here, struct Location there, int direction);
 
 // ValidataPath.c Prototypes
 int ValidatePath(struct PathData *path);
