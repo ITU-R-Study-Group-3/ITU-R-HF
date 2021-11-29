@@ -622,7 +622,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 				// Write the data out to the file
 				fprintf(fp, "%d, %d, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f\n", 
-					m+1, h, f_log[f], rlat* R2D, rlng* R2D, FamS.FA, FamS.Du, FamS.Dl, FamS.SigmaFam, FamS.SigmaDu, FamS.SigmaDu);
+					m+1, h, f_log[f], rlat* R2D, rlng* R2D, FamS.FA, FamS.Du, FamS.Dl, FamS.SigmaFam, FamS.SigmaDu, FamS.SigmaDl);
 
 			}; // End frequency loop
 

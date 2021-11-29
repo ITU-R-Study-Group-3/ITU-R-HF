@@ -92,8 +92,29 @@ struct NoiseParams {
 
 // End Structures
 
+// Start P372.DLL typedef ******************************************************
+#ifdef _WIN32
+#include <Windows.h>
+// P372Version() & P372CompileTime()
+typedef const char* (__cdecl* cP372Info)();
+// AllocateNoiseMemory() & FreeNoiseMemory()
+typedef int(__cdecl* iNoiseMemory)(struct NoiseParams* noiseP);
+// Noise()
+typedef int(__cdecl* iNoise)(struct NoiseParams* noiseP, int hour, double lng, double lat, double frequency);
+// ReadFamDud()
+typedef int(__cdecl* iReadFamDud)(struct NoiseParams* noiseP, const char* DataFilePath, int month);
+// InitializeNoise()
+typedef void(__cdecl* vInitializeNoise)(struct NoiseParams* noiseP);
+// AtmosphericNoise_LT()
+typedef void(__cdecl* vAtmosphericNoise_LT)(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double lng, double lat, double frequency);
+// MakeNoise()
+typedef int(__stdcall* iMakeNoise)(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
+
+#endif
+// End P372.DLL typedef ********************************************************
+
 // Prototypes
-// _cdecl exports
+// _cdecl exports for all environments __linux__ && __APPLE__ && _WIN32
 DLLEXPORT int AllocateNoiseMemory(struct NoiseParams *noiseP);
 DLLEXPORT int FreeNoiseMemory(struct NoiseParams *noiseP);
 DLLEXPORT int Noise(struct NoiseParams *noiseP, int hour, double rlng, double rlat, double frequency);
@@ -104,7 +125,9 @@ DLLEXPORT char const * P372Version();
 DLLEXPORT void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double rlng, double rlat, double frequency);
 // Note: MakeNoise() requires decimal degrees lat and lng
 DLLEXPORT int MakeNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
-// _stdcall exports
+
+#if _WIN32
+// _stdcall exports dummies used to provide entry points in the DLL for MS excel
 DLLEXPORT int __stdcall _AllocateNoiseMemory(struct NoiseParams* noiseP);
 DLLEXPORT int __stdcall _FreeNoiseMemory(struct NoiseParams* noiseP);
 DLLEXPORT int __stdcall _Noise(struct NoiseParams* noiseP, int hour, double rlng, double rlat, double frequency);
@@ -115,29 +138,8 @@ DLLEXPORT char  const* __stdcall _P372Version();
 DLLEXPORT void __stdcall _AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double rlng, double rlat, double frequency);
 // Note: MakeNoise() requires decimal degrees lat and lng as input
 DLLEXPORT int __stdcall _MakeNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
-// End Prototypes
-
-
-// Start P372.DLL typedef ******************************************************
-#ifdef _WIN32
-	#include <Windows.h>
-	// P372Version() & P372CompileTime()
-	typedef const char* (__cdecl* cP372Info)();
-	// AllocateNoiseMemory() & FreeNoiseMemory()
-	typedef int(__cdecl* iNoiseMemory)(struct NoiseParams* noiseP);
-	// Noise()
-	typedef int(__cdecl* iNoise)(struct NoiseParams* noiseP, int hour, double lng, double lat, double frequency);
-	// ReadFamDud()
-	typedef int(__cdecl* iReadFamDud)(struct NoiseParams* noiseP, const char* DataFilePath, int month);
-	// InitializeNoise()
-	typedef void(__cdecl* vInitializeNoise)(struct NoiseParams* noiseP);
-	// AtmosphericNoise_LT()
-	typedef void(__cdecl* vAtmosphericNoise_LT)(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double lng, double lat, double frequency);
-	// MakeNoise()
-	typedef int(__stdcall* iMakeNoise)(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
-
 #endif
-// End P372.DLL typedef ********************************************************
+// End Prototypes
 
 #ifdef _WIN32
 	HINSTANCE hLib;
@@ -150,7 +152,7 @@ DLLEXPORT int __stdcall _MakeNoise(int month, int hour, double lat, double lng, 
 	vInitializeNoise dllInitializeNoise;
 	vAtmosphericNoise_LT dllAtmosphericNoise_LT;
 	iMakeNoise dllMakeNoise;
-#elif __linux__ || __APPLE__
+#elif defined(__linux__) || defined(__APPLE__)
 	#include <dlfcn.h>
 	void* hLib;
 	char* (*dllP372Version)();

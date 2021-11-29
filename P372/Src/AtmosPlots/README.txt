@@ -101,7 +101,7 @@ Example ITURNoise() Output
 
 Mode 2 – Generate Atmospheric Noise Figure Data Output
 There is one command line argument required for Mode 2, the data file path in quotes without the trailing back slash (Please see the description of Mode1 Argument 6 above). The following example would generate the figure data in the root directory.
-C:\>ITURNoise "G:\User\Data\"
+C:\>ITURNoise "G:\User\Data"
 Mode 2 creates the following directory structure in the current directory or directory where it is run.
 
 .\ ----- P372_figures --|-- a ----- csv
