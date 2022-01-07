@@ -440,7 +440,7 @@ void function_RPT_D(struct PathData path, int option, int *col) {
 			fprintf(fp, "Column %02d: D - Path distance (km)\n", ++*col);
 			break;
 		case PRINT_RFC4180_HEADER:
-			fprintf(fp, "distance");
+			fprintf(fp, ",distance");
 			++*col;
 			break;
 		case PRINT_DATA:
