@@ -80,6 +80,7 @@
     <PostBuildEvent>
       <Command>copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\bin\$(TargetFileName)
 copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\p372\bin\$(TargetFileName)
+copy $(TargetDir)..\..\..\..\p372\Src\p372\noise.h $(TargetDir)..\..\..\..\p372\Src\ITURNoise\noise.h
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -94,9 +95,8 @@ copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\p372\bin\$(TargetFile
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\bin\$(TargetFileName)
-copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\p372\bin\$(TargetFileName)
-</Command>
+      <Command>copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\bin\$(TargetFileName)
+copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\..\p372\bin\$(TargetFileName)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -116,6 +116,7 @@ copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\p372\bin\$(TargetFile
     <PostBuildEvent>
       <Command>copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\bin\$(TargetFileName)
 copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\p372\bin\$(TargetFileName)
+copy $(TargetDir)..\..\..\..\p372\Src\p372\noise.h $(TargetDir)..\..\..\..\p372\Src\ITURNoise\noise.h
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -134,9 +135,8 @@ copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\p372\bin\$(TargetFile
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\bin\$(TargetFileName)
-copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\p372\bin\$(TargetFileName)
-</Command>
+      <Command>copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\bin\$(TargetFileName)
+copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\..\p372\bin\$(TargetFileName)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

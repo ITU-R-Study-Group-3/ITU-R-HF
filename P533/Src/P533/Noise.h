@@ -105,6 +105,8 @@ typedef int(__cdecl* iNoise)(struct NoiseParams* noiseP, int hour, double lng, d
 typedef int(__cdecl* iReadFamDud)(struct NoiseParams* noiseP, const char* DataFilePath, int month);
 // InitializeNoise()
 typedef void(__cdecl* vInitializeNoise)(struct NoiseParams* noiseP);
+// AtmosphericNoise()
+typedef void(__cdecl* vAtmosphericNoise)(struct NoiseParams* noiseP, int iutc, double lng, double lat, double frequency);
 // AtmosphericNoise_LT()
 typedef void(__cdecl* vAtmosphericNoise_LT)(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double lng, double lat, double frequency);
 // MakeNoise()
@@ -122,6 +124,7 @@ DLLEXPORT int ReadFamDud(struct NoiseParams *noiseP, const char *DataFilePath, i
 DLLEXPORT void InitializeNoise(struct NoiseParams *noiseP);
 DLLEXPORT char const * P372CompileTime();
 DLLEXPORT char const * P372Version();
+DLLEXPORT void AtmosphericNoise(struct NoiseParams* noiseP, int iutc, double rlng, double rlat, double frequency);
 DLLEXPORT void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double rlng, double rlat, double frequency);
 // Note: MakeNoise() requires decimal degrees lat and lng
 DLLEXPORT int MakeNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
@@ -135,6 +138,7 @@ DLLEXPORT int __stdcall _ReadFamDud(struct NoiseParams* noiseP, const char* Data
 DLLEXPORT void __stdcall _InitializeNoise(struct NoiseParams* noiseP);
 DLLEXPORT char  const* __stdcall _P372CompileTime();
 DLLEXPORT char  const* __stdcall _P372Version();
+DLLEXPORT void __stdcall _AtmosphericNoise(struct NoiseParams* noiseP, int iutc, double rlng, double rlat, double frequency);
 DLLEXPORT void __stdcall _AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double rlng, double rlat, double frequency);
 // Note: MakeNoise() requires decimal degrees lat and lng as input
 DLLEXPORT int __stdcall _MakeNoise(int month, int hour, double lat, double lng, double freq, double mmnoise, char* datafilepath, double* out, int pntflag);
@@ -150,6 +154,7 @@ DLLEXPORT int __stdcall _MakeNoise(int month, int hour, double lat, double lng, 
 	iNoiseMemory dllFreeNoiseMemory;
 	iReadFamDud dllReadFamDud;
 	vInitializeNoise dllInitializeNoise;
+	vAtmosphericNoise dllAtmosphericNoise;
 	vAtmosphericNoise_LT dllAtmosphericNoise_LT;
 	iMakeNoise dllMakeNoise;
 #elif defined(__linux__) || defined(__APPLE__)

@@ -27,33 +27,33 @@ int RunAtmosNoiseMonths(char* datafilepath);
 int main(int argc, char* argv[]) {
 	/*
 
-		main() - This program takes command line arguements and runs the P372 calculation engine
+		main() - This program takes command line arguments and runs the P372 calculation engine
 
 			INPUT
-				Argument 1:  month (1 to 12)\n");
-				Argument 2:  hour (1 to 24 (UTC))\n");
+				Argument 1:  month (1 to 12))
+				Argument 2:  hour (1 to 24 (UTC))
 				Argument 3:  frequency (0.01 to 30 MHz)
-				Argument 4:  latitude (degrees)\n");
-				Argument 5:  longitude (degrees)\n");
-				Argument 6:  man-made noise 0-5 or value of man-made noise (dB)\n");
-								 CITY         0.0\n");
-								 RESIDENTIAL  1.0\n");
-								 RURAL		2.0\n");
-								 QUIETRURAL	3.0\n");
-								 NOISY		4.0\n");
-								 QUIET		5.0\n");
-				Argument 7:  data file path in double quotes without trailing back slash\n");
-				Argument 8:  print flag 0-3\n");
-								 PRINTHEADER	1 Prints the full header\n");
-								 PRINTCSV		3 Prints out simple csv\n");
-								 PRINTALL		2 Print out header with the simple csv\n");
-								 NOPRINT		0 Do not print\n");
+				Argument 4:  latitude (degrees)
+				Argument 5:  longitude (degrees)
+				Argument 6:  man-made noise 0-5 or value of man-made noise (dB)
+								 CITY         0.0
+								 RESIDENTIAL  1.0
+								 RURAL		  2.0
+								 QUIETRURAL	  3.0
+								 NOISY		  4.0
+								 QUIET		  5.0
+				Argument 7:  data file path in double quotes without trailing back slash
+				Argument 8:  print flag 0-3
+								 PRINTHEADER	1 Prints the full header
+								 PRINTCSV		3 Prints out simple csv
+								 PRINTALL		2 Print out header with the simple csv
+								 NOPRINT		0 Do not print
 			OUTPUT
 				The output is printed to stdout depending on the print flag
 
-			Example: ITURNoise 1 14 1.0 40.0 165.0 0 \"G:\\User\\Data\" \n");
-							   Calculation made for January 14th hour (UTC)\n");
-							   at 40 degrees North and 165 degrees East\n");
+			Example: ITURNoise 1 14 1.0 40.0 165.0 0 "G:\\User\\Data"
+							   Calculation made for January 14th hour (UTC)
+							   at 40 degrees North and 165 degrees East
 
 			******************************************************************************
 					ITU-R Study Group 3: Radiowave Propagation
@@ -79,7 +79,24 @@ int main(int argc, char* argv[]) {
 
 			******************************************************************************
 
-		Behm/2020
+			*********************************************************************************************
+			These software methods for the prediction of the performance of HF circuits based on
+			Recommendations ITU-R P.533-14 and P.372-13
+			The ITURHFProp, P533 and P372 software has been developed collaboratively by participants in ITU-R
+			Study Group 3. It may be used by implementers in their implementation of the Recommendation as well
+			as in revisions of the specific original Recommendation and in other ITU Recommendations, free from
+			any copyright assertions.
+
+			This software is provided “as is” WITH NO WARRANTIES, EXPRESS OR IMPLIED,
+			INCLUDING BUT NOT LIMITED TO, THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+			AND NON-INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS.
+
+			The ITU shall not be held liable in any event for any damages whatsoever (including, without
+			limitation, damages for loss of profits, business interruption, loss of information, or any other
+			pecuniary loss) arising out of or related to use of the software.
+			***************************************************************************************************
+
+			Behm 2022
 
 	*/
 
@@ -200,7 +217,7 @@ int main(int argc, char* argv[]) {
 #ifdef _WIN32
 			int mod[512];
 			// Get the handle to the P372 DLL.
-			hLib = LoadLibrary("P372.dll");
+			hLib = LoadLibrary(TEXT("P372.dll"));
 			if (hLib == NULL) {
 				printf("ITURNoise: AllocatePathMemory: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
 				return RTN_ERRP372DLL;
@@ -282,7 +299,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	// Load the Noise routines in P372.dll ******************************
 #ifdef _WIN32
 	// Get the handle to the P372 DLL.
-	hLib = LoadLibrary("P372.dll");
+	hLib = LoadLibrary(TEXT("P372.dll"));
 	if (hLib == NULL) {
 		printf("ITURHFProp: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
 		return RTN_ERRP372DLL;
@@ -300,6 +317,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	dllFreeNoiseMemory = (iNoiseMemory)GetProcAddress((HMODULE)hLib, "FreeNoiseMemory");
 	dllInitializeNoise = (vInitializeNoise)GetProcAddress((HMODULE)hLib, "InitializeNoise");
 	dllAtmosphericNoise_LT = (vAtmosphericNoise_LT)GetProcAddress((HMODULE)hLib, "AtmosphericNoise_LT");
+	dllAtmosphericNoise = (vAtmosphericNoise)GetProcAddress((HMODULE)hLib, "AtmosphericNoise");
 	dllReadFamDud = (iReadFamDud)GetProcAddress((HMODULE)hLib, "ReadFamDud");
 #elif __linux__ || __APPLE__
 	void* hLib;
@@ -321,6 +339,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 	int i;
 	int retval;
+	int iutc;
 	int fn = 41; // Number of elements in the f_log array below
 
 	const char* P372ver;
@@ -462,7 +481,8 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 					
 					// Call the AtmosphericNoise_LT() from the P372.dll
 					// Which calculates the atmospheric noise and returns the full statistics. 
-					dllAtmosphericNoise_LT(&noiseP, &FamS, h, rlng, rlat, freq);
+					iutc = h + (int)((float)ilng / 15.0); // UTC is 0-23
+					dllAtmosphericNoise_LT(&noiseP, &FamS, iutc, rlng, rlat, freq);
 										
 					// Write the data out to the file
 					fprintf(fp, "%d, %d, %5.4f, %5.4f, %5.4f, %5.4f\n", 
@@ -484,7 +504,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 	// For the b) and c) plots a location is required
 	//             Boulder, Colorado
-	rlat = 40.015744 * D2R;
+	rlat = -40.015744 * D2R;
 	rlng = -105.27932 * D2R;
 
 	/*********************************************************************

@@ -1,0 +1,702 @@
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>del "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots\40deg.txt" 
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 13 1.0 40.0 -180.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:43
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 13 (UTC)
+	40.0000 (deg lat) -180.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 69.971
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 77.893
+	[DuT]  Upper Decile          (Total): 10.649
+	[DlT]  Lower Decile          (Total): 6.621
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 12 1.0 40.0 -165.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:43
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 12 (UTC)
+	40.0000 (deg lat) -165.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 66.602
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 77.328
+	[DuT]  Upper Decile          (Total): 10.830
+	[DlT]  Lower Decile          (Total): 6.385
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 11 1.0 40.0 -150.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:43
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 11 (UTC)
+	40.0000 (deg lat) -150.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 63.083
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 77.042
+	[DuT]  Upper Decile          (Total): 10.922
+	[DlT]  Lower Decile          (Total): 6.467
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 10 1.0 40.0 -135.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 10 (UTC)
+	40.0000 (deg lat) -135.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 62.386
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 77.007
+	[DuT]  Upper Decile          (Total): 10.933
+	[DlT]  Lower Decile          (Total): 6.490
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 9 1.0 40.0 -120.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 9 (UTC)
+	40.0000 (deg lat) -120.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 68.617
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 77.619
+	[DuT]  Upper Decile          (Total): 10.737
+	[DlT]  Lower Decile          (Total): 6.462
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 8 1.0 40.0 -105.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 8 (UTC)
+	40.0000 (deg lat) -105.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 81.713
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 82.931
+	[DuT]  Upper Decile          (Total): 9.228
+	[DlT]  Lower Decile          (Total): 9.015
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 7 1.0 40.0 -90.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 7 (UTC)
+	40.0000 (deg lat) -90.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 90.545
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 90.717
+	[DuT]  Upper Decile          (Total): 9.598
+	[DlT]  Lower Decile          (Total): 9.403
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 6 1.0 40.0 -75.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 6 (UTC)
+	40.0000 (deg lat) -75.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 83.784
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 84.564
+	[DuT]  Upper Decile          (Total): 9.256
+	[DlT]  Lower Decile          (Total): 9.178
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 5 1.0 40.0 -60.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 5 (UTC)
+	40.0000 (deg lat) -60.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 68.307
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 77.566
+	[DuT]  Upper Decile          (Total): 10.754
+	[DlT]  Lower Decile          (Total): 6.439
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 4 1.0 40.0 -45.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 4 (UTC)
+	40.0000 (deg lat) -45.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 58.573
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 76.889
+	[DuT]  Upper Decile          (Total): 10.971
+	[DlT]  Lower Decile          (Total): 6.595
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 3 1.0 40.0 -30.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 3 (UTC)
+	40.0000 (deg lat) -30.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 56.884
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 76.862
+	[DuT]  Upper Decile          (Total): 10.980
+	[DlT]  Lower Decile          (Total): 6.625
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 2 1.0 40.0 -15.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 2 (UTC)
+	40.0000 (deg lat) -15.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 59.861
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 76.919
+	[DuT]  Upper Decile          (Total): 10.962
+	[DlT]  Lower Decile          (Total): 6.566
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 1 1.0 40.0 0.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 1 (UTC)
+	40.0000 (deg lat) 0.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 66.627
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 77.331
+	[DuT]  Upper Decile          (Total): 10.830
+	[DlT]  Lower Decile          (Total): 6.385
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 24 1.0 40.0 15.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 24 (UTC)
+	40.0000 (deg lat) 15.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 72.663
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 78.698
+	[DuT]  Upper Decile          (Total): 10.395
+	[DlT]  Lower Decile          (Total): 7.203
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 23 1.0 40.0 30.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 23 (UTC)
+	40.0000 (deg lat) 30.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 74.968
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 79.373
+	[DuT]  Upper Decile          (Total): 10.078
+	[DlT]  Lower Decile          (Total): 7.820
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 22 1.0 40.0 45.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 22 (UTC)
+	40.0000 (deg lat) 45.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 73.447
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 79.001
+	[DuT]  Upper Decile          (Total): 10.297
+	[DlT]  Lower Decile          (Total): 7.412
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 21 1.0 40.0 60.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 21 (UTC)
+	40.0000 (deg lat) 60.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 73.473
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 79.006
+	[DuT]  Upper Decile          (Total): 10.294
+	[DlT]  Lower Decile          (Total): 7.419
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 20 1.0 40.0 75.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 20 (UTC)
+	40.0000 (deg lat) 75.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 74.231
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 79.177
+	[DuT]  Upper Decile          (Total): 10.189
+	[DlT]  Lower Decile          (Total): 7.624
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 19 1.0 40.0 90.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 19 (UTC)
+	40.0000 (deg lat) 90.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 67.787
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 77.484
+	[DuT]  Upper Decile          (Total): 10.780
+	[DlT]  Lower Decile          (Total): 6.411
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 18 1.0 40.0 105.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 18 (UTC)
+	40.0000 (deg lat) 105.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 59.039
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 76.899
+	[DuT]  Upper Decile          (Total): 10.968
+	[DlT]  Lower Decile          (Total): 6.585
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 17 1.0 40.0 120.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 17 (UTC)
+	40.0000 (deg lat) 120.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 61.498
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 76.970
+	[DuT]  Upper Decile          (Total): 10.945
+	[DlT]  Lower Decile          (Total): 6.519
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 16 1.0 40.0 135.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 16 (UTC)
+	40.0000 (deg lat) 135.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 71.677
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 78.357
+	[DuT]  Upper Decile          (Total): 10.502
+	[DlT]  Lower Decile          (Total): 6.957
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 15 1.0 40.0 150.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 15 (UTC)
+	40.0000 (deg lat) 150.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 75.914
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 79.677
+	[DuT]  Upper Decile          (Total): 9.926
+	[DlT]  Lower Decile          (Total): 8.057
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 14 1.0 40.0 165.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 14 (UTC)
+	40.0000 (deg lat) 165.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 73.313
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 78.954
+	[DuT]  Upper Decile          (Total): 10.315
+	[DlT]  Lower Decile          (Total): 7.376
+
+**********************************************************
+
+C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Src\AtmosPlots>ITURNoise 7 13 1.0 40.0 180.0 0 "C:\Users\behm\Documents\GitHub\ITU-R-HF\P372\Data" 
+**********************************************************
+	ITU-R Study Group 3: Radiowave Propagation
+**********************************************************
+	Analysis: 14/1/22 - 11:26:44
+	P372 Version:      14.2
+	P372 Compile Time: Fri Jan  7 12:24:48 2022
+**********************************************************
+
+	JULY : 13 (UTC)
+	40.0000 (deg lat) 180.0000 (deg long)
+	1.000 (MHz)
+
+	[FaA]  Noise Component (Atmospheric): 69.971
+	[DuA]  Upper Decile    (Atmospheric): 9.772
+	[DlA]  Upper Decile    (Atmospheric): 9.466
+	[FaM]  Noise Component    (Man-Made): 76.800
+	[DuM]  Upper Decile       (Man-Made): 11.000
+	[DlM]  Lower Decile       (Man-Made): 6.700
+	[FaG]  Noise Component    (Galactic): 52.000
+	[DuG]  Upper Decile       (Galactic): 2.000
+	[DlG]  Lower Decile       (Galactic): 2.000
+	[FamT] Noise                 (Total): 77.893
+	[DuT]  Upper Decile          (Total): 10.649
+	[DlT]  Lower Decile          (Total): 6.621
+
+**********************************************************

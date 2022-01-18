@@ -9,15 +9,13 @@
 #include "Noise.h"
 
 // Local prototypes
-void AtmosphericNoise(struct NoiseParams *noiseP, int hour, double lng,
-											double lat, double frequency);
 void GalacticNoise(struct NoiseParams *noiseP, double frequency);
 void ManMadeNoise(struct NoiseParams *noiseP, double frequency);
 void GetFamParameters(struct NoiseParams *noiseP, struct FamStats *FS,		
 	double lng, double lat, double frequency);
 // End Local prototypes
 
-int Noise(struct NoiseParams *noiseP, int hour, double lng, double lat, double frequency) {
+int Noise(struct NoiseParams *noiseP, int hour, double rlng, double rlat, double frequency) {
 	/*
 
 	 	Noise() Determines atmospheric, man-made and galactic noise and the associated decile values
@@ -29,8 +27,8 @@ int Noise(struct NoiseParams *noiseP, int hour, double lng, double lat, double f
 	 			struct NoiseParams *noiseP
 				double manMadeNoise
 				int hour
-				double lng
-				double lat
+				double rlng (rad)
+				double rlat (rad)
 				double frequency
 
 	 		OUTPUT
@@ -123,7 +121,7 @@ int Noise(struct NoiseParams *noiseP, int hour, double lng, double lat, double f
 	// **************** End Noise Calulation Override ************************ //
 	// *********************************************************************** //
 
-	AtmosphericNoise(noiseP, hour, lng, lat, frequency);
+	AtmosphericNoise(noiseP, hour, rlng, rlat, frequency);
 
 	GalacticNoise(noiseP, frequency);
 
@@ -194,8 +192,8 @@ int Noise(struct NoiseParams *noiseP, int hour, double lng, double lat, double f
 
 };
 
-void AtmosphericNoise(struct NoiseParams *noiseP, int hour, double lng,
-											double lat, double frequency) {
+void AtmosphericNoise(struct NoiseParams *noiseP, int hour, double rlng,
+											double rlat, double frequency) {
 
 	/*
 
@@ -226,8 +224,8 @@ void AtmosphericNoise(struct NoiseParams *noiseP, int hour, double lng,
 	 		INPUT
 	 			struct NoiseParams *noiseP
 				int hour
-				double lng
-				double lat
+				double lng (rad)
+				double lat (rad)
 				double frequency
 
 	 		OUTPUT
@@ -250,9 +248,9 @@ void AtmosphericNoise(struct NoiseParams *noiseP, int hour, double lng,
 	struct FamStats FS_adj; //
 
 	// Find the local mean time at the reciever
-	// Note: lrxmt is 1 to 24 and not 0 to 24
+	// Note: lrxmt is 1 to 24 and not 0 to 23
 	// This is an artifact from ANOIS1()
-	lrxmt = (float)hour + 1.0 + lng /(15.0*D2R);
+	lrxmt = hour + 1 + (int)(rlng /(15.0*D2R));
 	if(lrxmt < 0.0) lrxmt += 24.0; // roll over the time
 	if(lrxmt > 24.0) lrxmt -= 24.0; //
 
@@ -295,8 +293,8 @@ void AtmosphericNoise(struct NoiseParams *noiseP, int hour, double lng,
 	FS_adj.tmblk = FS_adj.tmblk - 1;
 	FS_now.tmblk = FS_now.tmblk - 1;
 
-	GetFamParameters(noiseP, &FS_now, lng, lat, frequency);
-	GetFamParameters(noiseP, &FS_adj, lng, lat, frequency);
+	GetFamParameters(noiseP, &FS_now, rlng, rlat, frequency);
+	GetFamParameters(noiseP, &FS_adj, rlng, rlat, frequency);
 
 	// Interpolate is based on the local reciever mean time, lrxmt, and the 4 hour timeblock
 	slp = fmod(lrxmt, 4.0)/4.0;
@@ -357,7 +355,6 @@ void GetFamParameters(struct NoiseParams *noiseP, struct FamStats *FS,
 	// Set the limits of the Fourier series
 	lm = 29;
 	ln = 15;
-
 
 	// The longitude used here is the geographic east longitude (0 to 2*PI radians)
 	// Initialize the temp, q, as half the geographic east longitude
@@ -853,7 +850,7 @@ void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int 
 			INPUT
 				struct NoiseParams *noiseP This is used solely to pass in the arrays for the atmospheric noise 
 				struct FamStats *FamS
-				int lrxmt	 Local time
+				int lrxmt	 Local time (0-23)  
 				double lng   (rad)
 				double lat   (rad)
 				double frequency (MHz)
@@ -878,6 +875,13 @@ void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int 
 
 	struct FamStats FS_now; //
 	struct FamStats FS_adj; //
+
+	// lrxmt is 1 to 24 and not 0 to 23
+	// This is an artifact from ANOIS1()
+	// so add 1
+	lrxmt += 1; 
+	if (lrxmt <= 0.0) lrxmt += 24.0; // roll over the time
+	if (lrxmt > 24.0) lrxmt -= 24.0; //
 
 	// The atmospheric noise is determined by i) finding the atmospheric noise at the current time
 	// block at the reciever local mean time, ii) finding the noise for the "adjacent" time block and
@@ -951,6 +955,7 @@ void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int 
 };
 
 #ifdef _WIN32
+
 /********************************************************************************************************/
 /*** BEGIN Windows __stdcall Interface routines to the Noise.c routines *********************************/
 /********************************************************************************************************/
@@ -982,6 +987,9 @@ char const* __stdcall _P372CompileTime() {
 char  const* __stdcall _P372Version() {
 	P372Version();
 	return P372VER;
+};
+void __stdcall _AtmosphericNoise(struct NoiseParams* noiseP, int iutc, double lng, double lat, double frequency) {
+	AtmosphericNoise(noiseP, iutc, lng, lat, frequency);
 };
 void __stdcall _AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double lng, double lat, double frequency) {
 	AtmosphericNoise_LT(noiseP, FamS, lrxmt, lng, lat, frequency);
