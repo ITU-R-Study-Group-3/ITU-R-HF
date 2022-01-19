@@ -358,3 +358,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+P372/Src/AtmosPlots/P372_figures

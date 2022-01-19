@@ -339,7 +339,6 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 	int i;
 	int retval;
-	int iutc;
 	int fn = 41; // Number of elements in the f_log array below
 
 	const char* P372ver;
@@ -481,8 +480,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 					
 					// Call the AtmosphericNoise_LT() from the P372.dll
 					// Which calculates the atmospheric noise and returns the full statistics. 
-					iutc = h + (int)((float)ilng / 15.0); // UTC is 0-23
-					dllAtmosphericNoise_LT(&noiseP, &FamS, iutc, rlng, rlat, freq);
+					dllAtmosphericNoise_LT(&noiseP, &FamS, h, rlng, rlat, freq);
 										
 					// Write the data out to the file
 					fprintf(fp, "%d, %d, %5.4f, %5.4f, %5.4f, %5.4f\n", 
