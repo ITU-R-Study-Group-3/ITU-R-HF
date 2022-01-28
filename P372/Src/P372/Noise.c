@@ -192,106 +192,78 @@ int Noise(struct NoiseParams *noiseP, int hour, double rlng, double rlat, double
 
 };
 
-void AtmosphericNoise(struct NoiseParams *noiseP, int hour, double rlng,
-											double rlat, double frequency) {
+void AtmosphericNoise(struct NoiseParams* noiseP, int hour, double rlng,
+	double rlat, double frequency) {
 
 	/*
 
 	  AtmosphericNoise() The method implemented here is based on REC533() code and not an ITU recommendation. Although
-	 		it does provide the numbers that are required. Specifically the statistics of Fam discribed in ITU-R P.372-10
-	 		section 4 Figs. 15c to 38c.
+			it does provide the numbers that are required. Specifically the statistics of Fam discribed in ITU-R P.372-10
+			section 4 Figs. 15c to 38c.
 
-	 		The calculation of the atmospheric noise is based on using one or two four
-	 		hour time blocks to determine the noise. The following code sets the two counters
-	 		FS_now.tmblk and FS_adj.tmblk to the correct 4 hour time block, See P.372-9 for the six 4hr
-	 		time blocks graph sets
-	 		The time blocks are determined by first choosing the timeblock that contains LMT of the reciever, lrxmt.
-	 		The time block, FS_now.tmblk, is set to the index of the timeblock that contains lrxmt. The "adjacent" time block,
-	 		FS_adj.tmblk is then determined in the following way.
-	 		If lrsmt occurs in the first 2 hours of the FS_now.tmblk'th time block then FS_adj.tmblk is set to the timeblock previous
-	 		to FS_now.tmblk. If lrxmt occurs in the 3rd hour
-	 		of the FS_now.tmblk'th time block then FS_adj.tmblk is set to FS_now.tmblk, i.e., FS_now.tmblk = FS_adj.tmblk.
-	 		If lrxmt occurs in the 4th hour of the time block then FS_adj.tmblk is set to the next timeblock.
-	 			tmblk = time block of interest
-	 			tmblk     Reciever LMT hours
-       			  0            0000-0400
-       			  1            0400-0800
-	 			  2            0800-1200
-       			  3            1200-1600
-       			  4            1600-2000
-       			  5            2000-2400
+			The calculation of the atmospheric noise is based on using one or two four
+			hour time blocks to determine the noise. The following code sets the two counters
+			FS_now.tmblk and FS_adj.tmblk to the correct 4 hour time block, See P.372-9 for the six 4hr
+			time blocks graph sets
+			The time blocks are determined by first choosing the timeblock that contains LMT of the reciever, lrxmt.
+			The time block, FS_now.tmblk, is set to the index of the timeblock that contains lrxmt. The "adjacent" time block,
+			FS_adj.tmblk is then determined in the following way.
+			If lrsmt occurs in the first 2 hours of the FS_now.tmblk'th time block then FS_adj.tmblk is set to the timeblock previous
+			to FS_now.tmblk. If lrxmt occurs in the 3rd hour
+			of the FS_now.tmblk'th time block then FS_adj.tmblk is set to FS_now.tmblk, i.e., FS_now.tmblk = FS_adj.tmblk.
+			If lrxmt occurs in the 4th hour of the time block then FS_adj.tmblk is set to the next timeblock.
+				tmblk = time block of interest
+				tmblk     Reciever LMT hours
+				  0            0000-0400
+				  1            0400-0800
+				  2            0800-1200
+				  3            1200-1600
+				  4            1600-2000
+				  5            2000-2400
 
-	 		INPUT
-	 			struct NoiseParams *noiseP
+			INPUT
+				struct NoiseParams *noiseP
 				int hour
 				double lng (rad)
 				double lat (rad)
 				double frequency
 
-	 		OUTPUT
-	 			noiseP->FaA - Atmospheric noise
-	 			noiseP->DuA - Upper decile deviation of atmospheric noise
-	 			noiseP->DlA - Lower decile deviation of atmospheric noise
+			OUTPUT
+				noiseP->FaA - Atmospheric noise
+				noiseP->DuA - Upper decile deviation of atmospheric noise
+				noiseP->DlA - Lower decile deviation of atmospheric noise
 
 			SUBROUTINES
 				GetFamParameters()
 
-	 	This routine is based on portions of the REC533() routines: GENFAM(), GENOIS1(), ANOIS1() and NOISY().
+		This routine is based on portions of the REC533() routines: GENFAM(), GENOIS1(), ANOIS1() and NOISY().
 
 	 */
 
-	double lrxmt; // Local reciever mean time
+	int lrxmt; // Local reciever mean time
 	double slp; // Interpolation factor
 	double fa; // Linear noise power above kTB in 1 MHz
 
 	struct FamStats FS_now; //
 	struct FamStats FS_adj; //
 
-	// Find the local mean time at the reciever
-	// Note: lrxmt is 1 to 24 and not 0 to 23
-	// This is an artifact from ANOIS1()
-	lrxmt = hour + 1 + (int)(rlng /(15.0*D2R));
-	if(lrxmt < 0.0) lrxmt += 24.0; // roll over the time
-	if(lrxmt > 24.0) lrxmt -= 24.0; //
+	// Find the local time (0-23) from the clock UTC, hour, and the longitude 
+	lrxmt = hour + (int)(rlng / (15.0 * D2R));
+
+	// Roll over the local time if necessary
+	if (lrxmt < 0) {
+		lrxmt += 24;
+	}
+	else if (lrxmt > 23) {
+		lrxmt -= 24;
+	};
 
 	// The atmospheric noise is determined by i) finding the atmospheric noise at the current time
 	// block at the reciever local mean time, ii) finding the noise for the "adjacent" time block and
-	// then iii) iterating between the two noise values.
-
-	// Determine the timeblock, tmblk, and "adjacent" time block, FS_adj.tmblk
-	if(lrxmt < 20.0) {
-		FS_now.tmblk = (int)(lrxmt/4.0 + 1.0); // Set the timeblock to the correct 4 hour block
-	}
-	else { // lrxmt >= 20.0
-		FS_now.tmblk = 6;
-	};
-
-	// Determine "adjacent" time block, FS_adj.tmblk
-	FS_adj.tmblk = (4*FS_now.tmblk - 2)/2;
-
-	if(lrxmt < FS_adj.tmblk) {
-		FS_adj.tmblk = FS_now.tmblk - 1;
-	}
-	else if(lrxmt == FS_adj.tmblk) {
-		FS_adj.tmblk = FS_now.tmblk;
-	}
-	else if(lrxmt > FS_adj.tmblk) {
-		FS_adj.tmblk = FS_now.tmblk + 1;
-	};
-
-	if(FS_adj.tmblk <= 0) {
-		FS_adj.tmblk = 6; // Error condition
-	}
-	else if(FS_adj.tmblk > 6) {
-		FS_adj.tmblk = 1; // If FS_adj.tmblk is greater than 6 roll it back to 1
-	};
-
-	// The time block calculation above is from REC533 ANOIS1.FOR where
-	//		KJ = FS_now.tmblk
-	//		JK = FS_adj.tmblk
-	// Since the time blocks will be used as indexes into C arrays they must be decremented
-	FS_adj.tmblk = FS_adj.tmblk - 1;
-	FS_now.tmblk = FS_now.tmblk - 1;
+	// then iii) iterating between the two noise values. There are 6 time blocks so the modulo 6 
+	// keeps the indexes inbounds
+	FS_now.tmblk = (lrxmt / 4) % 6;
+	FS_adj.tmblk = (FS_now.tmblk + 1) % 6;
 
 	GetFamParameters(noiseP, &FS_now, rlng, rlat, frequency);
 	GetFamParameters(noiseP, &FS_adj, rlng, rlat, frequency);
@@ -838,8 +810,8 @@ char const * P372CompileTime() {
 
 };
 
-void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double lng,
-	double lat, double frequency) {
+void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int lrxmt, double rlng,
+	double rlat, double frequency) {
 
 	/*
 
@@ -851,8 +823,8 @@ void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int 
 				struct NoiseParams *noiseP This is used solely to pass in the arrays for the atmospheric noise 
 				struct FamStats *FamS
 				int lrxmt	 Local time (0-23)  
-				double lng   (rad)
-				double lat   (rad)
+				double rlng   (rad)
+				double rlat   (rad)
 				double frequency (MHz)
 
 			OUTPUT
@@ -876,54 +848,23 @@ void AtmosphericNoise_LT(struct NoiseParams* noiseP, struct FamStats* FamS, int 
 	struct FamStats FS_now; //
 	struct FamStats FS_adj; //
 
-	// lrxmt is 1 to 24 and not 0 to 23
-	// This is an artifact from ANOIS1()
-	// so add 1
-	lrxmt += 1; 
-	if (lrxmt <= 0.0) lrxmt += 24.0; // roll over the time
-	if (lrxmt > 24.0) lrxmt -= 24.0; //
+	// Roll over the local time, lrxmt, if necessary
+	if (lrxmt < 0) {
+		lrxmt += 24;
+	}
+	else if (lrxmt > 23) {
+		lrxmt -= 24;
+	};
 
 	// The atmospheric noise is determined by i) finding the atmospheric noise at the current time
 	// block at the reciever local mean time, ii) finding the noise for the "adjacent" time block and
-	// then iii) iterating between the two noise values.
+	// then iii) iterating between the two noise values. There are 6 time blocks so the modulo 6 
+	// keeps the indexes inbounds
+	FS_now.tmblk = (lrxmt / 4) % 6;
+	FS_adj.tmblk = (FS_now.tmblk + 1) % 6;
 
-	// Determine the timeblock, tmblk, and "adjacent" time block, FS_adj.tmblk
-	if (lrxmt < 20.0) {
-		FS_now.tmblk = (int)(lrxmt / 4.0 + 1.0); // Set the timeblock to the correct 4 hour block
-	}
-	else { // lrxmt >= 20.0
-		FS_now.tmblk = 6;
-	};
-
-	// Determine "adjacent" time block, FS_adj.tmblk
-	FS_adj.tmblk = (4 * FS_now.tmblk - 2) / 2;
-
-	if (lrxmt < FS_adj.tmblk) {
-		FS_adj.tmblk = FS_now.tmblk - 1;
-	}
-	else if (lrxmt == FS_adj.tmblk) {
-		FS_adj.tmblk = FS_now.tmblk;
-	}
-	else if (lrxmt > FS_adj.tmblk) {
-		FS_adj.tmblk = FS_now.tmblk + 1;
-	};
-
-	if (FS_adj.tmblk <= 0) {
-		FS_adj.tmblk = 6; // Error condition
-	}
-	else if (FS_adj.tmblk > 6) {
-		FS_adj.tmblk = 1; // If FS_adj.tmblk is greater than 6 roll it back to 1
-	};
-
-	// The time block calculation above is from REC533 ANOIS1.FOR where
-	//		KJ = FS_now.tmblk
-	//		JK = FS_adj.tmblk
-	// Since the time blocks will be used as indexes into C arrays they must be decremented
-	FS_adj.tmblk = FS_adj.tmblk - 1;
-	FS_now.tmblk = FS_now.tmblk - 1;
-
-	GetFamParameters(noiseP, &FS_now, lng, lat, frequency);
-	GetFamParameters(noiseP, &FS_adj, lng, lat, frequency);
+	GetFamParameters(noiseP, &FS_now, rlng, rlat, frequency);
+	GetFamParameters(noiseP, &FS_adj, rlng, rlat, frequency);
 
 	// Interpolate is based on the local reciever mean time, lrxmt, and the 4 hour timeblock
 	slp = fmod(lrxmt, 4.0) / 4.0;

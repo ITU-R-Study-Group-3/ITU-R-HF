@@ -88,7 +88,8 @@ copy /y $(SolutionDir)..\..\..\P372\Bin\P372.dll $(SolutionDir)..\..\Bin\P372.dl
 </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy $(TargetDir)$(TargetFileName) $(SolutionDir)..\..\bin\$(TargetFileName)</Command>
+      <Command>copy $(TargetDir)$(TargetFileName) $(SolutionDir)..\..\bin\$(TargetFileName)
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

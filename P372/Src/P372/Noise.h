@@ -13,7 +13,7 @@
 /********************************* Defines ************************************/
 
 // Version number
-#define P372VER		"14.2"
+#define P372VER		"14.3"
 
 // Have the preprocessor time stamp the compile time
 #define P372CT		__TIMESTAMP__
