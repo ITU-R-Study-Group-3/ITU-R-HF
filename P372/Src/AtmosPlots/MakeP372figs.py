@@ -393,7 +393,7 @@ def MakeP372figs():
            
         # Create the output directories  
         openOutputDirectories()
-        '''
+        
         # Make the a figures
         afiles = glob.glob(acsvfilepath + os.path.sep + '*.csv')
         for file in afiles:
@@ -403,7 +403,7 @@ def MakeP372figs():
         bfiles = glob.glob(bcsvfilepath + os.path.sep + '*.csv')
         for file in bfiles:
             Makebfigs(file)
-        '''   
+          
         # Make the c figures
         cfiles = glob.glob(ccsvfilepath + os.path.sep + '*.csv')
         for file in cfiles:
