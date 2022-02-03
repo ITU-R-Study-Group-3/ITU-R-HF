@@ -8,6 +8,8 @@
 #define RTN_ERRCOMMANDLINEARGS			105 // ERROR: Insufficient Number of Command Line Arguments
 #define RTN_ERRCANTOPENFILE				106 // ERROR: Can't open output file
 #define RTN_ERRBADDATAFILEPATH          107 // ERROR: Data file path does not exist
+#define RTN_ERRV_DCANTOPENFILE			108 // ERROR: Input file .\P372\DATA\V_d.txt can't be opened
+#define RTN_ERRSIGMA_V_DCANTOPENFILE	109 // ERROR: Input file .\P372\DATA\sigma_V_d.txt can't be opened
 
 // Successfull return codes 
 #define RTN_ITURNOISEOK					 90 // Normal successful exit

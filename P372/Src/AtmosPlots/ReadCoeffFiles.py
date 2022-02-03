@@ -29,6 +29,7 @@ for COEFFfile in allCOEFFfiles:
     for iline, line in enumerate(lines):
         
         A = []
+        '''
         if(r'fam(14,12)' in line ):
             nol = math.ceil(14*12/5) # number of lines including 
             for Adata in lines[iline+1:iline+1+nol]: 
@@ -56,17 +57,26 @@ for COEFFfile in allCOEFFfiles:
                     print(A[istart], end=',', file=outfp)
                     print(A[iend], file=outfp)
 
-'''
-
+                '''
+        
+        '''
         if(r'dud(5,12,5)' in line ):
             print(line)
-       
+        
         if(r'fakabp(2,6)' in line ):
             print(line)
-               
+        '''
+        
         if(r'fakp(29,16,6)' in line ):
-            print(line)
-'''
+            nol = math.ceil(12*16*29/5) # number of lines including 
+            for Adata in lines[iline+1:iline+1+nol]: 
+               Adata = deduplicate(Adata.strip('\n'), ' ').split(' ')
+               for Aval in Adata:
+                   A.append(Aval)
+                   
+            for val in A:
+                print(val)
+
            
 outfp.close()
             

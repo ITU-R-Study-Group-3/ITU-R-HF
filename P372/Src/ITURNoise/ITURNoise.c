@@ -22,6 +22,7 @@ void PrintCSVLine(int month, int hour, double freq, double rlat, double rlng, do
 void PrintCSVHeader(const char* P372ver, const char* P372compt);
 void PrintUsage();
 int RunAtmosNoiseMonths(char* datafilepath);
+void FindV_d(double freq, double c[5], double d[5], double* V_d, double* sigma_V_d);
 // End Local Prototypes
 
 int main(int argc, char* argv[]) {
@@ -335,9 +336,13 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	dllInitializeNoise = dlsym(hLib, "InitializeNoise");
 #endif
 
-	FILE* fp;
+	FILE* fp = NULL;
+	FILE* fp_V_d = NULL;
+	FILE* fp_sigma_V_d = NULL;
 
 	int i;
+	int dummy = 0;
+	int s, tb; // s = season and tb = timeblock counter for reading V_d and sigma_V_d data 
 	int retval;
 	int fn = 41; // Number of elements in the f_log array below
 
@@ -349,6 +354,13 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 	double freq;
 	double rlat, rlng;
+	double V_d, sigma_V_d;
+
+	double c[4][6][5];
+	double d[4][6][5];
+
+	char line[256];
+	char strl[5][256];
 
 	// Frequency array that will be used for b) and c) Figure data generation 
 	double f_log[41] = { 0.01, 0.015, 0.02, 0.025, 0.03, 0.035, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09,
@@ -373,6 +385,8 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	char acsvfilepath[256];
 	char bcsvfilepath[256];
 	char ccsvfilepath[256];
+	char V_dfilepath[256];
+	char sigma_V_dfilepath[256];
 	char command[256];
 
 	struct stat st = { 0 };
@@ -403,6 +417,65 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 	// End opening output file directories
 
+	//////////////////////////////////////////////////////////////////////////////
+	// Open and read the V_d.txt and sigma_V_d.txt input files
+	// NOTE: The data in V_d.txt and sigma_V_d.txt are not in the CCIR coefficeint 
+	// files. They have been extracted from NTIA Report 85-173 which contains 
+	// the Behm verified CCIR coefficient data that is used throughout in 
+	// ITURHFProp(). 
+	sprintf(V_dfilepath, "%s\\%s", datafilepath, "V_d.txt");
+	fp_V_d = fopen(V_dfilepath, "r");
+	if (fp_V_d == NULL) {
+		printf("ITURNoise: Error: Can't open input file %s (%s)\n", V_dfilepath, strerror(errno));
+		return RTN_ERRV_DCANTOPENFILE;
+	};
+
+	sprintf(sigma_V_dfilepath, "%s\\%s", datafilepath, "sigma_V_d.txt");
+	fp_sigma_V_d = fopen(sigma_V_dfilepath, "r");
+	if (fp_sigma_V_d == NULL) {
+		printf("ITURNoise: Error: Can't open input file %s (%s)\n", sigma_V_dfilepath, strerror(errno));
+		return RTN_ERRSIGMA_V_DCANTOPENFILE;
+	};
+
+	tb = 0;
+	s = 0;
+	while (fscanf(fp_V_d, "%[^\n] ", line) != EOF) {
+		
+		int retval = sscanf(line, "%d %d %s %s %s %s %s",
+			&dummy, &dummy, &strl[4], &strl[3], &strl[2], &strl[1], &strl[0]);
+
+		for (i = 0; i < 5; i++) {
+			c[s][tb][i] = atof(strl[i]);
+		};
+
+		tb += 1;
+		if (tb == 6) {
+			tb = 0;
+			s += 1;
+		};
+	};
+
+	tb = 0;
+	s = 0;
+	while (fscanf(fp_sigma_V_d, "%[^\n] ", line) != EOF) {
+		
+		int retval = sscanf(line, "%d %d %s %s %s %s %s",
+			&dummy, &dummy, &strl[4], &strl[3], &strl[2], &strl[1], &strl[0]);
+
+		for (i = 0; i < 5; i++) {
+			d[s][tb][i] = atof(strl[i]);
+		};
+
+		tb += 1;
+		if (tb == 6) {
+			tb = 0;
+			s += 1;
+		};
+	};
+
+	// End open and reading input files
+	//////////////////////////////////////////////////////////////////////////////
+	
 	// Allocate the memory in the noise structure
 	retval = dllAllocateNoiseMemory(&noiseP);
 	if (retval != RTN_ALLOCATEP372OK) {
@@ -442,7 +515,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	// Initialize variables
 	noiseP.ManMadeNoise = RURAL;
 	freq = 1.0;
-
+	
 	/*********************************************************************
 						Generate a) Figure Data
        Expected values of atmospheric noise, Fam (dB above kT_0B at 1MHz)
@@ -501,7 +574,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	printf("\nBegin Data Generation for b) Figures\n");
 
 	// For the b) and c) plots a location is required
-	//             Boulder, Colorado
+	// Boulder, Colorado
 	rlat = -40.015744 * D2R;
 	rlng = -105.27932 * D2R;
 
@@ -609,6 +682,9 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	
 	for (int m = 0; m < 12; m += 3) {
 
+		// Set the season index, s, for the c and d arrays
+		s = m / 3;
+
 		// Read in the atmospheric coefficients for the particular month.
 		// The subroutine dllReadFamDud() is from P372.dll
 		retval = dllReadFamDud(&noiseP, datafilepath, m);
@@ -617,6 +693,9 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 		};
 
 		for (int h = 0; h <= 23; h += 4) { // hour local time
+
+			// Set the time block index, tb, for the c and d arrays
+			tb = h / 4;
 
 			sprintf(outputfilename, "%sc_%0dm%0dh.csv", ccsvfilepath, m + 1, h);
 			fp = fopen(outputfilename, "w");
@@ -630,7 +709,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 			printf("Writing file %s\n", outputfilename);
 
 			// Write the column headings to the file
-			fprintf(fp, "month,hour,freq,latitude,longitude,FaA,DuA,DlA,sigmaFaA,sigmaDuA,sigmaDlA\n");
+			fprintf(fp, "month,hour,freq,latitude,longitude,FaA,DuA,DlA,sigmaFaA,sigmaDuA,sigmaDlA,V_d,sigma_V_d\n");
 
 			for (int f = 0; f < fn; f++) { //
 
@@ -638,9 +717,12 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 				// Which calculates the atmospheric noise and returns the full statistics. 
 				dllAtmosphericNoise_LT(&noiseP, &FamS, h, rlng, rlat, f_log[f]);
 
+				// Determine V_d and sigma_V_d
+				FindV_d(f_log[f], c[s][tb], d[s][tb], &V_d, &sigma_V_d);
+
 				// Write the data out to the file
-				fprintf(fp, "%d, %d, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f\n", 
-					m+1, h, f_log[f], rlat* R2D, rlng* R2D, FamS.FA, FamS.Du, FamS.Dl, FamS.SigmaFam, FamS.SigmaDu, FamS.SigmaDl);
+				fprintf(fp, "%d, %d, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f\n", 
+					m+1, h, f_log[f], rlat* R2D, rlng* R2D, FamS.FA, FamS.Du, FamS.Dl, FamS.SigmaFam, FamS.SigmaDu, FamS.SigmaDl, V_d, sigma_V_d);
 
 			}; // End frequency loop
 
@@ -650,6 +732,9 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	}; // End month for
 	
 	/****************** End Generate c) Figure Data ***************/
+
+	fclose(fp_V_d);
+	fclose(fp_sigma_V_d);
 
 	// User feedback
 	printf("ITURNoise: Data for c) Figures Complete\n");
@@ -663,6 +748,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 };
 
 void PrintUsage() {
+
 	/*
 		PrintUsage - Prints a brief summary of how to use ITURNoise()
 
@@ -785,6 +871,40 @@ void PrintCSVLine(int month, int hour, double freq, double rlat, double rlng, do
 	*/
 
 	printf("%d, %d, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f\n", month + 1, hour, freq, rlat * R2D, rlng * R2D, out[0], out[1], out[2], out[3], out[4], out[5], out[6], out[7], out[8], out[9], out[10], out[11]);
+
+	return;
+
+};
+
+void FindV_d(double freq, double c[5], double d[5], double *V_d, double *sigma_V_d) {
+
+	/*
+	
+		FindV_d - Calculates (30) and (31) from NTIA Report 85-173
+		          "Atmospheric Radio Noise: Worldwide Levels and Other Characteristics"
+
+			INPUT
+				freq	frequency (MHz) 
+				c		5 coefficients for (30) for a given time block and season
+				d		5 coefficients for (31) for a given time block and season
+
+			OUTPUT 
+				V_d		
+				sigma_V_d
+
+	*/
+
+	double x, x2, x3, x4;
+
+	x = log10(freq);
+
+	x2 = x * x;
+	x3 = x2 * x;
+	x4 = x3 * x;
+
+	*V_d = c[0] + c[1] * x + c[2] * x2 + c[3] * x3 + c[4] * x4;
+
+	*sigma_V_d = d[0] + d[1] * x + d[2] * x2 + d[3] * x3 + d[4] * x4;
 
 	return;
 

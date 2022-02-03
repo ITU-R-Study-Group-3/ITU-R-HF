@@ -15,7 +15,7 @@ int MakeNoise(int month, int hour, double lat, double lng, double freq, double m
 
 	/*
 
-		MakeNoise - This program is a stand alone method to use the P.372-14 method
+		MakeNoise - This program is a stand alone subroutine to use the P.372-14 method
 
 			INPUT
 				int month

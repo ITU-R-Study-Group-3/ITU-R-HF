@@ -276,6 +276,8 @@ def Makecfigs(cdcfile):
     z.append(dfcd['sigmaFaA'].tolist())
     z.append(dfcd['sigmaDuA'].tolist())
     z.append(dfcd['sigmaDlA'].tolist())
+    z.append(dfcd['V_d'].tolist())
+    z.append(dfcd['sigma_V_d'].tolist())
     
     x = dfcd['freq'].tolist()
     
@@ -285,9 +287,9 @@ def Makecfigs(cdcfile):
     
     ax.set_prop_cycle
     
-    strlabel = ['$D_u$', '$D_l$', '$\sigma_{F_{am}}$', '$\sigma_{D_u}$', '$\sigma_{D_l}$']
+    strlabel = ['$D_u$', '$D_l$', '$\sigma_{F_{am}}$', '$\sigma_{D_u}$', '$\sigma_{D_l}$', '$V_d$', '$\sigma_{V_d}$']
     
-    for pidx in range(0,5):
+    for pidx in range(0,7):
         if (pidx == 2):
             # The sigma Fam never goes beyond 10 MHz so truncate
             ax.plot(x[:37], z[pidx][:37],  label=strlabel[pidx], lw=0.5)
@@ -391,6 +393,7 @@ def MakeP372figs():
            
         # Create the output directories  
         openOutputDirectories()
+        '''
         # Make the a figures
         afiles = glob.glob(acsvfilepath + os.path.sep + '*.csv')
         for file in afiles:
@@ -400,7 +403,7 @@ def MakeP372figs():
         bfiles = glob.glob(bcsvfilepath + os.path.sep + '*.csv')
         for file in bfiles:
             Makebfigs(file)
-           
+        '''   
         # Make the c figures
         cfiles = glob.glob(ccsvfilepath + os.path.sep + '*.csv')
         for file in cfiles:
