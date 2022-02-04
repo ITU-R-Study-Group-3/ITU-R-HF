@@ -889,8 +889,9 @@ void FindV_d(double freq, double c[5], double d[5], double *V_d, double *sigma_V
 				d		5 coefficients for (31) for a given time block and season
 
 			OUTPUT 
-				V_d		
-				sigma_V_d
+				V_d			Voltage deviation, which is the ratio of the 
+							root mean square envelope voltage to the average noise envelope voltage
+				sigma_V_d	The std deviation of V_d
 
 	*/
 

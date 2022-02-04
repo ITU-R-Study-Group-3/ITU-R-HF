@@ -103,6 +103,7 @@ copy /y $(SolutionDir)..\..\..\P372\Bin\P372.dll $(SolutionDir)..\..\Bin\P372.dl
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>
       </AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PreBuildEvent>
       <Command>copy /y $(SolutionDir)..\..\..\P533\Src\P533\P533.h $(SolutionDir)..\..\Src\ITURHFProp\P533.h
@@ -154,6 +155,7 @@ copy /y $(SolutionDir)..\..\..\P372\Bin\P372.dll $(SolutionDir)..\..\Bin\P372.dl
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>
       </AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PreBuildEvent>
       <Command>copy /y $(SolutionDir)..\..\..\P533\Src\P533\P533.h $(SolutionDir)..\..\Src\ITURHFProp\P533.h</Command>

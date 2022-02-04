@@ -93,6 +93,7 @@ copy $(TargetDir)..\..\..\..\p372\Src\p372\noise.h $(TargetDir)..\..\..\..\p372\
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\bin\$(TargetFileName)
@@ -133,6 +134,7 @@ copy $(TargetDir)..\..\..\..\p372\Src\p372\noise.h $(TargetDir)..\..\..\..\p372\
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\bin\$(TargetFileName)
