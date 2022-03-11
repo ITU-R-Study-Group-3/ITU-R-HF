@@ -575,7 +575,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 	// For the b) and c) plots a location is required
 	// Boulder, Colorado
-	rlat = -40.015744 * D2R;
+	rlat = 40.015744 * D2R;
 	rlng = -105.27932 * D2R;
 
 	/*********************************************************************
