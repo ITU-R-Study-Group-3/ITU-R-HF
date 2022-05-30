@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30204.135
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "P372", "..\..\..\P372\Win32\P372\P372.vcxproj", "{116945DD-6897-46B9-80A0-A166A1139123}"
 EndProject
@@ -13,11 +13,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ITURHFProp", "..\ITURHFProp\ITURHFProp.vcxproj", "{BDC92B8E-76FA-4D52-91CB-10F38764AE0E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D567A7CB-159C-419F-8217-F7BF5025E9BA} = {D567A7CB-159C-419F-8217-F7BF5025E9BA}
-		{116945DD-6897-46B9-80A0-A166A1139123} = {116945DD-6897-46B9-80A0-A166A1139123}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ITURNoise", "..\..\..\P372\Win32\ITURNoise\ITURNoise.vcxproj", "{CD8B0761-A835-4914-A4C3-D90FBE49A7B9}"
-	ProjectSection(ProjectDependencies) = postProject
 		{116945DD-6897-46B9-80A0-A166A1139123} = {116945DD-6897-46B9-80A0-A166A1139123}
 	EndProjectSection
 EndProject
@@ -67,18 +62,6 @@ Global
 		{BDC92B8E-76FA-4D52-91CB-10F38764AE0E}.Release|x64.Build.0 = Release|x64
 		{BDC92B8E-76FA-4D52-91CB-10F38764AE0E}.Release|x86.ActiveCfg = Release|Win32
 		{BDC92B8E-76FA-4D52-91CB-10F38764AE0E}.Release|x86.Build.0 = Release|Win32
-		{CD8B0761-A835-4914-A4C3-D90FBE49A7B9}.Debug|Win32.ActiveCfg = Debug|Win32
-		{CD8B0761-A835-4914-A4C3-D90FBE49A7B9}.Debug|Win32.Build.0 = Debug|Win32
-		{CD8B0761-A835-4914-A4C3-D90FBE49A7B9}.Debug|x64.ActiveCfg = Debug|x64
-		{CD8B0761-A835-4914-A4C3-D90FBE49A7B9}.Debug|x64.Build.0 = Debug|x64
-		{CD8B0761-A835-4914-A4C3-D90FBE49A7B9}.Debug|x86.ActiveCfg = Debug|Win32
-		{CD8B0761-A835-4914-A4C3-D90FBE49A7B9}.Debug|x86.Build.0 = Debug|Win32
-		{CD8B0761-A835-4914-A4C3-D90FBE49A7B9}.Release|Win32.ActiveCfg = Release|Win32
-		{CD8B0761-A835-4914-A4C3-D90FBE49A7B9}.Release|Win32.Build.0 = Release|Win32
-		{CD8B0761-A835-4914-A4C3-D90FBE49A7B9}.Release|x64.ActiveCfg = Release|x64
-		{CD8B0761-A835-4914-A4C3-D90FBE49A7B9}.Release|x64.Build.0 = Release|x64
-		{CD8B0761-A835-4914-A4C3-D90FBE49A7B9}.Release|x86.ActiveCfg = Release|Win32
-		{CD8B0761-A835-4914-A4C3-D90FBE49A7B9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
