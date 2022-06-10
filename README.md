@@ -4,7 +4,7 @@
 
 # Radiocommunications Sector (ITU-R)
 
-# Working Party 3L - ionospheric Propagation and Radio Noise
+# Working Party 3L - Ionospheric Propagation and Radio Noise
 
 ## ITURHFProp(), P533(), P372(), and ITURNoise()
 
