@@ -65,7 +65,7 @@ int Noise(struct NoiseParams *noiseP, int hour, double rlng, double rlat, double
 			as in revisions of the specific original Recommendation and in other ITU Recommendations, free from
 			any copyright assertions.
 
-			This software is provided “as is” WITH NO WARRANTIES, EXPRESS OR IMPLIED,
+			This software is provided "as is" WITH NO WARRANTIES, EXPRESS OR IMPLIED,
 			INCLUDING BUT NOT LIMITED TO, THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
 			AND NON-INFRINGEMENT OF INTELLECTUAL PROPERTY RIGHTS.
 

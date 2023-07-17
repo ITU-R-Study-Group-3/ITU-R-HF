@@ -48,9 +48,9 @@ void CircuitReliability(struct PathData *path) {
 	 		The simplified approximate BCR method from section 9 "BCR for digital modulation systems" P.842-4 is 
 	 		determined from the three probabilities:
 	 				i) Probability that the required signal-to-noise ratio, SN0, is achieved
-	 				ii) Probability that the required time spread, T0, at a level of �10 dB relative to the 
+	 				ii) Probability that the required time spread, T0, at a level of -10 dB relative to the 
 	 					peak signal amplitude is not exceeded
-	 				iii) Probability that the required frequency dispersion f0 at a level of �10 dB relative to the 
+	 				iii) Probability that the required frequency dispersion f0 at a level of -10 dB relative to the 
 	 					peak signal amplitude is not exceeded
 	 
 	 		This subroutine also determines the overall circuit reliability, OCR, via the method given in ITU-R P.P.842-4 Table 3
@@ -626,7 +626,7 @@ double DigitalModulationSignalandInterferers(struct PathData *path, int iS[MAXMD
 			// Order the modes by time also			
 			ModeSort(M, itau, SOONEST); // itau[0] is the earlest mode
 
-			// Step 2: All other active modes with strengths exceeding (Ew � A (dB)) are identified.
+			// Step 2: All other active modes with strengths exceeding (Ew - A (dB)) are identified.
 			// Step 3: The first arriving mode is identified, and all modes within the time window, Tw, 
 			// measured from the first arriving mode, are identified.
 			// Step 4: For path lengths up to 7000 km, a power summation of the modes arriving within the
