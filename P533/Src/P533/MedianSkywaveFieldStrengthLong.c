@@ -101,12 +101,12 @@ void MedianSkywaveFieldStrengthLong(struct PathData *path) {
 	double Etl;			// Resultant median field strength
 	double D;			// Path distance for focus gain term
 
-	double elevation;		// Antenna elevation
+	double elevation;	// Antenna elevation
 
 	struct ControlPt CP[MAXCP][24]; // Temp
 
 	// Initialize variables
-	elevation = 360.0;
+	elevation = 2.0*PI;
 
 	// This procedure applies only to paths greater than 7000 km. 
 	//   i)  For paths greater than 7000 km the field strength is interpolated 
