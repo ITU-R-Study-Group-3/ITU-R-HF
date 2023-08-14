@@ -143,9 +143,9 @@ int main(int argc, char* argv[]) {
 			return RTN_ERRMONTH;
 		};
 
-		hour = atoi(argv[2]) - 1;
+		hour = atoi(argv[2])%24;// - 1;
 		if ((hour < 0) || (hour > 23)) {
-			printf("ITURNoise: Error: Hour (%d (UTC)) Out of Range (1 to 24 UTC) ", hour + 1);
+			printf("ITURNoise: Error: Hour (%d (UTC)) Out of Range (1 to 24 UTC) ", hour /*+ 1*/);
 			return RTN_ERRMONTH;
 		};
 

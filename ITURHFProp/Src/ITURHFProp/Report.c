@@ -306,7 +306,7 @@ void PrintHeader(struct PathData path, struct ITURHFProp ITURHFP) {
 	fprintf(fp, "\t%s\n", path.name);
 	fprintf(fp, "\tYear          : %d\n", path.year);
 	fprintf(fp, "\tMonth         : %s\n", months[path.month]);
-	fprintf(fp, "\tHour          : %d (hour UTC)\n", path.hour + 1);
+	fprintf(fp, "\tHour          : %d (hour UTC)\n", (path.hour==0?24:path.hour);// + 1);
 	fprintf(fp, "\tSSN (R12)     : %d\n", path.SSN);
 	fprintf(fp, "\tDistance      : %lf (km)\n", path.distance);
 	fprintf(fp, "\tdmax          : %lf (km)\n", path.dmax);
@@ -317,8 +317,8 @@ void PrintHeader(struct PathData path, struct ITURHFProp ITURHFP) {
 	fprintf(fp, "\tRx Location     %s\n", path.rxname);
 	fprintf(fp, "\tRx latitude   : %10.6lf %c\n", fabs(path.L_rx.lat*R2D), NS(path.L_rx.lat));
 	fprintf(fp, "\tRx longitude  : %10.6lf %c\n", fabs(path.L_rx.lng*R2D), EW(path.L_rx.lng));
-	fprintf(fp, "\tlocal time Rx : %d (hour UTC)\n", (int)fmod((path.hour + 1 + (int)(path.L_rx.lng/(15.0*D2R)))+24,24.0));
-	fprintf(fp, "\tlocal time Tx : %d (hour UTC)\n", (int)fmod((path.hour + 1 + (int)(path.L_tx.lng/(15.0*D2R)))+24,24.0));
+	fprintf(fp, "\tlocal time Rx : %d (hour UTC)\n", (int)fmod(((path.hour==0?24:path.hour) /*+ 1*/ + (int)(path.L_rx.lng/(15.0*D2R)))+24,24.0));
+	fprintf(fp, "\tlocal time Tx : %d (hour UTC)\n", (int)fmod(((path.hour==0?24:path.hour) /*+ 1*/ + (int)(path.L_tx.lng/(15.0*D2R)))+24,24.0));
 	fprintf(fp, "\tFrequency     : %lf\n", path.frequency);
 	fprintf(fp, "\tBandwidth     : %lf\n", path.BW);
 

@@ -81,7 +81,7 @@ void DumpPathData(struct PathData path, struct ITURHFProp ITURHFP) {
 	fprintf(fp, "\t%s\n", path.name);
 	fprintf(fp, "\tYear = %d\n", path.year);
 	fprintf(fp, "\tMonth = %s\n", months[path.month]); 
-	fprintf(fp, "\tHour  = %d (hour UTC)\n", path.hour + 1);
+	fprintf(fp, "\tHour  = %d (hour UTC)\n", (path.hour==0?24:path.hour)); // + 1);
 	fprintf(fp, "\tSSN (R12) = %d\n", path.SSN);
 	fprintf(fp, "\tTx power = % 5.3lf (dB(1kW))\n", path.txpower);
 	fprintf(fp, "\tTx Location %s\n", path.txname);
@@ -90,8 +90,8 @@ void DumpPathData(struct PathData path, struct ITURHFProp ITURHFP) {
 	fprintf(fp, "\tRx Location %s\n", path.rxname);
 	fprintf(fp, "\tRx latitude  = % 5.3lf (% 5.3lf) [% d %d %d]\n", path.L_rx.lat, path.L_rx.lat*R2D, degrees(path.L_rx.lat*R2D), minutes(path.L_rx.lat*R2D), seconds(path.L_rx.lat*R2D));
 	fprintf(fp, "\tRx longitude = % 5.3lf (% 5.3lf) [% d %d %d]\n", path.L_rx.lng, path.L_rx.lng*R2D, degrees(path.L_rx.lng*R2D), minutes(path.L_rx.lng*R2D), seconds(path.L_rx.lng*R2D));
-	fprintf(fp, "\tlocal time Rx   = % 02d \n", path.hour + 1 + (int)(path.L_rx.lng/(15.0*D2R)));
-	fprintf(fp, "\tlocal time Tx   = % 02d \n", path.hour + 1 + (int)(path.L_tx.lng/(15.0*D2R)));
+    fprintf(fp, "\tlocal time Rx   = % 02d \n", (path.hour==0?24:path.hour) /* + 1*/ + (int)(path.L_rx.lng/(15.0*D2R)));
+	fprintf(fp, "\tlocal time Tx   = % 02d \n", (path.hour==0?24:path.hour) /* + 1*/ + (int)(path.L_tx.lng/(15.0*D2R)));
 	fprintf(fp, "\tFrequency = % 5.3lf (MHz)\n", path.frequency);
 	fprintf(fp, "\tBandwidth = % 5.3lf (Hz)\n", path.BW);
 	fprintf(fp, "\tShort or Long Path = %s\n", SorL[path.SorL]);

@@ -662,15 +662,15 @@ void FindfL(struct PathData *path, struct ControlPt CP[MAXCP][24], int hops, dou
 	// Testing
 
 	// Find fL[] for the "present hour" for further calculations 
-	// The "present hour" is calculated at path->hour + 1. 
+	// The "present hour" is calculated at path->hour /*+ 1*/. 
 	// Elsewhere in the code it is assumed that UTC 1 uses the index path->hour = 0
 	// to represent time from 0:00 to 0:59 
 	// In this calculation UTC 1 implies 1:00 to 1:59 UTC so the "present hour" 
-	// is path->hour + 1. 
+	// is path->hour /*+ 1*/. 
 	// This is a consequence of the routine being based on the Fortran program FTZ() 
 	// which of course uses indexing beginning at 1
 	// Find the "present hour" and roll it over if necessary
-	now = (path->hour + 1 + 24) % 24;
+	now = (path->hour /*+ 1*/ + 24) % 24;
 
 	// Set the value of fL[]
 	path->fL = fL[now]; 

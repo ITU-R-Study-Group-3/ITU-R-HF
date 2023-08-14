@@ -469,7 +469,7 @@ void FindfoE(struct ControlPt *here, int month, int hour, int SSN) {
 	else { // (here->sza >= 90.0*D2R )
 		// In this case local sunset and sunrise must be known.
 		// Find h the number of hours after sunset
-		hour = (hour + 1) % 24; // Adjust time and roll over
+		hour = (hour /*+ 1*/) % 24; // Adjust time and roll over
 		if((here->Sun.lss >= here->Sun.lsr) && (hour >= here->Sun.lss) && (hour >= here->Sun.lsr)) {
 			h = hour - here->Sun.lss;
 		}
