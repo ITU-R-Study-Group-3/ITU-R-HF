@@ -306,7 +306,7 @@ void PrintHeader(struct PathData path, struct ITURHFProp ITURHFP) {
 	fprintf(fp, "\t%s\n", path.name);
 	fprintf(fp, "\tYear          : %d\n", path.year);
 	fprintf(fp, "\tMonth         : %s\n", months[path.month]);
-	fprintf(fp, "\tHour          : %d (hour UTC)\n", (path.hour==0?24:path.hour);// + 1);
+	fprintf(fp, "\tHour          : %d (hour UTC)\n", (path.hour==0?24:path.hour));// + 1);
 	fprintf(fp, "\tSSN (R12)     : %d\n", path.SSN);
 	fprintf(fp, "\tDistance      : %lf (km)\n", path.distance);
 	fprintf(fp, "\tdmax          : %lf (km)\n", path.dmax);
