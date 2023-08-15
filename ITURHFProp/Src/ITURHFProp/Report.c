@@ -177,7 +177,7 @@ void PrintRecord(struct PathData path, struct ITURHFProp ITURHFP, int option) {
 			fprintf(fp, "%02d", path.month+1);
 			fprintf(fp,",");
 			// Hour
-			fprintf(fp, " %02d", path.hour+1);
+			fprintf(fp, " %02d", (path.hour==0?24:path.hour)/*+1*/);
 			fprintf(fp,",");
 			// Frequency
 			fprintf(fp, DBLFIELD3, path.frequency);
@@ -185,7 +185,7 @@ void PrintRecord(struct PathData path, struct ITURHFProp ITURHFP, int option) {
 		case PRINT_RFC4180_DATA:
 			// Each record will require the month, hour, and frequency
 			// Month
-			fprintf(fp, "%d,%d,", path.month+1, path.hour+1);
+			fprintf(fp, "%d,%d,", path.month+1, (path.hour==0?24:path.hour)/*+1*/);
 			fprintf(fp, RFC4180_DBLFIELD, path.frequency);
 			break;
 	};
