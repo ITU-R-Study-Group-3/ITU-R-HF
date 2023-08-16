@@ -137,14 +137,14 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 				// If this contains no commas, then it is a single month.
 				if (strchr(instr, ',') == NULL) {
 					sscanf(line, "%*s %d", &ITURHFP->hrs[0]);
-					ITURHFP->hrs[0] -= 1;
+					ITURHFP->hrs[0] %=24; // -= 1;
 				}
 				else {
 					i = 0;
 					retval = 2;
 					while ((strlen(instr) != 0) && (instr[0] != '/') && (retval == 2)) {
 						retval = sscanf(instr, "%d, %[0-9 ,]", &ITURHFP->hrs[i], &instr);
-						ITURHFP->hrs[i++] -= 1;
+						ITURHFP->hrs[i++] %=24; // -= 1;
 					};
 				};
 			};
