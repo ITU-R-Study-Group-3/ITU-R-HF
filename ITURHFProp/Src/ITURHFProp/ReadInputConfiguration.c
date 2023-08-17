@@ -256,7 +256,7 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 					retval = 2;
 					ITURHFP->RptFileFormat = 0;
 					while ((strlen(instr) != 0) && (instr[0] != '/') && (retval == 2)) {
-						retval = sscanf(instr, "%s | %[a-z,A-Z _|]", &optstr, &instr);
+						retval = sscanf(instr, "%s | %[a-z,A-Z _|02]", &optstr, &instr);
 						ITURHFP->RptFileFormat = ITURHFP->RptFileFormat | OutputOption(optstr);
 					};
 				};
