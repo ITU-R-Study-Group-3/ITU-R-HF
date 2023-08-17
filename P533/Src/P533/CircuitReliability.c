@@ -589,7 +589,7 @@ double DigitalModulationSignalandInterferers(struct PathData *path, int iS[MAXMD
 				dh = path->distance/(n+1); // Hop distance
 				delta = ElevationAngle(dh, hr);
 				psi = dh/(2.0*R0);
-				ptick = 2.0*R0*(sin(psi)/cos(delta - psi));
+				ptick = 2.0*R0*(sin(psi)/cos(delta + /*-*/ psi));
 				path->Md_E[n].tau = (n+1)*(ptick/VofL)*1000.0;
 			};
 		};
@@ -602,7 +602,7 @@ double DigitalModulationSignalandInterferers(struct PathData *path, int iS[MAXMD
 				dh = path->distance/(n+1); // Hop distance
 				delta = ElevationAngle(dh, hr);
 				psi = dh/(2.0*R0);
-				ptick = 2.0*R0*(sin(psi)/cos(delta - psi));
+				ptick = 2.0*R0*(sin(psi)/cos(delta + /*-*/ psi));
 				path->Md_F2[n].tau = (n+1)*(ptick/VofL)*1000.0;
 			};
 		};
