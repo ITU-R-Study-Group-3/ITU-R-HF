@@ -208,7 +208,7 @@
 	InitializePath(path);
 
 	/************************************************************/
-	/* Part 1 � Frequency availability                          */
+	/* Part 1 - Frequency availability                          */
 	/************************************************************/
 	/*
 	   The folowing routines in Part 1:
@@ -237,7 +237,7 @@
 	ELayerScreeningFrequency(path);
 
 	/************************************************************/
-	/* Part 2 � Median sky-wave field strength                  */
+	/* Part 2 - Median sky-wave field strength                  */
 	/************************************************************/
 	/*
 	 * Each of the routines below will initially check the path->distance to determine if the calculation should proceed.
@@ -256,7 +256,7 @@
 	 MedianAvailableReceiverPower(path);
 
 	/************************************************************/
-	/* Part 3 � The prediction of system performance            */
+	/* Part 3 - The prediction of system performance            */
 	/************************************************************/
 
 	// Call noise from the P372.dll

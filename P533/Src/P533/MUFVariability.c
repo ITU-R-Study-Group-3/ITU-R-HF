@@ -75,11 +75,11 @@ void MUFVariability(struct PathData *path) {
 
 			// Now determine the probability that the mode can be supported
 			if(path->frequency < path->Md_F2[i].MUF50) {
-				path->Md_F2[i].Fprob = min(1.3 - (0.8 / (1+((1.0 - (path->frequency / path->Md_F2[i].MUF50)) / (1.0-path->Md_F2[i].deltal)))), 1.0);
+				path->Md_F2[i].Fprob = min(1.3 - (0.8/(1.0+((1.0 - (path->frequency/path->Md_F2[i].MUF50))/(1.0 - path->Md_F2[i].deltal)))), 1.0);
 				//printf("Eq.9  Freq=%.2f MUF50=%.2f deltal=%.2f Fprob=%.2f\n", path->frequency, path->Md_F2[i].MUF50, path->Md_F2[i].deltal, path->Md_F2[i].Fprob);
 			}
 			else { // (path->frequency >= path->Md_F2[i].MUF50)
-				path->Md_F2[i].Fprob = max((0.8/(1 + ( ((path->frequency/path->Md_F2[i].MUF50)-1.0) / (path->Md_F2[i].deltau-1.0) ))) - 0.3, 0.0);
+				path->Md_F2[i].Fprob = max((0.8/(1.0 + (((path->frequency/path->Md_F2[i].MUF50) - 1.0)/(path->Md_F2[i].deltau - 1.0)))) - 0.3, 0.0);
 				//printf("Eq.10 Freq=%.2f MUF50=%.2f deltau=%.2f Fprob=%.2f\n", path->frequency, path->Md_F2[i].MUF50, path->Md_F2[i].deltau, path->Md_F2[i].Fprob);
 			}
 		}
@@ -106,10 +106,10 @@ void MUFVariability(struct PathData *path) {
 
 			// Now determine the probability that the mode can be supported
 			if(path->frequency < path->Md_E[i].MUF50) {
-				path->Md_E[i].Fprob = min((1.3 - (0.8/((1.0 - (path->frequency/path->Md_E[i].MUF50))/(1.0 - path->Md_E[i].deltal)))), 1.0);
+				path->Md_E[i].Fprob = min(1.3 - (0.8/(1.0 + ((1.0 - (path->frequency/path->Md_E[i].MUF50))/(1.0 - path->Md_E[i].deltal)))), 1.0);
 			}
 			else { // (path->frequency >= path->Md_F2[i].MUF50)
-				path->Md_E[i].Fprob = max(((0.8/((path->frequency/(path->Md_E[i].MUF50) - 1.0)/(path->Md_E[i].deltau - 1.0)))- 3.0), 0.0);
+				path->Md_E[i].Fprob = max((0.8/(1.0 + (((path->frequency/path->Md_E[i].MUF50) - 1.0)/(path->Md_E[i].deltau - 1.0)))) - 0.3, 0.0);
 			}
 		}
 	}
