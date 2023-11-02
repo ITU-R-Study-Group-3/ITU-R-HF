@@ -117,34 +117,46 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 				sscanf(line, "%*s %d", &path->year);
 			};
 			if (strncmp("Path.month", line, 10) == 0) {
-				sscanf(line, "%*s %[^/\n]", &instr);
+				sscanf(line, "%*s %[^/\n]", instr);
 				// If this contains no commas, then it is a single month.
 				if (strchr(instr, ',') == NULL) {
 					sscanf(line, "%*s %d", &ITURHFP->months[0]);
 					ITURHFP->months[0] -= 1;
 				}
 				else {
+					char instr2[256];
+					char *buf[2];
+					int count = 0;
+					buf[0] = instr;
+					buf[1] = instr2;
 					i = 0;
 					retval = 2;
-					while ((strlen(instr) != 0) && (instr[0] != '/') && (retval == 2)) {
-						retval = sscanf(instr, "%d, %[0-9 ,]", &ITURHFP->months[i], &instr);
+					while ((strlen(buf[count]) != 0) && (buf[count][0] != '/') && (retval == 2)) {
+						retval = sscanf(buf[count], "%d, %[0-9 ,]", &ITURHFP->months[i], buf[count^1]);
 						ITURHFP->months[i++] -= 1;
+						count ^= 1;
 					};
 				};
 			};
 			if (strncmp("Path.hour", line, 9) == 0) {
-				sscanf(line, "%*s %[^/\n]", &instr);
+				sscanf(line, "%*s %[^/\n]", instr);
 				// If this contains no commas, then it is a single month.
 				if (strchr(instr, ',') == NULL) {
 					sscanf(line, "%*s %d", &ITURHFP->hrs[0]);
 					ITURHFP->hrs[0] -= 1;
 				}
 				else {
+					char instr2[256];
+					char *buf[2];
+					int count = 0;
+					buf[0] = instr;
+					buf[1] = instr2;
 					i = 0;
 					retval = 2;
-					while ((strlen(instr) != 0) && (instr[0] != '/') && (retval == 2)) {
-						retval = sscanf(instr, "%d, %[0-9 ,]", &ITURHFP->hrs[i], &instr);
+					while ((strlen(buf[count]) != 0) && (buf[count][0] != '/') && (retval == 2)) {
+						retval = sscanf(buf[count], "%d, %[0-9 ,]", &ITURHFP->hrs[i], buf[count^1]);
 						ITURHFP->hrs[i++] -= 1;
+						count ^= 1; /* swap use of the two buffers */
 					};
 				};
 			};
@@ -152,16 +164,22 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 				sscanf(line, "%*s %d", &path->SSN);
 			};
 			if (strncmp("Path.frequency", line, 14) == 0) {
-				sscanf(line, "%*s %[^/\n]", &instr);
+				sscanf(line, "%*s %[^/\n]", instr);
 				// If this contains no commas, then it is a single month.
 				if (strchr(instr, ',') == NULL) {
 					sscanf(line, "%*s %lf", &ITURHFP->frqs[0]);
 				}
 				else {
+					char instr2[256];
+					char *buf[2];
+					int count = 0;
+					buf[0] = instr;
+					buf[1] = instr2;
 					i = 0;
 					retval = 2;
-					while ((strlen(instr) != 0) && (instr[0] != '/') && (retval == 2)) {
-						retval = sscanf(instr, "%lf, %[0-9 ,.]", &ITURHFP->frqs[i++], &instr);
+					while ((strlen(buf[count]) != 0) && (buf[count][0] != '/') && (retval == 2)) {
+						retval = sscanf(buf[count], "%lf, %[0-9 ,.]", &ITURHFP->frqs[i++], buf[count^1]);
+						count ^= 1;
 					};
 				};
 			};
@@ -253,11 +271,17 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 					ITURHFP->RptFileFormat = OutputOption(instr);
 				}
 				else {
+					char instr2[256];
+					char *buf[2];
+					int count = 0;
+					buf[0] = instr;
+					buf[1] = instr2;
 					retval = 2;
 					ITURHFP->RptFileFormat = 0;
-					while ((strlen(instr) != 0) && (instr[0] != '/') && (retval == 2)) {
-						retval = sscanf(instr, "%s | %[a-z,A-Z _|]", &optstr, &instr);
+					while ((strlen(buf[count]) != 0) && (buf[count][0] != '/') && (retval == 2)) {
+						retval = sscanf(buf[count], "%s | %[a-z,A-Z _|]", optstr, buf[count^1]);
 						ITURHFP->RptFileFormat = ITURHFP->RptFileFormat | OutputOption(optstr);
+						count ^= 1;
 					};
 				};
 			};
