@@ -849,10 +849,10 @@ The program ITURNoise.exe is a utility program that has two modes:
 Mode 1 – Noise Calculation for a Single Location
 To return the noise parameters for a single location, Mode 1 above, 7 command line arguments are required. Below is an example of running ITURNoise.exe to return noise for a single location
 
-C:\>ITURNoise 1 14 1.0 40.0 165.0 0 "G:\User\Data\" 0
+C:\>ITURNoise 1 1 1.0 40.0 165.0 0 "G:\User\Data\" 0
 
 Argument 1 is an integer that indicates the month (1 to 12) of interest. In the example above the desired month is January. 
-Argument 2 is an integer that indicates the hour (1 to 24) UTC at the receive point. In most cases this will require the calculation of the time UTC from the longitude at that receive point. In the example above the receive point is 11 hours (165? E/(15?/hr) ahead of UTC so to determine the noise for the 12th local time hour the 1st hour UTC is chosen. 
+Argument 2 is an integer that indicates the hour (0 to 23) UTC at the receive point. In most cases this will require the calculation of the time UTC from the longitude at that receive point. In the example above the receive point is 11 hours (165D E/(15D/hr)) ahead of UTC so to determine the noise for hour 12:00 local time hour 1:00 UTC is chosen. 
 Argument 3 is a float that indicates the latitude (degrees). In the example above the latitude desired is 40? N. 
 Argument 4 is a float that indicates the longitude (degrees). In the example above the longitude desired is 165? E
 Argument 5 is a float that indicates the man-made noise which can either be categorical (0-5) or value of man-made noise in dB (represented by a negative number). In the example above the value 1.0 indicates that the noise category residential. The category codes appear below. 
@@ -885,7 +885,7 @@ Example ITURNoise() Output
         P372 Compile Time: Wed Jul  1 11:00:38 2020
 **********************************************************
 
-        JANUARY  : 14 (UTC)
+        JANUARY  : 1 (UTC)
         40.0000 (deg lat) 165.0000 (deg long)
         1.000 (MHz)
 

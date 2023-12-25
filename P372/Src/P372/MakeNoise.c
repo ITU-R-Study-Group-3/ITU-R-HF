@@ -141,7 +141,7 @@ void PrintFam(FILE *fp, struct NoiseParams* noiseP, int month, int hour, double 
 	fprintf(fp ,"\tP372 Compile Time: %s\n", P372compt);
 	fprintf(fp ,"**********************************************************\n");
 	fprintf(fp, "\n");
-	fprintf(fp ,"\t%s : %d (UTC) (1 to 24)\n", monthnames[month], (hour==0?24:hour)/*+1*/);
+	fprintf(fp ,"\t%s : %d (UTC) (0 to 23)\n", monthnames[month], (hour==0?24:hour)/*+1*/);
 	fprintf(fp, "\t%5.4f (deg lat) %5.4f (deg long)\n", rlat * R2D, rlng * R2D);
 	fprintf(fp, "\t%5.3f (MHz)\n", freq);
 	fprintf(fp, "\n");

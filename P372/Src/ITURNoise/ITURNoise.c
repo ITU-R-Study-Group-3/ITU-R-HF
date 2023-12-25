@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 
 			INPUT
 				Argument 1:  month (1 to 12))
-				Argument 2:  hour (1 to 24 (UTC))
+				Argument 2:  hour (0 to 23 (UTC))
 				Argument 3:  frequency (0.01 to 30 MHz)
 				Argument 4:  latitude (degrees)
 				Argument 5:  longitude (degrees)
@@ -52,9 +52,10 @@ int main(int argc, char* argv[]) {
 			OUTPUT
 				The output is printed to stdout depending on the print flag
 
-			Example: ITURNoise 1 14 1.0 40.0 165.0 0 "G:\\User\\Data"
-							   Calculation made for January 14th hour (UTC)
+			Example: ITURNoise 1 13 1.0 40.0 165.0 0 "G:\\User\\Data" 0
+							   Calculation made for January  hour 13:00 (UTC)
 							   at 40 degrees North and 165 degrees East
+                               man-made noise: CITY, prints full header
 
 			******************************************************************************
 					ITU-R Study Group 3: Radiowave Propagation
@@ -145,7 +146,7 @@ int main(int argc, char* argv[]) {
 
 		hour = atoi(argv[2])%24;// - 1;
 		if ((hour < 0) || (hour > 23)) {
-			printf("ITURNoise: Error: Hour (%d (UTC)) Out of Range (1 to 24 UTC) ", hour /*+ 1*/);
+			printf("ITURNoise: Error: Hour (%d (UTC)) Out of Range (0 to 23 UTC) ", hour /*+ 1*/);
 			return RTN_ERRMONTH;
 		};
 
@@ -767,7 +768,7 @@ void PrintUsage() {
 	printf("\t\t[man-made noise] [data file path] [print flag]\n");
 	printf("\n");
 	printf("\tArgument 1:  month (1 to 12)\n");
-	printf("\tArgument 2:  hour (1 to 24 (UTC))\n");
+	printf("\tArgument 2:  hour (0 to 23 (UTC))\n");
 	printf("\tArgument 3:  frequency (0.01 to 30.0 (MHz))\n");
 	printf("\tArgument 4:  latitude (degrees decimal)\n");
 	printf("\tArgument 5:  longitude (degrees decimal)\n");
@@ -787,8 +788,8 @@ void PrintUsage() {
 	printf("\t\t4\tPrint CSV output without Header\n");
 	printf("\n");
 	printf("Example: ITURNoise 1 14 1.0 40.0 165.0 0 \"G:\\User\\Data\" 1\n");
-	printf("\t\tCalculation made for January 14th hour (UTC) \n");
-    printf("\t\tat 40 degrees North and 165 degrees East\n");
+	printf("\t\tCalculation made for January  hour 14:00 (UTC) \n");
+    printf("\t\tat 40 degrees North and 165 degrees East, manmadenoise:CITY\n");
 	printf("\t\tfor 1.0 MHz print detailed output to stdout\n");
 	printf("\n");
 	printf("******************************************************************************\n");
