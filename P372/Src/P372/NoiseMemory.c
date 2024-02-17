@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 // Local includes
 #include "Common.h"
@@ -9,7 +6,8 @@
 int AllocateNoiseMemory(
     struct NoiseParams* noiseP
 ) {
-    /* Allocates the memory necessary for the noiseP structure.
+    /*
+    Allocate the memory necessary for the noiseP structure.
     The data must be read into these structures elsewhere.
 
         INPUT
@@ -90,7 +88,7 @@ int FreeNoiseMemory(
     struct NoiseParams *noiseP
 ) {
     /*
-    Frees the memory that was dynamically (m) allocated for the structure 
+    Free the memory that was dynamically (m) allocated for the structure 
     NoiseParams noiseP.
 
         INPUT
