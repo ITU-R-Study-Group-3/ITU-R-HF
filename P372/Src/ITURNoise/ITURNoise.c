@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
 			INPUT
 				Argument 1:  month (1 to 12))
 				Argument 2:  hour (1 to 24 (UTC))
-				Argument 3:  frequency (0.01 to 30 MHz)
+				Argument 3:  frequency (0 to 100 GHz)
 				Argument 4:  latitude (degrees)
 				Argument 5:  longitude (degrees)
 				Argument 6:  man-made noise 0-5 or value of man-made noise (dB)
@@ -150,8 +150,8 @@ int main(int argc, char* argv[]) {
 		};
 
 		freq = atof(argv[3]);
-		if ((freq < 0.01) || (freq > 30)) {
-			printf("ITURNoise: Error: Frequency (%5.4f (MHz)) Out of Range (0.01 to 30 MHz) ", freq);
+		if ((freq < 0.00) || (freq > 100000)) {
+			printf("ITURNoise: Error: Frequency (%5.4f (MHz)) Out of Range (0.00 to 100 GHz) ", freq);
 			return RTN_ERRMONTH;
 		};
 
@@ -768,7 +768,7 @@ void PrintUsage() {
 	printf("\n");
 	printf("\tArgument 1:  month (1 to 12)\n");
 	printf("\tArgument 2:  hour (1 to 24 (UTC))\n");
-	printf("\tArgument 3:  frequency (0.01 to 30.0 (MHz))\n");
+	printf("\tArgument 3:  frequency (0 to 100 (GHz))\n");
 	printf("\tArgument 4:  latitude (degrees decimal)\n");
 	printf("\tArgument 5:  longitude (degrees decimal)\n");
 	printf("\tArgument 6:  man-made noise 0-5 or value of man-made noise (- dB)\n");
