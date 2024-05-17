@@ -1,8 +1,8 @@
 UNAME_S := $(shell uname -s)
 
-# Set cc based on the operating system
+# Set CC based on the operating system
 ifeq ($(UNAME_S),Darwin)
-    cc = clang
+    CC = clang
 else
     CC = gcc
 endif
