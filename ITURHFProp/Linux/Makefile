@@ -4,7 +4,14 @@ CC = gcc
 # Use the following for production
 CFLAGS = -fPIC -Wall -Wextra -O2
 
-LDFLAGS = -lm -ldl -z muldefs
+# Set linker flags based on the operating system
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+    LDFLAGS = -lm -ldl
+else
+    LDFLAGS = -lm -ldl -z muldefs
+endif
+
 RM = rm -f
 source_dir = ../Src/ITURHFProp/
 
