@@ -3,6 +3,9 @@
 #include "Common.h"
 #include "Noise.h"
 
+#include <stdlib.h>
+#include <stddef.h>
+
 int AllocateNoiseMemory(
     struct NoiseParams* noiseP
 ) {
