@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "common.h"
+#include "Common.h"
 #include "Noise.h"
 
 int main() {
