@@ -1,0 +1,36 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  buildUbuntu:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: make
+      run: |
+        cd P372/Linux
+        make
+        cd ../..
+        cd P533/Linux
+        make
+        cd ../..
+        cd ITURHFProp/Linux
+        make
+        cd ../..
+
+  buildOSX:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: make
+      run: |
+        cd P372/Linux
+        make
+        cd ../..
+        cd P533/Linux
+        make
+        cd ../..
+        cd ITURHFProp/Linux
+        make
+        cd ../..      
