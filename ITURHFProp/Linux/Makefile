@@ -1,11 +1,18 @@
-CC = gcc
+UNAME_S := $(shell uname -s)
+
+# Set cc based on the operating system
+ifeq ($(UNAME_S),Darwin)
+    cc = clang
+else
+    CC = gcc
+endif
+
 # Use the following for testing
 #CFLAGS = -fPIC -Wall -Wextra -O0 -g
 # Use the following for production
 CFLAGS = -fPIC -Wall -Wextra -O2
 
 # Set linker flags based on the operating system
-UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Darwin)
     LDFLAGS = -lm -ldl
 else

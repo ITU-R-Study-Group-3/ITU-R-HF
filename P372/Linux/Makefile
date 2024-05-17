@@ -1,4 +1,12 @@
-CC = gcc
+UNAME_S := $(shell uname -s)
+
+# Set cc based on the operating system
+ifeq ($(UNAME_S),Darwin)
+    CC = clang
+else
+    CC = gcc
+endif
+
 source_dir = ../Src/P372/
 bin_dir = ../Bin/
 # Use the following for testing
