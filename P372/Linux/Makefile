@@ -6,7 +6,14 @@ bin_dir = ../Bin/
 # Use the following for production
 CFLAGS = -fPIC -Wall -Wextra -O2 -I$(source_dir)
 
-LDFLAGS = -shared -lm -ldl -z muldefs
+# Set linker flags based on the operating system
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+    LDFLAGS = -shared -lm -ldl
+else
+    LDFLAGS = -shared -lm -ldl -z muldefs
+endif
+
 RM = rm -f
 TARGET_LIB = libp372.so
 
@@ -28,7 +35,7 @@ $(TARGET_LIB): $(OBJS)
 
 $(SRCS:.c=.d):%.d:%.c
 	$(CC) $(CFLAGS) -MM $< >$@
-include $(SRCS:.c=.d)
+-include $(SRCS:.c=.d)
 
 .PHONY: clean
 

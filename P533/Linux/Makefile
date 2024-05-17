@@ -6,7 +6,14 @@ bin_dir = ../Bin/
 # Use the following for production
 CFLAGS = -std=c99 -fPIC -Wall -Wextra -O2 -I$(source_dir)
 
-LDFLAGS = -shared -lm -ldl -z muldefs
+# Set linker flags based on the operating system
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+    LDFLAGS = -shared -lm -ldl
+else
+    LDFLAGS = -shared -lm -ldl -z muldefs
+endif
+
 RM = rm -f
 TARGET_LIB = libp533.so
 
