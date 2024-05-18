@@ -1,3 +1,6 @@
+#ifndef NOISE_H
+#define NOISE_H
+
 /* Operating system preprocessor directives */
 #ifdef _WIN32
     #define DLLEXPORT __declspec(dllexport)
@@ -294,3 +297,4 @@ DLLEXPORT int MakeNoise(
     void (*dllInitializeNoise)(struct NoiseParams *);
 #endif
 /* End operating system preprocessor */
+#endif // NOISE_H

@@ -1,3 +1,6 @@
+#ifndef P533_H
+#define P533_H
+
 // Operating system preprocessor directives *********************************************************
 #ifdef _WIN32
 	#define DLLEXPORT __declspec(dllexport)
@@ -563,3 +566,4 @@ DLLEXPORT int sizeofPathDataStruct();
 // End Prototypes *********************************************************************************
 
 // End P533 ***************************************************************************************
+#endif // P533_H

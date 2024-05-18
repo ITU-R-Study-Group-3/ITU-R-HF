@@ -1,3 +1,6 @@
+#ifndef COMMON_H
+#define COMMON_H
+
 // #defines
 
 // Operating system preprocessor directives
@@ -37,3 +40,4 @@
 // No part of this publication may be reproduced, by any means whatsoever,  //
 //              without written permission of ITU                           //
 //////////////////////////////////////////////////////////////////////////////
+#endif // COMMON_H

@@ -1,3 +1,6 @@
+#ifndef ITURHFPROP_H
+#define ITURHFPROP_H
+
 // Operating system preprocessor ****************************************************************
 #ifdef _WIN32
 	#include <Windows.h>
@@ -320,3 +323,4 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 // End prototypes *********************************************************************************
 
 // End ITURHFProp **********************************************************************************
+#endif // ITURHFPROP_H
