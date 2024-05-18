@@ -36,7 +36,7 @@ Path.F0 3.3
 Path.SorL "SHORTPATH"
 
 // Output Specification (See README for options)
-RptFilePath "C:\Users\behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Reports"
+RptFilePath "Reports/"
 //RptFileFormat "RPT_D | RPT_BMUF | RPT_E | RPT_SNR | RPT_BCR"
 RptFileFormat "RPT_DUMPPATH"
 //RptFileFormat "RPT_D | RPT_ELE | RPT_BMUF | RPT_BMUFD | RPT_OPMUF | RPT_OPMUFD | RPT_E"
@@ -56,7 +56,7 @@ latinc 5.0
 lnginc 5.0
 
 // DataFilePath is the base location of the Antennna, Coeff, P.1239 and IonMap files
-DataFilePath "C:\Users\behm\Documents\GitHub\ITU-R-HF\ITURHFProp\Data\"
+DataFilePath "../Data/"
 // End
 
 
