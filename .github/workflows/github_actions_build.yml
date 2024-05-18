@@ -32,14 +32,5 @@ jobs:
         cd P372/Win32/ITURNoise
         msbuild /p:Configuration=Release /p:Platform="x86" ITURNoise.sln
         cd ../../..
-        cd P372/Win32/P372
-        msbuild /p:Configuration=Release /p:Platform="Win32" P372.sln
-        cd ../../..
-        cd P533/Win32/P533
-        msbuild /p:Configuration=Release /p:Platform="Win32" P533.sln           
-        cd ../../..
         cd ITURHFProp/Win32/Combined
-        msbuild /p:Configuration=Release /p:Platform="Win32" Combined.sln
-        cd ../../..
-        cd ITURHFProp/Win32/ITURHFProp
-        msbuild /p:Configuration=Release /p:Platform="Win32" ITURHFProp.sln                  
+        msbuild /p:Configuration=Release /p:Platform="Win32" Combined.sln              
