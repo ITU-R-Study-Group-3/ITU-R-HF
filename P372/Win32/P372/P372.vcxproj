@@ -157,7 +157,7 @@ copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\..\p372\bin\$(TargetF
     <ClCompile Include="..\..\Src\P372\NoiseMemory.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\P372\common.h" />
+    <ClInclude Include="..\..\Src\P372\Common.h" />
     <ClInclude Include="..\..\Src\P372\Noise.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
