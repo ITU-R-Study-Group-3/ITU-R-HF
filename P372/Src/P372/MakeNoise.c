@@ -195,7 +195,7 @@ int MakeNoise(
     }
 
     return RTN_MAKENOISEOK;
-};
+}
 
 void PrintFam(
     FILE* fp,
@@ -253,4 +253,4 @@ void PrintFam(
     fprintf(fp, "**********************************************************\n");
 
     return;
-};
+}

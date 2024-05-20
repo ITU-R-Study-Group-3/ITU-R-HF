@@ -173,7 +173,7 @@ void MedianAvailableReceiverPower(struct PathData *path) {
 	};
 
 	return;
-};
+}
 
 void DominantMode(struct PathData *path) {
 
@@ -202,4 +202,4 @@ void DominantMode(struct PathData *path) {
 		// The path elevation angle is the dominant mode elevation angle.
 		path->ele = path->DMptr->ele;
 
-};
+}

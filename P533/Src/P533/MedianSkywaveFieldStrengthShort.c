@@ -506,7 +506,7 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 
 	return;
 
-}; // End Median Sky-wave Field Strength 
+} // End Median Sky-wave Field Strength 
 
 
 double AbsorptionTerm(struct ControlPt CP, int month, double fv) {
@@ -594,7 +594,7 @@ double AbsorptionTerm(struct ControlPt CP, int month, double fv) {
 	// Testing
 
 	return ATnoon*phin*Fchij/Fchijnoon;
-};
+}
 
 
 double DiurnalAbsorptionExponent(struct ControlPt CP, int month) {
@@ -735,7 +735,7 @@ double DiurnalAbsorptionExponent(struct ControlPt CP, int month) {
 
 	return p;
 		
-	};
+	}
 
 double AbsorptionFactor(struct ControlPt CP, int month) {
 
@@ -847,7 +847,7 @@ double AbsorptionFactor(struct ControlPt CP, int month) {
     ATnoon = ATNO[i][j+1]*X + ATNO[i][j]*(1.0-X);
 
 	return ATnoon;
-  };
+  }
 
 double AbsorptionLayerPenetrationFactor(double T) {
 
@@ -903,7 +903,7 @@ double AbsorptionLayerPenetrationFactor(double T) {
 	 phi = phi/0.34;
 
 	 return phi; 
-};
+}
 
 
 double FindLh(struct ControlPt CP, double dh, int hour, int month) {
@@ -1103,7 +1103,7 @@ double FindLh(struct ControlPt CP, double dh, int hour, int month) {
 	// Lh[transmission range][season][geomagnetic latitude][mid-path local time]
 	return Lh[txrange][season][gmlat][mplt];
 	
-};
+}
 
 int WhatSeasonforLh(struct Location L, int month) {
 
@@ -1149,7 +1149,7 @@ int WhatSeasonforLh(struct Location L, int month) {
 	
 	return season;
 	
-};
+}
 
 int SmallestCPfoF2(struct PathData path) {
 
@@ -1189,7 +1189,7 @@ int SmallestCPfoF2(struct PathData path) {
 
 	return temp;
 
-};
+}
 
 double AntennaGain(struct PathData path, struct Antenna Ant, double delta, int direction) {
 
@@ -1284,7 +1284,7 @@ double AntennaGain(struct PathData path, struct Antenna Ant, double delta, int d
 	
 	return G;
 
-};
+}
 
 void ZeroCP(struct ControlPt *CP) {
 
@@ -1324,7 +1324,7 @@ void ZeroCP(struct ControlPt *CP) {
 	CP->ltime = 0.0;
 	CP->hr = 0.0;
 		
-};
+}
 
 double PenetrationPoints(struct PathData * path, double noh, double hr, double fv) {
  
@@ -1404,5 +1404,5 @@ double PenetrationPoints(struct PathData * path, double noh, double hr, double f
 	// Return the Ave of the absorption over all penetration points	
 	return ATSum/(2.0*(noh+1));
  
- };
+ }
 

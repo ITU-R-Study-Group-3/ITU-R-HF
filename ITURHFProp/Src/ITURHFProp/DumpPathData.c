@@ -366,23 +366,27 @@ void DumpPathData(struct PathData path, struct ITURHFProp ITURHFP) {
 
 	return;
 
-};
+}
 
 int degrees(double coord) { // Returns the degrees of coordinates
 	return (int)coord;
-};
+}
+
 int minutes(double coord) { // Returns the minutes of coordinates
 	return abs((int)((coord - (int)coord)*60.0));
-};
+}
+
 int seconds(double coord) { // Returns the seconds of coordinates
 	return abs((int)((((coord - (int)coord)*60.0) - (int)((coord - (int)coord)*60.0))*60.0));
-};
+}
+
 int hrs(double time) {
 	return (int)time % 24;
-};
+}
+
 int mns(double time) {
 	return abs((int)((time - (int)time)*60.0));
-};
+}
 
 void PrintITUHeader(FILE *fp, char * time, char const * P533Version, const char * P533CompT, char const * P372Version, const char * P372CompT) {
 
@@ -399,6 +403,6 @@ void PrintITUHeader(FILE *fp, char * time, char const * P533Version, const char 
 	fprintf(fp, "     Analysis Prepared  %s\n", time);
 	fprintf(fp, "---------------------------------------------------------------------------\n");
 	fprintf(fp, "\n");
-};
+}
 
 

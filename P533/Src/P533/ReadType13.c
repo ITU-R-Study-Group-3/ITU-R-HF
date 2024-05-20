@@ -42,7 +42,7 @@ DLLEXPORT void SetAntennaPatternVal(struct PathData * path, int TXorRX, int azim
 		}
 		path->A_rx.pattern[frequencyIndex][azimuth][elevation] = value;
 	}
-};
+}
 
 int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
 	char line[256];			// Read input line
@@ -136,7 +136,7 @@ int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
 	}
 	
 	return RTN_READANTENNAPATTERNSOK;
-};
+}
 
 
 int ReadType13(struct Antenna *Ant, FILE * fp, double bearing, int silent) {
@@ -239,7 +239,7 @@ int ReadType13(struct Antenna *Ant, FILE * fp, double bearing, int silent) {
 	};
 
 	return RTN_READANTENNAPATTERNSOK;
-};
+}
 
 
 int ReadType14(struct Antenna *Ant, FILE *fp, int silent) {
@@ -351,7 +351,7 @@ int ReadType14(struct Antenna *Ant, FILE *fp, int silent) {
 		}
 	}
 	return RTN_READANTENNAPATTERNSOK;
-};
+}
 
 
 void IsotropicPattern(struct Antenna *Ant, double G, int silent) {
@@ -379,5 +379,5 @@ void IsotropicPattern(struct Antenna *Ant, double G, int silent) {
 	};
 
 	return;
-};
+}
 

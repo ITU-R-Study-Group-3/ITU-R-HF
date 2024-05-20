@@ -373,7 +373,7 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 	fclose(fp);
 
 	return RTN_RICOK;
-};
+}
 
 
 void substrbtwnchar(char instr[256], char searchchar, char * outstr) {
@@ -395,7 +395,7 @@ void substrbtwnchar(char instr[256], char searchchar, char * outstr) {
 	};
 
 	return;
-};
+}
 
 unsigned long OutputOption(char optstr[256]) {
 
@@ -526,7 +526,7 @@ unsigned long OutputOption(char optstr[256]) {
 
 
 	return 0;
-};
+}
 
 void InitializeInput(struct ITURHFProp *ITURHFP, struct PathData *path) {
 
@@ -595,7 +595,7 @@ void InitializeInput(struct ITURHFProp *ITURHFP, struct PathData *path) {
 
 	return;
 
-};
+}
 
 
 int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
@@ -715,5 +715,5 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
 	    };
     }
 		return RTN_READANTENNAPATTERNSOK;
-};
+}
 

@@ -287,7 +287,7 @@ DLLEXPORT char const * P533Version(void) {
 
 	return P533VER;
 
-};
+}
 
 DLLEXPORT char const * P533CompileTime(void) {
 
@@ -308,7 +308,7 @@ DLLEXPORT char const * P533CompileTime(void) {
 
 	return P533CT;
 
-};
+}
 
 DLLEXPORT int sizeofPathDataStruct(void) {
 	/*

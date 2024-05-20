@@ -135,7 +135,7 @@ void InitializePath(struct PathData *path) {
 	path->season = WhatSeason(path->CP[MP].L, path->month);
 	
 	return;
-};
+}
 
 void InitializeCPs(struct PathData *path) {
 	/*
@@ -241,7 +241,7 @@ void InitializeCPs(struct PathData *path) {
 	// be determined. This calculation is performed in MUFBasic().
 
 	return;
-};
+}
 
 
 void InitializeModes(struct Mode *M, int n) {
@@ -288,7 +288,7 @@ void InitializeModes(struct Mode *M, int n) {
 
 	};
 
-};
+}
 
 int WhatSeason(struct Location L, int month) {
 
@@ -340,5 +340,5 @@ int WhatSeason(struct Location L, int month) {
 	
 	return season;
 	
-};
+}
 

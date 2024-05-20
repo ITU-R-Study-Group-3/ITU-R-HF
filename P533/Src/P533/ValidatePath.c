@@ -66,4 +66,4 @@ int ValidatePath(struct PathData *path) {
 	// path data valid
 	return RTN_VALIDDATAOK;
 
-};
+}

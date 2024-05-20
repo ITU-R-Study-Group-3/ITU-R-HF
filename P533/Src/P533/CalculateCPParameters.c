@@ -82,7 +82,7 @@ void CalculateCPParameters( struct PathData *path, struct ControlPt *here) {
 	magfit(here, 300.00);
 
 	return;
-};
+}
 
 void IonosphericParameters(struct ControlPt *here, float ****foF2, float ****M3kF2, int hour, int SSN){
 
@@ -354,7 +354,7 @@ void IonosphericParameters(struct ControlPt *here, float ****foF2, float ****M3k
 
 	return;
 
-};
+}
 
 
 void FindfoE(struct ControlPt *here, int month, int hour, int SSN) {
@@ -506,7 +506,7 @@ void FindfoE(struct ControlPt *here, int month, int hour, int SSN) {
 	here->foE = max(pow(A*B*C*D, 0.25), pow(0.004*pow((1.0 + 0.021*phi), 2) , 0.25));
 	
 	return;
-};
+}
 
 void SolarParameters(struct ControlPt *here, int month, double hour) {
 
@@ -650,7 +650,7 @@ void SolarParameters(struct ControlPt *here, int month, double hour) {
 
 	return;
 
-};
+}
 
 double BilinearInterpolation(double LL, double LR, double UL, double UR, double r, double c) {
 
@@ -680,7 +680,7 @@ double BilinearInterpolation(double LL, double LR, double UL, double UR, double 
 			LR*((1.0 - r)*(c)) +
 			UR*((r)*(c));
 
-};
+}
 
 
 

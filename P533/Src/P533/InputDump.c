@@ -146,4 +146,4 @@ DLLEXPORT int InputDump(struct PathData *path) {
 
 	return RTN_INPUTDUMPOK;
 
-};
+}

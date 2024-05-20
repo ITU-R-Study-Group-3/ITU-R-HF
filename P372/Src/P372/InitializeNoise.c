@@ -23,4 +23,4 @@ void InitializeNoise(
     noiseP->DlT = TINYDB;
     noiseP->DuA = TINYDB;
     noiseP->DuT = TINYDB;
-};
+}

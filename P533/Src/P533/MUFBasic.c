@@ -273,7 +273,7 @@ void MUFBasic(struct PathData *path) {
 
 	return;
 
-};
+}
 
 
 /*
@@ -321,7 +321,7 @@ double Calcdmax(struct ControlPt *CP) {
 	
 	return dmax;
 	
-};
+}
 
 double CalcB(struct ControlPt *CP) {
 
@@ -354,7 +354,7 @@ double CalcB(struct ControlPt *CP) {
 	
 	return B;
 
-};
+}
 
 double CalcCd(double d, double dmax) {
 
@@ -382,7 +382,7 @@ double CalcCd(double d, double dmax) {
 	Cd = 0.74 - 0.591*Z - 0.424*pow(Z,2) - 0.090*pow(Z,3) + 0.088*pow(Z,4) + 0.181*pow(Z,5) + 0.096*pow(Z,6);
 
 	return Cd;
-};
+}
 
 double CalcF2DMUF(struct ControlPt *CP, double distance, double dmax, double B) {
 
@@ -428,4 +428,4 @@ double CalcF2DMUF(struct ControlPt *CP, double distance, double dmax, double B) 
 
 	return F2DMUF;
  
-};
+}

@@ -345,7 +345,7 @@ void MedianSkywaveFieldStrengthLong(struct PathData *path) {
 						
 	}; // (path->distance >= 7000.0)
 
-};
+}
 
 
 void FindMUFsandfM(struct PathData *path, struct ControlPt CP[MAXCP][24], int hops, double dM) {
@@ -545,7 +545,7 @@ void FindMUFsandfM(struct PathData *path, struct ControlPt CP[MAXCP][24], int ho
 	};
 
 	return;
-};
+}
 
 void FindfL(struct PathData *path, struct ControlPt CP[MAXCP][24], int hops, double dh, double ptick, double fH, double i90) {
 
@@ -690,7 +690,7 @@ void FindfL(struct PathData *path, struct ControlPt CP[MAXCP][24], int hops, dou
 
 	return; 
 
-};
+}
 
 
 double WinterAnomaly(double lat, int month) {
@@ -749,7 +749,7 @@ double WinterAnomaly(double lat, int month) {
 		return(Aw[month][iNS]*(90.0 - lat*R2D)/30.0);
 	};
 
-};
+}
 
 double AntennaGain08(struct PathData path, struct Antenna Ant, int direction, double * elevation) {
 
@@ -796,7 +796,7 @@ double AntennaGain08(struct PathData path, struct Antenna Ant, int direction, do
 	};
 
 	return Gmax;
-};
+}
 
 // Testing
 void PrintControlPointData(struct ControlPt CP, int i, int j) {
@@ -839,7 +839,8 @@ void PrintControlPointData(struct ControlPt CP, int i, int j) {
 	printf("\tlocal sunset       = % 02d:%02d (UTC) % 02d:%02d (Local)\n", hrs(CP.Sun.lss), mns(CP.Sun.lss), hrs(ltime), mns(ltime)); 
 	ltime = fmod(CP.ltime+tz+24, 24);
 	printf("\tlocal time         = % 02d:%02d (UTC) % 02d:%02d (Local)\n", hrs(CP.ltime), mns(CP.ltime), hrs(ltime), mns(ltime));
-};
+}
+
 // Testing
 
 void CopyCP(struct ControlPt thisCP, struct ControlPt *thatCP) {
@@ -889,23 +890,27 @@ void CopyCP(struct ControlPt thisCP, struct ControlPt *thatCP) {
 
 	return;
 
-};
+}
 
 
 // Testing
 int degrees(double coord) { // Returns the degrees of coordinates
 	return (int)coord;
-};
+}
+
 int minutes(double coord) { // Returns the minutes of coordinates
 	return abs((int)((coord - (int)coord)*60.0));
-};
+}
+
 int seconds(double coord) { // Returns the seconds of coordinates
 	return abs((int)((((coord - (int)coord)*60.0) - (int)((coord - (int)coord)*60.0))*60.0));
-};
+}
+
 int hrs(double time) {
 	return (int)time % 24;
-};
+}
+
 int mns(double time) {
 	return abs((int)((time - (int)time)*60.0));
-};
+}
 

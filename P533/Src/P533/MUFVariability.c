@@ -140,7 +140,7 @@ void MUFVariability(struct PathData *path) {
 
 	return;
 
-};
+}
 
 double FindfoF2var(struct PathData path, double hour, double lat, int decile) { 
 
@@ -227,5 +227,5 @@ double FindfoF2var(struct PathData path, double hour, double lat, int decile) {
 
 	return Irc;
 
-};
+}
 

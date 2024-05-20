@@ -326,7 +326,7 @@ int main(int argc, char *argv[]) {
 	};
 
 	return RTN_MAINOK;
-};
+}
 
 
 int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
@@ -501,7 +501,7 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 	}; // ***************************** End Months loop ******************************************
 
 	return RTN_ITURHFPropOK;
-};
+}
 
 void help(void)
 {
@@ -526,5 +526,5 @@ void help(void)
 	printf("\t\tor a path dump file will be created in\n");
 	printf("\t\tthe .\\Report file directory\n");
 	printf("\n");
-};
+}
 

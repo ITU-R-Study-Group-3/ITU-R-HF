@@ -279,4 +279,4 @@ int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFi
 
 	return RTN_READIONPARAOK;
 
-};
+}

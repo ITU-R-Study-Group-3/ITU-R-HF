@@ -85,7 +85,7 @@ int AllocateNoiseMemory(
         return RTN_ERRALLOCATEFAKABP;
 
     return RTN_ALLOCATEP372OK;
-};
+}
 
 int FreeNoiseMemory(
     struct NoiseParams *noiseP
@@ -137,4 +137,4 @@ int FreeNoiseMemory(
     free(noiseP->fakabp);
 
     return RTN_NOISEFREED;
-};
+}

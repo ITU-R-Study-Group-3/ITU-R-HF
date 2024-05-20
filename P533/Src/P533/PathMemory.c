@@ -200,7 +200,7 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 
 	return RTN_ALLOCATEP533OK;
 
-};
+}
 
 
 DLLEXPORT int FreePathMemory(struct PathData *path) {	
@@ -300,5 +300,5 @@ DLLEXPORT int FreePathMemory(struct PathData *path) {
 	
 	return RTN_PATHFREED;
 
-};
+}
 

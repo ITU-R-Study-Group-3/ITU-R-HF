@@ -141,4 +141,4 @@ void magfit(struct ControlPt *here, double height) {
 	here->dip[hr]=atan(Fz/sqrt(pow(Fx,2) + pow((Fy/cos(here->L.lat)),2)));
 	here->fH[hr]=2.8*sqrt(pow(Fx,2)+pow((Fy/cos(here->L.lat)),2)+pow(Fz,2));
   
-};
+}

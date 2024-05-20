@@ -227,7 +227,7 @@ int Noise(
     noiseP->FamT = min(FamTu, FamTl); // Worst-case noise.
 
     return RTN_NOISEOK;
-};
+}
 
 void AtmosphericNoise(
     struct NoiseParams *noiseP,
@@ -348,7 +348,7 @@ void AtmosphericNoise(
     noiseP->DlA = 10.0 * log10(fa);
 
     return;
-};
+}
 
 void GetFamParameters(
     struct NoiseParams *noiseP,
@@ -501,7 +501,7 @@ void GetFamParameters(
     FS->SigmaFam = v[4];// Sigma_Fam = V(5)
 
     return;
-};
+}
 
 void ManMadeNoise(
     struct NoiseParams *noiseP,
@@ -581,7 +581,7 @@ void ManMadeNoise(
     // Calculate the man made noise, FaM
     noiseP->FaM = c - d * log10(frequency);
 
-};
+}
 
 void GalacticNoise(
     struct NoiseParams *noiseP,
@@ -614,7 +614,7 @@ void GalacticNoise(
     // Determine the decile values are set to 2 dB (3/1.282)
     noiseP->DuG = 2.0;
     noiseP->DlG = 2.0;
-};
+}
 
 int ReadFamDud(
     struct NoiseParams *noiseP,
@@ -902,7 +902,7 @@ int ReadFamDud(
     fclose(fp);
 
     return RTN_READFAMDUDOK;
-};
+}
 
 char const* P372Version(void) {
     /*
@@ -919,7 +919,7 @@ char const* P372Version(void) {
     */
 
     return P372VER;
-};
+}
 
 char const* P372CompileTime(void) {
     /*
@@ -936,7 +936,7 @@ char const* P372CompileTime(void) {
     */
 
     return P372CT;
-};
+}
 
 void AtmosphericNoise_LT(
     struct NoiseParams *noiseP,
@@ -1045,7 +1045,8 @@ void AtmosphericNoise_LT(
     FamS->tmblk = 99;
 
     return;
-};
+}
+
 /* BEGIN Windows __stdcall Interface routines to the Noise.c routines. */
 #ifdef _WIN32
     /* 
@@ -1059,16 +1060,18 @@ void AtmosphericNoise_LT(
             noiseP
         );
         return retval;
-    };
-    int __stdcall _FreeNoiseMemory(
+    }
+
+int __stdcall _FreeNoiseMemory(
         struct NoiseParams *noiseP
     ) {
         int retval = FreeNoiseMemory(
             noiseP
         );
         return retval;
-    };
-    int __stdcall _Noise(
+    }
+
+int __stdcall _Noise(
         struct NoiseParams *noiseP,
         int hour,
         double lng,
@@ -1083,8 +1086,9 @@ void AtmosphericNoise_LT(
             frequency
         );
         return retval;
-    };
-    int __stdcall _ReadFamDud(
+    }
+
+int __stdcall _ReadFamDud(
         struct NoiseParams *noiseP,
         const char *DataFilePath,
         int month
@@ -1095,21 +1099,25 @@ void AtmosphericNoise_LT(
             month
         );
         return retval;
-    };
-    void __stdcall _InitializeNoise(
+    }
+
+void __stdcall _InitializeNoise(
         struct NoiseParams *noiseP
     ) {
         InitializeNoise(noiseP);
-    };
-    char const *__stdcall _P372CompileTime(void) {
+    }
+
+char const *__stdcall _P372CompileTime(void) {
         P372CompileTime();
         return P372CT;
-    };
-    char  const *__stdcall _P372Version(void) {
+    }
+
+char  const *__stdcall _P372Version(void) {
         P372Version();
         return P372VER;
-    };
-    void __stdcall _AtmosphericNoise(
+    }
+
+void __stdcall _AtmosphericNoise(
         struct NoiseParams *noiseP,
         int iutc,
         double lng,
@@ -1123,8 +1131,9 @@ void AtmosphericNoise_LT(
             lat,
             frequency
         );
-    };
-    void __stdcall _AtmosphericNoise_LT(
+    }
+
+void __stdcall _AtmosphericNoise_LT(
         struct NoiseParams *noiseP,
         struct FamStats* FamS,
         int lrxmt,
@@ -1140,8 +1149,9 @@ void AtmosphericNoise_LT(
             lat,
             frequency
         );
-    };
-    int __stdcall _MakeNoise(
+    }
+
+int __stdcall _MakeNoise(
         int month,
         int hour,
         double lat,
@@ -1164,6 +1174,6 @@ void AtmosphericNoise_LT(
             pntflag
         );
         return retval;
-    };
+    }
 #endif
 /* END Windows __stdcall Interface routines to the Noise.c routines. */

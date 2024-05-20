@@ -423,7 +423,7 @@ void CircuitReliability(struct PathData *path) {
 
 	return;
 
-}; // End CircuitReliability()
+} // End CircuitReliability()
 
 void ModeSort(struct Mode *M[MAXMDS], int order[MAXMDS], int criteria) {
 
@@ -488,7 +488,7 @@ void ModeSort(struct Mode *M[MAXMDS], int order[MAXMDS], int criteria) {
 
 	return;
 
-}; // End ModeSort()
+} // End ModeSort()
 
 int NumberofModes(struct PathData path) {
 
@@ -525,7 +525,7 @@ int NumberofModes(struct PathData path) {
 
 	return count;
 
-}; // End NumberofModes()
+} // End NumberofModes()
 
 double DigitalModulationSignalandInterferers(struct PathData *path, int iS[MAXMDS], int iI[MAXMDS]) {
 
@@ -701,7 +701,7 @@ double DigitalModulationSignalandInterferers(struct PathData *path, int iS[MAXMD
 
 	return S;
 
-};
+}
 
 void EquatorialScattering(struct PathData *path, int iS[MAXMDS]) {
 
@@ -919,7 +919,7 @@ void EquatorialScattering(struct PathData *path, int iS[MAXMDS]) {
 
 	return;
 
-};
+}
 
 double FindFlambdad(struct ControlPt CP) {
 
@@ -955,7 +955,7 @@ double FindFlambdad(struct ControlPt CP) {
 
 	return 0.0;
 
-};
+}
 
 double FindFTl(struct ControlPt CP) {
 
@@ -997,4 +997,4 @@ double FindFTl(struct ControlPt CP) {
 	};
 
 	return 0.0;
-};
+}

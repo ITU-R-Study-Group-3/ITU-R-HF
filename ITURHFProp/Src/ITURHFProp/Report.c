@@ -154,7 +154,7 @@ void Report(struct PathData path, struct ITURHFProp ITURHFP) {
 
 	return;
 
-};
+}
 
 void PrintRecord(struct PathData path, struct ITURHFProp ITURHFP, int option) {
 
@@ -295,7 +295,7 @@ void PrintRecord(struct PathData path, struct ITURHFProp ITURHFP, int option) {
 	};
 
 	return;
-};
+}
 
 void PrintHeader(struct PathData path, struct ITURHFProp ITURHFP) {
 
@@ -421,7 +421,7 @@ void PrintHeader(struct PathData path, struct ITURHFProp ITURHFP) {
 
 	return;
 
-};
+}
 
 void PrintLastRecord(struct PathData path, struct ITURHFProp ITURHFP) {
 
@@ -432,7 +432,7 @@ void PrintLastRecord(struct PathData path, struct ITURHFProp ITURHFP) {
 
 	return;
 
-};
+}
 
 void function_RPT_D(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -453,7 +453,7 @@ void function_RPT_D(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_DMAX(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -479,7 +479,7 @@ void function_RPT_DMAX(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_ELE(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -500,7 +500,7 @@ void function_RPT_ELE(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_BMUF(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -521,7 +521,7 @@ void function_RPT_BMUF(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_BMUFD(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -553,7 +553,7 @@ void function_RPT_BMUFD(struct PathData path, int option, int *col) {
 	};
 
 	return;
-};
+}
 
 void function_RPT_OPMUF(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -576,7 +576,7 @@ void function_RPT_OPMUF(struct PathData path, int option, int *col) {
 
 	return;
 
-};
+}
 
 void function_RPT_OPMUFD(struct PathData path, int option, int *col) {
 
@@ -603,7 +603,7 @@ void function_RPT_OPMUFD(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_N0_F2(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -636,7 +636,7 @@ void function_RPT_N0_F2(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_N0_E(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -669,7 +669,7 @@ void function_RPT_N0_E(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_E(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -690,7 +690,7 @@ void function_RPT_E(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_GRW(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -711,7 +711,7 @@ void function_RPT_GRW(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_PR(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -732,7 +732,7 @@ void function_RPT_PR(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_NOISESOURCES(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -763,7 +763,7 @@ void function_RPT_NOISESOURCES(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_NOISESOURCESD(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -809,7 +809,7 @@ void function_RPT_NOISESOURCESD(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_NOISETOTALD(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -835,7 +835,7 @@ void function_RPT_NOISETOTALD(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_NOISETOTAL(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -856,7 +856,7 @@ void function_RPT_NOISETOTAL(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_SNR(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -877,7 +877,7 @@ void function_RPT_SNR(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_SNRD(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -903,7 +903,7 @@ void function_RPT_SNRD(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_SNRXX(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -924,7 +924,7 @@ void function_RPT_SNRXX(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_SIR(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -945,7 +945,7 @@ void function_RPT_SIR(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_SIRD(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -971,7 +971,7 @@ void function_RPT_SIRD(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_RSN(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -1002,7 +1002,7 @@ void function_RPT_RSN(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_BCR(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -1023,7 +1023,7 @@ void function_RPT_BCR(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_OCR(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -1044,7 +1044,7 @@ void function_RPT_OCR(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_OCRS(struct PathData path, int option, int *col) {
 
@@ -1071,7 +1071,7 @@ void function_RPT_OCRS(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_MIR(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -1092,7 +1092,7 @@ void function_RPT_MIR(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_RXLOCATION(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -1118,7 +1118,7 @@ void function_RPT_RXLOCATION(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_ESL(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -1144,7 +1144,7 @@ void function_RPT_ESL(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_LONG(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -1215,7 +1215,7 @@ void function_RPT_LONG(struct PathData path, int option, int *col) {
 			break;
 	};
 	return;
-};
+}
 
 void function_RPT_DOMMODE(struct PathData path, int option, int *col) {
 
@@ -1351,7 +1351,7 @@ void function_RPT_DOMMODE(struct PathData path, int option, int *col) {
 	};
 
 	return;
-};
+}
 
 char EW(double lng) {
 
@@ -1359,7 +1359,7 @@ char EW(double lng) {
 	else if(lng > 0.0) return 'E';
 	else return '=';
 
-};
+}
 
 char NS(double lat) {
 
@@ -1367,5 +1367,5 @@ char NS(double lat) {
 	else if(lat > 0.0) return 'N';
 	else return '=';
 
-};
+}
 

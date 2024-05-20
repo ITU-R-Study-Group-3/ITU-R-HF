@@ -82,5 +82,5 @@ int ReadP1239(struct PathData *path, const char * DataFilePath) {
 
 	return RTN_READP1239OK;
 
-};
+}
 

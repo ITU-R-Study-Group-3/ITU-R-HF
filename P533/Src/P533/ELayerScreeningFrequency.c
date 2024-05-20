@@ -88,7 +88,7 @@ void ELayerScreeningFrequency(struct PathData *path) {
 
 	return;
 
-};
+}
 
 double MirrorReflectionHeight(struct PathData path, struct ControlPt CP, double d) {
 
@@ -188,7 +188,7 @@ double MirrorReflectionHeight(struct PathData path, struct ControlPt CP, double 
 	};
 
 	return hr;
-};
+}
 
 double ElevationAngle(double dh, double hr) {
 
@@ -216,7 +216,7 @@ double ElevationAngle(double dh, double hr) {
 	
 	return ele;
 
-}; 
+}
 
 double IncidenceAngle(double deltaf, double hr) {
 
@@ -239,4 +239,4 @@ double IncidenceAngle(double deltaf, double hr) {
 	 */
 
 	return asin(R0*cos(deltaf)/(R0 + hr));
-};
+}
