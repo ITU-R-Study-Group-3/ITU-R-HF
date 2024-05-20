@@ -94,10 +94,10 @@ void MUFBasic(struct PathData *path) {
 			// At this point lowest-order mode is known – store it.
 			path->n0_F2 = n0;
 			break; // You have found the lowest-order mode. Jump out of the loop.
-		};
-	};
+		}
+    }
 
-	// Check to see if a low order mode exists F2 layers. If it does not skip Sections 3.5.1 and 3.5.2 
+    // Check to see if a low order mode exists F2 layers. If it does not skip Sections 3.5.1 and 3.5.2 
 	// since they are dependenton the lowest order F2 mode existing
 	if(path->n0_F2 != NOLOWESTMODE) {
 
@@ -154,9 +154,9 @@ void MUFBasic(struct PathData *path) {
 			// The path MUF is small of the two MUFs calculated at the control points T + d0/2 and R - d0/2 
 			path->BMUF = path->Md_F2[n0].BMUF;
 
-		};
+		}
 
-		// 3.5.2 Higher-order modes (paths up to 9 000 km)
+        // 3.5.2 Higher-order modes (paths up to 9 000 km)
 		if(path->distance <= 9000) {
 			for(n = n0+1; n < MAXF2MDS; n++) {
 				if(path->distance <= path->dmax) { // 3.5.2.1 Paths up to dmax (km)
@@ -181,11 +181,11 @@ void MUFBasic(struct PathData *path) {
 				
 					path->Md_F2[n].BMUF = path->BMUF * min(Mn[0]/Mn0[0], Mn[1]/Mn0[1]);
 			
-				};
-			};
-		};
-	};
-	// End calculation for F2 Layer Basic MUF
+				}
+            }
+        }
+    }
+    // End calculation for F2 Layer Basic MUF
 
 	// E layer basic MUF calculation
 	if(path->distance < 4000.0) {
@@ -210,10 +210,10 @@ void MUFBasic(struct PathData *path) {
 			if(dh > path->distance/(n0+1)) { // Is the mirror reflection height horizon less than the n0 hop distance?
 				path->n0_E = n0;
 				break; // You have found the lowest-order mode. Jump out of the loop.
-			};
-		};
+			}
+        }
 
-		// Is there a lowest order E mode?
+        // Is there a lowest order E mode?
 		if(path->n0_E != NOLOWESTMODE) {
 			// There are three E paths.
 			for(n=n0; n<MAXEMDS; n++) {
@@ -238,19 +238,19 @@ void MUFBasic(struct PathData *path) {
 				else { // path->distance > 4000.0
 					path->Md_E[n].BMUF = 0.0; // The basic MUF is zero past 4000 km. 
 					// This is redundant but to make the point set the basic E layer MUF to 0.0.
-				};
-		
-				// Determine the lowest-order E layer mode.
+				}
+
+                // Determine the lowest-order E layer mode.
 				if((path->Md_E[n].BMUF != 0.0) && (path->n0_E == NOLOWESTMODE)) {
 					path->n0_E = n;
-				};
-			}
+				}
+            }
 		}
 		else { // path->distance >= 4000.0
 			// There are no E layer modes for path->distance >= 4000.0.
-		};
-	};
-	// End calculation for the E layer Basic MUF.
+		}
+    }
+    // End calculation for the E layer Basic MUF.
 
 	// Finally, determine the path basic MUF.
 	if(path->n0_E != NOLOWESTMODE) {
@@ -259,8 +259,8 @@ void MUFBasic(struct PathData *path) {
 		}
 		else { // E modes exist. F2 mode do not.
 			path->BMUF = path->Md_E[path->n0_E].BMUF;
-		};
-	}
+		}
+    }
 	else { // path->n0_E == NOLOWESTMODE
 		if(path->n0_F2 != NOLOWESTMODE) { // F2 modes exist. E modes do not.
 			path->BMUF = path->Md_F2[path->n0_F2].BMUF;
@@ -268,10 +268,10 @@ void MUFBasic(struct PathData *path) {
 		else {
 			// This is an error condition
 			path->BMUF = TOOBIG; 
-		};
-	};
+		}
+    }
 
-	return;
+    return;
 
 }
 
@@ -347,9 +347,9 @@ double CalcB(struct ControlPt *CP) {
 	}
 	else { // path->CP[MP].foE == 0.0
 		CP->x = 2.0;
-	};
+	}
 
-	// Now you can find B
+    // Now you can find B
 	B = CP->M3kF2 - 0.124 + (pow(CP->M3kF2, 2) - 4)*(0.0215 + 0.005*sin((7.854/CP->x) - 1.9635));
 	
 	return B;
@@ -415,9 +415,9 @@ double CalcF2DMUF(struct ControlPt *CP, double distance, double dmax, double B) 
 	}
 	else {
 		d = dmax;
-	};
-	
-	// ITU-R P.533-12 Eqn (4)
+	}
+
+    // ITU-R P.533-12 Eqn (4)
 	Cd = CalcCd(d, dmax);
 
 	d = 3000.0; // From ITU-R P.533-12 "C sub 3000 : value of Cd for D = 3 000 km" 

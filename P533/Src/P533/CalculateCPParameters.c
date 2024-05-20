@@ -163,8 +163,8 @@ void IonosphericParameters(struct ControlPt *here, float ****foF2, float ****M3k
 					// fix the N rollover - no rollover N to S
 					UR.k = LL.k;
 					UL.k = LL.k;
-				};
-			}
+				}
+            }
 			else { // E edge
 				if ( LL.k != lat-1 ) { // not on N edge
 					// fix the E rollover - rollover E to W
@@ -179,9 +179,9 @@ void IonosphericParameters(struct ControlPt *here, float ****foF2, float ****M3k
 					UR.j = 0;
 					UL.k = LL.k;
 					UL.j = LL.j;
-				};
-			};
-		}
+				}
+            }
+        }
 		else {	// NW quad
 			LR.k = zerolat+(int)(here->L.lat / inc); // North is positive
 			LR.j = zerolng+(int)(here->L.lng / inc); // West is negative	
@@ -200,8 +200,8 @@ void IonosphericParameters(struct ControlPt *here, float ****foF2, float ****M3k
 					// fix the N rollover - no rollover N to S
 					UR.k = LR.k;
 					UL.k = LR.k;
-				};
-			}
+				}
+            }
 			else { // W edge
 				if ( LR.k != lat-1 ) { // not on N edge
 					// fix the W rollover - rollover W to E
@@ -216,11 +216,10 @@ void IonosphericParameters(struct ControlPt *here, float ****foF2, float ****M3k
 					UR.j = LR.j;
 					UL.k = LR.k;
 					UL.j = lng-1;
-				};
-			};
-		};
-	
-	}
+				}
+            }
+        }
+    }
 	else { 
 		if (here->L.lng >= 0.0) { // SE quad
 			UL.k = zerolat+(int)(here->L.lat / inc); // South is negative
@@ -240,8 +239,8 @@ void IonosphericParameters(struct ControlPt *here, float ****foF2, float ****M3k
 					// fix the S rollover - no rollover S to N
 					LL.k = UL.k;
 					LR.k = UL.k;
-				};
-			}
+				}
+            }
 			else { // E edge
 				if ( UL.k != 0 ) { // not on SE corner
 					// fix the E rollover - rollover E to W
@@ -256,9 +255,9 @@ void IonosphericParameters(struct ControlPt *here, float ****foF2, float ****M3k
 					UR.j = 0;
 					LL.k = UL.k;
 					LL.j = UL.j;
-				};
-			};
-		}
+				}
+            }
+        }
 		else { // SW quad
 			UR.k = zerolat+(int)(here->L.lat / inc); // South is negative
 			UR.j = zerolng+(int)(here->L.lng / inc); // West is negative
@@ -277,8 +276,8 @@ void IonosphericParameters(struct ControlPt *here, float ****foF2, float ****M3k
 					// fix the N rollover - no rollover N to S
 					LR.k = UR.k;
 					LL.k = UR.k;
-				};
-			}
+				}
+            }
 			else { // W edge
 				if ( UR.k != 0 ) { // not on SW corner
 					// fix the W rollover - rollover W to E
@@ -293,12 +292,12 @@ void IonosphericParameters(struct ControlPt *here, float ****foF2, float ****M3k
 					LL.j = lng-1;
 					UL.k = UR.k;
 					UL.j = lng-1;
-				};
-			};
-		};
-	};
+				}
+            }
+        }
+    }
 
-	// Determine the lat and lng in degrees
+    // Determine the lat and lng in degrees
 	UL.L.lat = UL.k*inc - PI/2.0;
 	UL.L.lng = UL.j*inc - PI;
 	LL.L.lat = LL.k*inc - PI/2.0;
@@ -327,18 +326,18 @@ void IonosphericParameters(struct ControlPt *here, float ****foF2, float ****M3k
 		// Lower Right
 		LR.foF2[m] = foF2[n][LR.j][LR.k][m];
 		LR.M3kF2[m] = M3kF2[n][LR.j][LR.k][m];
-	};
-			
-	// Now you are ready to interpolate the value at the point of interest
+	}
+
+    // Now you are ready to interpolate the value at the point of interest
 	// determine the fractional "column" j and fractional "row" k for the bilinear interpolation calculation
 	frack =  fabs(here->L.lat/inc) - (int)fabs(here->L.lat/inc); // Fractional row distance
 	fracj =  fabs(here->L.lng/inc) - (int)fabs(here->L.lng/inc); // Fractional column distance
 	for(m=0; m<2; m++) {
 		ned.foF2[m] = BilinearInterpolation(LL.foF2[m], LR.foF2[m], UL.foF2[m], UR.foF2[m], frack, fracj);
 		ned.M3kF2[m] = BilinearInterpolation(LL.M3kF2[m], LR.M3kF2[m], UL.M3kF2[m], UR.M3kF2[m], frack, fracj);
-	};
+	}
 
-	// End of calculation for foF2 and M3kF2
+    // End of calculation for foF2 and M3kF2
 
 	/*
 	 * Now interpolate by the SSN. Note the SSN maximum has been restricted to a maximm of 160 ITU-R P.533-12.
@@ -421,16 +420,16 @@ void FindfoE(struct ControlPt *here, int month, int hour, int SSN) {
 	}
 	else { // fabs(here->L.lat) >= 32*D2R
 		M = 0.11 - 0.49*cos(here->L.lat);
-	};
+	}
 
-	if(fabs(here->L.lat - here->Sun.decl) < 80.0*D2R) {
+    if(fabs(here->L.lat - here->Sun.decl) < 80.0*D2R) {
 		N = here->L.lat - here->Sun.decl;
 	}
 	else {
 		N = 80.0*D2R;
-	};
+	}
 
-	B = pow(cos(N), M);
+    B = pow(cos(N), M);
 
 	/* 
 	 * Calculation for C : main latitude factor
@@ -443,8 +442,8 @@ void FindfoE(struct ControlPt *here, int month, int hour, int SSN) {
 	else { // fabs(here->L.lat) >= 32*D2R
 		X = 92.0;
 		Y = 35.0;
-	};
-	C = X + Y*cos(here->L.lat);
+	}
+    C = X + Y*cos(here->L.lat);
 
 	/*
 	 * Calculation of D : time-of-day factor
@@ -456,9 +455,9 @@ void FindfoE(struct ControlPt *here, int month, int hour, int SSN) {
 	}
 	else { // fabs(here->L.lat) > 12*D2R
 		p = 1.2;
-	};
+	}
 
-	// Now calculate D conditional on the solar zenith angle (here->sza)
+    // Now calculate D conditional on the solar zenith angle (here->sza)
 	if(here->Sun.sza <= 73.0*D2R) {
 		D = pow(cos(here->Sun.sza),p);
 	}
@@ -481,9 +480,9 @@ void FindfoE(struct ControlPt *here, int month, int hour, int SSN) {
 		}
 		else {
 			h = 0.0;
-		};
+		}
 
-		// If it is night determine if here is in a polar region and during a period of polar winter
+        // If it is night determine if here is in a polar region and during a period of polar winter
 		// The Norwegian territory of Svalbad is known to experiences a civil polar night lasting 
 		// from about 11 November until 30 January. 
 		// Civil Polar night is when the sun is 6 degrees below the horizon. 
@@ -499,10 +498,10 @@ void FindfoE(struct ControlPt *here, int month, int hour, int SSN) {
 		else {
 			// Choose the larger of the two calculations
 			D = max((pow(0.072,p)*exp(-1.4*h)), (pow(0.072,p)*exp(25.2 - 0.28*here->Sun.sza*R2D)));
-		};
-	};
+		}
+    }
 
-	// Choose the larger of the foE calculations
+    // Choose the larger of the foE calculations
 	here->foE = max(pow(A*B*C*D, 0.25), pow(0.004*pow((1.0 + 0.021*phi), 2) , 0.25));
 	
 	return;
@@ -594,9 +593,9 @@ void SolarParameters(struct ControlPt *here, int month, double hour) {
 	}
 	else if(epsilon >= 90*D2R) {
 		epsilon -= PI;
-	};
+	}
 
-	// The angle of the true sun is beta
+    // The angle of the true sun is beta
 	beta = atan(C*tan(epsilon));
 
 	// Equation of Time = tilt effect + eclliptic effect

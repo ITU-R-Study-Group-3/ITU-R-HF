@@ -76,7 +76,7 @@ int MakeNoise(
     retval = AllocateNoiseMemory(&noiseP);
     if (retval != RTN_ALLOCATEP372OK) {
         return RTN_ERRALLOCATENOISE;
-    };
+    }
 
     // Initialize Noise from the P372.dll
     InitializeNoise(&noiseP);
@@ -109,7 +109,7 @@ int MakeNoise(
     );
     if (retval != RTN_READFAMDUDOK) {
         return retval;
-    };
+    }
 
     noiseP.ManMadeNoise = mmnoise;
 
@@ -144,7 +144,7 @@ int MakeNoise(
         // The caller wants MakeNoise() to be silent and will presumably
         // use the output parameters elsewhere.
         pntflag = MNNOPRINT;
-    };
+    }
 
     // Does the caller desirer output?
     if (pntflag == MNPRINTTOSTDOUT) {
@@ -174,7 +174,7 @@ int MakeNoise(
                 strerror(errno)
             );
             return RTN_ERRMNCANTOPENFILE;
-        };
+        }
         printf(
             "MakeNoise: Writing output file %s\n",
             outputfile
@@ -228,7 +228,7 @@ void PrintFam(
     fprintf(fp, "**********************************************************\n");
     fprintf(fp, "\tITU-R Study Group 3: Radiowave Propagation\n");
     fprintf(fp, "**********************************************************\n");
-    fprintf(fp, "\tAnalysis: %s\n", ntimestr);;
+    fprintf(fp, "\tAnalysis: %s\n", ntimestr);
     fprintf(fp, "\tP372 Version:      %s\n", P372ver);
     fprintf(fp, "\tP372 Compile Time: %s\n", P372compt);
     fprintf(fp, "**********************************************************\n");

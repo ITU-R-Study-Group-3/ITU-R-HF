@@ -165,7 +165,7 @@
 		if (hLib == NULL) {
 			printf("P533: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
 			return RTN_ERRP372DLL;
-		};
+		}
 		int mod[512];
 		// Get the handle to the DLL library, hLib.
 		GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);

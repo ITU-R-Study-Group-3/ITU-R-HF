@@ -131,19 +131,19 @@ DLLEXPORT int InputDump(struct PathData *path) {
 			printf("%f\t", path->noiseP.fakp[k][15][i]);
 			for (int j = 0; j <= 4; j++) {
 				printf("%f\t", path->noiseP.fakp[k][j][i]);
-			};
-			printf("\n\t\t\t");
+			}
+            printf("\n\t\t\t");
 			for (int j = 5; j <= 9; j++) {
 				printf("%f\t", path->noiseP.fakp[k][j][i]);
-			};
-			printf("\n\t\t\t");
+			}
+            printf("\n\t\t\t");
 			for (int j = 10; j <= 14; j++) {
 				printf("%f\t", path->noiseP.fakp[k][j][i]);
-			};
-			printf("\n");
-		};
-	};
+			}
+            printf("\n");
+		}
+    }
 
-	return RTN_INPUTDUMPOK;
+    return RTN_INPUTDUMPOK;
 
 }

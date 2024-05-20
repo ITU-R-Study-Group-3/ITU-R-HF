@@ -37,7 +37,7 @@ int ReadP1239(struct PathData *path, const char * DataFilePath) {
 		printf("ReadP1239: ERROR Can't find input file 'P1239-3 Decile Factors.txt'\n");
 		printf("\t\t<%s>\n", InFilePath);
 		return RTN_ERRCANTOPENP1239FILE;
-	};
+	}
 	
 	season = 3;	// 3 seasons
 				//		1) WINTER 2) EQUINOX 3) SUMMER

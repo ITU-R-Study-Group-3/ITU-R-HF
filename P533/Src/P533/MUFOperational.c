@@ -68,17 +68,17 @@ void MUFOperational(struct PathData *path) {
 	}
 	else { // Night
 		time = NIGHT;
-	};
+	}
 
-	// Determine the EIRP index power
+    // Determine the EIRP index power
 	if(path->EIRP <= 30.0) {
 		power = 0;
 	}
 	else { // (path->EIRP > 30.0)
 		power = 0;
-	};
+	}
 
-	// Initialize the OPMUF extrema for the F2 Layer
+    // Initialize the OPMUF extrema for the F2 Layer
 	OPF2MUF = 0.0;
 	OPF2MUF10 = 0.0;
 	OPF2MUF90 = 0.0;
@@ -98,10 +98,10 @@ void MUFOperational(struct PathData *path) {
 			if(path->Md_F2[i].OPMUF > OPF2MUF) OPF2MUF = path->Md_F2[i].OPMUF;
 			if(path->Md_F2[i].OPMUF90 > OPF2MUF90) OPF2MUF90 = path->Md_F2[i].OPMUF90;
 			if(path->Md_F2[i].OPMUF10 > OPF2MUF10) OPF2MUF10 = path->Md_F2[i].OPMUF10;
-		};
-	};
+		}
+    }
 
-	// Initialize the OPMUF extrema for the E Layers
+    // Initialize the OPMUF extrema for the E Layers
 	OPEMUF = 0.0;
 	OPEMUF10 = 0.0;
 	OPEMUF90 = 0.0;
@@ -121,10 +121,10 @@ void MUFOperational(struct PathData *path) {
 			if(path->Md_E[i].OPMUF > OPEMUF) OPEMUF = path->Md_E[i].OPMUF;
 			if(path->Md_E[i].OPMUF90 > OPEMUF90) OPEMUF90 = path->Md_E[i].OPMUF90;
 			if(path->Md_E[i].OPMUF10 > OPEMUF10) OPEMUF10 = path->Md_E[i].OPMUF10;
-		};
-	};
+		}
+    }
 
-	// Now find the largest OPMUF of all existant modes
+    // Now find the largest OPMUF of all existant modes
 	path->OPMUF = max(OPEMUF, OPF2MUF); // largest OPMUF
 	path->OPMUF90 = max(OPEMUF90, OPF2MUF90); // largest 90% OPMUF
 	path->OPMUF10 = max(OPEMUF10, OPF2MUF10); // largest 10% OPMUF

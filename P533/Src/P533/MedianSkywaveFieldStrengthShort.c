@@ -116,9 +116,9 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 	else { // (path->distance <= path->dmax)
 		// Use the midpoint to determine the mirror reflection height
 		hr_F2 = path->CP[MP].hr;
-	};
+	}
 
-	/*******************************************************************************************************/
+    /*******************************************************************************************************/
 	// Although the calculations for E and F2 layers are for the most part the 
 	// same in order to not obscure the calculation relative to the standard
 	// each layer will be dealt within its own loop. 
@@ -168,9 +168,9 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 						// Find the loss due to all the absorption terms in Li
 						// The absorption term includes loss from solar zenith angles, ATnoon and phin(fv/foE)
 						AT = AbsorptionTerm(path->CP[MP], path->month, fv);
-					};
+					}
 
-					// Determine the longitudinal gyrofrequency
+                    // Determine the longitudinal gyrofrequency
 					fL = fabs(path->CP[MP].fH[HR100km]*sin(path->CP[MP].dip[HR100km])); 
 
 					// Determine auroral and other signal losses
@@ -187,9 +187,9 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 						AT = (AbsorptionTerm(path->CP[MP], path->month, fv) +
 							  AbsorptionTerm(path->CP[T1k], path->month, fv) +
 							  AbsorptionTerm(path->CP[R1k], path->month, fv))/3.0;
-					};
+					}
 
-					// Determine the average longitudinal gyrofrequency
+                    // Determine the average longitudinal gyrofrequency
 					fL = (fabs(path->CP[MP].fH[HR100km]*sin(path->CP[MP].dip[HR100km])) + 
 						  fabs(path->CP[T1k].fH[HR100km]*sin(path->CP[T1k].dip[HR100km])) + 
 						  fabs(path->CP[R1k].fH[HR100km]*sin(path->CP[R1k].dip[HR100km])))/3.0;
@@ -198,7 +198,7 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 					Lh = (FindLh(path->CP[MP], dh, mpltime, path->month) +
 						  FindLh(path->CP[T1k], dh, mpltime, path->month) +
 						  FindLh(path->CP[R1k], dh, mpltime, path->month))/3.0;
-				}; // (path->distance <= 2000.0)
+				} // (path->distance <= 2000.0)
 	
 				// All the variable have been calculated to determine
 				// Absorption loss (dB) for an n-hop mode, Li
@@ -210,9 +210,9 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 				}
 				else { // (path->frequency > path->Md_E[n].BMUF)
 					Lm = MIN(46.0*pow(((path->frequency/path->Md_E[n].BMUF) - 1.0), 0.5) + 5, 58.0);
-				};
+				}
 
-				// Ground reflection loss
+                // Ground reflection loss
 				Lg = 2.0*((n + 1.0) - 1.0); // n is a C index starting at 0 instead of 1 
 				
 				// "Not otherwise included" loss
@@ -250,15 +250,15 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 					printf("MSFSS: path->Md_E[%d].Lb \t\t%f\n", n, path->Md_E[n].Lb);
 					printf("MSFSS: path->Md_E[%d].Ew \t\t%f\n", n, path->Md_E[n].Ew);
 					printf("MSFSS: **** End %dE mode Field Strength **********\n\n", (n+1));
-				};
-				// Testing
+				}
+                // Testing
 
 			}
 			else { 
 				break; // There is no E modes that satisfiy the criteria
-			}; // The lowest order E mode is less than 2000 km and higher modes.
-		};
-	}; // End E modes median sky-wave field strength calculation
+			} // The lowest order E mode is less than 2000 km and higher modes.
+		}
+    } // End E modes median sky-wave field strength calculation
 
 	/******************************************************************************************************************/
 
@@ -307,9 +307,9 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 						// Find the loss due to all the absorption terms in Li
 						// The absorption term includes loss from solar zenith angles, ATnoon and phin(fv/foE)
 						AT = AbsorptionTerm(path->CP[MP], path->month, fv);
-					};
+					}
 
-					// Determine the longitudinal gyrofrequency
+                    // Determine the longitudinal gyrofrequency
 					fL = fabs(path->CP[MP].fH[HR100km]*sin(path->CP[MP].dip[HR100km])); 
 					
 					// Determine auroral and other signal losses
@@ -326,9 +326,9 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 						AT = (AbsorptionTerm(path->CP[MP], path->month, fv) +
 							  AbsorptionTerm(path->CP[T1k], path->month, fv) +
 							  AbsorptionTerm(path->CP[R1k], path->month, fv))/3.0;
-					};
+					}
 
-					// Determine the average longitudinal gyrofrequency
+                    // Determine the average longitudinal gyrofrequency
 					fL = (fabs(path->CP[MP].fH[HR100km]*sin(path->CP[MP].dip[HR100km])) + 
 						  fabs(path->CP[T1k].fH[HR100km]*sin(path->CP[T1k].dip[HR100km])) + 
 						  fabs(path->CP[R1k].fH[HR100km]*sin(path->CP[R1k].dip[HR100km])))/3.0;
@@ -351,9 +351,9 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 							  AbsorptionTerm(path->CP[R1k], path->month, fv)  +
 							  AbsorptionTerm(path->CP[Td02], path->month, fv) +
 							  AbsorptionTerm(path->CP[Rd02], path->month, fv))/5.0;
-					};
+					}
 
-					// Find the average longitudinal gyrofrequency
+                    // Find the average longitudinal gyrofrequency
 					fL = (fabs(path->CP[MP].fH[HR100km]*sin(path->CP[MP].dip[HR100km])) + 
 						  fabs(path->CP[T1k].fH[HR100km]*sin(path->CP[T1k].dip[HR100km])) + 
 						  fabs(path->CP[R1k].fH[HR100km]*sin(path->CP[R1k].dip[HR100km])) + 
@@ -366,7 +366,7 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 						  FindLh(path->CP[R1k], dh, mpltime, path->month) +
 						  FindLh(path->CP[Td02], dh, mpltime, path->month)+
 						  FindLh(path->CP[Rd02], dh, mpltime, path->month))/5.0;
-				}; // (path->distance <= 2000.0)
+				} // (path->distance <= 2000.0)
 
 				// All the variable have been calculated to determine
 				// Absorption loss (dB) for an n-hop mode, Li.
@@ -383,9 +383,9 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 					else {
 						Lm = MIN(70.0 * (path->frequency/path->Md_F2[n].BMUF - 1.0) + 8, 80.0);
 					}
-				};
+				}
 
-				// Ground reflection loss
+                // Ground reflection loss
 				Lg = 2.0*((n + 1.0) - 1.0); // n is a C index starting at 0 instead of 1  
 
 				// "Not otherwise included" loss
@@ -422,12 +422,12 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 					printf("MSFSS: path->Md_F2[%d].Lb \t\t%f\n", n, path->Md_F2[n].Lb);
 					printf("MSFSS: path->Md_F2[%d].Ew \t\t%f\n", n, path->Md_F2[n].Ew);
 					printf("MSFSS: **** End %dF2 mode Field Strength **********\n\n", (n+1));
-				};
-				// Testing
+				}
+                // Testing
 
-			};
-		};
-	}; // End F2 modes median sky-wave field strength calculation
+			}
+        }
+    } // End F2 modes median sky-wave field strength calculation
 
 	// Determine the overall resultant equivalent median sky-wave field strength, Es
 	// See "Modes considered" Section 5.2.1 P.533-12
@@ -446,11 +446,11 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 				((n != path->n0_E) && (path->Md_E[n].BMUF != 0.0))) { 
 				Etw += pow(10.0, (path->Md_E[n].Ew/10.0));
 				path->Md_E[n].MC = TRUE;
-			};
-		};
-	};
+			}
+        }
+    }
 
-	// Do any F2-layer modes exist if so proceed
+    // Do any F2-layer modes exist if so proceed
 	if(path->n0_F2 != NOLOWESTMODE) {
 		// Mode Considered: The lowest-order F2-layer mode with a hop length up to dmax (km) and 
 		// maximally the next five F2-layer higher-order modes.
@@ -471,22 +471,22 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 					printf(  "MSFSS: Hour %d Month %d \n", path->hour, path->month);
 					for(n=1; n<MAXF2MDS; n++) printf("MSFSS: %dF2 mode E layer screening freq: %7.3f\n", n+1, path->Md_F2[n].fs);
 					printf(  "MSFSS: **** %dF2 modes are screened by the E layer ********\n", n);
-				};
-			};
-			// Testing
-		};
-	};
-			
-	if(BARF_NOMODES) {
+				}
+            }
+            // Testing
+		}
+    }
+
+    if(BARF_NOMODES) {
 		printf("\nMSFSS: **** No E modes and all foF2 modes are screened by the E layer ********\n");
 		printf(  "MSFSS: Path ID: %s\n", path->name);
 		printf(  "MSFSS: %s to %s\n", path->txname, path->rxname);
 		printf(  "MSFSS: Hour %d Month %d \n", path->hour, path->month);
 		for(n=1; n<MAXF2MDS; n++) printf("MSFSS: %dF2 mode E layer screening freq: %7.3f\n", n+1, path->Md_F2[n].fs);
 		printf(  "MSFSS: **** No E modes and all foF2 modes are screened by the E layer ********\n");
-	};
-	
-	// Find the field strength if there are any modes to consider
+	}
+
+    // Find the field strength if there are any modes to consider
 	// If there are no modes than path->Es will remain equal to TINYDB 
 	if(Etw != 0.0) {
 		path->Es = 10.0*log10(Etw); // Field strength with E layer screening
@@ -500,11 +500,11 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 			printf(  "MSFSS: Hour %d Month %d \n", path->hour, path->month);
 			for(n=1; n<MAXF2MDS; n++) printf("MSFSS: %dF2 mode E layer screening freq: %7.3f\n", n+1, path->Md_F2[n].fs);
 			printf(  "MSFSS: **** No E modes and all foF2 modes are screened by the E layer ********\n");
-		};
-		// Testing
-	};
+		}
+        // Testing
+	}
 
-	return;
+    return;
 
 } // End Median Sky-wave Field Strength 
 
@@ -590,8 +590,8 @@ double AbsorptionTerm(struct ControlPt CP, int month, double fv) {
 		printf("MSFSS: phin %f\n", phin);
 		printf("MSFSS: Fchij %f\n", Fchij);
 		printf("MSFSS: Fchijnoon %f\n", Fchijnoon);
-	};
-	// Testing
+	}
+    // Testing
 
 	return ATnoon*phin*Fchij/Fchijnoon;
 }
@@ -700,9 +700,9 @@ double DiurnalAbsorptionExponent(struct ControlPt CP, int month) {
 	if(CP.L.lat < 0.0) {
 		month = month + 6;
 		if(month > 11) month = month - 12;
-	};
-	
-	PP = ppt[month]*D2R;
+	}
+
+    PP = ppt[month]*D2R;
     
 	if(moddip > PP) {
 		i = 1;
@@ -711,9 +711,9 @@ double DiurnalAbsorptionExponent(struct ControlPt CP, int month) {
 	else {
 		i = 0;
 		moddip = -1.0 + 2.0*moddip/PP;
-	};
-    
-	SX = 1.0;
+	}
+
+    SX = 1.0;
     
 	for(j=0; j<7; j++) {
 		if(month <= 5) {
@@ -721,17 +721,17 @@ double DiurnalAbsorptionExponent(struct ControlPt CP, int month) {
 		}
 		else {
 			A = pval2[month-6][i][j];
-		};
+		}
 
-		p = p + A*SX;
+        p = p + A*SX;
 		SX = SX*moddip;
-	};
+	}
 
-	// Testing
+    // Testing
 	if(BARF) {
 		printf("\nMSFSS: p %f CP.L.lat %f CP.L.lng %f \n", p, CP.L.lat, CP.L.lng);
-	};
-	// Testing
+	}
+    // Testing
 
 	return p;
 		
@@ -837,9 +837,9 @@ double AbsorptionFactor(struct ControlPt CP, int month) {
 		case DEC:
 			i = 0;
 			break;	
-	};
-         	  
-	X = fabs(CP.L.lat*R2D);
+	}
+
+    X = fabs(CP.L.lat*R2D);
 	if(X >= 70.0) X = 69.99; // This is for the (int) casting of X so that j is not >= 28.
 	X = X/2.5; 
 	j = (int)X;
@@ -880,8 +880,8 @@ double AbsorptionLayerPenetrationFactor(double T) {
 			X=(T-0.475)/0.475;
 			phi=(((((-0.093*X+0.04)*X+0.127)*X-.027)*X+0.044)*X+0.159)*X+0.225;
 			phi= min(phi,0.53);
-		 };
-	 }
+		 }
+     }
 	 else {
 		 if(T <= 2.2) {
 			X=(T-1.65)/0.55;
@@ -895,11 +895,11 @@ double AbsorptionLayerPenetrationFactor(double T) {
 			 }
 			 else {
 				phi=0.34;
-			 };
-		 };
-	 };
+			 }
+         }
+     }
 
-	 // Multiply by the scaling factor.
+    // Multiply by the scaling factor.
 	 phi = phi/0.34;
 
 	 return phi; 
@@ -1033,9 +1033,9 @@ double FindLh(struct ControlPt CP, double dh, int hour, int month) {
 	}
 	else { // (dh > 2500.0)
 		txrange = 1;
-	};
+	}
 
-	// Midpoint local time index
+    // Midpoint local time index
 	if((1 <= hour) && (hour < 4)) {
 		mplt = 0;	
 	}
@@ -1059,9 +1059,9 @@ double FindLh(struct ControlPt CP, double dh, int hour, int month) {
 	}
 	else if((22 <= hour) || (hour < 1)) {
 		mplt = 7;	
-	};
+	}
 
-	Gn.lat = fabs(Gn.lat);
+    Gn.lat = fabs(Gn.lat);
 	
 	// geomagnetic index
 	if(77.5*D2R <= Gn.lat) {
@@ -1097,8 +1097,8 @@ double FindLh(struct ControlPt CP, double dh, int hour, int month) {
 		printf(  "\nMSFSS: Lh[%d][%d][%d][%d] %f CP.L.lat %f CP.L.lng %f \n", txrange, season, gmlat, mplt, Lh[txrange][season][gmlat][mplt], CP.L.lat, CP.L.lng);
 		printf("MSFSS: Geomag Lat %f (deg)\n", Gn.lat*R2D);
 		printf("MSFSS: MidPath hour %d\n", hour);
-	};
-	// Testing
+	}
+    // Testing
 
 	// Lh[transmission range][season][geomagnetic latitude][mid-path local time]
 	return Lh[txrange][season][gmlat][mplt];
@@ -1131,8 +1131,8 @@ int WhatSeasonforLh(struct Location L, int month) {
 			case JUN: case JUL: case AUG: 
 				season = SUMMER;
 				break;
-		};
-	}
+		}
+    }
 	else { // Southern hemisphere 
 		switch (month) {
 			case JUN: case JUL: case AUG:
@@ -1144,8 +1144,8 @@ int WhatSeasonforLh(struct Location L, int month) {
 			case DEC: case JAN: case FEB: 
 				season = SUMMER;
 				break;
-		};
-	}
+		}
+    }
 	
 	return season;
 	
@@ -1179,15 +1179,15 @@ int SmallestCPfoF2(struct PathData path) {
 				idx[i] = idx[j]; 
 				idx[j] = temp; 
 			} 
-		};
-	};
+		}
+    }
 
-	// return the last non zero index
+    // return the last non zero index
 	for(i=0; i<5; i++) {
 		if(idx[i] != 0.0) temp = idx[i];
-	}; 
+	}
 
-	return temp;
+    return temp;
 
 }
 
@@ -1399,9 +1399,9 @@ double PenetrationPoints(struct PathData * path, double noh, double hr, double f
  		ATSum += AbsorptionTerm(PP[RXEND], path->month, fv);
 
 
- 		};  
- 
-	// Return the Ave of the absorption over all penetration points	
+ 		}
+
+    // Return the Ave of the absorption over all penetration points	
 	return ATSum/(2.0*(noh+1));
  
  }

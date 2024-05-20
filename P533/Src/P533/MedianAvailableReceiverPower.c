@@ -83,14 +83,14 @@ void MedianAvailableReceiverPower(struct PathData *path) {
 						path->DMptr = &path->Md_E[i];
 						path->DMidx = i;
 
-					};
+					}
 
-					// Add this mode to the sum.
+                    // Add this mode to the sum.
 					SumPr += pow(10.0, path->Md_E[i].Prw/10.0); 
-				};
-			};
-		};
-		// F2 modes
+				}
+            }
+        }
+        // F2 modes
 		// Do any F2-layer modes exist if so proceed
 		if(path->n0_F2 != NOLOWESTMODE) {
 			for(i=path->n0_F2; i<MAXF2MDS; i++) {
@@ -113,15 +113,15 @@ void MedianAvailableReceiverPower(struct PathData *path) {
 						path->DMptr = &path->Md_F2[i];
 						path->DMidx = i + 3;
 
-					};
+					}
 
-					// Add this mode to the sum.
+                    // Add this mode to the sum.
 					SumPr += pow(10.0, path->Md_F2[i].Prw/10.0); 
-				};
-			};
-		};
+				}
+            }
+        }
 
-		// Now that the modes are calculated, set the path parameters. 
+        // Now that the modes are calculated, set the path parameters. 
 		// Find the total received power. 
 		// If the SumPr is 0 then set the path->Pr to something small
 		if((SumPr != 0.0) && (path->DMptr != NULL)) {
@@ -132,9 +132,9 @@ void MedianAvailableReceiverPower(struct PathData *path) {
 		else {
 			// There are no E modes and all the F2 modes are screened
 			path->Pr = TINYDB;
-		};
+		}
 
-		// Save the path field strength. For this distance select Es, which includes E layer screening.
+        // Save the path field strength. For this distance select Es, which includes E layer screening.
 		path->Ep = path->Es;
 
 	}
@@ -170,9 +170,9 @@ void MedianAvailableReceiverPower(struct PathData *path) {
 
 		// Set the rx antenna elevation to the  long path rx elevation
 		path->ele = elevation;
-	};
+	}
 
-	return;
+    return;
 }
 
 void DominantMode(struct PathData *path) {

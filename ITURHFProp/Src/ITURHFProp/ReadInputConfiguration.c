@@ -35,9 +35,9 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 		printf("Press Enter...");
 		getchar();
 		return RTN_ERRNOINPUTFILE;
-	};
+	}
 
-	// Initailize the input values in the structure PathData path and
+    // Initailize the input values in the structure PathData path and
 	// structure ITURHFProp ITURHFP to default values.
 	InitializeInput(ITURHFP, path);
 
@@ -56,14 +56,14 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 			if (strncmp("PathName", line, 8) == 0) { // char 8 is a space
 				// The name is between two quotes-find them.
 				substrbtwnchar(line, '\"', path->name);
-			};
-			if (strncmp("TXGOS", line, 5) == 0) {
+			}
+            if (strncmp("TXGOS", line, 5) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->TXGOS);
-			};
-			if (strncmp("RXGOS", line, 5) == 0) {
+			}
+            if (strncmp("RXGOS", line, 5) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->RXGOS);
-			};
-			if (strncmp("AntennaOrientation", line, 18) == 0) {
+			}
+            if (strncmp("AntennaOrientation", line, 18) == 0) {
 				// The name is between two quotes-find them.
 				substrbtwnchar(line, '\"', instr);
 				if (strcmp(instr, "TX2RX") == 0) {
@@ -71,52 +71,52 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 				}
 				else if ((strcmp(instr, "ARBITRARY") == 0) || (strcmp(instr, "MANUAL") == 0)) {
 					ITURHFP->AntennaOrientation = MANUAL;
-				};
-			};
-			if (strncmp("TXBearing", line, 5) == 0) {
+				}
+            }
+            if (strncmp("TXBearing", line, 5) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->TXBearing);
 				ITURHFP->TXBearing = ITURHFP->TXBearing*D2R;
-			};
-			if (strncmp("RXBearing", line, 5) == 0) {
+			}
+            if (strncmp("RXBearing", line, 5) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->RXBearing);
 				ITURHFP->RXBearing = ITURHFP->RXBearing*D2R;
-			};
-			if (strncmp("PathTXName", line, 10) == 0) {
+			}
+            if (strncmp("PathTXName", line, 10) == 0) {
 				// The name is between two quotes-find them.
 				substrbtwnchar(line, '\"', path->txname);
-			};
-			if (strncmp("Path.L_tx.lat", line, 13) == 0) {
+			}
+            if (strncmp("Path.L_tx.lat", line, 13) == 0) {
 				sscanf(line, "%*s %lf", &path->L_tx.lat);
 				path->L_tx.lat = path->L_tx.lat*D2R;
-			};
-			if (strncmp("Path.L_tx.lng", line, 13) == 0) {
+			}
+            if (strncmp("Path.L_tx.lng", line, 13) == 0) {
 				sscanf(line, "%*s %lf", &path->L_tx.lng);
 				path->L_tx.lng = path->L_tx.lng*D2R;
-			};
-			if (strncmp("TXAntFilePath", line, 13) == 0) {
+			}
+            if (strncmp("TXAntFilePath", line, 13) == 0) {
 				// The name is between two quotes-find them.
 				substrbtwnchar(line, '\"', ITURHFP->TXAntFilePath);
-			};
-			if (strncmp("PathRXName", line, 10) == 0) {
+			}
+            if (strncmp("PathRXName", line, 10) == 0) {
 				// The name is between two quotes-find them.
 				substrbtwnchar(line, '\"', path->rxname);
-			};
-			if (strncmp("Path.L_rx.lat", line, 13) == 0) {
+			}
+            if (strncmp("Path.L_rx.lat", line, 13) == 0) {
 				sscanf(line, "%*s %lf", &path->L_rx.lat);
 				path->L_rx.lat = path->L_rx.lat*D2R;
-			};
-			if (strncmp("Path.L_rx.lng", line, 13) == 0) {
+			}
+            if (strncmp("Path.L_rx.lng", line, 13) == 0) {
 				sscanf(line, "%*s %lf", &path->L_rx.lng);
 				path->L_rx.lng = path->L_rx.lng*D2R;
-			};
-			if (strncmp("RXAntFilePath", line, 13) == 0) {
+			}
+            if (strncmp("RXAntFilePath", line, 13) == 0) {
 				// The name is between two quotes-find them.
 				substrbtwnchar(line, '\"', ITURHFP->RXAntFilePath);
-			};
-			if (strncmp("Path.year", line, 9) == 0) {
+			}
+            if (strncmp("Path.year", line, 9) == 0) {
 				sscanf(line, "%*s %d", &path->year);
-			};
-			if (strncmp("Path.month", line, 10) == 0) {
+			}
+            if (strncmp("Path.month", line, 10) == 0) {
 				sscanf(line, "%*s %[^/\n]", instr);
 				// If this contains no commas, then it is a single month.
 				if (strchr(instr, ',') == NULL) {
@@ -135,10 +135,10 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 						retval = sscanf(buf[count], "%d, %[0-9 ,]", &ITURHFP->months[i], buf[count^1]);
 						ITURHFP->months[i++] -= 1;
 						count ^= 1;
-					};
-				};
-			};
-			if (strncmp("Path.hour", line, 9) == 0) {
+					}
+                }
+            }
+            if (strncmp("Path.hour", line, 9) == 0) {
 				sscanf(line, "%*s %[^/\n]", instr);
 				// If this contains no commas, then it is a single month.
 				if (strchr(instr, ',') == NULL) {
@@ -157,13 +157,13 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 						retval = sscanf(buf[count], "%d, %[0-9 ,]", &ITURHFP->hrs[i], buf[count^1]);
 						ITURHFP->hrs[i++] -= 1;
 						count ^= 1; /* swap use of the two buffers */
-					};
-				};
-			};
-			if (strncmp("Path.SSN", line, 8) == 0) {
+					}
+                }
+            }
+            if (strncmp("Path.SSN", line, 8) == 0) {
 				sscanf(line, "%*s %d", &path->SSN);
-			};
-			if (strncmp("Path.frequency", line, 14) == 0) {
+			}
+            if (strncmp("Path.frequency", line, 14) == 0) {
 				sscanf(line, "%*s %[^/\n]", instr);
 				// If this contains no commas, then it is a single month.
 				if (strchr(instr, ',') == NULL) {
@@ -180,22 +180,22 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 					while ((strlen(buf[count]) != 0) && (buf[count][0] != '/') && (retval == 2)) {
 						retval = sscanf(buf[count], "%lf, %[0-9 ,.]", &ITURHFP->frqs[i++], buf[count^1]);
 						count ^= 1;
-					};
-				};
-			};
-			if (strncmp("Path.txpower", line, 12) == 0) {
+					}
+                }
+            }
+            if (strncmp("Path.txpower", line, 12) == 0) {
 				sscanf(line, "%*s %lf", &path->txpower);
-			};
-			if (strncmp("Path.BW", line, 7) == 0) {
+			}
+            if (strncmp("Path.BW", line, 7) == 0) {
 				sscanf(line, "%*s %lf", &path->BW);
-			};
-			if (strncmp("Path.SNRr", line, 9) == 0) {
+			}
+            if (strncmp("Path.SNRr", line, 9) == 0) {
 				sscanf(line, "%*s %lf", &path->SNRr);
-			};
-			if (strncmp("Path.SNRXXp", line, 9) == 0) {
+			}
+            if (strncmp("Path.SNRXXp", line, 9) == 0) {
 				sscanf(line, "%*s %d", &path->SNRXXp);
-			};
-			if (strncmp("Path.ManMadeNoise", line, 17) == 0) {
+			}
+            if (strncmp("Path.ManMadeNoise", line, 17) == 0) {
 				// The name is between two quotes-find them.
 				substrbtwnchar(line, '\"', instr);
 				if (strcmp(instr, "RESIDENTIAL") == 0) {
@@ -218,9 +218,9 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 				}
 				else { // This is a number
 					sscanf(line, "%*s %lf", &path->noiseP.ManMadeNoise);
-				};
-			};
-			if (strncmp("Path.Modulation", line, 15) == 0) {
+				}
+            }
+            if (strncmp("Path.Modulation", line, 15) == 0) {
 				// The name is between two quotes-find them.
 				substrbtwnchar(line, '\"', instr);
 				if (strcmp(instr, "DIGITAL") == 0) {
@@ -228,27 +228,27 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 				}
 				else if (strcmp(instr, "ANALOG") == 0) {
 					path->Modulation = ANALOG;
-				};
-			};
-			if (strncmp("Path.SIRr", line, 9) == 0) {
+				}
+            }
+            if (strncmp("Path.SIRr", line, 9) == 0) {
 				sscanf(line, "%*s %lf", &path->SIRr);
-			};
-			if (strncmp("Path.A", line, 6) == 0) {
+			}
+            if (strncmp("Path.A", line, 6) == 0) {
 				sscanf(line, "%*s %lf", &path->A);
-			};
-			if (strncmp("Path.TW", line, 7) == 0) {
+			}
+            if (strncmp("Path.TW", line, 7) == 0) {
 				sscanf(line, "%*s %lf", &path->TW);
-			};
-			if (strncmp("Path.FW", line, 7) == 0) {
+			}
+            if (strncmp("Path.FW", line, 7) == 0) {
 				sscanf(line, "%*s %lf", &path->FW);
-			};
-			if (strncmp("Path.T0", line, 7) == 0) {
+			}
+            if (strncmp("Path.T0", line, 7) == 0) {
 				sscanf(line, "%*s %lf", &path->T0);
-			};
-			if (strncmp("Path.F0", line, 7) == 0) {
+			}
+            if (strncmp("Path.F0", line, 7) == 0) {
 				sscanf(line, "%*s %lf", &path->F0);
-			};
-			if (strncmp("Path.SorL", line, 9) == 0) {
+			}
+            if (strncmp("Path.SorL", line, 9) == 0) {
 				// The name is between two quotes-find them.
 				substrbtwnchar(line, '\"', instr);
 				if (strcmp(instr, "SHORTPATH") == 0) {
@@ -256,13 +256,13 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 				}
 				else if (strcmp(instr, "LONGPATH") == 0) {
 					path->SorL = LONGPATH;
-				};
-			};
-			if (strncmp("RptFilePath", line, 11) == 0) {
+				}
+            }
+            if (strncmp("RptFilePath", line, 11) == 0) {
 				// The name is between two quotes-find them.
 				substrbtwnchar(line, '\"', ITURHFP->RptFilePath);
-			};
-			if (strncmp("RptFileFormat", line, 13) == 0) {
+			}
+            if (strncmp("RptFileFormat", line, 13) == 0) {
 				// The name is between two quotes-find them.
 				substrbtwnchar(line, '\"', instr);
 
@@ -282,81 +282,81 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 						retval = sscanf(buf[count], "%s | %[a-z,A-Z _|]", optstr, buf[count^1]);
 						ITURHFP->RptFileFormat = ITURHFP->RptFileFormat | OutputOption(optstr);
 						count ^= 1;
-					};
-				};
-			};
-			if (strncmp("LL.lat", line, 6) == 0) {
+					}
+                }
+            }
+            if (strncmp("LL.lat", line, 6) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->L_LL.lat);
 				ITURHFP->L_LL.lat = ITURHFP->L_LL.lat*D2R;
-			};
-			if (strncmp("LL.lng", line, 6) == 0) {
+			}
+            if (strncmp("LL.lng", line, 6) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->L_LL.lng);
 				ITURHFP->L_LL.lng = ITURHFP->L_LL.lng*D2R;
-			};
-			if (strncmp("LR.lat", line, 6) == 0) {
+			}
+            if (strncmp("LR.lat", line, 6) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->L_LR.lat);
 				ITURHFP->L_LR.lat = ITURHFP->L_LR.lat*D2R;
-			};
-			if (strncmp("LR.lng", line, 6) == 0) {
+			}
+            if (strncmp("LR.lng", line, 6) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->L_LR.lng);
 				ITURHFP->L_LR.lng = ITURHFP->L_LR.lng*D2R;
-			};
-			if (strncmp("UL.lat", line, 6) == 0) {
+			}
+            if (strncmp("UL.lat", line, 6) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->L_UL.lat);
 				ITURHFP->L_UL.lat = ITURHFP->L_UL.lat*D2R;
-			};
-			if (strncmp("UL.lng", line, 6) == 0) {
+			}
+            if (strncmp("UL.lng", line, 6) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->L_UL.lng);
 				ITURHFP->L_UL.lng = ITURHFP->L_UL.lng*D2R;
-			};
-			if (strncmp("UR.lat", line, 6) == 0) {
+			}
+            if (strncmp("UR.lat", line, 6) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->L_UR.lat);
 				ITURHFP->L_UR.lat = ITURHFP->L_UR.lat*D2R;
-			};
-			if (strncmp("UR.lng", line, 6) == 0) {
+			}
+            if (strncmp("UR.lng", line, 6) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->L_UR.lng);
 				ITURHFP->L_UR.lng = ITURHFP->L_UR.lng*D2R;
-			};
-			// An alternative way to input data is by two points of the analysis rectangle
+			}
+            // An alternative way to input data is by two points of the analysis rectangle
 			// which is more efficient since 4 corner input is redundant
 			// The south east corner of the analysis rectangle
 			if (strncmp("SE.lat", line, 6) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->L_LR.lat);
 				ITURHFP->L_LR.lat = ITURHFP->L_LR.lat*D2R;
-			};
-			if (strncmp("SE.lng", line, 6) == 0) {
+			}
+            if (strncmp("SE.lng", line, 6) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->L_LR.lng);
 				ITURHFP->L_LR.lng = ITURHFP->L_LR.lng*D2R;
-			};
-			// The north west corner of the analysis rectangle
+			}
+            // The north west corner of the analysis rectangle
 			if (strncmp("NW.lat", line, 6) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->L_UL.lat);
 				ITURHFP->L_UL.lat = ITURHFP->L_UL.lat*D2R;
-			};
-			if (strncmp("NW.lng", line, 6) == 0) {
+			}
+            if (strncmp("NW.lng", line, 6) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->L_UL.lng);
 				ITURHFP->L_UL.lng = ITURHFP->L_UL.lng*D2R;
-			};
-			// Analysis window increments
+			}
+            // Analysis window increments
 			if (strncmp("latinc", line, 6) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->latinc);
 				ITURHFP->latinc = ITURHFP->latinc*D2R;
-			};
-			if (strncmp("lnginc", line, 6) == 0) {
+			}
+            if (strncmp("lnginc", line, 6) == 0) {
 				sscanf(line, "%*s %lf", &ITURHFP->lnginc);
 				ITURHFP->lnginc = ITURHFP->lnginc*D2R;
-			};
-			//
+			}
+            //
 			if (strncmp("DataFilePath", line, 12) == 0) {
 				// The name is between two quotes-find them.
 				substrbtwnchar(line, '\"', ITURHFP->DataFilePath);
-			};
-		};
-		// Read the next line.
+			}
+        }
+        // Read the next line.
 		fgets(line, 256, fp);
-	};
+	}
 
-	// There are optional ways to enter the analysis rectangle.
+    // There are optional ways to enter the analysis rectangle.
 	// Determine if the user choose to inpout the analysis rectangle
 	// defined by the north west and south east corner
 	if ((ITURHFP->L_LR.lat != TOOBIG) && (ITURHFP->L_LR.lng != TOOBIG) &&
@@ -368,9 +368,9 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 		ITURHFP->L_LL.lng = ITURHFP->L_UL.lng; // West
 		ITURHFP->L_UR.lat = ITURHFP->L_UL.lat; // North
 		ITURHFP->L_UR.lng = ITURHFP->L_LR.lng; // East
-	};
+	}
 
-	fclose(fp);
+    fclose(fp);
 
 	return RTN_RICOK;
 }
@@ -392,9 +392,9 @@ void substrbtwnchar(char instr[256], char searchchar, char * outstr) {
 	}
 	else {
 		outstr[0] = '\0';
-	};
+	}
 
-	return;
+    return;
 }
 
 unsigned long OutputOption(char optstr[256]) {
@@ -418,114 +418,114 @@ unsigned long OutputOption(char optstr[256]) {
 	// RPT_A*
 	if(strncmp("RPT_ALL", optstr, 7) == 0) {
 		return RPT_ALL;
-	};
-	// RPT_B*
+	}
+    // RPT_B*
 	if(strncmp("RPT_BCR", optstr, 7) == 0) {
 		return RPT_BCR;
-	};
-	if((strncmp("RPT_BMUF", optstr, 8) == 0) && (strncmp("RPT_BMUFD", optstr, 9) != 0)) {
+	}
+    if((strncmp("RPT_BMUF", optstr, 8) == 0) && (strncmp("RPT_BMUFD", optstr, 9) != 0)) {
 		return RPT_BMUF;
-	};
-	if(strncmp("RPT_BMUFD", optstr, 9) == 0) {
+	}
+    if(strncmp("RPT_BMUFD", optstr, 9) == 0) {
 		return RPT_BMUFD;
-	};
-	// RPT_D*
+	}
+    // RPT_D*
 	if(strncmp("RPT_DUMPPATH", optstr, 12) == 0) {
 		return RPT_DUMPPATH;
-	};
-	if(strncmp("RPT_DOMMODE", optstr, 11) == 0) {
+	}
+    if(strncmp("RPT_DOMMODE", optstr, 11) == 0) {
 		return RPT_DOMMODE;
-	};
-	if(strncmp("RPT_DMAX", optstr, 8) == 0) {
+	}
+    if(strncmp("RPT_DMAX", optstr, 8) == 0) {
 		return RPT_DMAX;
-	};
-	if((strncmp("RPT_D", optstr, 5) == 0) && (strncmp("RPT_DUMPPATH", optstr, 12) != 0) && (strncmp("RPT_DMAX", optstr, 8) != 0) && (strncmp("RPT_DOMMODE", optstr, 11) != 0)) {
+	}
+    if((strncmp("RPT_D", optstr, 5) == 0) && (strncmp("RPT_DUMPPATH", optstr, 12) != 0) && (strncmp("RPT_DMAX", optstr, 8) != 0) && (strncmp("RPT_DOMMODE", optstr, 11) != 0)) {
 		return RPT_D;
-	};
-	// RPT_E*
+	}
+    // RPT_E*
 	if(strncmp("RPT_ELE", optstr, 7) == 0) {
 		return RPT_ELE;
-	};
-	if(strncmp("RPT_ESL", optstr, 7) == 0) {
+	}
+    if(strncmp("RPT_ESL", optstr, 7) == 0) {
 		return RPT_ESL;
-	};
-	if((strncmp("RPT_E", optstr, 5) == 0) && (strncmp("RPT_ELE", optstr, 7) != 0)) {
+	}
+    if((strncmp("RPT_E", optstr, 5) == 0) && (strncmp("RPT_ELE", optstr, 7) != 0)) {
 		return RPT_E;
-	};
-	// RPT_G*
+	}
+    // RPT_G*
 	if(strncmp("RPT_GRW", optstr, 7) == 0) {
 		return RPT_GRW;
-	};
-	// RPT_L*
+	}
+    // RPT_L*
 	if(strncmp("RPT_LONG", optstr, 8) == 0) {
 		return RPT_LONG;
-	};
-	// RPT_M*
+	}
+    // RPT_M*
 	if(strncmp("RPT_MIR", optstr, 7) == 0) {
 		return RPT_MIR;
-	};
-	// RPT_N*
+	}
+    // RPT_N*
 	if(strncmp("RPT_N0_F2", optstr, 9) == 0) {
 		return RPT_N0_F2;
-	};
-	if(strncmp("RPT_N0_E", optstr, 8) == 0) {
+	}
+    if(strncmp("RPT_N0_E", optstr, 8) == 0) {
 		return RPT_N0_E;
-	};
-	if(strncmp("RPT_NOISESOURCESD", optstr, 17) == 0) {
+	}
+    if(strncmp("RPT_NOISESOURCESD", optstr, 17) == 0) {
 		return RPT_NOISESOURCESD;
-	};
-	if((strncmp("RPT_NOISESOURCES", optstr, 16) == 0) && (strncmp("RPT_NOISESOURCESD", optstr, 17) != 0)) {
+	}
+    if((strncmp("RPT_NOISESOURCES", optstr, 16) == 0) && (strncmp("RPT_NOISESOURCESD", optstr, 17) != 0)) {
 		return RPT_NOISESOURCES;
-	};
-	if(strncmp("RPT_NOISETOTALD", optstr, 15) == 0) {
+	}
+    if(strncmp("RPT_NOISETOTALD", optstr, 15) == 0) {
 		return RPT_NOISETOTALD;
-	};
-	if((strncmp("RPT_NOISETOTAL", optstr, 14) == 0) && (strncmp("RPT_NOISETOTALD", optstr, 15) != 0)) {
+	}
+    if((strncmp("RPT_NOISETOTAL", optstr, 14) == 0) && (strncmp("RPT_NOISETOTALD", optstr, 15) != 0)) {
 		return RPT_NOISETOTAL;
-	};
-	//RPT_O*
+	}
+    //RPT_O*
 	if(strncmp("RPT_OPMUFD", optstr, 10) == 0) {
 		return RPT_OPMUFD;
-	};
-	if((strncmp("RPT_OPMUF", optstr, 9) == 0) && (strncmp("RPT_OPMUFD", optstr, 10) != 0)) {
+	}
+    if((strncmp("RPT_OPMUF", optstr, 9) == 0) && (strncmp("RPT_OPMUFD", optstr, 10) != 0)) {
 		return RPT_OPMUF;
-	};
-	if(strncmp("RPT_OCRS", optstr, 8) == 0) {
+	}
+    if(strncmp("RPT_OCRS", optstr, 8) == 0) {
 		return RPT_OCRS;
-	};
-	if((strncmp("RPT_OCR", optstr, 7) == 0) && (strncmp("RPT_OCRS", optstr, 8) != 0)) {
+	}
+    if((strncmp("RPT_OCR", optstr, 7) == 0) && (strncmp("RPT_OCRS", optstr, 8) != 0)) {
 		return RPT_OCR;
-	};
-	// RPT_P*
+	}
+    // RPT_P*
 	if(strncmp("RPT_PR", optstr, 6) == 0) {
 		return RPT_PR;
-	};
-	// RPT_R*
+	}
+    // RPT_R*
 	if(strncmp("RPT_RSN", optstr, 7) == 0) {
 		return RPT_RSN;
-	};
-	if(strncmp("RPT_RXLOCATION", optstr, 14) == 0) {
+	}
+    if(strncmp("RPT_RXLOCATION", optstr, 14) == 0) {
 		return RPT_RXLOCATION;
-	};
-	//RPT_S*
+	}
+    //RPT_S*
 	if(strncmp("RPT_SNRXX", optstr, 9) == 0) {
 		return RPT_SNRXX;
-	};
-	if(strncmp("RPT_SNRD", optstr, 8) == 0) {
+	}
+    if(strncmp("RPT_SNRD", optstr, 8) == 0) {
 		return RPT_SNRD;
-	};
-	if((strncmp("RPT_SNR", optstr, 7) == 0) && (strncmp("RPT_SNRD", optstr, 8) != 0) && (strncmp("RPT_SNRXX", optstr, 9) != 0)) {
+	}
+    if((strncmp("RPT_SNR", optstr, 7) == 0) && (strncmp("RPT_SNRD", optstr, 8) != 0) && (strncmp("RPT_SNRXX", optstr, 9) != 0)) {
 		return RPT_SNR;
-	};
-	if(strncmp("RPT_SIRD", optstr, 8) == 0) {
+	}
+    if(strncmp("RPT_SIRD", optstr, 8) == 0) {
 		return RPT_SIRD;
-	};
-	if((strncmp("RPT_SIR", optstr, 7) == 0) && (strncmp("RPT_SIRD", optstr, 8) != 0)) {
+	}
+    if((strncmp("RPT_SIR", optstr, 7) == 0) && (strncmp("RPT_SIRD", optstr, 8) != 0)) {
 		return RPT_SIR;
-	};
+	}
 
 
-	return 0;
+    return 0;
 }
 
 void InitializeInput(struct ITURHFProp *ITURHFP, struct PathData *path) {
@@ -612,9 +612,9 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
 	// User feedback
 	if(ITURHFP.silent != TRUE) {
 		printf("ReadAntennaPatterns: Reading transmit and receive antenna\n");
-	};
+	}
 
-	// At this point there is only one other antenna pattern file type that can be read.
+    // At this point there is only one other antenna pattern file type that can be read.
 	// The antenna pattern must be rotated to the correct azimuth before P533() is run.
 
 	// Determine the type of receiver antenna file.
@@ -634,11 +634,11 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
 	    if (fp == NULL) {
             if(ITURHFP.silent != TRUE) {
 				printf("Error opening Rx. antenna file %.65s\n", ITURHFP.RXAntFilePath);
-			};
-		    return RTN_ERRCANTOPENRXANTFILE;
-	    };
+			}
+            return RTN_ERRCANTOPENRXANTFILE;
+	    }
 
-	    for (lineCtr = 0 ; lineCtr<4 ; ++lineCtr) {
+        for (lineCtr = 0 ; lineCtr<4 ; ++lineCtr) {
 		    fgets(line, sizeof(line), fp);		// Scroll to line 3, Antenna type
 	    }
 
@@ -656,18 +656,18 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
             fclose(fp);
 		    if (retval != RTN_READANTENNAPATTERNSOK) {
 				    return retval;
-		    };
-	    } else if (antType == 14) {
+		    }
+        } else if (antType == 14) {
 		    retval = dllReadType14Func(&path->A_rx, fp, ITURHFP.silent);
             fclose(fp);
 		    if (retval != RTN_READANTENNAPATTERNSOK) {
 				    return retval;
-		    };
+		    }
         } else {
             printf("Unsuppported antenna type: %d\n",antType);
             return RTN_ERRCANTOPENRXANTFILE;
         }
-    }; // end of the rx antenna type
+    } // end of the rx antenna type
 
 	// Determine the type of transmitter antenna file.
 	if(strcmp(ITURHFP.TXAntFilePath, "ISOTROPIC") == 0) { // Isotropic Antenna
@@ -681,10 +681,10 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
 	    if (fp == NULL) {
 			if(ITURHFP.silent != TRUE) {
 				printf("Error opening Tx. antenna file %.65s\n", ITURHFP.TXAntFilePath);
-			};
-		    return RTN_ERRCANTOPENTXANTFILE;
-	    };
-	    for (lineCtr = 0 ; lineCtr<4 ; ++lineCtr) {
+			}
+            return RTN_ERRCANTOPENTXANTFILE;
+	    }
+        for (lineCtr = 0 ; lineCtr<4 ; ++lineCtr) {
 		    fgets(line, sizeof(line), fp);		// Antenna type
 	    }
 	    sscanf(line, " %d %s\n", &antType, instr);
@@ -708,11 +708,11 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
             fclose(fp);
 		    if (retval != RTN_READANTENNAPATTERNSOK) {
 				    return retval;
-		    };
-	    } else {
+		    }
+        } else {
 			printf("Unsuppported antenna type: %d\n",antType);
             return RTN_ERRCANTOPENTXANTFILE;
-	    };
+	    }
     }
 		return RTN_READANTENNAPATTERNSOK;
 }

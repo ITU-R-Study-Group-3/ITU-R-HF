@@ -123,18 +123,18 @@ void MUFVariability(struct PathData *path) {
 		if(path->Md_E[i].BMUF != 0.0) { // If the Basic MUF is set the layer exists
 			if(path->Md_E[i].MUF90 > EMUF90) EMUF90 = path->Md_E[i].MUF90;
 			if(path->Md_E[i].MUF10 > EMUF10) EMUF10 = path->Md_E[i].MUF10;
-		};
-	};
-	F2MUF10 = 0.0;
+		}
+    }
+    F2MUF10 = 0.0;
 	F2MUF90 = 0.0;
 	for(i=0; i<MAXF2MDS; i++) {
 		if(path->Md_F2[i].BMUF != 0.0) { // If the Basic MUF is set the layer exists
 			if(path->Md_F2[i].MUF90 > F2MUF90) F2MUF90 = path->Md_F2[i].MUF90;
 			if(path->Md_F2[i].MUF10 > F2MUF10) F2MUF10 = path->Md_F2[i].MUF10;
-		};
-	};
+		}
+    }
 
-	// Determine the 90% and 10% MUF amongst all existant modes
+    // Determine the 90% and 10% MUF amongst all existant modes
 	path->MUF90 = max(EMUF90, F2MUF90); // largest 90% MUF
 	path->MUF10 = max(EMUF10, F2MUF10); // largest 10% MUF
 
@@ -188,25 +188,25 @@ double FindfoF2var(struct PathData path, double hour, double lat, int decile) {
 		latL = 18; // rollunder
 		// The sense of the fractional row is reversed when negative so fix it
 		r = 1.0 - r;
-	};
-	if(latU > 18) {
+	}
+    if(latU > 18) {
 		latU = 0; // rollover 
-	};
+	}
 
-	hourL = (int)floor(hour);
+    hourL = (int)floor(hour);
 	hourU = (int)ceil(hour);
 
 	if(hourL < 0) {
 		hourL = 23; // rollunder
 		// The sense of the fractional column is reversed when negative so fix it
 		c = 1.0 - c;
-	};
-	
-	if(hourU > 23) {
-		hourU = 0; // rollover hour
-	};
+	}
 
-	// Determine the sunspot number index ssn. 
+    if(hourU > 23) {
+		hourU = 0; // rollover hour
+	}
+
+    // Determine the sunspot number index ssn. 
 	if(path.SSN < 50) {
 		ssn = 0;
 	}
@@ -215,9 +215,9 @@ double FindfoF2var(struct PathData path, double hour, double lat, int decile) {
 	}
 	else { // path-SSN > 100
 		ssn = 2;
-	};
+	}
 
-	// Find the neighbors
+    // Find the neighbors
 	LL = path.foF2var[path.season][hourL][latL][ssn][decile];
 	LR = path.foF2var[path.season][hourU][latL][ssn][decile];
 	UL = path.foF2var[path.season][hourL][latU][ssn][decile];

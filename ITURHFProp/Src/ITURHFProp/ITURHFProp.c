@@ -104,9 +104,9 @@ int main(int argc, char *argv[]) {
 	if(hLib==NULL) {
 		printf("Main: Error %d p533.dll Not Found\n", RTN_ERRP533DLL);
 		return RTN_ERRP533DLL;
-	};
+	}
 
-	// Get the handle to the DLL library, hLib.
+    // Get the handle to the DLL library, hLib.
 	GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
 	// Get the P533Version() process from the DLL.
 	dllP533Version = (cP533Info)GetProcAddress((HMODULE)hLib, "P533Version");
@@ -195,27 +195,27 @@ int main(int argc, char *argv[]) {
 				printf("Main: Error Invalid Option: %s\n", argv[1]);
 				help();
 				return RTN_MAINOK;
-		};
+		}
 
-		++argv;
+        ++argv;
 		--argc;
-	};
+	}
 
-	// Find the input and output files if they are on the command line
+    // Find the input and output files if they are on the command line
 	if(argc > 1) { // argc is 2 or 3 there is an input file
 		sprintf(InFilePath, "%s", argv[1]);
-	};
+	}
 
-	if(argc > 2) { // An explicite output file name has been requested
+    if(argc > 2) { // An explicite output file name has been requested
 		sprintf(OutFilePath, "%s", argv[2]);
-	};
+	}
 
-	if(argc <= 1) { // There was not input file indicated on command line
+    if(argc <= 1) { // There was not input file indicated on command line
 		printf("Main: Error %d No Input File\n", RTN_ERRCOMMANDLINEARG);
 		return RTN_ERRCOMMANDLINEARG;
-	};
+	}
 
-	//********************************************************************************************
+    //********************************************************************************************
 	// End Parse Command Line ********************************************************************
 	//********************************************************************************************
 
@@ -234,29 +234,29 @@ int main(int argc, char *argv[]) {
 	if(retval != RTN_ALLOCATEP533OK) {
 		printf("Main: Error %d from dllAllocatePathMemory\n", retval);
 		return retval;
-	};
+	}
 
-	// Read the analysis configuration data from the file given as argv[1].
+    // Read the analysis configuration data from the file given as argv[1].
 	retval = ReadInputConfiguration(argv[1], &ITURHFP, &path);
 	if(retval != RTN_RICOK) {
 		printf("Main: Error %d from ReadInputConfiguration\n", retval);
 		return retval;
-	};
+	}
 
-	// Now that the input has been loaded the location of the transmitter and receiver are known
+    // Now that the input has been loaded the location of the transmitter and receiver are known
 	// so the bearing of the antennas can be determined if necessary.
 	if(ITURHFP.AntennaOrientation == TX2RX) {
 		ITURHFP.TXBearing = dllBearing(path.L_tx, path.L_rx, path.SorL); // Point the transmitter at the receiver.
 		ITURHFP.RXBearing = dllBearing(path.L_rx, path.L_tx, path.SorL); // Point the receiver at the transmitter.
-	};
+	}
 
-	retval = ValidateITURHFP(ITURHFP);
+    retval = ValidateITURHFP(ITURHFP);
 	if(retval != RTN_VALIDATEITURHFPOK) {
 		printf("Main: Error %d from ValidateITURHFP\n", retval);
 		return retval;
-	};
+	}
 
-	//Note the month and time are in c index format but human-readable so they start at 0.
+    //Note the month and time are in c index format but human-readable so they start at 0.
 
 	// Get the time to time stamp the output files.
 	tm = time(NULL);
@@ -283,38 +283,37 @@ int main(int argc, char *argv[]) {
 			strcat(OutFilePath, OutFileName);
 			// Store the output file
 			strcpy(ITURHFP.RptFilePath, OutFilePath);
-		};
-	}
+		}
+    }
 	else {
 		// Store the output file. The user has designated the output file name on the command line
 		strcpy(ITURHFP.RptFilePath, OutFilePath);
-	};
+	}
 
-	// Open the output file and initialize the file pointer in ITURHFP
+    // Open the output file and initialize the file pointer in ITURHFP
 	ITURHFP.rptfp = fopen(ITURHFP.RptFilePath, "w");
 	if(ITURHFP.rptfp == NULL) {
 		printf("Main: Error %d Can't open output file %s\n", RTN_ERROPENOUTPUTFILE, ITURHFP.RptFilePath);
 		return RTN_ERROPENOUTPUTFILE;
-	};
+	}
 
-	// User feedback
+    // User feedback
 	if (ITURHFP.silent != TRUE)
 	{
 		PrintITUHeader(stdout, asctime(ITURHFP.time), ITURHFP.P533ver, ITURHFP.P533compt, "", "");
 		printf("Main: Writing to file %s \n", OutFilePath);
-	};
+	}
 
-	// Run ITURHFProp now that the input file has been validated.
+    // Run ITURHFProp now that the input file has been validated.
 	retval = ITURHFProp(&path, &ITURHFP);
 	if(retval != RTN_ITURHFPropOK) {
 		printf(" path hour %d\n", path.hour);
 		printf("Main: Error %d from ITURHFProp\n", retval);
 		return retval;
-	};
+	}
 
 
-
-	// Clean up
+    // Clean up
 	// Close the output file
 	if(ITURHFP.rptfp != NULL) fclose(ITURHFP.rptfp); // Close report file
 
@@ -323,9 +322,9 @@ int main(int argc, char *argv[]) {
 	if(retval != RTN_PATHFREED) {
 		printf("Main: Error %d from dllFreePathMemory\n", retval);
 		return retval;
-	};
+	}
 
-	return RTN_MAINOK;
+    return RTN_MAINOK;
 }
 
 
@@ -365,21 +364,21 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 	ITURHFP->ihrend = 0;
 	for(i=0; i<NMBOFHOURS; i++) {
 		if((0 <= ITURHFP->hrs[i]) && (ITURHFP->hrs[i] < 24)) ITURHFP->ihrend += 1;
-	};
+	}
 
-	// Determine the maximum frequency
+    // Determine the maximum frequency
 	ITURHFP->ifrqend = 0;
 	for(i=0; i<NMBOFFREQS; i++) {
 		if((1.0 <= ITURHFP->frqs[i]) && (ITURHFP->frqs[i] <= 30.0)) ITURHFP->ifrqend += 1;
-	};
+	}
 
-	// Determine the maximum month
+    // Determine the maximum month
 	ITURHFP->imnthend = 0;
 	for(i=0; i<NMBOFMONTHS; i++) {
 		if((0 <= ITURHFP->months[i]) && (ITURHFP->months[i] <= 12.0)) ITURHFP->imnthend += 1;
-	};
+	}
 
-	// Determine the area. If the values are all the same then do only one point. This is point-to-point mode.
+    // Determine the area. If the values are all the same then do only one point. This is point-to-point mode.
 	ITURHFP->ilatend = 0;
 	ITURHFP->ilngend = 0;
 	ITURHFP->ilatend = abs((int)(INTTWEEK+(ITURHFP->L_UL.lat - ITURHFP->L_LR.lat)/ITURHFP->latinc)); // Push the double a little to avoid (int) casting errors.
@@ -391,23 +390,23 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 	retval = dllReadP1239Func(path, ITURHFP->DataFilePath);
 	if(retval != RTN_READP1239OK) {
 		return retval;
-	};
+	}
 
-	// Read the antenna data.
+    // Read the antenna data.
 	retval = ReadAntennaPatterns(path, *ITURHFP);
 	if(retval != RTN_READANTENNAPATTERNSOK) {
 		return retval;
-	};
+	}
 
-	// Load the Noise routines in P372.dll ******************************
+    // Load the Noise routines in P372.dll ******************************
 #ifdef _WIN32
 	// Get the handle to the P372 DLL.
 	hLib = LoadLibrary("P372.dll");
 	if (hLib == NULL) {
 		printf("ITURHFProp: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
 		return RTN_ERRP372DLL;
-	};
-	int mod[512];
+	}
+    int mod[512];
 	// Get the handle to the DLL library, hLib.
 	GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
 	dllReadFamDud = (iReadFamDud)GetProcAddress((HMODULE)hLib, "ReadFamDud");
@@ -432,21 +431,21 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 		retval = dllReadIonParametersBinFunc(path->month, path->foF2, path->M3kF2, ITURHFP->DataFilePath, ITURHFP->silent);
 		if(retval != RTN_READIONPARAOK) {
 			return retval;
-		};
+		}
 
-		// Read in the atmospheric coefficients for the particular month.
+        // Read in the atmospheric coefficients for the particular month.
 		// The subroutine dllReadFamDud() is from P372.dll
 		retval = dllReadFamDud(&path->noiseP, ITURHFP->DataFilePath, path->month);
 		if(retval != RTN_READFAMDUDOK) {
 			return retval;
-		};
+		}
 
-		// Before you enter the remaining loops for the analysis give the user feedback.
+        // Before you enter the remaining loops for the analysis give the user feedback.
 		if(ITURHFP->silent != TRUE) {
 			printf("\nCounting P533() Runs:\n");
-		};
+		}
 
-		// ******************* Hours loop ******************************************************
+        // ******************* Hours loop ******************************************************
 		for(ITURHFP->ihr=0; ITURHFP->ihr<ITURHFP->ihrend; ITURHFP->ihr++) { // hours
 			path->hour = ITURHFP->hrs[ITURHFP->ihr];
 
@@ -467,38 +466,36 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 						// User feedback
 						if(ITURHFP->silent != TRUE) {
 							printf("\r%d", count++);
-						};
+						}
 
-						// Run the model
+                        // Run the model
 						retval = dllP533(path); // Run P533()
 						if(retval != RTN_P533OK) {
 							return retval;
-						};
+						}
 
-						// Write the output
+                        // Write the output
 						if((ITURHFP->RptFileFormat & RPT_DUMPPATH) == RPT_DUMPPATH) {
 							DumpPathData(*path, *ITURHFP);
 						}
 						else {
 							Report(*path, *ITURHFP);
-						};
-					}; // ************* End Longitude loop ***************************************
+						}
+                    } // ************* End Longitude loop ***************************************
 
-				}; // ***************** End Latitude loop ****************************************
+				} // ***************** End Latitude loop ****************************************
 
-			}; // ********************* End Frequency loop ***************************************
+			} // ********************* End Frequency loop ***************************************
 
-		}; // ************************* End Hours loop *******************************************
+		} // ************************* End Hours loop *******************************************
 
 		// Reset the counter for the next month.
 		count = 1;
 
 		if(ITURHFP->silent != TRUE) {
 			printf("\n\n");
-		};
-
-
-	}; // ***************************** End Months loop ******************************************
+		}
+    } // ***************************** End Months loop ******************************************
 
 	return RTN_ITURHFPropOK;
 }

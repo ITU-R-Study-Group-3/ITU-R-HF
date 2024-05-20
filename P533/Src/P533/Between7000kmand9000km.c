@@ -55,7 +55,7 @@ void Between7000kmand9000km(struct PathData *path) {
 
 		path->BMUF = min(BMUF[0], BMUF[1]);
 
-	}; // ((7000.0 < path->distance) && (path->distance < 9000.0))
+	} // ((7000.0 < path->distance) && (path->distance < 9000.0))
 
 	return;
 

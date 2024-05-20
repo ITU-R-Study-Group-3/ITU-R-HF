@@ -160,9 +160,9 @@ void CircuitReliability(struct PathData *path) {
 		// The signal for digital modulation requires the calculation given in 
 		// ITU-R P.533-12 Section 10.2.3 Reliability prediction procedure.
 		S = DigitalModulationSignalandInterferers(path, iS, iI);
-	};
+	}
 
-	// Calculate the SNR
+    // Calculate the SNR
 	path->SNR = S - 10.0*log10(pow(10.0, (noiseP.FaA/10.0)) + pow(10.0, (noiseP.FaM/10.0)) + pow(10.0, (noiseP.FaG/10.0)))
 		          - 10.0*log10(path->BW) + 204;
 
@@ -184,9 +184,9 @@ void CircuitReliability(struct PathData *path) {
 		// Check the control point 1000 km from the receiver
 		GeomagneticCoords(path->CP[R1k].L, &Geomag);
 		if(Geomag.lat >= 60.0*D2R) gt60deg = 1; // 1 means a location is greater than 60 degrees 
-	};
+	}
 
-	// Find the basic MUF index to retrieve the values from P.842-4 Table 2
+    // Find the basic MUF index to retrieve the values from P.842-4 Table 2
 	fBMUFR = path->frequency/path->BMUF;
 
 	BMUF = 9; // Initialize just in case
@@ -220,9 +220,9 @@ void CircuitReliability(struct PathData *path) {
 	}
 	else if(4.0 < fBMUFR) {
 		BMUF = 9;
-	};
+	}
 
-	// Deciles day-to-day
+    // Deciles day-to-day
 	DlSd = Table2LD[gt60deg][BMUF];
 	DuSd = Table2UD[gt60deg][BMUF];
 
@@ -249,9 +249,9 @@ void CircuitReliability(struct PathData *path) {
 	}
 	else { // (SNR < path->SNRr)
 		path->BCR = max(80.0/(1.0 + ((path->SNRr-path->SNR)/path->DuSN)) - 30.0, 0.0);
-	};
+	}
 
-	// End of BCR Calculation *********************************************************************
+    // End of BCR Calculation *********************************************************************
 
 	// Begin simplified approximate BCR calculation for digital modulation systems ****************
 
@@ -272,9 +272,9 @@ void CircuitReliability(struct PathData *path) {
 		}
 		else { // path->distance <= 2000.0
 			Tm = min((4.27e-2*(1.0 - pow((path->frequency/path->BMUF),2))*pow(D,0.65)), 3.5);	
-		};
+		}
 
-		// Frequency spread
+        // Frequency spread
 		Fm = 0.02*path->frequency*Tm;
 
 		// Time deciles
@@ -291,28 +291,26 @@ void CircuitReliability(struct PathData *path) {
 		}
 		else { // (path->SNR < path->SNRr)
 			path->RSN = max((80.0/(1.0 + ((path->SNRr - path->SNR)/path->DuSN)) - 30.0), 0.0);
-		};
+		}
 
-		// Probability that the required time spread, T0, at a level of -10 dB relative to the peak 
+        // Probability that the required time spread, T0, at a level of -10 dB relative to the peak 
 		// signal amplitude 
 		if(Tm >= path->T0) {
 			path->RT = min((130.0 - 80.0/(1.0 + (path->T0 - Tm)/DTl)), 100.0);
 		}
 		else { // (Tm < path->T0)
 			path->RT = max((80.0/(1.0 + (Tm - path->T0)/DTu) - 30.0), 0.0);
-		};
+		}
 
-		// Probability that the required frequency spread f0 at a level of -10 dB relative to the peak 
+        // Probability that the required frequency spread f0 at a level of -10 dB relative to the peak 
 		// signal amplitude
 		if(Fm >= path->F0) {
 			path->RF = min((130.0 - 80.0/(1.0 + (path->F0 - Fm)/DFl)), 100.0);
 		}
 		else { // (Fm < path->F0)
 			path->RF = max((80.0/(1.0 + (Fm - path->F0)/DFu) - 30.0), 0.0);
-		};
-
-
-	}; // path->Modulation == DIGITAL
+		}
+    } // path->Modulation == DIGITAL
 
 	// End simplified approximate BCR calculation for digital modulation systems ******************
 
@@ -360,11 +358,11 @@ void CircuitReliability(struct PathData *path) {
 					Isum += pow(10.0, ((path->Md_F2[iI[n]-3].Prw - path->A)/10.0));
 					Isumu += pow(10.0, ((path->Md_F2[iI[n]-3].Prw - path->A + DuIh)/10.0));
 					Isuml += pow(10.0, ((path->Md_F2[iI[n]-3].Prw - path->A - DlIh)/10.0));
-				};
-			};
-		};
+				}
+            }
+        }
 
-		// In the situation where all the modes are signal and there is no interference
+        // In the situation where all the modes are signal and there is no interference
 		// there is nothing more to do
 		// Return the values set by this program with the interference set to 
 		if(Isum == 0.0) {
@@ -373,9 +371,9 @@ void CircuitReliability(struct PathData *path) {
 			path->MIR = 0.0;
 			path->OCR = path->BCR*path->MIR/100.0;
 			return;
-		};
+		}
 
-		// Step 4: Determine the signal-to-interference ratio
+        // Step 4: Determine the signal-to-interference ratio
 		path->SIR = S - 10.0*log10(Isum);
 
 		// Step 7: Determine the upper decile deviation of the signal-to-interference ratio
@@ -390,16 +388,16 @@ void CircuitReliability(struct PathData *path) {
 		}
 		else { // (SIR < path->SIRr)
 			path->MIR = max((80.0/(1.0 + ((path->SIRr-path->SIR)/path->DuSI))) - 30.0, 0.0);
-		};
+		}
 
-		// Overall Circuit reliability in the absence of scattering
+        // Overall Circuit reliability in the absence of scattering
 		path->OCR = path->BCR*path->MIR/100.0;
 
 		// Find the Overall Circuit reliability with scattering
 		EquatorialScattering(path, iS); 
-	};
+	}
 
-	// End OCR Calculation ************************************************************************
+    // End OCR Calculation ************************************************************************
 
 	// SNR for the required reliability
 	//
@@ -419,9 +417,9 @@ void CircuitReliability(struct PathData *path) {
 	}
 	else { // path->Relr >= 50 
 		path->SNRXX = path->SNR - path->DlSN*NORM[path->SNRXXp - 50]/NORM[40];
-	};
+	}
 
-	return;
+    return;
 
 } // End CircuitReliability()
 
@@ -452,10 +450,10 @@ void ModeSort(struct Mode *M[MAXMDS], int order[MAXMDS], int criteria) {
 		// Find the modes that exist
 		if (M[n]->BMUF != 0.0) {
 			order[m++] = n; 
-		};
-	};
+		}
+    }
 
-	if(criteria == DOMINANT) {
+    if(criteria == DOMINANT) {
 		for(n=0; n<MAXMDS; n++) {
 			if(order[n] != NOTINDEX) { // The mode exists
 				for(m=0; m<MAXMDS; m++) {
@@ -464,12 +462,12 @@ void ModeSort(struct Mode *M[MAXMDS], int order[MAXMDS], int criteria) {
 							j = order[n];
 							order[n] = order[m];
 							order[m] = j;
-						};
-					};
-				};
-			};
-		};
-	}
+						}
+                    }
+                }
+            }
+        }
+    }
 	else if(criteria == SOONEST) {
 		for(n=0; n<MAXMDS; n++) {
 			if(order[n] != NOTINDEX) { // The mode exists
@@ -479,14 +477,14 @@ void ModeSort(struct Mode *M[MAXMDS], int order[MAXMDS], int criteria) {
 							j = order[n];
 							order[n] = order[m];
 							order[m] = j;
-						};
-					};
-				};
-			};
-		};
-	};
+						}
+                    }
+                }
+            }
+        }
+    }
 
-	return;
+    return;
 
 } // End ModeSort()
 
@@ -514,16 +512,16 @@ int NumberofModes(struct PathData path) {
 		// Only count the modes that exist
 		if(path.Md_E[n].BMUF != 0.0) {
 			count += 1;
-		};
-	};
-	for(n=0; n<MAXF2MDS; n++) {
+		}
+    }
+    for(n=0; n<MAXF2MDS; n++) {
 		// Only cound the modes that exist
 		if(path.Md_F2[n].BMUF != 0.0) {
 			count += 1;
-		};
-	};
+		}
+    }
 
-	return count;
+    return count;
 
 } // End NumberofModes()
 
@@ -573,9 +571,9 @@ double DigitalModulationSignalandInterferers(struct PathData *path, int iS[MAXMD
 		itau[n] = NOTINDEX;
 		iI[n]	= NOTINDEX;
 		iS[n]	= NOTINDEX;
-	};
+	}
 
-	//*****************************************************************************************
+    //*****************************************************************************************
 	// Although the slant range. ptick, was calculated in MedianSkywaveFieldStrengthShort() is was
 	// calculated under the E layer screening condition which is not relevant here so ptick must be
 	// calculated here. 
@@ -591,10 +589,10 @@ double DigitalModulationSignalandInterferers(struct PathData *path, int iS[MAXMD
 				psi = dh/(2.0*R0);
 				ptick = 2.0*R0*(sin(psi)/cos(delta - psi));
 				path->Md_E[n].tau = (n+1)*(ptick/VofL)*1000.0;
-			};
-		};
+			}
+        }
 
-		// F2 layer modes
+        // F2 layer modes
 		// The reflection height for each F2 mode was calculated in ELayerScreeningFrequency()
 		for(n=path->n0_F2; n<MAXF2MDS; n++) {
 			if(path->Md_F2[n].BMUF != 0.0) { // Mode exists
@@ -604,22 +602,22 @@ double DigitalModulationSignalandInterferers(struct PathData *path, int iS[MAXMD
 				psi = dh/(2.0*R0);
 				ptick = 2.0*R0*(sin(psi)/cos(delta - psi));
 				path->Md_F2[n].tau = (n+1)*(ptick/VofL)*1000.0;
-			};
-		};
+			}
+        }
 
-		// Do the following if there are 2 or more modes 
+        // Do the following if there are 2 or more modes 
 		if(NumberofModes(*path) >= 2) {
 			// For this calculation the layers don't matter so set up an array of all the modes
 			// so that a single loop can be used
 			// Point the M[] array at all of the modes in path
 			for(n=0; n<MAXEMDS; n++) {
 				M[n] = &path->Md_E[n];
-			};
-			for(n=0; n<MAXF2MDS; n++) {
+			}
+            for(n=0; n<MAXF2MDS; n++) {
 				M[n+3] = &path->Md_F2[n];
-			};
+			}
 
-			// P.533-12 Section 10.2.3 Reliability prediction procedure
+            // P.533-12 Section 10.2.3 Reliability prediction procedure
 			// Step 1: Determination of the dominant mode, Ew
 			ModeSort(M, iEw, DOMINANT); // iEw[0] is the dominant mode
 
@@ -657,49 +655,49 @@ double DigitalModulationSignalandInterferers(struct PathData *path, int iS[MAXMD
 						// Store the index of the interfering modes for later use in the calculation of 
 						// the signal-to-interference ratio (See Table 3 P.842-4).
 						iI[n] = n;
-					};
-				};
-			};
+					}
+                }
+            }
 
-			// Only determine Etw if there is a mode that satisfies the criteria above 
+            // Only determine Etw if there is a mode that satisfies the criteria above 
 			// otherwise Etw is set to the something small
 			if(Ssum > 0) {
 				Etw = 10.0*log10(sqrt(Ssum));
 			}
 			else {
 				Etw = TINYDB;
-			};
+			}
 
-			// Use the combined mode power, Ssum, and the antenna gain, Grw
+            // Use the combined mode power, Ssum, and the antenna gain, Grw
 			S = Etw + path->Grw - 20.0*log10(path->frequency) - 107.2;
 
 		}
 		else { // (NumberofModes(*path) < 2) 
 			// There is only one mode. 
 			S = path->Pr;
-		};
-	} // if(path->distance <= 9000.0) 
+		}
+    } // if(path->distance <= 9000.0) 
 	else { // (path->distance > 9000.0) 
 		S = path->Pr;
-	};
+	}
 
-	// The iI[] and iS[] arrays need to be ordered.
+    // The iI[] and iS[] arrays need to be ordered.
 	for(n=0; n<MAXMDS; n++) {
 		for(m=0; m<MAXMDS; m++) {
 			if(iI[n] < iI[m]) {
 				j = iI[n];
 				iI[n] = iI[m];
 				iI[m] = j;
-			};
-			if(iS[n] < iS[m]) {
+			}
+            if(iS[n] < iS[m]) {
 				j = iS[n];
 				iS[n] = iS[m];
 				iS[m] = j;
-			};
-		};
-	};
+			}
+        }
+    }
 
-	return S;
+    return S;
 
 }
 
@@ -763,14 +761,14 @@ void EquatorialScattering(struct PathData *path, int iS[MAXMDS]) {
 					// The mode is a F2 mode
 					pm = path->Md_F2[iS[n]].Ew;
 					taum = path->Md_F2[iS[n]].tau;
-				};
+				}
 
-				PTspread[n] = 0.056*pm*exp(-(pow((tau - taum), 2))/(2.0*pow(Tspread, 2))); 
+                PTspread[n] = 0.056*pm*exp(-(pow((tau - taum), 2))/(2.0*pow(Tspread, 2))); 
 
-			};
-		};
+			}
+        }
 
-		// Step 8: Determine the frequency spreading of the dominant mode
+        // Step 8: Determine the frequency spreading of the dominant mode
 		// Find the dominant mode
 		if(iS[0] < MAXEMDS) { 
 			// The mode is an E mode
@@ -779,9 +777,9 @@ void EquatorialScattering(struct PathData *path, int iS[MAXMDS]) {
 		else { 
 			// The mode is a F2 mode
 			pm = path->Md_F2[iS[0]].Ew;
-		};
+		}
 
-		// Center frequency
+        // Center frequency
 		fm = path->frequency*1e6; // (Hz)
 
 		// Frequency window
@@ -799,18 +797,18 @@ void EquatorialScattering(struct PathData *path, int iS[MAXMDS]) {
 				// Note: At this point pm is the dominant mode 
 				if((pm - PTspread[n]) >= path->A) {
 					useCP = TRUE;
-				};
-			};
-		};
-		// Determine is the frequency spread components are within the amplitude ratio, A, of the 
+				}
+            }
+        }
+        // Determine is the frequency spread components are within the amplitude ratio, A, of the 
 		// dominant mode power level 
 		for(n=0; n<2; n++) {
 			if((pm - PFspread[n]) >= path->A) {
 					useCP = TRUE;
-				};
-		};
+				}
+        }
 
-		// Determine the coefficients for the probocc calculation that are independant of the control point
+        // Determine the coefficients for the probocc calculation that are independant of the control point
 		FR = (0.1 + 0.008*max(path->SSN, 160));
 		FS = 0.55 + 0.45*sin(60.0*D2R*((path->month+1.0) - 1.5));
 
@@ -836,9 +834,9 @@ void EquatorialScattering(struct PathData *path, int iS[MAXMDS]) {
 							else {
 								Flambdad = FindFlambdad(path->CP[Rd02]);
 								FTl = FindFTl(path->CP[Rd02]);
-							};
-						};
-					}
+							}
+                        }
+                    }
 					else { // Higher order F2 modes
 						if(path->distance <= path->dmax) { 
 							// Find the largest time scattering by brute force
@@ -851,8 +849,8 @@ void EquatorialScattering(struct PathData *path, int iS[MAXMDS]) {
 							} else if ((PTspread[MP] >= PTspread[R1k]) && (PTspread[MP] >= PTspread[T1k])) {
 								Flambdad = FindFlambdad(path->CP[MP]);
 								FTl = FindFTl(path->CP[MP]);
-							};
-						}
+							}
+                        }
 						else {
 							if((PTspread[T1k] >= PTspread[R1k]) &&
 							   (PTspread[T1k] >= PTspread[Td02]) &&
@@ -888,24 +886,24 @@ void EquatorialScattering(struct PathData *path, int iS[MAXMDS]) {
 									 (PTspread[Rd02] >= PTspread[Td02])) {
 								Flambdad = FindFlambdad(path->CP[Rd02]);
 								FTl = FindFTl(path->CP[Rd02]);							
-							};
-						};
-					};// Higher order F2 modes
-				}; // Does mode exist
+							}
+                        }
+                    } // Higher order F2 modes
+				} // Does mode exist
 
 				probocc[n] = Flambdad*FTl*FR*FS;
 
-			}; // for(n=0; n<9; n++)
+			} // for(n=0; n<9; n++)
 
 			// Find the biggest probocc
 			biggest = 0.0;
 			for(n=0; n<MAXMDS; n++) {
 				if(probocc[n] > biggest) {
 					biggest =  probocc[n];
-				};
-			};
+				}
+            }
 
-			path->probocc = biggest; 
+            path->probocc = biggest; 
 
 			// Find the overall circuit reliabilty with scattering
 			path->OCRs = path->BCR*path->MIR*(100.0 - path->probocc)/10000.0;
@@ -914,10 +912,10 @@ void EquatorialScattering(struct PathData *path, int iS[MAXMDS]) {
 		else { // useCP == FALSE
 
 			path->OCRs = path->BCR*path->MIR/100.0;
-		};
-	};
+		}
+    }
 
-	return;
+    return;
 
 }
 
@@ -951,9 +949,9 @@ double FindFlambdad(struct ControlPt CP) {
 	}
 	else if((25.0*D2R <= lambdad) && (lambdad <= 90.0*D2R)) {
 		return 0.0;
-	};
+	}
 
-	return 0.0;
+    return 0.0;
 
 }
 
@@ -994,7 +992,7 @@ double FindFTl(struct ControlPt CP) {
 	}
 	else if((20.0 < Tl) && (Tl <= 24.0)) {
 		return 1.0;
-	};
+	}
 
-	return 0.0;
+    return 0.0;
 }

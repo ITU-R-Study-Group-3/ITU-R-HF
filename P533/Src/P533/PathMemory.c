@@ -93,13 +93,13 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 			foF2[i][j] = (float**) malloc(lat * sizeof(float*));
 			for (k=0; k<lat; k++) {
 				foF2[i][j][k] = (float*) malloc(ssn * sizeof(float));
-			};
-		};
-	};
+			}
+        }
+    }
 
-	/* 
-	 * Create the M(3000)F2 array so you can pass it into the core P.533 process.
-	 */
+    /* 
+     * Create the M(3000)F2 array so you can pass it into the core P.533 process.
+     */
 	M3kF2 = (float****) malloc(hrs * sizeof(float***));
 	for (i=0; i<hrs; i++) {
 		M3kF2[i] = (float***) malloc(lng * sizeof(float**));
@@ -107,13 +107,13 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 			M3kF2[i][j] = (float**) malloc(lat * sizeof(float*));
 			for (k=0; k<lat; k++) {
 				M3kF2[i][j][k] = (float*) malloc(ssn * sizeof(float));
-			};
-		};
-	};	
+			}
+        }
+    }
 
-   /*
-	* Allocate the foF2 variablity arrays that will be used by the P533 engine.
-	*/
+    /*
+     * Allocate the foF2 variablity arrays that will be used by the P533 engine.
+     */
 	season = 3;	// 3 seasons
 				//		1) WINTER 2) EQUINOX 3) SUMMER
 	hrs = 24;	// 24 hours  
@@ -173,9 +173,9 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 	if (hLib == NULL) {
 		printf("P533: AllocatePathMemory: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
 		return RTN_ERRP372DLL;
-	};
+	}
 
-	// Get the handle to the DLL library, hLib.
+    // Get the handle to the DLL library, hLib.
 	GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
 	//
 	iNoiseMemory dllAllocateNoiseMemory = (iNoiseMemory)GetProcAddress((HMODULE)hLib, "AllocateNoiseMemory");
@@ -237,23 +237,23 @@ DLLEXPORT int FreePathMemory(struct PathData *path) {
 		for (j=0; j<lng; j++) {
 			for (k=0; k<lat; k++) {
 				free(path->foF2[i][j][k]);
-				};
-			free(path->foF2[i][j]);
-			};
-		free(path->foF2[i]);
-	};
-	free(path->foF2);
+				}
+            free(path->foF2[i][j]);
+			}
+        free(path->foF2[i]);
+	}
+    free(path->foF2);
 
 	for (i=0; i<hrs; i++) {
 		for (j=0; j<lng; j++) {
 			for (k=0; k<lat; k++) {
 				free(path->M3kF2[i][j][k]);
-			};
-			free(path->M3kF2[i][j]);
-		};
-		free(path->M3kF2[i]);
-	};
-	free(path->M3kF2);
+			}
+            free(path->M3kF2[i][j]);
+		}
+        free(path->M3kF2[i]);
+	}
+    free(path->M3kF2);
 
 	// Free the foF2 variability memory
 	season = 3;	 

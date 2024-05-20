@@ -115,14 +115,14 @@ void InitializePath(struct PathData *path) {
 	// If the distance is zero set it to epsilon as an approximation
 	if (path->distance == 0.0) {
 		path->distance = DBL_EPSILON;
-	};
+	}
 
-	// Determine if this is a long path. If so, adjust the distance.
+    // Determine if this is a long path. If so, adjust the distance.
 	if(path->SorL == LONGPATH) {
 		path->distance = R0*PI*2 - path->distance;
-	};
-	
-	// Initialize the control points
+	}
+
+    // Initialize the control points
 	InitializeCPs(path);
 	// End initializing control points
 
@@ -233,9 +233,9 @@ void InitializeCPs(struct PathData *path) {
 		CalculateCPParameters(path, &path->CP[T1k]);
 		CalculateCPParameters(path, &path->CP[R1k]);
 
-	};
+	}
 
-	// Note the local sunrise, sunset and noon at the CPs are found when IonParameters() is run.
+    // Note the local sunrise, sunset and noon at the CPs are found when IonParameters() is run.
 
 	// The other control points at T + d0/2 and R - d0/2 require that the lowest-order propagating mode
 	// be determined. This calculation is performed in MUFBasic().
@@ -286,8 +286,7 @@ void InitializeModes(struct Mode *M, int n) {
 			(M+i)->ele = 0.0;
 			(M+i)->MC = FALSE;
 
-	};
-
+	}
 }
 
 int WhatSeason(struct Location L, int month) {
@@ -322,8 +321,8 @@ int WhatSeason(struct Location L, int month) {
 			case MAY: case JUN: case JUL: case AUG: 
 				season = SUMMER;
 				break;
-		};
-	}
+		}
+    }
 	else { // Southern Hemisphere 
 		switch (month) {
 			case MAY: case JUN: case JUL: case AUG: 
@@ -335,8 +334,8 @@ int WhatSeason(struct Location L, int month) {
 			case NOV: case DEC: case JAN: case FEB: 
 				season = SUMMER;
 				break;
-		};
-	}
+		}
+    }
 	
 	return season;
 	

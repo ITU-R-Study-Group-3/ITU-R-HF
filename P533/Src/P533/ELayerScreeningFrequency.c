@@ -48,9 +48,9 @@ void ELayerScreeningFrequency(struct PathData *path) {
 	}
 	else {
 		foE = max(path->CP[T1k].foE, path->CP[R1k].foE);
-	};
+	}
 
-	// Now find the E-Layer screening for the F2 modes that exist.
+    // Now find the E-Layer screening for the F2 modes that exist.
 	// The hop of the F2 mode is related to the index i. Since i is an C index use the hop number n = k + 1; 
 	for(k=path->n0_F2; k<MAXF2MDS; k++) {
 		// Determine the hop distance
@@ -66,9 +66,9 @@ void ELayerScreeningFrequency(struct PathData *path) {
 			path->Md_F2[k].hr = (MirrorReflectionHeight(*path, path->CP[Td02], dh) +
 					            MirrorReflectionHeight(*path, path->CP[MP], dh) +
 					            MirrorReflectionHeight(*path, path->CP[Rd02], dh))/3.0;
-		};
+		}
 
-		// Find the elevation angle from equation 13 Section 5.1 Elevation angle.
+        // Find the elevation angle from equation 13 Section 5.1 Elevation angle.
 		// ITU-R P.533-12
 		deltaf = ElevationAngle(dh, path->Md_F2[k].hr);
 
@@ -82,9 +82,8 @@ void ELayerScreeningFrequency(struct PathData *path) {
 		else { // (path->distance > 2000)
 			// Use the larger of the foE at the control points 1000 km from either end.
 			path->Md_F2[k].fs = 1.05*max(path->CP[T1k].foE, path->CP[R1k].foE)/cos(i);
-		};
-
-	}; // End for(k=path->n0_F2; k<MAXF2MODES; k++)
+		}
+    } // End for(k=path->n0_F2; k<MAXF2MODES; k++)
 
 	return;
 
@@ -137,16 +136,16 @@ double MirrorReflectionHeight(struct PathData path, struct ControlPt CP, double 
 		}
 		else { // (xr > 1.71)
 			F1 = 1.21 + 0.2*xr;
-		};
+		}
 
-		if(xr <= 3.7) {
+        if(xr <= 3.7) {
 			G = -2.102*pow(xr, 4) + 19.50*pow(xr, 3) - 63.15*xr*xr - 44.73;
 		}
 		else {
 			G = 19.25;
-		};
+		}
 
-		ds = 160.0 + (H + 43.0)*G;
+        ds = 160.0 + (H + 43.0)*G;
 		a = (d - ds)/(H + 140.0);
 		A1 = 140.0 + (H - 47.0)*E1;
 		B1 = 150.0 + (H - 17.0)*F1 - A1;
@@ -156,9 +155,9 @@ double MirrorReflectionHeight(struct PathData path, struct ControlPt CP, double 
 		}
 		else {
 			h = A1 + B1;
-		};
+		}
 
-		hr = min(h, 800.0);
+        hr = min(h, 800.0);
 	}
 	else if ((x > 3.33) && (xr < 1.0)) { // b)
 		Z = max(xr, 0.1);
@@ -174,9 +173,9 @@ double MirrorReflectionHeight(struct PathData path, struct ControlPt CP, double 
 		}
 		else {
 			h = A2 + B2;
-		};
+		}
 
-		hr = min(h, 800.0);
+        hr = min(h, 800.0);
 
 	}
 	else if(x <= 3.33) { // c
@@ -185,9 +184,9 @@ double MirrorReflectionHeight(struct PathData path, struct ControlPt CP, double 
 		U = 8.0E-5*(H - 80.0)*(1.0 + 11.0*pow(y, -2.2)) + 1.2E-3*H*pow(y, -3.6);
 		hr = min((115.0 + H*J + U*d),800.0);
 
-	};
+	}
 
-	return hr;
+    return hr;
 }
 
 double ElevationAngle(double dh, double hr) {

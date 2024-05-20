@@ -79,14 +79,14 @@ int ReadIonParametersTxt(struct PathData *path, char DataFilePath[256], int sile
 	if(fp == NULL) {
 		printf("ReadIonParameters: ERROR Can't find input file %s\n", InFilePath);
 		return RTN_ERRREADIONPARAMETERS;
-	};
+	}
 
-	if(silent != TRUE) {
+    if(silent != TRUE) {
 		printf("ReadIonParameters: Reading file ionos%02d.txt for ionospheric parameters\n", path->month+1);
 		printf("ReadIonParameters: Reading foF2 into array\n");
-	};
+	}
 
-	// Read in foF2
+    // Read in foF2
 	for(m = 0; m < ssn; m++) { // SSN
 		for(j = 0; j < lng; j++) { // Longitude
 			for(k = 0; k < lat; k++) { // Latitude
@@ -107,15 +107,15 @@ int ReadIonParametersTxt(struct PathData *path, char DataFilePath[256], int sile
 					                                 &path->foF2[19][j][k][m], &path->foF2[20][j][k][m]);
 				fgets(line, linelen, fp);
 				sscanf(line, "  %f  %f  %f", &path->foF2[21][j][k][m],&path->foF2[22][j][k][m],&path->foF2[23][j][k][m]);
-			};
-		};	
-	};
+			}
+        }
+    }
 
-	if(silent != TRUE) {
+    if(silent != TRUE) {
 		printf("ReadIonParameters: Reading M3kF2 into array\n");
-	};
+	}
 
-	// Read in M3kF2
+    // Read in M3kF2
 	for(m = 0; m < ssn; m++) { // SSN
 		for(j = 0; j < lng; j++) { // Longitude
 			for(k = 0; k < lat; k++) { // Latitude
@@ -135,11 +135,11 @@ int ReadIonParametersTxt(struct PathData *path, char DataFilePath[256], int sile
 					                                 &path->M3kF2[19][j][k][m], &path->M3kF2[20][j][k][m]);
 				fgets(line, linelen, fp);
 				sscanf(line, "  %f  %f  %f", &path->M3kF2[21][j][k][m], &path->M3kF2[22][j][k][m], &path->M3kF2[23][j][k][m]);
-			};
-		};	
-	};
+			}
+        }
+    }
 
-	// Close the file and return.
+    // Close the file and return.
 	fclose(fp);
 
 	return RTN_READIONPARAOK;
@@ -212,13 +212,13 @@ int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFi
 	if(fp == NULL) {
 		printf("ReadIonParameters: ERROR Can't find input file %s\n", InFilePath);
 		return RTN_ERRREADIONPARAMETERS;
-	};
+	}
 
-	if(silent != TRUE) {
+    if(silent != TRUE) {
 		printf("ReadIonParameters: Reading file ionos%02d.txt for ionospheric parameters\n", month+1);
-	};
+	}
 
-	//The first 5 bytes of the file are overhead that FORTRAN puts in 
+    //The first 5 bytes of the file are overhead that FORTRAN puts in 
 	fread(&buffer, sizeof(char), 5, fp);
 
 	readBuffer = (float *) malloc(sizeof(float) * numfoF2);
@@ -226,9 +226,9 @@ int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFi
 
 	if(silent != TRUE) {
 		printf("ReadIonParameters: Reading foF2 (binary) into array\n");
-	};
+	}
 
-	// Read in foF2
+    // Read in foF2
 	for(m = 0; m < ssn; m++) { // SSN
 		for(j = 0; j < lng; j++) { // Longitude
 			for(k = 0; k < lat; k++) { // Latitude
@@ -239,21 +239,21 @@ int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFi
 													(k * (hrs)) +
 													 i];
 					// fread(&foF2[i][j][k][m], sizeof(float), 1, fp);
-				};
-			};
-		};	
-	};
-	
-	free(readBuffer);
+				}
+            }
+        }
+    }
+
+    free(readBuffer);
 
 	// The next 5 bytes are the tail of the foF2 record followed by 5 bytes of header for the M(3000)F2 record.
 	fread(&buffer, sizeof(char), 10, fp);
 	
 	if(silent != TRUE) {
 		printf("ReadIonParameters: Reading M3kF2 (binary) into array\n");
-	};
+	}
 
-	readBuffer = (float *) malloc(sizeof(float) * numfoF2);
+    readBuffer = (float *) malloc(sizeof(float) * numfoF2);
 	fread(readBuffer,sizeof(float),numfoF2,fp);
 
 	// Read in M3kF2
@@ -267,12 +267,12 @@ int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFi
 													(k * (hrs)) +
 													 i];
 					// fread(&M3kF2[i][j][k][m], sizeof(float), 1, fp);
-				};
-			};
-		};	
-	};
-	
-	free(readBuffer);
+				}
+            }
+        }
+    }
+
+    free(readBuffer);
 
 	// Close the file and return.
 	fclose(fp);

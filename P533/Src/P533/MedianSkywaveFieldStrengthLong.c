@@ -159,22 +159,22 @@ void MedianSkywaveFieldStrengthLong(struct PathData *path) {
 			// Elevation angle
 			deltaM = ElevationAngle(dM, hr);
 
-			};
+			}
 
-		/**********************************************************************************************************
-		   Control and Penetration point initialization for the reference frequencies
-		  
-		   For the fL calculation, there will be required 24 hours of data at the locations of interest.
-		   Both the calculation of the upper and lower reference frequencies, fM and fL respectively,
-		   require 24 hours of data. 
-		   For the calculation of fM, the 24 hours of data are required at the control points described in 
-		   Table 1a) P.533-12. 
-		   For the calculation of fL, the 24 hours of data are required at the 90 km penetration points. There are 
-		   potentially 13 hops tx to rx since the circumference of the earth is 40,075.16 and the hop length 
-		   for this routine is 3000. For every hop there are two penetrations of the 90 km D layer.
-		   Consequently, 24 x 2 (fM) and 24 x 26 (fL) control points are needed. 
-		   Therefore, for this calculation 24 x 15 control points are required. 
-		 *********************************************************************************************************/
+        /**********************************************************************************************************
+           Control and Penetration point initialization for the reference frequencies
+          
+           For the fL calculation, there will be required 24 hours of data at the locations of interest.
+           Both the calculation of the upper and lower reference frequencies, fM and fL respectively,
+           require 24 hours of data. 
+           For the calculation of fM, the 24 hours of data are required at the control points described in 
+           Table 1a) P.533-12. 
+           For the calculation of fL, the 24 hours of data are required at the 90 km penetration points. There are 
+           potentially 13 hops tx to rx since the circumference of the earth is 40,075.16 and the hop length 
+           for this routine is 3000. For every hop there are two penetrations of the 90 km D layer.
+           Consequently, 24 x 2 (fM) and 24 x 26 (fL) control points are needed. 
+           Therefore, for this calculation 24 x 15 control points are required. 
+         *********************************************************************************************************/
 			
 		// Determine the 90 km penetration points 
 		i90 = IncidenceAngle(deltaL, 90.0); 
@@ -214,7 +214,7 @@ void MedianSkywaveFieldStrengthLong(struct PathData *path) {
 
 				CP[(2*i)+1][j].hr = 90.0;
 
-				}; // (i=0; i < n; i++)
+				} // (i=0; i < n; i++)
 
 			// Initialize control points (T + d0/2 & R - d0/2) from Table 1a) as the last two control points in the array.
 			// First determine the fractional distances and then find the point on the great circle between tx and rx.
@@ -236,7 +236,7 @@ void MedianSkywaveFieldStrengthLong(struct PathData *path) {
 			CP[RdM2][j].foE = 0.0;
 			CP[RdM2][j].hr = 300.0; // For this calculation the reflection height is fixed at 300 km.
 		
-		}; // (j=0; j<24; j++)
+		} // (j=0; j<24; j++)
 
 		// Restore the path->hour
 		path->hour = hour;
@@ -307,9 +307,9 @@ void MedianSkywaveFieldStrengthLong(struct PathData *path) {
 			// Path dmax
 			path->dmax = 4000.0;
 
-		};
+		}
 
-		// Testing
+        // Testing
 		if(BARF) {
 			printf("\nP533 MSFSL: Mean gyro frequency (fH) %f\n", path->fH);
 			printf(  "P533 MSFSL: Virtual slant range angle using fM parameters (psi) %f\n", psi);
@@ -326,9 +326,9 @@ void MedianSkywaveFieldStrengthLong(struct PathData *path) {
 				printf("\nP533 MSFSL: Hop number (i) %d\n", i);
 				PrintControlPointData(CP[(2*i)][hour], 2*i, hour);
 				PrintControlPointData(CP[(2*i)+1][hour], (2*i)+1, hour);
-			};
-		
-			printf("\nP533 MSFSL: Control Points (T + dM/2 & R - dM/2)\n");
+			}
+
+            printf("\nP533 MSFSL: Control Points (T + dM/2 & R - dM/2)\n");
 			PrintControlPointData(CP[TdM2][hour], TdM2, hour);
 			PrintControlPointData(CP[RdM2][hour], RdM2, hour);
 		
@@ -338,12 +338,12 @@ void MedianSkywaveFieldStrengthLong(struct PathData *path) {
 			printf(  "P533 MSFSL: Hop distance (dM) %f\n", dM);
 		
 			printf("\n");
-			};
-		// Testing
+			}
+        // Testing
 
 		return;
 						
-	}; // (path->distance >= 7000.0)
+	} // (path->distance >= 7000.0)
 
 }
 
@@ -447,24 +447,24 @@ void FindMUFsandfM(struct PathData *path, struct ControlPt CP[MAXCP][24], int ho
 		fBM[1][t] = fz[1] + (f4[1] - fz[1])*fD; 
 		fBMmin[1] = min(fBM[1][t], fBMmin[1]);
 			
-	};
+	}
 
-	// Before proceeding, finding the forward azimuth at the midpoint is required.
+    // Before proceeding, finding the forward azimuth at the midpoint is required.
 	// The azimuth is used to interpolate the W, X and Y values to calculate K.
 	A = Bearing(path->CP[MP].L, path->L_rx, SHORTPATH);
 
 	// Now use A to interpolate the W, X and Y values.
 	if(A > PI) {
 		A -= PI;
-	};
-	if(A >= PI/2.0) {
+	}
+    if(A >= PI/2.0) {
 		A -= PI/2.0;
 	}
 	else { 
 		A = PI/2.0 - A;
-	};
+	}
 
-	EW = A/(PI/2.0);
+    EW = A/(PI/2.0);
 	IW = W[0]*(1.0-EW) + W[1]*EW; // Interpolated W
 	IY = Y[0]*(1.0-EW) + Y[1]*EW; // Interpolated Y
 	IX = X[0]*(1.0-EW) + X[1]*EW; // Interpolated X
@@ -473,9 +473,9 @@ void FindMUFsandfM(struct PathData *path, struct ControlPt CP[MAXCP][24], int ho
 	for(n=0; n<2; n++) {
 		// determine K
 		path->K[n] = 1.2 + IW*(fBM[n][path->hour]/fBM[n][noon[n]]) + IX*(pow((fBM[n][noon[n]]/fBM[n][path->hour]), 1.0/3.0) - 1.0) + IY*pow((fBMmin[n]/fBM[n][noon[n]]) ,2);
-	};
+	}
 
-	// Testing
+    // Testing
 	if(BARF) {
 		printf("\nMUF calculation parameters\n");
 		printf(  "P533 MSFSL: F2(D)MUF @ T+dM/n (fBM) %f\n", fBM[0][path->hour]);
@@ -502,8 +502,8 @@ void FindMUFsandfM(struct PathData *path, struct ControlPt CP[MAXCP][24], int ho
 		printf(  "P533 MSFSL FindfM: path->K[R-dM/2] %f\n", path->K[1]);
 		printf(  "P533 MSFSL FindfM: path->K[T+dM/2]*fBM[T + dM/2] %f\n", path->K[0]*fBM[0][path->hour]);
 		printf(  "P533 MSFSL FindfM: path->K[R-dM/2]*fBM[R - dM/2] %f\n", path->K[1]*fBM[1][path->hour]);
-	};
-	// Testing
+	}
+    // Testing
 
 	path->fM = min(path->K[0]*fBM[0][path->hour], path->K[1]*fBM[1][path->hour]);
 
@@ -522,9 +522,9 @@ void FindMUFsandfM(struct PathData *path, struct ControlPt CP[MAXCP][24], int ho
 			smallerCP = 27;
 			// This is the Basic MUF for the path if the path is greater than 9000 km, otherwise it is calculated in MUFBasic()
 			if(path->distance > 9000) path->BMUF = fBM[1][path->hour];
-		};
+		}
 
-		// Determine the MUF deciles
+        // Determine the MUF deciles
 		decile = DL; // Lower MUF decile
 		// Find the deltal in the foF2var array
 		deltal = FindfoF2var(*path, CP[smallerCP][path->hour].ltime, CP[smallerCP][path->hour].L.lat, decile);
@@ -542,9 +542,9 @@ void FindMUFsandfM(struct PathData *path, struct ControlPt CP[MAXCP][24], int ho
 		path->OPMUF = path->fM;
 		path->OPMUF10 = path->OPMUF*deltau; // largest 10% OPMUF
 		path->OPMUF90 = path->OPMUF*deltal; // largest 90% OPMUF
-	};
+	}
 
-	return;
+    return;
 }
 
 void FindfL(struct PathData *path, struct ControlPt CP[MAXCP][24], int hops, double dh, double ptick, double fH, double i90) {
@@ -596,11 +596,11 @@ void FindfL(struct PathData *path, struct ControlPt CP[MAXCP][24], int hops, dou
 			if((chi > 0.0) && (chi < PI/2.0)) {
 				// Sum the control points
 				SumCosChi[t] += sqrt(cos(chi));
-			};
-		};
-	};
+			}
+        }
+    }
 
-	// Determine winter-anomaly factor, Aw at the path mid-point
+    // Determine winter-anomaly factor, Aw at the path mid-point
 	Aw = WinterAnomaly(path->CP[MP].L.lat, path->month);
 
 	fLN = sqrt(path->distance/3000.0);
@@ -611,15 +611,15 @@ void FindfL(struct PathData *path, struct ControlPt CP[MAXCP][24], int hops, dou
 	// Note: For this calculation the SSN can be greater than MAXSSN
 	for(i=0; i<24; i++) { // Calculate fL for 24 hours
 		fL[i] = max((5.3*sqrt(((1.0 + 0.009*path->SSN)*SumCosChi[i])/(cos(i90)*log(9.5e6/ptick))) - fH)*(Aw + 1.0), fLN);
-	};
+	}
 
-	tr = NOTIME; // Initialize the reference time indicator. 
+    tr = NOTIME; // Initialize the reference time indicator. 
 	
 	// Testing
 	if(BARF) {
 		for(i=0;i<24;i++) printf("P533 MSFSL Before tr FindfL: (fL[%d]) %f\n", i, fL[i]);
-	};
-	// Testing
+	}
+    // Testing
 
 	// Find the first local time that fL[i] <= 2.0*fLN decay from day-LUF to night-LUF
 	for(now=0; now<24; now++) { // Calculate fL for 24 hours
@@ -632,34 +632,34 @@ void FindfL(struct PathData *path, struct ControlPt CP[MAXCP][24], int hops, dou
 				fL[tr] = 0.7945*fL[prev]*(dt*(1.0 - 0.7945) + 0.7945);
 				if(fL[now] < fL[tr]) { 
 					fL[now] = fL[tr];
-				};
-			};
-		};
-	};
-		
-	if(tr != NOTIME) {
+				}
+            }
+        }
+    }
+
+    if(tr != NOTIME) {
 		for(i=1; i<4; i++) {
 			now = ((tr + i)+24) % 24; // Find now and roll over
  
 			prev = ((now - 1)+24) % 24; // Find previous time and roll over
 
 			fL[now] = max(fL[prev] * 0.7945, fL[now]);
-		};
-	}
+		}
+    }
 	else {
 		// If tr can't be found
 		// Nothing else to do here 
-	};
-	
-	// Testing
+	}
+
+    // Testing
 	if(BARF) {
 		for(i=0;i<24;i++) printf("P533 MSFSL After tr FindfL: (fL[%d]) %f\n", i, fL[i]);
 		printf("\nP533 MSFSL FindfL: winter-anomaly factor (Aw) %f\n", Aw);
 		printf(  "P533 MSFSL FindfL: (fLN) %f\n", fLN);	
 		for(i=0;i<24;i++) printf("P533 MSFSL FindfL: (SumCosChi[%d]) %f\n", i, SumCosChi[i]);
 		printf("\n");
-	};
-	// Testing
+	}
+    // Testing
 
 	// Find fL[] for the "present hour" for further calculations 
 	// The "present hour" is calculated at path->hour + 1. 
@@ -682,10 +682,10 @@ void FindfL(struct PathData *path, struct ControlPt CP[MAXCP][24], int hops, dou
 				printf("\nP533 MSFSL FindfL: Hop number (i) %d\n", i);
 				PrintControlPointData(CP[(2*i)][t], 2*i, t);
 				PrintControlPointData(CP[(2*i)+1][t], (2*i)+1, t);
-			};
-		};
-	};
-	// Testing
+			}
+        }
+    }
+    // Testing
 
 
 	return; 
@@ -734,9 +734,9 @@ double WinterAnomaly(double lat, int month) {
 	}
 	else {
 		iNS = NORTH;
-	};
+	}
 
-	lat = fabs(lat); // All latitudes must be positive
+    lat = fabs(lat); // All latitudes must be positive
 	
 	if(((lat >= 0.0) && (lat <= 30.0*D2R)) || (lat >= 90.0*D2R)) {
 		return(0.0);
@@ -747,8 +747,7 @@ double WinterAnomaly(double lat, int month) {
 	}
 	else {
 		return(Aw[month][iNS]*(90.0 - lat*R2D)/30.0);
-	};
-
+	}
 }
 
 double AntennaGain08(struct PathData path, struct Antenna Ant, int direction, double * elevation) {
@@ -792,10 +791,10 @@ double AntennaGain08(struct PathData path, struct Antenna Ant, int direction, do
 		if( G > Gmax) {
 			Gmax = G;
 			*elevation = i*D2R;
-		};
-	};
+		}
+    }
 
-	return Gmax;
+    return Gmax;
 }
 
 // Testing
@@ -812,8 +811,8 @@ void PrintControlPointData(struct ControlPt CP, int i, int j) {
 	}
 	else {
 		printf("*            Penetration Point - %d (Hour %d)                    *\n", i, j);
-	};
-	printf("**********************************************************\n");
+	}
+    printf("**********************************************************\n");
 	printf("\tLatitude\t=\t% 5.3lf\t(% 5.3lf)\t[%d %d %d]\n", CP.L.lat, CP.L.lat*R2D, degrees(CP.L.lat*R2D), minutes(CP.L.lat*R2D), seconds(CP.L.lat*R2D));
 	printf("\tLongitude\t=\t% 5.3lf\t(% 5.3lf)\t[%d %d %d]\n", CP.L.lng, CP.L.lng*R2D, degrees(CP.L.lng*R2D), minutes(CP.L.lng*R2D), seconds(CP.L.lng*R2D));
 	printf("\tdistance = % 5.3lf\n", CP.distance);
