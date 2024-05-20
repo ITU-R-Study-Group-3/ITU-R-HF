@@ -35,7 +35,18 @@ void MUFOperational(struct PathData *path) {
 
 	// Initialize Table 1 ITU-R P.1240-1 "Ratio of the median operational MUF to the median
 	// basic MUF for an F2-mode, Rop". 
-	double Rop[2][3][2] =  {{{{1.20},{1.30}},{{1.15},{1.25}},{{1.10},{1.20}}},{{{1.15},{1.25}},{{1.20},{1.30}},{{1.25},{1.35}}}};
+    double Rop[2][3][2] = {
+        {
+            {1.20, 1.30},
+            {1.15, 1.25},
+            {1.10, 1.20}
+        },
+        {
+            {1.15, 1.25},
+            {1.20, 1.30},
+            {1.25, 1.35}
+        }
+    };
 	
 	double OPEMUF, OPEMUF10, OPEMUF90;		// E layer operational MUFs
 	double OPF2MUF, OPF2MUF10, OPF2MUF90;	// F2 layer operational MUFa
