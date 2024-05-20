@@ -268,7 +268,7 @@
 	return RTN_P533OK;  // Return no errors
 }
 
-DLLEXPORT char const * P533Version() {
+DLLEXPORT char const * P533Version(void) {
 
 	/*
 
@@ -289,7 +289,7 @@ DLLEXPORT char const * P533Version() {
 
 };
 
-DLLEXPORT char const * P533CompileTime() {
+DLLEXPORT char const * P533CompileTime(void) {
 
 	/*
 
@@ -310,7 +310,7 @@ DLLEXPORT char const * P533CompileTime() {
 
 };
 
-DLLEXPORT int sizeofPathDataStruct() {
+DLLEXPORT int sizeofPathDataStruct(void) {
 	/*
 		sizeofPathStruct() - Returns the sizeof(pathdata) for testing.
 			INPUT	

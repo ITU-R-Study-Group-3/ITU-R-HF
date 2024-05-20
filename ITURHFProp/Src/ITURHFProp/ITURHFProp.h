@@ -7,7 +7,7 @@
 
 	// P533.DLL typedefs ***************************************************
 	// P533 functions
-	typedef const char * (__cdecl *cP533Info)();
+	typedef const char * (__cdecl *cP533Info)(void);
 	typedef int(__cdecl * iP533)(struct PathData * path);
 	typedef int(__cdecl * iPathMemory)(struct PathData * path);
 	typedef int(__cdecl* iReadType11Func)(struct Antenna* Ant, FILE* DataFilePath, int silent);

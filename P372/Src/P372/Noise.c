@@ -904,7 +904,7 @@ int ReadFamDud(
     return RTN_READFAMDUDOK;
 };
 
-char const* P372Version() {
+char const* P372Version(void) {
     /*
     Return the version of the P533 DLL.
 
@@ -921,7 +921,7 @@ char const* P372Version() {
     return P372VER;
 };
 
-char const* P372CompileTime() {
+char const* P372CompileTime(void) {
     /*
     Return the compile time of the P533 DLL.
 
@@ -1101,11 +1101,11 @@ void AtmosphericNoise_LT(
     ) {
         InitializeNoise(noiseP);
     };
-    char const *__stdcall _P372CompileTime() {
+    char const *__stdcall _P372CompileTime(void) {
         P372CompileTime();
         return P372CT;
     };
-    char  const *__stdcall _P372Version() {
+    char  const *__stdcall _P372Version(void) {
         P372Version();
         return P372VER;
     };
