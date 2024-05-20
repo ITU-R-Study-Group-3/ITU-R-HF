@@ -182,7 +182,9 @@ int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFi
 	int	i, j, k, m;
 	int	hrs, lng, lat, ssn; // Temp gridmap maxima
 	int numfoF2;
-	int linelen = 300;
+
+	//warning C4189: 'linelen': local variable is initialized but not referenced
+	//int linelen = 300;
 
 	float * readBuffer;
 

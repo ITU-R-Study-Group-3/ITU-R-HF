@@ -350,6 +350,8 @@ void MedianSkywaveFieldStrengthLong(struct PathData *path) {
 
 void FindMUFsandfM(struct PathData *path, struct ControlPt CP[MAXCP][24], int hops, double dM) {
 
+	(void)hops; // To avoid unused parameter warning
+
 	/*
 	 
 	  FindfM() Finds the upper reference frequency, fM, from 24 hours of calculated MUFs.
@@ -548,6 +550,8 @@ void FindMUFsandfM(struct PathData *path, struct ControlPt CP[MAXCP][24], int ho
 }
 
 void FindfL(struct PathData *path, struct ControlPt CP[MAXCP][24], int hops, double dh, double ptick, double fH, double i90) {
+
+	(void)dh; // To avoid unused parameter warning
 
 	/*
 	 

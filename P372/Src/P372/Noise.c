@@ -379,7 +379,7 @@ void GetFamParameters(
 
     double v[5];
     double u[2];
-    double cz;
+    double cz = 0.0;
     double pz;
     double px;
     double x;

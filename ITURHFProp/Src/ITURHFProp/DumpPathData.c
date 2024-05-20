@@ -390,6 +390,9 @@ int mns(double time) {
 
 void PrintITUHeader(FILE *fp, char * time, char const * P533Version, const char * P533CompT, char const * P372Version, const char * P372CompT) {
 
+	(void)P533CompT; // To avoid unused parameter warning
+	(void)P372CompT; // To avoid unused parameter warning
+
 	fprintf(fp, "---------------------------------------------------------------------------\n");
 	fprintf(fp, " International Telecommunications Union - Radiocommunication Sector (ITU-R)\n");
 	fprintf(fp, "     ITURHFProp         Ver %s\n", ITURHFPropVER);

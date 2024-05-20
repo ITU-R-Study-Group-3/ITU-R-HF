@@ -308,7 +308,8 @@ int WhatSeason(struct Location L, int month) {
 
 	*/
 
-	int season;
+	//Initialise to prevent warning C4701: potentially uninitialized local variable 'season' used
+	int season = WINTER;
 	
 	if(L.lat >= 0) { // Northern hemisphere and the equator
 		switch (month) {

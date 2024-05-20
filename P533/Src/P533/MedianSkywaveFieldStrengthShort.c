@@ -1010,8 +1010,12 @@ double FindLh(struct ControlPt CP, double dh, int hour, int month) {
 
 	int season;		// season index
 	int txrange;	// transmitter range index
-	int mplt;		// mid-path local time index
-	int gmlat;		// geomagnetic latitude index
+
+	//Initialise to prevent warning C4701: potentially uninitialized local variable 'mplt' used
+	int mplt = 0;		// mid-path local time index
+
+	//Initialise to prevent warning C4701: potentially uninitialized local variable 'mplt' used
+	int gmlat = 0;		// geomagnetic latitude index
 
 	struct Location Gn;
 
@@ -1118,7 +1122,8 @@ int WhatSeasonforLh(struct Location L, int month) {
 	 *			returns the season
 	 */
 
-	int season;
+	//Initialise to prevent warning C4701: potentially uninitialized local variable 'season' used
+	int season = WINTER;
 	
 	if(L.lat >= 0) { // Northern hemisphere and the equator
 		switch (month) {
@@ -1168,7 +1173,9 @@ int SmallestCPfoF2(struct PathData path) {
 
 	 */
 
-	int temp, i, j;
+	//Initialise to prevent warning C4701: potentially uninitialized local variable 'temp' used
+	int temp = 0;
+    int i, j;
 	int idx[5] = {0,1,2,3,4}; // This is what will change.
 
 	// Sort by brute force
@@ -1212,7 +1219,8 @@ double AntennaGain(struct PathData path, struct Antenna Ant, double delta, int d
 
 
 	// The structure Antenna Ant is used to tell the subroutine which antenna to calculate.
-	double B;				// Bearing from transmitter to receiver
+	//Initialise to prevent warning C4701: potentially uninitialized local variable 'B' used
+	double B = 0.0;			// Bearing from transmitter to receiver
 	double c;				// fractional column (azimuth)
 	double r;				// fractional row (elevation)
 	double LL, LR, UR, UL;	// Neighboring gain values

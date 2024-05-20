@@ -109,7 +109,9 @@ double MirrorReflectionHeight(struct PathData path, struct ControlPt CP, double 
 
 	 */
 
-	double hr; // Mirror reflection height
+	//Initialise to prevent - warning C4701: potentially uninitialized local variable 'hr' used
+	double hr = 0; // Mirror reflection height
+
 	// Temps
 	double a, b, h, x, xr, y;
 	double H, Z, J, U, G;

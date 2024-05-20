@@ -95,7 +95,9 @@ void magfit(struct ControlPt *here, double height) {
 	double Fx, Fy, Fz, AR;
 	double SUMZ, SUMX, SUMY;
     int N, M;
-	int hr; // Height index
+
+	//Initialise to prevent - potentially uninitialized local variable 'hr' used
+	int hr = 0; // Height index
 
     
 /*******************************************************************************************************/

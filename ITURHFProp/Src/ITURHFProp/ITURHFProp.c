@@ -406,7 +406,6 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 		printf("ITURHFProp: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
 		return RTN_ERRP372DLL;
 	}
-    int mod[512];
 	// Get the handle to the DLL library, hLib.
 	GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
 	dllReadFamDud = (iReadFamDud)GetProcAddress((HMODULE)hLib, "ReadFamDud");

@@ -384,7 +384,8 @@ void FindfoE(struct ControlPt *here, int month, int hour, int SSN) {
 	double phi;			// monthly mean 10.7 cm solar radio flux
 	double M, N;
 
-	int day15th[12] = {15,46,74,105,135,166,196,227,258,288,319,349}; // 15th day of each month;
+	//warning C4189: 'day15th': local variable is initialized but not referenced
+	//int day15th[12] = {15,46,74,105,135,166,196,227,258,288,319,349}; // 15th day of each month;
 	
 	double C;			// main latitude factor
 	double X, Y;		// temps
