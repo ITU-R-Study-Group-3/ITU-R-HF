@@ -107,7 +107,7 @@ int main(int argc, char *argv[]) {
 	}
 
     // Get the handle to the DLL library, hLib.
-	GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
+	GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 512);
 	// Get the P533Version() process from the DLL.
 	dllP533Version = (cP533Info)GetProcAddress((HMODULE)hLib, "P533Version");
 	// Get the P533CompileTime() process from the DLL.
@@ -407,7 +407,7 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 		return RTN_ERRP372DLL;
 	}
 	// Get the handle to the DLL library, hLib.
-	GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
+	GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 512);
 	dllReadFamDud = (iReadFamDud)GetProcAddress((HMODULE)hLib, "ReadFamDud");
 #elif __linux__ || __APPLE__
 	void * hLib;

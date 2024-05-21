@@ -168,7 +168,7 @@
 		}
 		int mod[512];
 		// Get the handle to the DLL library, hLib.
-		GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
+		GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 512);
 		// Get the P372Version() process from the DLL.
 		dllP372Version = (cP372Info)GetProcAddress((HMODULE)hLib, "P372Version");
 		// Get the P372CompileTime() process from the DLL.

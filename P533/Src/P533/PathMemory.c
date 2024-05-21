@@ -176,7 +176,7 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 	}
 
     // Get the handle to the DLL library, hLib.
-	GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
+	GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 512);
 	//
 	dllAllocateNoiseMemory = (iNoiseMemory)GetProcAddress((HMODULE)hLib, "AllocateNoiseMemory");
 #elif __linux__ || __APPLE__
