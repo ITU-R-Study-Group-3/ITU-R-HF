@@ -48,7 +48,7 @@ int ReadIonParametersTxt(struct PathData *path, char DataFilePath[256], int sile
 	 */
 
 	int		j, k, m;
-	int		hrs, lng, lat, ssn; // Temp gridmap maxima
+	int		/*hrs,*/ lng, lat, ssn; // Temp gridmap maxima
 
 	int linelen = 300;
 	char line[300];
@@ -62,7 +62,7 @@ int ReadIonParametersTxt(struct PathData *path, char DataFilePath[256], int sile
 
 	// The dimensions of the array are fixed by Suessman's file generating program "iongrid"
 	// Eventually it would be nice if these were not fixed values so that other resolutions could be used. 
-	hrs = 24;	// 24 hours
+	//hrs = 24;	// 24 hours
 	lng = 241;	// 241 longitudes at 1.5-degree increments
 	lat = 121;	// 121 latitudes at 1.5-degree increments
 	ssn = 2;	// 2 SSN (12-month smoothed sun spot numbers) high and low
