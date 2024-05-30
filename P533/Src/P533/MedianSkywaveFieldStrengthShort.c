@@ -272,7 +272,7 @@ void MedianSkywaveFieldStrengthShort(struct PathData *path) {
 			// The lowest order mode must also have hops that are less than dmax km 
 			if(((n == path->n0_F2) && (path->distance/(path->n0_F2 + 1.0) <= path->dmax) && (path->Md_F2[n].fs < path->frequency)) 
 										||
-				((n > path->n0_F2) && (path->Md_F2[n].BMUF != 0.0)) && (path->Md_F2[n].fs < path->frequency)) { // higher order modes
+				(((n > path->n0_F2) && (path->Md_F2[n].BMUF != 0.0)) && (path->Md_F2[n].fs < path->frequency))) { // higher order modes
 				
 								        
 				// Find the elevation angle from equation 13 Section 5.1 Elevation angle.
