@@ -77,11 +77,11 @@ void ELayerScreeningFrequency(struct PathData *path) {
 		
 		// Now calculate the E layer screening frequency.
 		if(path->distance <= 2000) {
-			path->Md_F2[k].fs = (1.05*path->CP[MP].foE)/cos(i);
+			path->Md_F2[k].fs = (1.05 * foE)/cos(i);
 		}
 		else { // (path->distance > 2000)
 			// Use the larger of the foE at the control points 1000 km from either end.
-			path->Md_F2[k].fs = 1.05*max(path->CP[T1k].foE, path->CP[R1k].foE)/cos(i);
+			path->Md_F2[k].fs = (1.05 * foE)/cos(i);
 		}
     } // End for(k=path->n0_F2; k<MAXF2MODES; k++)
 
