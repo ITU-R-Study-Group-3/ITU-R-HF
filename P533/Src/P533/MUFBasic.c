@@ -46,7 +46,7 @@ void MUFBasic(struct PathData *path) {
 	double hr; // Mirror reflection height
 	double minele; // Min elevation in P533 was 3 degrees in radians
 	double dh; // The hop distance
-	double dhmax; // The maximum hop distance at a 500km reflection height
+	//double dhmax; // The maximum hop distance at a 500km reflection height
 	double aoi; // Angle of incidence
 	double n0F2DMUF; // Lowest-order mode basic MUF
 	double F2DMUF[2]; // There are 2 F2(d)MUF calculations for d > d sub max.
@@ -83,7 +83,7 @@ void MUFBasic(struct PathData *path) {
 	
 	// *************************** Not Used ******************************************
 	// Determine the maximum hop lenght for the path if the reflection height is 500 km
-	dhmax = (PI - IncidenceAngle(minele, 500.0) - ((PI/2.0) + minele))*R0*2.0;
+	//dhmax = (PI - IncidenceAngle(minele, 500.0) - ((PI/2.0) + minele))*R0*2.0;
 	//*********************************************************************************
 	
 	// The hop distance cannot be longer than 4000 km.
