@@ -53,7 +53,7 @@ void MUFBasic(struct PathData *path) {
 	double Mn0[2]; // MUF Factor of the lowest-order mode
 	double Mn[2]; // MUF Factor for higher-order modes
 	double fracd; // Fractional distance
-	double psi; // The angle associated with the hop length d, d = R*psi.
+	//double psi; // The angle associated with the hop length d, d = R*psi.
 	double i110; // The incident angle for a reflection height of 110 km.
 	double dmax; // path->dmax for readability
 	double delta; // Elevation angle
@@ -223,7 +223,7 @@ void MUFBasic(struct PathData *path) {
 				dh = min(path->distance/(n+1), 4000.0);
 				// The angle of incidence for hr = 110 km.
 				// First, find the angle associated with the half-hop distance, psi.
-				psi = dh/(2.0*R0);
+				//psi = dh/(2.0*R0);
 				// Find the elevation angle, delta.
 				delta = ElevationAngle(dh, hr);
 				// The incident angle i110 is
