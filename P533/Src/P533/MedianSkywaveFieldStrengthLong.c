@@ -605,7 +605,7 @@ void FindfL(struct PathData *path, struct ControlPt CP[MAXCP][24], int hops, dou
     }
 
     // Determine winter-anomaly factor, Aw at the path mid-point
-	Aw = WinterAnomaly(path->CP[MP].L.lat, path->month);
+	Aw = WinterAnomaly(path->CP[MP].L.lat, month);
 
 	fLN = sqrt(path->distance/3000.0);
 	
