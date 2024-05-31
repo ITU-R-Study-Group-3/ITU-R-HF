@@ -22,7 +22,7 @@ int ReadP1239(struct PathData *path, const char * DataFilePath) {
 	 */
 
 	int i, k, m, n;
-	int hrs, season, lat, ssn, decile;
+	int /*hrs,*/ season, lat, ssn, decile;
 	char line[256]; // There are 80 characters in the line.
 	char substr[45]; 
 	char InFilePath[256];
@@ -41,7 +41,7 @@ int ReadP1239(struct PathData *path, const char * DataFilePath) {
 	
 	season = 3;	// 3 seasons
 				//		1) WINTER 2) EQUINOX 3) SUMMER
-	hrs = 24;	// 24 hours  
+	//hrs = 24;	// 24 hours  
 	lat = 19;	// 19 latitude by 5
 				//      0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90
 	ssn = 3;	// 3 SSN ranges
@@ -53,7 +53,7 @@ int ReadP1239(struct PathData *path, const char * DataFilePath) {
 	fgets(line, 256, fp);
 
 	// Now read numbers for the lower decile.
-	for(n=0;n<2;n++) { // 2 deciles lower and upper
+	for(n=0;n<decile;n++) { // 2 deciles lower and upper
 		for(i=0;i<season;i++) { // Three seasons
 			for(m=0; m<ssn; m++) { // Three sunspot ranges
 				// Read the next four lines of text.
