@@ -355,7 +355,8 @@ have access to all of these parameters. Please refer to ITURHFProp to see an exa
 PathData structure can be interrogated to remove calculation results.
 
 ```c
-    struct PathData {
+
+struct PathData {
 
     // User-provided Input ************************************************************************
 
@@ -522,84 +523,86 @@ PathData structure can be interrogated to remove calculation results.
     int DMidx;                // Index to the dominant mode (0-2) E layer (3-8) F2 layer
 
     // End Calculated Parameter **************************************************************************
-    };
+};
+```
 
 The structure PathData above also contains other structures which are defined as:
 
-    struct Location {
-        double lat, lng;
-    };
+```c
+struct Location {
+    double lat, lng;
+};
 
-    struct SolarParameters {
-        double ha;         // hour angle (radians)
-        double sha;        // Sunrise/sunset hour angle (radians)
-        double sza;        // Solar zenith angle (radians)
-        double decl;       // Solar declination (radians)
-        double eot;        // Equation of time (minutes)
-        double lsr;        // local sunrise (hours)
-        double lsn;        // local solar noon (hours)
-        double lss;        // local sunset (hours)
-    };
+struct SolarParameters {
+    double ha;         // hour angle (radians)
+    double sha;        // Sunrise/sunset hour angle (radians)
+    double sza;        // Solar zenith angle (radians)
+    double decl;       // Solar declination (radians)
+    double eot;        // Equation of time (minutes)
+    double lsr;        // local sunrise (hours)
+    double lsn;        // local solar noon (hours)
+    double lss;        // local sunset (hours)
+};
 
-    struct ControlPt {
-        struct Location L;
-        double distance;  // This is the distance (km) from the transmitter to the CP and not the hop range
-        double foE;       // E layer critical frequency (MHz)
-        double foF2;      // F2 layer critical frequency (MHz)
-        double M3kF2;     // F2 layer critical frequency @ 3000 km (MHz)
-        double dip[2];    // Magnetic dip (radians)
-        double fH[2];     // Gyrofrequency (MHz)
-        double ltime;     // Local time (hours)
-        double hr;        // Mirror reflection point (km)
-        double x;         // foE/foF2 ratio used in the calculation of the F2MUF
+struct ControlPt {
+    struct Location L;
+    double distance;  // This is the distance (km) from the transmitter to the CP and not the hop range
+    double foE;       // E layer critical frequency (MHz)
+    double foF2;      // F2 layer critical frequency (MHz)
+    double M3kF2;     // F2 layer critical frequency @ 3000 km (MHz)
+    double dip[2];    // Magnetic dip (radians)
+    double fH[2];     // Gyrofrequency (MHz)
+    double ltime;     // Local time (hours)
+    double hr;        // Mirror reflection point (km)
+    double x;         // foE/foF2 ratio used in the calculation of the F2MUF
 
-        // Solar parameters
-        struct SolarParameters Sun;
-    };
+    // Solar parameters
+    struct SolarParameters Sun;
+};
 
-    struct Mode {
-        // Define the myriad of MUFs
-        double BMUF;        // Basic MUF (MHz). Typically there is no difference between the basic and
-                            // the 50% MUF
-                            // The BMUF is checked to see if it is != 0.0 to determine if the mode exists
-        double MUF90;       // MUF exceeded for 90% of the days of the month (MHz)
-        double MUF50;       // MUF exceeded for 50% of the days of the month(MHz)
-        double MUF10;       // MUF exceeded for 10% of the days of the month(MHz)
-        double OPMUF;       // Operation MUF(MHz)
-        double OPMUF10;     // Operation MUF exceeded 10% of the days of the month(MHz)
-        double OPMUF90;     // Operation MUF exceeded 90% of the days of the month(MHz)
-        double Fprob;       // Probability that the mode is supported at the frequency of interest
-        double deltal;      // Lower decile for the MUF calculations
-        double deltau;      // Upper decile for the MUF calculations
+struct Mode {
+    // Define the myriad of MUFs
+    double BMUF;        // Basic MUF (MHz). Typically there is no difference between the basic and
+                        // the 50% MUF
+                        // The BMUF is checked to see if it is != 0.0 to determine if the mode exists
+    double MUF90;       // MUF exceeded for 90% of the days of the month (MHz)
+    double MUF50;       // MUF exceeded for 50% of the days of the month(MHz)
+    double MUF10;       // MUF exceeded for 10% of the days of the month(MHz)
+    double OPMUF;       // Operation MUF(MHz)
+    double OPMUF10;     // Operation MUF exceeded 10% of the days of the month(MHz)
+    double OPMUF90;     // Operation MUF exceeded 90% of the days of the month(MHz)
+    double Fprob;       // Probability that the mode is supported at the frequency of interest
+    double deltal;      // Lower decile for the MUF calculations
+    double deltau;      // Upper decile for the MUF calculations
 
-        // Other parameters associated with the mode
-        double hr;          // Reflection height for the mode
-        double fs;          // E-Layer screening frequency for F2 modes only(MHz)
-        double Lb;          // < 9000 km path basic loss
-        double Ew;          // < 9000 km field strength(dB(1 µV/m))
-        double ele;         // Elevation angle
-        double Prw;         // Receiver power (dBW)
-        double Grw;         // Receive antenna gain (dBi)
-        double tau;         // Time delay
-        in MC;              // Mode Considered Flag (TRUE/FALSE)
-    };
+    // Other parameters associated with the mode
+    double hr;          // Reflection height for the mode
+    double fs;          // E-Layer screening frequency for F2 modes only(MHz)
+    double Lb;          // < 9000 km path basic loss
+    double Ew;          // < 9000 km field strength(dB(1 µV/m))
+    double ele;         // Elevation angle
+    double Prw;         // Receiver power (dBW)
+    double Grw;         // Receive antenna gain (dBi)
+    double tau;         // Time delay
+    in MC;              // Mode Considered Flag (TRUE/FALSE)
+};
 
-    struct Beam {
-        double azm;          // Azimuth
-        double ele;          // Elevation angle
-        double G;            // Gain for the azimuth and elevation
-    };
+struct Beam {
+    double azm;          // Azimuth
+    double ele;          // Elevation angle
+    double G;            // Gain for the azimuth and elevation
+};
 
-    struct Antenna {
-        char Name[256];
-        // 2D double pointer to the antenna pattern data
-        // The following is assumed about the antenna pattern when the program is run:
-        //    i) The orientation is correct. The antenna pattern is in the orientation as it would
-        //     be on the Earth.
-        //    ii) The data is valid. It is the responsibility of the calling program to ensure
-        //      this.
-        double **pattern;
-    };
+struct Antenna {
+    char Name[256];
+    // 2D double pointer to the antenna pattern data
+    // The following is assumed about the antenna pattern when the program is run:
+    //    i) The orientation is correct. The antenna pattern is in the orientation as it would
+    //     be on the Earth.
+    //    ii) The data is valid. It is the responsibility of the calling program to ensure
+    //      this.
+    double **pattern;
+};
 ```
 
 In the above some of the uppercase words are C defines that represent numbers and are used in the code
@@ -676,122 +679,122 @@ that the calculation by P533() fails ITURHFProp() will exit with the appropriate
 
 There are two ranges of return codes from P533() and ITURHFProp()
 
-    Returns from P533() are greater than or equal to 0 and less than 200
-        Return numbers less than 100 are normal and indicate no error in processing
-        Return numbers greater than 100 and less than 200 are errors
+Returns from P533() are greater than or equal to 0 and less than 200
+    Return numbers less than 100 are normal and indicate no error in processing
+    Return numbers greater than 100 and less than 200 are errors
 
-    Returns from P533() are greater than or equal to 0 and less than 210
-        Return numbers less than 10 are normal and indicate no error in processing
-        Return numbers greater than 200 and less than 210 are errors    Returns from ITURHFProp() are greater than or equal to 1000 and less than 1200
-        Return numbers greater than or less than 1000 and less than 1100 are normal and indicate
-        no error in processing
-        Return numbers greater than 1000 and less than 1200 are errors
-        
-    P533(): Return numbers less than 100 are normal and indicate no error in processing
+Returns from P533() are greater than or equal to 0 and less than 210
+    Return numbers less than 10 are normal and indicate no error in processing
+    Return numbers greater than 200 and less than 210 are errors    Returns from ITURHFProp() are greater than or equal to 1000 and less than 1200
+    Return numbers greater than or less than 1000 and less than 1100 are normal and indicate
+    no error in processing
+    Return numbers greater than 1000 and less than 1200 are errors
 
-    0        NO ERROR:    P533() Normal Exit
-    1        NO ERROR:    AllocatePathMemory()
-    2        NO ERROR:    PathMemory.c FreePathMemory(()
-    3        NO ERROR:    InputDump()
-    4        NO ERROR:    ReadIonParameters()
-    5        NO ERROR:    ReadP1239()
-    6        NO ERROR:    ReadAntennaPatterns()
-    7        NO ERROR:    ReadAntennaPatterns()
-    8        NO ERROR:    ValidPath()
-    
-    P533(): Return numbers greater than 100 and less than 200 are errors
+P533(): Return numbers less than 100 are normal and indicate no error in processing
 
-    100        ERROR:         Invalid Input Year
-    101        ERROR:         Invalid Input Month
-    102        ERROR:         Invalid Input Hour
-    103        ERROR:         Invalid Input Man-Made Noise
-    104        ERROR:         Invalid Input Missing foF2 array data
-    105        ERROR:         Invalid Input Missing M(3000)F2 array data
-    106        ERROR:         Invalid Input Missing DuD array data
-    107        ERROR:         Invalid Input Missing Fam array data
-    108        ERROR:         Invalid Input Missing foF2 Variability array data
-    109        ERROR:         Invalid Input Sun Spot Number
-    110        ERROR:         Invalid Input Modulation
-    111        ERROR:         Invalid Input Frequency
-    112        ERROR:         Invalid Input Bandwidth
-    113        ERROR:         Invalid Input Transmit Power
-    114        ERROR:         Invalid Input Required Signal-to-Noise ratio
-    115        ERROR:         Invalid Input Required Signal-to-Interference ratio
-    116        ERROR:         Invalid Input F0
-    117        ERROR:         Invalid Input T0
-    118        ERROR:         Invalid Input Digital Modulation Amplitude ratio
-    119        ERROR:         Invalid Input Digital Modulation Time Window
-    120        ERROR:         Invalid Input Digital Modulation Frequency Window
-    121        ERROR:         Invalid Input Transmit Location
-    122        ERROR:         Invalid Input Receive Location
-    123        ERROR:         Invalid Input Receive Antenna Pattern
-    124        ERROR:         Invalid Input Transmit Antenna Pattern
-    125        ERROR:         Invalid Input Require Reliability
-    130        ERROR:         Allocating Memory for foF2 Array
-    131        ERROR:         Allocating Memory for M(3000)F2 Array
-    132        ERROR:         Allocating Memory for foF2 Variability
-    133        ERROR:         Allocating Memory for Tx Antenna Pattern
-    134        ERROR:         Allocating Memory for Rx Antenna Pattern
-    135        ERROR:         Allocating Memory for Noise
-    140        ERROR:         Antenna File Format Error (Type 13)
-    141        ERROR:         Can Not Open Receive Antenna Array
-    160        ERROR:         Can Not Open foF2 Variability file "P1239-2 Decile Factors.txt"
-    161        ERROR:         Invalid P.1239-3 File
-    170        ERROR:         Can Not Open Ionospheric Parameters File
-    180        ERROR:         Can Not Open P372.DLL
+    0    NO ERROR:    P533() Normal Exit
+    1    NO ERROR:    AllocatePathMemory()
+    2    NO ERROR:    PathMemory.c FreePathMemory(()
+    3    NO ERROR:    InputDump()
+    4    NO ERROR:    ReadIonParameters()
+    5    NO ERROR:    ReadP1239()
+    6    NO ERROR:    ReadAntennaPatterns()
+    7    NO ERROR:    ReadAntennaPatterns()
+    8    NO ERROR:    ValidPath()
 
-    P372(): Return numbers less than 10 are normal and indicate no error in processing
+P533(): Return numbers greater than 100 and less than 200 are errors
 
-    1        NO ERROR:    AllocatePathMemory()
-    2        NO ERROR:    ReadFamDud()
-    3        NO ERROR:    FreeNoiseMemory()
-    4        NO ERROR:    Noise()
-    5        NO ERROR:    Noise() Man-made noise override
+    100    ERROR:    Invalid Input Year
+    101    ERROR:    Invalid Input Month
+    102    ERROR:    Invalid Input Hour
+    103    ERROR:    Invalid Input Man-Made Noise
+    104    ERROR:    Invalid Input Missing foF2 array data
+    105    ERROR:    Invalid Input Missing M(3000)F2 array data
+    106    ERROR:    Invalid Input Missing DuD array data
+    107    ERROR:    Invalid Input Missing Fam array data
+    108    ERROR:    Invalid Input Missing foF2 Variability array data
+    109    ERROR:    Invalid Input Sun Spot Number
+    110    ERROR:    Invalid Input Modulation
+    111    ERROR:    Invalid Input Frequency
+    112    ERROR:    Invalid Input Bandwidth
+    113    ERROR:    Invalid Input Transmit Power
+    114    ERROR:    Invalid Input Required Signal-to-Noise ratio
+    115    ERROR:    Invalid Input Required Signal-to-Interference ratio
+    116    ERROR:    Invalid Input F0
+    117    ERROR:    Invalid Input T0
+    118    ERROR:    Invalid Input Digital Modulation Amplitude ratio
+    119    ERROR:    Invalid Input Digital Modulation Time Window
+    120    ERROR:    Invalid Input Digital Modulation Frequency Window
+    121    ERROR:    Invalid Input Transmit Location
+    122    ERROR:    Invalid Input Receive Location
+    123    ERROR:    Invalid Input Receive Antenna Pattern
+    124    ERROR:    Invalid Input Transmit Antenna Pattern
+    125    ERROR:    Invalid Input Require Reliability
+    130    ERROR:    Allocating Memory for foF2 Array
+    131    ERROR:    Allocating Memory for M(3000)F2 Array
+    132    ERROR:    Allocating Memory for foF2 Variability
+    133    ERROR:    Allocating Memory for Tx Antenna Pattern
+    134    ERROR:    Allocating Memory for Rx Antenna Pattern
+    135    ERROR:    Allocating Memory for Noise
+    140    ERROR:    Antenna File Format Error (Type 13)
+    141    ERROR:    Can Not Open Receive Antenna Array
+    160    ERROR:    Can Not Open foF2 Variability file "P1239-2 Decile Factors.txt"
+    161    ERROR:    Invalid P.1239-3 File
+    170    ERROR:    Can Not Open Ionospheric Parameters File
+    180    ERROR:    Can Not Open P372.DLL
 
-    P372(): Return numbers greater than 200 and less than 210 are errors
+P372(): Return numbers less than 10 are normal and indicate no error in processing
 
-    201        ERROR:        Can Not Open Coefficient File
-    202        ERROR:        Allocating Memory for DuD
-    203        ERROR:        Allocating Memory for Fam
-    204        ERROR:        Allocating Memory for FakP
-    205        ERROR:        Allocating Memory for FakABP
+    1    NO ERROR:    AllocatePathMemory()
+    2    NO ERROR:    ReadFamDud()
+    3    NO ERROR:    FreeNoiseMemory()
+    4    NO ERROR:    Noise()
+    5    NO ERROR:    Noise() Man-made noise override
 
-    ITURHFProp(): Return numbers greater than or less than 1000 and less than 1100 are normal and indicate no error in processing
+P372(): Return numbers greater than 200 and less than 210 are errors
 
-    1000        NO ERROR:     Okay Calculation Completed 
-    1001        NO ERROR:     ITURHFProp()
-    1002        NO ERROR:     ValidateITURHFP()
-    1003        NO ERROR:     ReadInputConfiguration()
+    201    ERROR:    Can Not Open Coefficient File
+    202    ERROR:    Allocating Memory for DuD
+    203    ERROR:    Allocating Memory for Fam
+    204    ERROR:    Allocating Memory for FakP
+    205    ERROR:    Allocating Memory for FakABP
 
-    ITURHFProp(): Return numbers greater than or less than 1000 and less than 1100 are errors
+ITURHFProp(): Return numbers greater than or less than 1000 and less than 1100 are normal and indicate no error in processing
 
-    1100        ERROR:         Can Not Open Output File
-    1101        ERROR:         Can Not Find P533.DLL
-    1102        ERROR:         Can Not Open Receive Antenna File
-    1103        ERROR:         Can Not Open Transmit Antenna File
-    1104        ERROR:         Antenna Orientation    
-    1105        ERROR:         Transmit Bearing 
-    1106        ERROR:         Receive Bearing
-    1107        ERROR:         Receive Gain Offset
-    1108        ERROR:         Transmit Gain Offset
-    1109        ERROR:         Invalid Lower Left Latitude
-    1110        ERROR:         Invalid Lower Right Latitude
-    1111        ERROR:         Invalid Upper Left Latitude
-    1112        ERROR:         Invalid Upper Right Latitude
-    1113        ERROR:         Invalid Lower Left Longitude
-    1114        ERROR:         Invalid Lower Right Longitude
-    1115        ERROR:         Invalid Upper Left Longitude
-    1116        ERROR:         Invalid Upper Right Longitude
-    1117        ERROR:         Invalid Area Left Latitude
-    1118        ERROR:         Invalid Area Right Latitude
-    1119        ERROR:         Invalid Area Left Longitude
-    1120        ERROR:         Invalid Area Right Longitude
-    1121        ERROR:         Invalid Area Lower Latitude
-    1122        ERROR:         Invalid Area Upper Latitude
-    1123        ERROR:         Invalid Area Left Longitude
-    1124        ERROR:         Invalid Area Right Longitude
-    1200        ERROR:         Invalid Command Line 
-    1201        ERROR:         Missing Input File
+    1000    NO ERROR:    Okay Calculation Completed 
+    1001    NO ERROR:    ITURHFProp()
+    1002    NO ERROR:    ValidateITURHFP()
+    1003    NO ERROR:    ReadInputConfiguration()
+
+ITURHFProp(): Return numbers greater than or less than 1000 and less than 1100 are errors
+
+    1100    ERROR:    Can Not Open Output File
+    1101    ERROR:    Can Not Find P533.DLL
+    1102    ERROR:    Can Not Open Receive Antenna File
+    1103    ERROR:    Can Not Open Transmit Antenna File
+    1104    ERROR:    Antenna Orientation    
+    1105    ERROR:    Transmit Bearing 
+    1106    ERROR:    Receive Bearing
+    1107    ERROR:    Receive Gain Offset
+    1108    ERROR:    Transmit Gain Offset
+    1109    ERROR:    Invalid Lower Left Latitude
+    1110    ERROR:    Invalid Lower Right Latitude
+    1111    ERROR:    Invalid Upper Left Latitude
+    1112    ERROR:    Invalid Upper Right Latitude
+    1113    ERROR:    Invalid Lower Left Longitude
+    1114    ERROR:    Invalid Lower Right Longitude
+    1115    ERROR:    Invalid Upper Left Longitude
+    1116    ERROR:    Invalid Upper Right Longitude
+    1117    ERROR:    Invalid Area Left Latitude
+    1118    ERROR:    Invalid Area Right Latitude
+    1119    ERROR:    Invalid Area Left Longitude
+    1120    ERROR:    Invalid Area Right Longitude
+    1121    ERROR:    Invalid Area Lower Latitude
+    1122    ERROR:    Invalid Area Upper Latitude
+    1123    ERROR:    Invalid Area Left Longitude
+    1124    ERROR:    Invalid Area Right Longitude
+    1200    ERROR:    Invalid Command Line 
+    1201    ERROR:    Missing Input File
 
 ### ITURNoise Description - P372.dll driver program and associated tools for generation P.372-14 Section 5 style figures
 
