@@ -45,7 +45,7 @@ int ValidatePath(struct PathData *path) {
 	if (path->noiseP.dud == NULL)										return RTN_ERRNODUDDATA;
 	if (path->noiseP.fam == NULL)										return RTN_ERRNOFAMDATA;
 	if (path->foF2var == NULL)											return RTN_ERRNOFOF2VARDATA;
-	if ((1 > path->SSN) || (path->SSN > 311))							return RTN_ERRSSN;
+	if (1 > path->SSN)                      							return RTN_ERRSSN;
 	if ((path->Modulation != DIGITAL) && (path->Modulation != ANALOG))	return RTN_ERRMODULATION;
 	if ((1.0 > path->frequency) || path->frequency > 30.0)				return RTN_ERRFREQUENCY;
 	if ((0.005 > path->BW) || (path->BW > 3e6))							return RTN_ERRBW;
