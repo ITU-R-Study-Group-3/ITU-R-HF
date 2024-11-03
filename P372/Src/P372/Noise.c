@@ -224,7 +224,7 @@ int Noise(
 
     noiseP->DlT = 1.282 * sigmaT;
 
-    noiseP->FamT = min(FamTu, FamTl); // Worst-case noise.
+    noiseP->FamT = max(FamTu, FamTl); // Worst-case noise. With the greater noise figure the greater noise power 
 
     return RTN_NOISEOK;
 };
