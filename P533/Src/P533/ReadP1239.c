@@ -20,8 +20,10 @@ int ReadP1239(struct PathData *path, const char * DataFilePath) {
 	 *				data is written into the array path.foF2var
 	 *
 	 */
+	#ifdef __GNUC__
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunused-result"
+	#endif
 
 	int i, k, m, n;
 	int /*hrs,*/ season, lat, ssn, decile;
@@ -84,6 +86,8 @@ int ReadP1239(struct PathData *path, const char * DataFilePath) {
 
 	return RTN_READP1239OK;
 
+	#ifdef __GNUC__
 	#pragma GCC diagnostic pop
+	#endif
 }
 

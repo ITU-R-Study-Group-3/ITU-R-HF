@@ -47,8 +47,10 @@ int ReadIonParametersTxt(struct PathData *path, char DataFilePath[256], int sile
 	 *
 	 */
 
+	#ifdef __GNUC__
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunused-result"
+	#endif
 
 	int		j, k, m;
 	int		/*hrs,*/ lng, lat, ssn; // Temp gridmap maxima
@@ -147,7 +149,9 @@ int ReadIonParametersTxt(struct PathData *path, char DataFilePath[256], int sile
 
 	return RTN_READIONPARAOK;
 
+	#ifdef __GNUC__
 	#pragma GCC diagnostic pop
+	#endif
 }
 
 int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFilePath[256], int silent) {
@@ -181,8 +185,10 @@ int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFi
 	 *			data is read into the arrays foF2 and M3kF2
 	 *
 	 */
+	#ifdef __GNUC__
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wunused-result"
+	#endif
 
 	char buffer[256];
 
@@ -288,5 +294,7 @@ int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFi
 
 	return RTN_READIONPARAOK;
 
+	#ifdef __GNUC__
 	#pragma GCC diagnostic pop
+	#endif
 }
