@@ -19,6 +19,9 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 	// This program reads data from a file and calls ITURHFProp().
 	// All inputs are in degrees.
 
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunused-result"
+
 	int i;
 	int retval;
 
@@ -373,6 +376,8 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
     fclose(fp);
 
 	return RTN_RICOK;
+
+	#pragma GCC diagnostic pop
 }
 
 
@@ -600,6 +605,9 @@ void InitializeInput(struct ITURHFProp *ITURHFP, struct PathData *path) {
 
 int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
 
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunused-result"
+
 	int retval;
     int antType;
     int lineCtr;
@@ -714,6 +722,8 @@ int ReadAntennaPatterns(struct PathData *path, struct ITURHFProp ITURHFP) {
             return RTN_ERRCANTOPENTXANTFILE;
 	    }
     }
-		return RTN_READANTENNAPATTERNSOK;
+	return RTN_READANTENNAPATTERNSOK;
+
+	#pragma GCC diagnostic pop
 }
 

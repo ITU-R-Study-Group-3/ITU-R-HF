@@ -45,6 +45,10 @@ DLLEXPORT void SetAntennaPatternVal(struct PathData * path, int TXorRX, int azim
 }
 
 int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
+
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunused-result"
+
 	char line[256];			// Read input line
 	char instr[256];		// String temp
 
@@ -136,10 +140,15 @@ int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
 	}
 	
 	return RTN_READANTENNAPATTERNSOK;
+
+	#pragma GCC diagnostic pop
 }
 
 
 int ReadType13(struct Antenna *Ant, FILE * fp, double bearing, int silent) {
+
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunused-result"
 
 	char line[256];		// Read input line
 	char instr[256];	// String temp
@@ -239,10 +248,16 @@ int ReadType13(struct Antenna *Ant, FILE * fp, double bearing, int silent) {
 	}
 
     return RTN_READANTENNAPATTERNSOK;
+
+	#pragma GCC diagnostic pop
 }
 
 
 int ReadType14(struct Antenna *Ant, FILE *fp, int silent) {
+
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunused-result"
+
 	char line[256];			// Read input line
 	char instr[256];		// String temp
 
@@ -351,6 +366,8 @@ int ReadType14(struct Antenna *Ant, FILE *fp, int silent) {
 		}
 	}
 	return RTN_READANTENNAPATTERNSOK;
+
+	#pragma GCC diagnostic pop
 }
 
 

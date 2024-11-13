@@ -642,6 +642,9 @@ int ReadFamDud(
             noiseP->fakabp
      */
 
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunused-result"
+
     int i, j, k;
     int n;
 
@@ -902,6 +905,8 @@ int ReadFamDud(
     fclose(fp);
 
     return RTN_READFAMDUDOK;
+
+    #pragma GCC diagnostic pop
 }
 
 char const* P372Version(void) {
