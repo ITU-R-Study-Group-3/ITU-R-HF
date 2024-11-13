@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
 	struct ITURHFProp ITURHFP;	// The structure that describes the number and types of runs of P533() in the user defined analysis.
 
 	char InFilePath[256];
-	char OutFileName[32];
+	char OutFileName[42];
 	char OutFilePath[256];
 
 	time_t tm;

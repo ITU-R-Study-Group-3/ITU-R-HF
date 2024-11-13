@@ -656,7 +656,7 @@ int ReadFamDud(
 
     char line[256];
 
-    char CoeffFile[14];
+    char CoeffFile[22];
     char InFilePath[270];
 
     FILE *fp;
