@@ -37,7 +37,7 @@ int ValidatePath(struct PathData *path) {
 		if (((path->noiseP.ManMadeNoise != CITY) && (path->noiseP.ManMadeNoise != RESIDENTIAL) && (path->noiseP.ManMadeNoise != RURAL)
 			&& (path->noiseP.ManMadeNoise != QUIETRURAL) && (path->noiseP.ManMadeNoise != QUIET) && (path->noiseP.ManMadeNoise != NOISY))
 			&& ((path->noiseP.ManMadeNoise > 6.0) && (path->noiseP.ManMadeNoise < 100.0))
-			&& (path->noiseP.ManMadeNoise > 200.0))							return RTN_ERRMANMADENOISE;
+			|| (path->noiseP.ManMadeNoise > 200.0))							return RTN_ERRMANMADENOISE;
 	};
 
 	if (path->foF2 == NULL)												return RTN_ERRNOFOF2DATA;

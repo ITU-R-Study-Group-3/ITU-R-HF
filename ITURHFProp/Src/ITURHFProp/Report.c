@@ -772,8 +772,8 @@ void function_RPT_NOISESOURCESD(struct PathData path, int option, int *col) {
 			fprintf(fp, "Column %02d: DlA - Lower decile deviation of atmospheric noise (dB)\n", ++*col);
 			fprintf(fp, "Column %02d: DuM - Upper decile deviation of man-made noise (dB)\n", ++*col);
 			fprintf(fp, "Column %02d: DlM - Lower decile deviation of man-made noise (dB)\n", ++*col);
-			fprintf(fp, "Column %02d: DuG - Upper decile deviation of atmospheric noise (dB)\n", ++*col);
-			fprintf(fp, "Column %02d: DlG - Lower decile deviation of atmospheric noise (dB)\n", ++*col);
+			fprintf(fp, "Column %02d: DuG - Upper decile deviation of galatic noise (dB)\n", ++*col);
+			fprintf(fp, "Column %02d: DlG - Lower decile deviation of galatic noise (dB)\n", ++*col);
 			break;
 		case PRINT_RFC4180_HEADER:
 			fprintf(fp, ",DuA,DlA,DuM,DlM,DuG,DlG");
