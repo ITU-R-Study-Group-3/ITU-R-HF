@@ -1,3 +1,4 @@
+#pragma once
 // Operating system preprocessor directives *********************************************************
 #ifdef _WIN32
 	#define DLLEXPORT __declspec(dllexport)

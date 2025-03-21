@@ -1,6 +1,9 @@
+#include <stdio.h>
+#include "P533.h"
 // Operating system preprocessor ****************************************************************
 #ifdef _WIN32
 	#include <Windows.h>
+
 
 	// P533.DLL typedefs ***************************************************
 	// P533 functions

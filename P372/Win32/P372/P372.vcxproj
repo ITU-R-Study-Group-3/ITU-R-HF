@@ -82,6 +82,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\include;..\..\..\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -90,7 +91,7 @@
       <Command>copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\bin\$(TargetFileName)
 copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\p372\bin\$(TargetFileName)
 copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\p372\Src\AtmosPlots\$(TargetFileName)
-copy $(TargetDir)..\..\..\..\p372\Src\p372\noise.h $(TargetDir)..\..\..\..\p372\Src\ITURNoise\noise.h</Command>
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -151,14 +152,14 @@ copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\..\p372\bin\$(TargetF
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\Noise.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="..\..\Src\P372\InitializeNoise.c" />
     <ClCompile Include="..\..\Src\P372\MakeNoise.c" />
     <ClCompile Include="..\..\Src\P372\Noise.c" />
+    <ClCompile Include="..\..\Src\P372\NoiseDriver.c" />
     <ClCompile Include="..\..\Src\P372\NoiseMemory.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Src\P372\common.h" />
-    <ClInclude Include="..\..\Src\P372\Noise.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,3 +1,4 @@
+#pragma once
 // #defines
 
 // Operating system preprocessor directives

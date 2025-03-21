@@ -78,6 +78,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions); _CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\P533\include;..\..\include;..\..\..\common\include;..\..\..\P372\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -85,10 +86,7 @@
       </AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>copy /y $(SolutionDir)..\..\..\P533\Src\P533\P533.h $(SolutionDir)..\..\Src\ITURHFProp\P533.h
-copy /y $(SolutionDir)..\..\..\P372\Src\P372\Common.h $(SolutionDir)..\..\Src\ITURHFProp\Common.h
-copy /y $(SolutionDir)..\..\..\P372\Src\P372\Noise.h $(SolutionDir)..\..\Src\ITURHFProp\Noise.h
-copy /y $(SolutionDir)..\..\..\P533\Bin\P533.dll $(SolutionDir)..\..\Bin\P533.dll
+      <Command>copy /y $(SolutionDir)..\..\..\P533\Bin\P533.dll $(SolutionDir)..\..\Bin\P533.dll
 copy /y $(SolutionDir)..\..\..\P372\Bin\P372.dll $(SolutionDir)..\..\Bin\P372.dll
 </Command>
     </PreBuildEvent>
@@ -170,17 +168,14 @@ copy /y $(SolutionDir)..\..\..\P372\Bin\P372.dll $(SolutionDir)..\..\Bin\P372.dl
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\ITURHFProp\DumpPathData.c" />
-    <ClCompile Include="..\..\Src\ITURHFProp\ITURHFProp.c" />
-    <ClCompile Include="..\..\Src\ITURHFProp\ReadInputConfiguration.c" />
-    <ClCompile Include="..\..\Src\ITURHFProp\Report.c" />
-    <ClCompile Include="..\..\Src\ITURHFProp\ValidateITURHFP.c" />
+    <ClInclude Include="..\..\include\ITURHFProp.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\ITURHFProp\Common.h" />
-    <ClInclude Include="..\..\Src\ITURHFProp\ITURHFProp.h" />
-    <ClInclude Include="..\..\Src\ITURHFProp\Noise.h" />
-    <ClInclude Include="..\..\Src\ITURHFProp\P533.h" />
+    <ClCompile Include="..\..\Src\DumpPathData.c" />
+    <ClCompile Include="..\..\Src\ITURHFProp.c" />
+    <ClCompile Include="..\..\Src\ReadInputConfiguration.c" />
+    <ClCompile Include="..\..\Src\Report.c" />
+    <ClCompile Include="..\..\Src\ValidateITURHFP.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

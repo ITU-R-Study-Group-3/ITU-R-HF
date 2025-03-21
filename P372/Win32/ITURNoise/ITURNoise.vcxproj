@@ -126,6 +126,7 @@ copy $(TargetPath) $(TargetDir)..\..\..\..\P372\Src\AtmosPlots\$(TargetFileName)
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\..\include;..\..\..\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,7 +135,7 @@ copy $(TargetPath) $(TargetDir)..\..\..\..\P372\Src\AtmosPlots\$(TargetFileName)
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(TargetDir)..\..\..\..\bin\$(TargetFileName)
-copy $(TargetPath) $(TargetDir)..\..\..\..\P372\Src\AtmosPlots\$(TargetFileName)</Command>
+copy $(TargetPath) $(TargetDir)..\..\..\..\Src\AtmosPlots\$(TargetFileName)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -159,12 +160,10 @@ copy $(TargetPath) $(TargetDir)..\..\..\..\P372\Src\AtmosPlots\$(TargetFileName)
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\ITURNoise\ITURNoise.c" />
+    <ClInclude Include="..\..\include\ITURNoise.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\ITURNoise\Common.h" />
-    <ClInclude Include="..\..\Src\ITURNoise\ITURNoise.h" />
-    <ClInclude Include="..\..\Src\ITURNoise\Noise.h" />
+    <ClCompile Include="..\..\Src\ITURNoise\ITURNoise.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
