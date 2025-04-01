@@ -866,9 +866,9 @@ code	Noise Category
 4.0	Noisy
 5.0	Quiet
 
-If argument 5 is give as a negative number, the man-made noise will be set to that value where the galactic and atmospheric noise calculations are not performed. This second mode is of little value for this stand-alone program, ITURNoise.exe, running, P533.dll. Overriding the P372 calculation is included here and is consistent with some analyses desired in ITURHFProp which also uses the P372.dll. 
-Argument 6 indicates the location of the required CCIR data files. The data file path must be given as a string enclosed in double quotes without trailing back slash. In the example above the location of the required CCIR data files are on drive C: in the directory Data, “C:\Data”
-Argument 7 allows the program to provide return data from the P.372 calculation is several formats. The table below gibes the integer print flag codes. 
+If argument 7 is give as a negative number, the man-made noise will be set to that value where the galactic and atmospheric noise calculations are not performed. This second mode is of little value for this stand-alone program, ITURNoise.exe, running, P533.dll. Overriding the P372 calculation is included here and is consistent with some analyses desired in ITURHFProp which also uses the P372.dll. 
+Argument 8 indicates the location of the required CCIR data files. The data file path must be given as a string enclosed in double quotes without trailing back slash. In the example above the location of the required CCIR data files are on drive C: in the directory Data, “C:\Data”
+Argument 9 allows the program to provide return data from the P.372 calculation is several formats. The table below gibes the integer print flag codes. 
 code		Print Mode
 No argument	Prints detailed output to stdout
 0		No output
