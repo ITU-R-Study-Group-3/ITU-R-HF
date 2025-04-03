@@ -161,7 +161,11 @@
 	// Load the Noise routines in P372.dll ******************************
 	#ifdef _WIN32
 		// Get the handle to the P372 DLL.
+#if defined(_M_X64)
+		hLib = LoadLibrary("P372_x64.dll");
+#else
 		hLib = LoadLibrary("P372.dll");
+#endif
 		if (hLib == NULL) {
 			printf("P533: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
 			return RTN_ERRP372DLL;

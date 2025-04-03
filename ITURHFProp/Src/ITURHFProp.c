@@ -100,7 +100,11 @@ int main(int argc, char *argv[]) {
 
 #ifdef _WIN32
 	// Get the handle to the P533 DLL.
+#if defined(_M_X64)
+	hLib = LoadLibrary("P533_x64.dll");
+#else
 	hLib=LoadLibrary("P533.dll");
+#endif
 	if(hLib==NULL) {
 		printf("Main: Error %d p533.dll Not Found\n", RTN_ERRP533DLL);
 		return RTN_ERRP533DLL;
@@ -402,7 +406,11 @@ int ITURHFProp(struct PathData *path, struct ITURHFProp *ITURHFP) {
 	// Load the Noise routines in P372.dll ******************************
 #ifdef _WIN32
 	// Get the handle to the P372 DLL.
+#if defined(_M_X64)
+	hLib = LoadLibrary("P372_x64.dll");
+#else
 	hLib = LoadLibrary("P372.dll");
+#endif
 	if (hLib == NULL) {
 		printf("ITURHFProp: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
 		return RTN_ERRP372DLL;

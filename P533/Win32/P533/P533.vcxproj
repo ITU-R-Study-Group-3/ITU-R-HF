@@ -132,6 +132,7 @@ copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\p533\bin\$(TargetFile
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\include;..\..\..\P372\include;..\..\..\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -140,8 +141,8 @@ copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\p533\bin\$(TargetFile
       <ShowProgress>NotSet</ShowProgress>
     </Link>
     <PreBuildEvent>
-      <Command>copy $(TargetDir)..\..\..\..\..\P372\Src\P372\Noise.h  $(TargetDir)..\..\..\..\..\P533\Src\P533\Noise.h
-copy $(TargetDir)..\..\..\..\..\P372\Src\P372\Common.h  $(TargetDir)..\..\..\..\..\P533\Src\P533\Common.h</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\bin\$(TargetFileName)
@@ -157,6 +158,7 @@ copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\..\p533\bin\$(TargetF
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\include;..\..\..\P372\include;..\..\..\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -164,8 +166,8 @@ copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\..\p533\bin\$(TargetF
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>copy $(TargetDir)..\..\..\..\P372\Src\P372\Noise.h  $(TargetDir)..\..\..\..\P533\Src\P533\Noise.h
-copy $(TargetDir)..\..\..\..\P372\Src\P372\Common.h  $(TargetDir)..\..\..\..\P533\Src\P533\Common.h</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\bin\$(TargetFileName)

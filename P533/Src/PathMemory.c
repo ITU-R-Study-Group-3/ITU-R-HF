@@ -169,7 +169,11 @@ DLLEXPORT int AllocatePathMemory(struct PathData *path) {
 	int mod[512];
 
 	// Get the handle to the P372 DLL.
+#if defined(_M_X64)
+	hLib = LoadLibrary("P372_x64.dll");
+#else
 	hLib = LoadLibrary("P372.dll");
+#endif
 	if (hLib == NULL) {
 		printf("P533: AllocatePathMemory: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
 		return RTN_ERRP372DLL;

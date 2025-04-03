@@ -20,9 +20,7 @@ Path.frequency 10.0
 Path.txpower 0.0
 Path.BW 6000.0
 Path.SNRr 38.4
-Path.Relr 86
 Path.ManMadeNoise "RESIDENTIAL"
-//Path.ManMadeNoise -124.87
 Path.Modulation "ANALOG"
 Path.SIRr 23.76
 Path.SNRXXp 43
@@ -33,7 +31,6 @@ Path.T0 0.0
 Path.F0 0.0
 Path.SorL "SHORTPATH"
 RptFilePath "../Reports/"
-//RptFileFormat "RPT_E | RPT_PR | RPT_RXLOCATION | RPT_D | RPT_DUMPPATH"
 RptFileFormat "RPT_NOISESOURCES | RPT_NOISESOURCESD | RPT_NOISETOTALD | RPT_NOISETOTAL"
 LL.lat 40.0
 LL.lng 10.0
@@ -45,4 +42,4 @@ UR.lat 40.0
 UR.lng 10.0
 latinc 1.0
 lnginc 1.0
-DataFilePath "C:\Users\behm\Documents\GitHub\GitHf\Data\"
+DataFilePath "..\Data\"
