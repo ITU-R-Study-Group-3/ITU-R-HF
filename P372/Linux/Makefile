@@ -4,7 +4,8 @@ bin_dir = ../Bin/
 # Use the following for testing
 #CFLAGS = -fPIC -Wall -Wextra -O0 -g -I$(source_dir)
 # Use the following for production
-CFLAGS = -fPIC -Wall -Wextra -O2 -I$(source_dir)
+OPTIMIZE ?= -O2
+CFLAGS = -fPIC -Wall -Wextra $(OPTIMIZE) -I$(source_dir)
 
 LDFLAGS = -shared -lm -ldl -z muldefs
 RM = rm -f

@@ -2,7 +2,8 @@ CC = gcc
 # Use the following for testing
 #CFLAGS = -fPIC -Wall -Wextra -O0 -g
 # Use the following for production
-CFLAGS = -fPIC -Wall -Wextra -O2
+OPTIMIZE ?= -O2
+CFLAGS = -fPIC -Wall -Wextra $(OPTIMIZE)
 
 LDFLAGS = -lm -ldl -z muldefs
 RM = rm -f
