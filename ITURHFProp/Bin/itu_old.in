@@ -22,7 +22,7 @@ Path.frequency  6.2
 Path.txpower 0.0 // 1 kW
 Path.BW 1000.0
 Path.SNRr 10.0
-Path.SNRXXp 13 //TODO decide if this is equivalent change to old Path.Relr that was removed
+Path.SNRXXp 13
 Path.ManMadeNoise "RURAL"
 
 // Digital modulation
