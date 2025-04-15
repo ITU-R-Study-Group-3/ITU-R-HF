@@ -15,37 +15,38 @@ Recommendations ITU-R P.533-14 and P.372-15
 
 ## P533()
 
-This program provides methods for the prediction of available frequencies, signal levels, and the predicted reliability for analogue and digital-modulated HF systems, taking into account not only the signal-to-noise ratio but also the expected time and frequency spreads of the channel. This program calculates the HF path parameters that appear in ITU-R Recommnedation P.533-14. 
-Great care has been taken in this implementation to adhere as closely as possible to the Recommendation P.533-14 and to verify the method against the measurement data in the ITU-R D1 databank. 
+This program, presented as a dynamic linked library, provides methods for the prediction of available frequencies, signal levels, and the predicted reliability for analogue and digital-modulated HF systems, taking into account not only the signal-to-noise ratio but also the expected time and frequency spreads of the channel. This program calculates the HF path parameters that appear in Recommendation ITU-R P.533-14. 
+	
+Great care has been taken in this implementation to follow the ITU published standard P.533-14. The flow of this implementation was designed primarily for readability and clarity, with performance being the secondary goal. It is hoped that this code will illuminate the standard and be easily maintainable.  For the definition of the interface to this library, please see
+below.
 
 ## P372()
 
-This program provides the calculations necessary to find the three components of noise that are important to HF propagation predictions: Man-made, Galactic, and Atmospheric. 
+This program, presented as a dynamic linked library, provides methods for the prediction of background levels of radio-frequency noise in the frequency range from 0.1 Hz to 100 GHz in accordance with Recommendation ITU-R P.372-14. The program takes into account noise from the atmosphere, galaxy, and man-made sources. The program is used by the program P533() as part of the required calculations.
 
 ## ITURHFProp()
 
-This program's sole purpose to act as an input and output data wrapper for P533(). ITURHFProp() minimally is as an example of how the P533() model can be used in other applications. Please refer to ITUHFProp() to determine how data is loaded and unloaded from P533() to conduct successfully HF circuit analysis. 
+This program's sole purpose is to act as an input and output data wrapper for P533(). This routine is as an example of how the P533() model can be used in other applications. Please refer to ITUHFProp() to determine how data is loaded and unloaded from P533() to conduct successfully HF circuit analysis.
 
 ### USAGE
 
-	ITURFHProp [Options] [Input File] [Output File]
+	ITURHFProp [Options] [Input File] [Output File]
 		Options
-			-c Simplified CSV output: The first line of the file is a header with the same format as
-			   the subsequent record lines. The header contains names corresponding to the fields in the file and
-			   contains the same number of fields as the records in the rest of the file.
-			   Selecting this option also removes the header data.
+			-s Silent Mode: Suppresses display output except for error
+			   messages
 			-h Help: Displays help
-			-s Silent Mode: Suppresses display output except for error messages
-			-t Strip the header: Creates and output file with the header data removed.
-			-v Version: Displays the version of ITUHFProp() and P533()
+			-v Version: Displays the version of ITURHFProp() and P533()
 
 		Input File
-			Full path name of the input file. If no path is given the current directory is assumed.
+			Full path name of the input file. If no path is given the
+			current directory is assumed.
 
 		Output File
-			Full path name of the output file. Note: Existing files will be overwritten. If no output file is 
-			indicated a default output file, either a report or a path dump, will be created in the report file 
-			directory specified by the RptFilePath parameter in the input file.
+			Full path name of the output file. Note: Existing files will be
+			overwritten.
+			If no output file is indicated a default output file, either a
+			report or a path dump file will be created in
+			the .\\Report file directory
 
 
 ### ITURHFProp input file parameters (meaning, units and limits):
@@ -1094,5 +1095,4 @@ pecuniary loss) arising out of or related to use of the Software.
 ---
 
 #2022 ITU-R Study Group 3
-
 
