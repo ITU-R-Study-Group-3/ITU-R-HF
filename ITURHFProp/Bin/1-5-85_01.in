@@ -30,9 +30,7 @@ Path.FW 0.0
 Path.T0 0.0
 Path.F0 0.0
 Path.SorL "SHORTPATH"
-RptFilePath "C:\Users\behm\Documents\GitHub\GitHf\Reports\"
-\\RptFileFormat "RPT_E | RPT_PR | RPT_RXLOCATION | RPT_D | RPT_SNRXX | RPT_OCR | RPT_OCRS"
-\\RptFileFormat "RPT_ALL"
+RptFilePath "../Reports/"
 RptFileFormat "RPT_NOISESOURCESD | RPT_NOISESOURCES | RPT_NOISETOTALD | RPT_NOISETOTAL"
 SE.lat 51.1166666667
 SE.lng 7.26666666667
@@ -40,4 +38,4 @@ NW.lat 51.1166666667
 NW.lng 7.26666666667
 latinc 1.0
 lnginc 1.0
-DataFilePath "C:\Users\behm\Documents\GitHub\GitHf\Data\"
+DataFilePath "../Data/"

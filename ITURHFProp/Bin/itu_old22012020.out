@@ -1,9 +1,9 @@
 ---------------------------------------------------------------------------
  International Telecommunications Union - Radiocommunication Sector (ITU-R)
-     ITURHFProp         Ver Jan 24 2020	- Fri Dec  6 15:52:21 2019
-     HF Model (P533)    Ver 14.0	- Fri Dec  6 15:53:30 2019
-     Noise Model (P372) Ver 13.3	- Fri Dec  6 15:53:22 2019
-     Analysis Prepared  Fri Jan 24 13:29:50 2020
+     ITURHFProp         Ver Apr 14 2025
+     HF Model (P533)    Ver 14.2
+     Noise Model (P372) Ver 14.3
+     Analysis Prepared  Mon Apr 14 13:56:33 2025
 
 ---------------------------------------------------------------------------
 
@@ -25,8 +25,8 @@
 	Rx Location BEIJING     
 	Rx latitude  =  0.698 ( 40.000) [ 39 59 59]
 	Rx longitude =  2.032 ( 116.400) [ 116 23 59]
-	local time Rx   =  9 (hour UTC)
-	local time Tx   =  8 (hour UTC)
+	local time Rx   =  9 
+	local time Tx   =  8 
 	Frequency =  6.200 (MHz)
 	Bandwidth =  1000.000 (Hz)
 	Short or Long Path = Short
@@ -64,38 +64,38 @@
 ************************ Season ***************************
 	season = Winter
 ****** Field Strength (dB(1 uV/m)) and Rx Power (dBW) *****
-	Field Strength (7000 km > D)           = -8.702
+	Field Strength (7000 km > D)           = -9.122
 	Field Strength (7000 km < D < 9000 km) = -307.000
 	Field Strength           (D > 9000 km) = -307.000
-	Median Rx power = -121.993
+	Median Rx power = -122.413
 **************** Rx Elevation Angle (degs)****************
 	Rx Elevation angle =  9.884
 ***************** Short Path Parameters *******************
-	"Not otherwise included loss" (dB) =  8.720
+	"Not otherwise included loss" (dB) =  9.140
 ***************** Noise Parameters (dB) *******************
-	Atmospheric noise upper decile =  8.572
-	Atmospheric noise lower decile =  7.207
-	Atmospheric noise              =  24.833
+	Atmospheric noise upper decile =  8.590
+	Atmospheric noise lower decile =  7.214
+	Atmospheric noise              =  25.823
 	Man made noise upper decile    =  9.200
 	Man made noise lower decile    =  4.600
 	Man made noise                 =  45.251
 	Galactic noise upper decile    =  2.000
 	Galactic noise lower decile    =  2.000
 	Galactic noise                 =  33.775
-	Total noise upper decile       =  9.116
-	Total noise lower decile       =  4.382
-	Total noise                    =  45.474
+	Total noise upper decile       =  9.110
+	Total noise lower decile       =  4.372
+	Total noise                    =  45.490
 ********************** SNR Parameters (dB) *************************************
-	Monthly median resultant signal-to-noise ratio =  6.421
-	Upper decile deviation signal-to-noise ratio   =  8.958
+	Monthly median resultant signal-to-noise ratio =  5.992
+	Upper decile deviation signal-to-noise ratio   =  8.960
 	Lower decile deviation signal-to-noise ratio   =  14.430
-	Signal-to-noise exceeded for 1% of the month  =  22.682
+	Signal-to-noise exceeded for 1% of the month  =  22.257
 ********************** SIR Parameters (dB) *************************************
 	Signal-to-interference ratio = -307.000
 	Upper decile deviation of the signal-to-interference ratio = -307.000
 	Lower decile deviation of the signal-to-interference ratio = -307.000
 ******************** Reliability Parameters (%) *******************************
-	Basic Circuit Reliability                      =  27.162
+	Basic Circuit Reliability                      =  25.273
 	Multimode Interference                         = -307.000
 	Overall Circuit Reliability without scattering =  0.000
 	Overall Circuit Reliability with scattering    =  0.000
@@ -138,9 +138,9 @@
 	Lower decile =  0.783
 	Upper decile =  1.312
 	E Layer Screen Frequency  =  0.000 (MHz)
-	Basic Loss (< 7000 km)    =  161.250 (dB)
-	Median Field Strength     = -8.803 (dB(1 uV/m))
-	Receiver Power            = -122.228 (dBW)
+	Basic Loss (< 7000 km)    =  161.670 (dB)
+	Median Field Strength     = -9.223 (dB(1 uV/m))
+	Receiver Power            = -122.648 (dBW)
 	Delay                     =  0.000 (mS)
 	Elevation angle   =  9.884 (degs)
 	Reflection height =  0.000 (km)
@@ -159,9 +159,9 @@
 	Lower decile =  0.783
 	Upper decile =  1.312
 	E Layer Screen Frequency  =  0.000 (MHz)
-	Basic Loss (< 7000 km)    =  177.583 (dB)
-	Median Field Strength     = -25.135 (dB(1 uV/m))
-	Receiver Power            = -134.831 (dBW)
+	Basic Loss (< 7000 km)    =  178.003 (dB)
+	Median Field Strength     = -25.555 (dB(1 uV/m))
+	Receiver Power            = -135.251 (dBW)
 	Delay                     =  0.000 (mS)
 	Elevation angle   =  18.454 (degs)
 	Reflection height =  0.000 (km)
@@ -180,9 +180,9 @@
 	Lower decile =  0.783
 	Upper decile =  1.312
 	E Layer Screen Frequency  =  0.000 (MHz)
-	Basic Loss (< 7000 km)    =  200.157 (dB)
-	Median Field Strength     = -47.709 (dB(1 uV/m))
-	Receiver Power            = -156.631 (dBW)
+	Basic Loss (< 7000 km)    =  200.577 (dB)
+	Median Field Strength     = -48.129 (dB(1 uV/m))
+	Receiver Power            = -157.051 (dBW)
 	Delay                     =  0.000 (mS)
 	Elevation angle   =  25.578 (degs)
 	Reflection height =  0.000 (km)
@@ -201,9 +201,9 @@
 	Lower decile =  0.783
 	Upper decile =  1.312
 	E Layer Screen Frequency  =  0.000 (MHz)
-	Basic Loss (< 7000 km)    =  203.190 (dB)
-	Median Field Strength     = -50.742 (dB(1 uV/m))
-	Receiver Power            = -160.045 (dBW)
+	Basic Loss (< 7000 km)    =  203.610 (dB)
+	Median Field Strength     = -51.162 (dB(1 uV/m))
+	Receiver Power            = -160.465 (dBW)
 	Delay                     =  0.000 (mS)
 	Elevation angle   =  31.707 (degs)
 	Reflection height =  0.000 (km)
@@ -222,9 +222,9 @@
 	Lower decile =  0.783
 	Upper decile =  1.312
 	E Layer Screen Frequency  =  0.000 (MHz)
-	Basic Loss (< 7000 km)    =  201.519 (dB)
-	Median Field Strength     = -49.071 (dB(1 uV/m))
-	Receiver Power            = -159.343 (dBW)
+	Basic Loss (< 7000 km)    =  201.939 (dB)
+	Median Field Strength     = -49.491 (dB(1 uV/m))
+	Receiver Power            = -159.763 (dBW)
 	Delay                     =  0.000 (mS)
 	Elevation angle   =  37.018 (degs)
 	Reflection height =  0.000 (km)

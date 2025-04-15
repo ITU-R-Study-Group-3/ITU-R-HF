@@ -19,31 +19,29 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\P533\Between7000kmand9000km.c" />
-    <ClCompile Include="..\..\Src\P533\CalculateCPParameters.c" />
-    <ClCompile Include="..\..\Src\P533\CircuitReliability.c" />
-    <ClCompile Include="..\..\Src\P533\ELayerScreeningFrequency.c" />
-    <ClCompile Include="..\..\Src\P533\Geometry.c" />
-    <ClCompile Include="..\..\Src\P533\InitializePath.c" />
-    <ClCompile Include="..\..\Src\P533\InputDump.c" />
-    <ClCompile Include="..\..\Src\P533\Magfit.c" />
-    <ClCompile Include="..\..\Src\P533\MedianAvailableReceiverPower.c" />
-    <ClCompile Include="..\..\Src\P533\MedianSkywaveFieldStrengthLong.c" />
-    <ClCompile Include="..\..\Src\P533\MedianSkywaveFieldStrengthShort.c" />
-    <ClCompile Include="..\..\Src\P533\MUFBasic.c" />
-    <ClCompile Include="..\..\Src\P533\MUFOperational.c" />
-    <ClCompile Include="..\..\Src\P533\MUFVariability.c" />
-    <ClCompile Include="..\..\Src\P533\P533.c" />
-    <ClCompile Include="..\..\Src\P533\PathMemory.c" />
-    <ClCompile Include="..\..\Src\P533\ReadIonParameters.c" />
-    <ClCompile Include="..\..\Src\P533\ReadP1239.c" />
-    <ClCompile Include="..\..\Src\P533\ReadType13.c" />
-    <ClCompile Include="..\..\Src\P533\ValidatePath.c" />
+    <ClInclude Include="..\..\include\P533.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\P533\Common.h" />
-    <ClInclude Include="..\..\Src\P533\Noise.h" />
-    <ClInclude Include="..\..\Src\P533\P533.h" />
+    <ClCompile Include="..\..\Src\Between7000kmand9000km.c" />
+    <ClCompile Include="..\..\Src\CalculateCPParameters.c" />
+    <ClCompile Include="..\..\Src\CircuitReliability.c" />
+    <ClCompile Include="..\..\Src\ELayerScreeningFrequency.c" />
+    <ClCompile Include="..\..\Src\Geometry.c" />
+    <ClCompile Include="..\..\Src\InitializePath.c" />
+    <ClCompile Include="..\..\Src\InputDump.c" />
+    <ClCompile Include="..\..\Src\Magfit.c" />
+    <ClCompile Include="..\..\Src\MedianAvailableReceiverPower.c" />
+    <ClCompile Include="..\..\Src\MedianSkywaveFieldStrengthLong.c" />
+    <ClCompile Include="..\..\Src\MedianSkywaveFieldStrengthShort.c" />
+    <ClCompile Include="..\..\Src\MUFBasic.c" />
+    <ClCompile Include="..\..\Src\MUFOperational.c" />
+    <ClCompile Include="..\..\Src\MUFVariability.c" />
+    <ClCompile Include="..\..\Src\P533.c" />
+    <ClCompile Include="..\..\Src\PathMemory.c" />
+    <ClCompile Include="..\..\Src\ReadIonParameters.c" />
+    <ClCompile Include="..\..\Src\ReadP1239.c" />
+    <ClCompile Include="..\..\Src\ReadType13.c" />
+    <ClCompile Include="..\..\Src\ValidatePath.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D567A7CB-159C-419F-8217-F7BF5025E9BA}</ProjectGuid>
@@ -113,13 +111,14 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\include;..\..\..\P372\include;..\..\..\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>copy $(TargetDir)..\..\..\..\P372\Src\P372\Noise.h  $(TargetDir)..\..\..\..\P533\Src\P533\Noise.h
-copy $(TargetDir)..\..\..\..\P372\Src\P372\Common.h  $(TargetDir)..\..\..\..\P533\Src\P533\Common.h</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\bin\$(TargetFileName)
@@ -133,6 +132,7 @@ copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\p533\bin\$(TargetFile
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\include;..\..\..\P372\include;..\..\..\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -141,8 +141,8 @@ copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\p533\bin\$(TargetFile
       <ShowProgress>NotSet</ShowProgress>
     </Link>
     <PreBuildEvent>
-      <Command>copy $(TargetDir)..\..\..\..\..\P372\Src\P372\Noise.h  $(TargetDir)..\..\..\..\..\P533\Src\P533\Noise.h
-copy $(TargetDir)..\..\..\..\..\P372\Src\P372\Common.h  $(TargetDir)..\..\..\..\..\P533\Src\P533\Common.h</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\bin\$(TargetFileName)
@@ -158,6 +158,7 @@ copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\..\p533\bin\$(TargetF
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\include;..\..\..\P372\include;..\..\..\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -165,8 +166,8 @@ copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\..\..\p533\bin\$(TargetF
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>copy $(TargetDir)..\..\..\..\P372\Src\P372\Noise.h  $(TargetDir)..\..\..\..\P533\Src\P533\Noise.h
-copy $(TargetDir)..\..\..\..\P372\Src\P372\Common.h  $(TargetDir)..\..\..\..\P533\Src\P533\Common.h</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>copy $(TargetDir)$(TargetFileName) $(TargetDir)..\..\..\bin\$(TargetFileName)

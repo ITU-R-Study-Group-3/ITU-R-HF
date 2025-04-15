@@ -96,6 +96,7 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+*.exe
 
 # Chutzpah Test files
 _Chutzpah*
@@ -360,3 +361,6 @@ MigrationBackup/
 FodyWeavers.xsd
 
 #P372/Src/AtmosPlots/P372_figures
+
+# Linux shared object
+*.so

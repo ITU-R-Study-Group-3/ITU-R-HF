@@ -680,111 +680,131 @@ that the calculation by P533() fails ITURHFProp() will exit with the appropriate
 
 
 There are two ranges of return codes from P533() and ITURHFProp() 
-	Returns from P533() are greater than or equal to 0 and less than 200
-		Return numbers less than 100 are normal and indicate no error in processing
-		Return numbers greater than 100 and less than 200 are errors
-	Returns from P533() are greater than or equal to 0 and less than 210
-		Return numbers less than 10 are normal and indicate no error in processing
-		Return numbers greater than 200 and less than 210 are errors	Returns from ITURHFProp() are greater than or equal to 1000 and less than 1200
-		Return numbers greater than or less than 1000 and less than 1100 are normal and indicate
+- Returns from P533() are greater than or equal to 0 and less than 200
+	- Return numbers less than 100 are normal and indicate no error in processing
+	- Return numbers greater than 100 and less than 200 are errors
+- Returns from P372() are greater than or equal to 0 and less than 210
+	- Return numbers less than 10 are normal and indicate no error in processing
+	- Return numbers greater than 200 and less than 210 are errors
+- Returns from ITURHFProp() are greater than or equal to 1000 and less than 1200
+	- Return numbers greater than or less than 1000 and less than 1100 are normal and indicate
 no error in processing
-		Return numbers greater than 1000 and less than 1200 are errors
+	- Return numbers greater than 1000 and less than 1200 are errors
 	
 P533(): Return numbers less than 100 are normal and indicate no error in processing
-   0		NO ERROR:	P533() Normal Exit
-   1		NO ERROR:	AllocatePathMemory()
-   2		NO ERROR:	PathMemory.c FreePathMemory(()
-   3		NO ERROR:	InputDump()
-   4		NO ERROR:	ReadIonParameters()
-   5		NO ERROR:	ReadP1239()
-   6		NO ERROR:	ReadAntennaPatterns()
-   7		NO ERROR:	ReadAntennaPatterns()
-   8		NO ERROR:	ValidPath()
+| Return Code | Source                                        |
+| -     | -------------------------------------------------- |
+|   0	|	NO ERROR:	P533() Normal Exit                   |
+|   1	|	NO ERROR:	AllocatePathMemory()                 |
+|   2	|	NO ERROR:	PathMemory.c FreePathMemory(()       |
+|   3	|	NO ERROR:	InputDump()                          |
+|   4	|	NO ERROR:	ReadIonParameters()                  |
+|   5	|	NO ERROR:	ReadP1239()                          |
+|   6	|	NO ERROR:	ReadAntennaPatterns()                |
+|   7	|	NO ERROR:	ReadAntennaPatterns()                |
+|   8	|	NO ERROR:	ValidPath()                          |
+
 P533(): Return numbers greater than 100 and less than 200 are errors
- 100		ERROR: 		Invalid Input Year
- 101		ERROR: 		Invalid Input Month
- 102		ERROR: 		Invalid Input Hour
- 103		ERROR: 		Invalid Input Man-Made Noise
- 104		ERROR: 		Invalid Input Missing foF2 array data
- 105		ERROR: 		Invalid Input Missing M(3000)F2 array data
- 106		ERROR: 		Invalid Input Missing DuD array data
- 107		ERROR: 		Invalid Input Missing Fam array data
- 108		ERROR: 		Invalid Input Missing foF2 Variability array data
- 109		ERROR: 		Invalid Input Sun Spot Number
- 110		ERROR: 		Invalid Input Modulation
- 111		ERROR: 		Invalid Input Frequency
- 112		ERROR: 		Invalid Input Bandwidth
- 113		ERROR: 		Invalid Input Transmit Power
- 114		ERROR: 		Invalid Input Required Signal-to-Noise ratio
- 115		ERROR: 		Invalid Input Required Signal-to-Interference ratio
- 116		ERROR: 		Invalid Input F0
- 117		ERROR: 		Invalid Input T0
- 118		ERROR: 		Invalid Input Digital Modulation Amplitude ratio
- 119		ERROR: 		Invalid Input Digital Modulation Time Window
- 120		ERROR: 		Invalid Input Digital Modulation Frequency Window
- 121		ERROR: 		Invalid Input Transmit Location
- 122		ERROR: 		Invalid Input Receive Location
- 123		ERROR: 		Invalid Input Receive Antenna Pattern
- 124		ERROR: 		Invalid Input Transmit Antenna Pattern
- 125		ERROR: 		Invalid Input Require Reliability
- 130		ERROR: 		Allocating Memory for foF2 Array
- 131		ERROR: 		Allocating Memory for M(3000)F2 Array
- 132		ERROR: 		Allocating Memory for foF2 Variability
- 133		ERROR: 		Allocating Memory for Tx Antenna Pattern
- 134		ERROR: 		Allocating Memory for Rx Antenna Pattern
- 135		ERROR: 		Allocating Memory for Noise
- 140		ERROR: 		Antenna File Format Error (Type 13)
- 141		ERROR:		Can Not Open Receive Antenna Array
- 160		ERROR: 		Can Not Open foF2 Variability file "P1239-2 Decile Factors.txt"
- 161		ERROR: 		Invalid P.1239-3 File
- 170		ERROR: 		Can Not Open Ionospheric Parameters File
- 180		ERROR:		Can Not Open P372.DLL
+| Error Code | Description               |      
+| ---------  | -------------------   |                         
+| 100 |		ERROR: 		Invalid Input Year |
+| 101 |		ERROR: 		Invalid Input Month |
+| 102 |		ERROR: 		Invalid Input Hour |
+| 103 |		ERROR: 		Invalid Input Man-Made Noise |
+| 104 |		ERROR: 		Invalid Input Missing foF2 array data |
+| 105 | 	ERROR: 		Invalid Input Missing M(3000)F2 array data |
+| 106 |		ERROR: 		Invalid Input Missing DuD array data |
+| 107 |		ERROR: 		Invalid Input Missing Fam array data |
+| 108 |		ERROR: 		Invalid Input Missing foF2 Variability array data |
+| 109 |		ERROR: 		Invalid Input Sun Spot Number |
+| 110 |		ERROR: 		Invalid Input Modulation |
+| 111 |		ERROR: 		Invalid Input Frequency |
+| 112 |		ERROR: 		Invalid Input Bandwidth |
+| 113 |		ERROR: 		Invalid Input Transmit Power |
+| 114 |		ERROR: 		Invalid Input Required Signal-to-Noise ratio |
+| 115 |		ERROR: 		Invalid Input Required Signal-to-Interference ratio |
+| 116 |		ERROR: 		Invalid Input F0 |
+| 117 |		ERROR: 		Invalid Input T0 |
+| 118 |		ERROR: 		Invalid Input Digital Modulation Amplitude ratio |
+| 119 |		ERROR: 		Invalid Input Digital Modulation Time Window |
+| 120 |		ERROR: 		Invalid Input Digital Modulation Frequency Window |
+| 121 |		ERROR: 		Invalid Input Transmit Location |
+| 122 |		ERROR: 		Invalid Input Receive Location |
+| 123 |		ERROR: 		Invalid Input Receive Antenna Pattern |
+| 124 |		ERROR: 		Invalid Input Transmit Antenna Pattern |
+| 125 |		ERROR: 		Invalid Input Require Reliability |
+| 130 |		ERROR: 		Allocating Memory for foF2 Array |
+| 131 |		ERROR: 		Allocating Memory for M(3000)F2 Array |
+| 132 |		ERROR: 		Allocating Memory for foF2 Variability |
+| 133 |		ERROR: 		Allocating Memory for Tx Antenna Pattern |
+| 134 |		ERROR: 		Allocating Memory for Rx Antenna Pattern |
+| 135 |		ERROR: 		Allocating Memory for Noise |
+| 140 |		ERROR: 		Antenna File Format Error (Type 13) |
+| 141 |		ERROR:		Can Not Open Receive Antenna Array |
+| 160 |		ERROR: 		Can Not Open foF2 Variability file "P1239-2 Decile Factors.txt" |
+| 161 |		ERROR: 		Invalid P.1239-3 File |
+| 170 |		ERROR: 		Can Not Open Ionospheric Parameters File |
+| 180 |		ERROR:		Can Not Open P372.DLL |
+
 
 P372(): Return numbers less than 10 are normal and indicate no error in processing
-   1		NO ERROR:	AllocatePathMemory()
-   2		NO ERROR:	ReadFamDud()
-   3		NO ERROR:	FreeNoiseMemory()
-   4		NO ERROR:	Noise()
-   5		NO ERROR:	Noise() Man-made noise override
+| Return Code | Source                                        |
+| -     | -------------------------------------------------- |
+|   1   |	NO ERROR:	AllocatePathMemory() |
+|   2   |	NO ERROR:	ReadFamDud() |
+|   3   |	NO ERROR:	FreeNoiseMemory() |
+|   4   |	NO ERROR:	Noise() |
+|   5   |	NO ERROR:	Noise() Man-made noise override |
+
 P372(): Return numbers greater than 200 and less than 210 are errors
- 201		ERROR:		Can Not Open Coefficient File
- 202		ERROR:		Allocating Memory for DuD
- 203		ERROR:		Allocating Memory for Fam
- 204		ERROR:		Allocating Memory for FakP
- 205		ERROR:		Allocating Memory for FakABP
+| Error Code | Description               |      
+| ---------  | -------------------   |    
+| 201		 | ERROR:		Can Not Open Coefficient File |
+| 202		 | ERROR:		Allocating Memory for DuD |
+| 203        | ERROR:		Allocating Memory for Fam |
+| 204   	 | ERROR:		Allocating Memory for FakP |
+| 205		 | ERROR:		Allocating Memory for FakABP |
+
 ITURHFProp(): Return numbers greater than or less than 1000 and less than 1100 are normal and indicate no error in processing
-1000		NO ERROR: 	Okay Calculation Completed 
-1001		NO ERROR: 	ITURHFProp()
-1002		NO ERROR: 	ValidateITURHFP()
-1003		NO ERROR: 	ReadInputConfiguration()
+
+| Return Code | Source                                        |
+| -     | -------------------------------------------------- |
+| 1000  |	NO ERROR: 	Okay Calculation Completed |
+| 1001	|	NO ERROR: 	ITURHFProp() |
+| 1002  |	NO ERROR: 	ValidateITURHFP() |
+| 1003  |	NO ERROR: 	ReadInputConfiguration() |
+
 ITURHFProp(): Return numbers greater than or less than 1000 and less than 1100 are errors
-1100		ERROR: 		Can Not Open Output File
-1101		ERROR: 		Can Not Find P533.DLL
-1102		ERROR: 		Can Not Open Receive Antenna File
-1103		ERROR: 		Can Not Open Transmit Antenna File
-1104		ERROR: 		Antenna Orientation	
-1105		ERROR: 		Transmit Bearing 
-1106		ERROR: 		Receive Bearing
-1107		ERROR: 		Receive Gain Offset
-1108		ERROR: 		Transmit Gain Offset
-1109		ERROR: 		Invalid Lower Left Latitude
-1110		ERROR: 		Invalid Lower Right Latitude
-1111		ERROR: 		Invalid Upper Left Latitude
-1112		ERROR: 		Invalid Upper Right Latitude
-1113		ERROR: 		Invalid Lower Left Longitude
-1114		ERROR: 		Invalid Lower Right Longitude
-1115		ERROR: 		Invalid Upper Left Longitude
-1116		ERROR: 		Invalid Upper Right Longitude
-1117		ERROR: 		Invalid Area Left Latitude
-1118		ERROR: 		Invalid Area Right Latitude
-1119		ERROR: 		Invalid Area Left Longitude
-1120		ERROR: 		Invalid Area Right Longitude
-1121		ERROR: 		Invalid Area Lower Latitude
-1122		ERROR: 		Invalid Area Upper Latitude
-1123		ERROR: 		Invalid Area Left Longitude
-1124		ERROR: 		Invalid Area Right Longitude
-1200		ERROR: 		Invalid Command Line 
-1201		ERROR: 		Missing Input File
+| Error Code | Description               |      
+| ----  | -------------------   |   
+| 1100		 | ERROR: 		Can Not Open Output File |
+| 1101		 | ERROR: 		Can Not Find P533.DLL |
+| 1102		 | ERROR: 		Can Not Open Receive Antenna File |
+| 1103		 | ERROR: 		Can Not Open Transmit Antenna File |
+| 1104		 | ERROR: 		Antenna Orientation	|
+| 1105		 | ERROR: 		Transmit Bearing |
+| 1106		 | ERROR: 		Receive Bearing |
+| 1107		 | ERROR: 		Receive Gain Offset |
+| 1108		 | ERROR: 		Transmit Gain Offset |
+| 1109		 | ERROR: 		Invalid Lower Left Latitude |
+| 1110		 | ERROR: 		Invalid Lower Right Latitude |
+| 1111		 | ERROR: 		Invalid Upper Left Latitude |
+| 1112		 | ERROR: 		Invalid Upper Right Latitude |
+| 1113		 | ERROR: 		Invalid Lower Left Longitude |
+| 1114		 | ERROR: 		Invalid Lower Right Longitude |
+| 1115		 | ERROR: 		Invalid Upper Left Longitude |
+| 1116		 | ERROR: 		Invalid Upper Right Longitude |
+| 1117		 | ERROR: 		Invalid Area Left Latitude |
+| 1118		 | ERROR: 		Invalid Area Right Latitude |
+| 1119		 | ERROR: 		Invalid Area Left Longitude |
+| 1120		 | ERROR: 		Invalid Area Right Longitude |
+| 1121		 | ERROR: 		Invalid Area Lower Latitude |
+| 1122		 | ERROR: 		Invalid Area Upper Latitude |
+| 1123		 | ERROR: 		Invalid Area Left Longitude |
+| 1124		 | ERROR: 		Invalid Area Right Longitude |
+| 1200		 | ERROR: 		Invalid Command Line |
+| 1201		 | ERROR: 		Missing Input File |
+
 /**************************************************************************************************/
 				End Return Codes ITURHFProp,P533 and P372
 /**************************************************************************************************/
@@ -853,9 +873,9 @@ C:\>ITURNoise 1 14 1.0 40.0 165.0 0 "G:\User\Data\" 0
 
 Argument 1 is an integer that indicates the month (1 to 12) of interest. In the example above the desired month is January. 
 Argument 2 is an integer that indicates the hour (1 to 24) UTC at the receive point. In most cases this will require the calculation of the time UTC from the longitude at that receive point. In the example above the receive point is 11 hours (165? E/(15?/hr) ahead of UTC so to determine the noise for the 12th local time hour the 1st hour UTC is chosen. 
-Argument 3 is a float that indicates the latitude (degrees). In the example above the latitude desired is 40? N. 
-Argument 4 is a float that indicates the longitude (degrees). In the example above the longitude desired is 165? E
-Argument 5 is a float that indicates the man-made noise which can either be categorical (0-5) or value of man-made noise in dB (represented by a negative number). In the example above the value 1.0 indicates that the noise category residential. The category codes appear below. 
+Argument 3 is a float that indicates the latitude (degrees). In the example above the latitude desired is 40° N. 
+Argument 4 is a float that indicates the longitude (degrees). In the example above the longitude desired is 165° E
+Argument 5 is a float that indicates the man-made noise which can either be categorical (0-5) or value of man-made noise in dB (represented by a negative number). In the example above the value 0 indicates that the noise category city. The category codes appear below. 
 
 code	Noise Category
 0.0	City
@@ -1075,5 +1095,4 @@ pecuniary loss) arising out of or related to use of the Software.
 ---
 
 #2022 ITU-R Study Group 3
-
 
