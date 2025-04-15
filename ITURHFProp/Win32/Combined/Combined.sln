@@ -16,8 +16,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ITURHFProp", "..\ITURHFProp
 		{116945DD-6897-46B9-80A0-A166A1139123} = {116945DD-6897-46B9-80A0-A166A1139123}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Common", "..\..\..\common\Win32\Common\Common.vcxproj", "{09D60156-221A-40A1-A2E6-62AD1711EC55}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -64,18 +62,6 @@ Global
 		{BDC92B8E-76FA-4D52-91CB-10F38764AE0E}.Release|x64.Build.0 = Release|x64
 		{BDC92B8E-76FA-4D52-91CB-10F38764AE0E}.Release|x86.ActiveCfg = Release|Win32
 		{BDC92B8E-76FA-4D52-91CB-10F38764AE0E}.Release|x86.Build.0 = Release|Win32
-		{09D60156-221A-40A1-A2E6-62AD1711EC55}.Debug|Win32.ActiveCfg = Debug|Win32
-		{09D60156-221A-40A1-A2E6-62AD1711EC55}.Debug|Win32.Build.0 = Debug|Win32
-		{09D60156-221A-40A1-A2E6-62AD1711EC55}.Debug|x64.ActiveCfg = Debug|x64
-		{09D60156-221A-40A1-A2E6-62AD1711EC55}.Debug|x64.Build.0 = Debug|x64
-		{09D60156-221A-40A1-A2E6-62AD1711EC55}.Debug|x86.ActiveCfg = Debug|Win32
-		{09D60156-221A-40A1-A2E6-62AD1711EC55}.Debug|x86.Build.0 = Debug|Win32
-		{09D60156-221A-40A1-A2E6-62AD1711EC55}.Release|Win32.ActiveCfg = Release|Win32
-		{09D60156-221A-40A1-A2E6-62AD1711EC55}.Release|Win32.Build.0 = Release|Win32
-		{09D60156-221A-40A1-A2E6-62AD1711EC55}.Release|x64.ActiveCfg = Release|x64
-		{09D60156-221A-40A1-A2E6-62AD1711EC55}.Release|x64.Build.0 = Release|x64
-		{09D60156-221A-40A1-A2E6-62AD1711EC55}.Release|x86.ActiveCfg = Release|Win32
-		{09D60156-221A-40A1-A2E6-62AD1711EC55}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
