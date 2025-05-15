@@ -10,7 +10,8 @@ endif
 # Use the following for testing
 #CFLAGS = -fPIC -Wall -Wextra -O0 -g
 # Use the following for production
-CFLAGS = -fPIC -Wall -Wextra -O2
+OPTIMIZE ?= -O2
+CFLAGS = -fPIC -Wall -Wextra $(OPTIMIZE)
 
 # Set linker flags based on the operating system
 ifeq ($(UNAME_S),Darwin)
