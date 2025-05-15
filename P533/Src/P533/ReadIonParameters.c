@@ -47,8 +47,13 @@ int ReadIonParametersTxt(struct PathData *path, char DataFilePath[256], int sile
 	 *
 	 */
 
+	#ifdef __GNUC__
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunused-result"
+	#endif
+
 	int		j, k, m;
-	int		hrs, lng, lat, ssn; // Temp gridmap maxima
+	int		/*hrs,*/ lng, lat, ssn; // Temp gridmap maxima
 
 	int linelen = 300;
 	char line[300];
@@ -62,7 +67,7 @@ int ReadIonParametersTxt(struct PathData *path, char DataFilePath[256], int sile
 
 	// The dimensions of the array are fixed by Suessman's file generating program "iongrid"
 	// Eventually it would be nice if these were not fixed values so that other resolutions could be used. 
-	hrs = 24;	// 24 hours
+	//hrs = 24;	// 24 hours
 	lng = 241;	// 241 longitudes at 1.5-degree increments
 	lat = 121;	// 121 latitudes at 1.5-degree increments
 	ssn = 2;	// 2 SSN (12-month smoothed sun spot numbers) high and low
@@ -79,14 +84,14 @@ int ReadIonParametersTxt(struct PathData *path, char DataFilePath[256], int sile
 	if(fp == NULL) {
 		printf("ReadIonParameters: ERROR Can't find input file %s\n", InFilePath);
 		return RTN_ERRREADIONPARAMETERS;
-	};
+	}
 
-	if(silent != TRUE) {
+    if(silent != TRUE) {
 		printf("ReadIonParameters: Reading file ionos%02d.txt for ionospheric parameters\n", path->month+1);
 		printf("ReadIonParameters: Reading foF2 into array\n");
-	};
+	}
 
-	// Read in foF2
+    // Read in foF2
 	for(m = 0; m < ssn; m++) { // SSN
 		for(j = 0; j < lng; j++) { // Longitude
 			for(k = 0; k < lat; k++) { // Latitude
@@ -107,15 +112,15 @@ int ReadIonParametersTxt(struct PathData *path, char DataFilePath[256], int sile
 					                                 &path->foF2[19][j][k][m], &path->foF2[20][j][k][m]);
 				fgets(line, linelen, fp);
 				sscanf(line, "  %f  %f  %f", &path->foF2[21][j][k][m],&path->foF2[22][j][k][m],&path->foF2[23][j][k][m]);
-			};
-		};	
-	};
+			}
+        }
+    }
 
-	if(silent != TRUE) {
+    if(silent != TRUE) {
 		printf("ReadIonParameters: Reading M3kF2 into array\n");
-	};
+	}
 
-	// Read in M3kF2
+    // Read in M3kF2
 	for(m = 0; m < ssn; m++) { // SSN
 		for(j = 0; j < lng; j++) { // Longitude
 			for(k = 0; k < lat; k++) { // Latitude
@@ -135,14 +140,18 @@ int ReadIonParametersTxt(struct PathData *path, char DataFilePath[256], int sile
 					                                 &path->M3kF2[19][j][k][m], &path->M3kF2[20][j][k][m]);
 				fgets(line, linelen, fp);
 				sscanf(line, "  %f  %f  %f", &path->M3kF2[21][j][k][m], &path->M3kF2[22][j][k][m], &path->M3kF2[23][j][k][m]);
-			};
-		};	
-	};
+			}
+        }
+    }
 
-	// Close the file and return.
+    // Close the file and return.
 	fclose(fp);
 
 	return RTN_READIONPARAOK;
+
+	#ifdef __GNUC__
+	#pragma GCC diagnostic pop
+	#endif
 }
 
 int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFilePath[256], int silent) {
@@ -176,13 +185,19 @@ int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFi
 	 *			data is read into the arrays foF2 and M3kF2
 	 *
 	 */
+	#ifdef __GNUC__
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunused-result"
+	#endif
 
 	char buffer[256];
 
 	int	i, j, k, m;
 	int	hrs, lng, lat, ssn; // Temp gridmap maxima
 	int numfoF2;
-	int linelen = 300;
+
+	//warning C4189: 'linelen': local variable is initialized but not referenced
+	//int linelen = 300;
 
 	float * readBuffer;
 
@@ -212,13 +227,13 @@ int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFi
 	if(fp == NULL) {
 		printf("ReadIonParameters: ERROR Can't find input file %s\n", InFilePath);
 		return RTN_ERRREADIONPARAMETERS;
-	};
+	}
 
-	if(silent != TRUE) {
+    if(silent != TRUE) {
 		printf("ReadIonParameters: Reading file ionos%02d.txt for ionospheric parameters\n", month+1);
-	};
+	}
 
-	//The first 5 bytes of the file are overhead that FORTRAN puts in 
+    //The first 5 bytes of the file are overhead that FORTRAN puts in 
 	fread(&buffer, sizeof(char), 5, fp);
 
 	readBuffer = (float *) malloc(sizeof(float) * numfoF2);
@@ -226,9 +241,9 @@ int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFi
 
 	if(silent != TRUE) {
 		printf("ReadIonParameters: Reading foF2 (binary) into array\n");
-	};
+	}
 
-	// Read in foF2
+    // Read in foF2
 	for(m = 0; m < ssn; m++) { // SSN
 		for(j = 0; j < lng; j++) { // Longitude
 			for(k = 0; k < lat; k++) { // Latitude
@@ -239,21 +254,21 @@ int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFi
 													(k * (hrs)) +
 													 i];
 					// fread(&foF2[i][j][k][m], sizeof(float), 1, fp);
-				};
-			};
-		};	
-	};
-	
-	free(readBuffer);
+				}
+            }
+        }
+    }
+
+    free(readBuffer);
 
 	// The next 5 bytes are the tail of the foF2 record followed by 5 bytes of header for the M(3000)F2 record.
 	fread(&buffer, sizeof(char), 10, fp);
 	
 	if(silent != TRUE) {
 		printf("ReadIonParameters: Reading M3kF2 (binary) into array\n");
-	};
+	}
 
-	readBuffer = (float *) malloc(sizeof(float) * numfoF2);
+    readBuffer = (float *) malloc(sizeof(float) * numfoF2);
 	fread(readBuffer,sizeof(float),numfoF2,fp);
 
 	// Read in M3kF2
@@ -267,16 +282,19 @@ int ReadIonParametersBin(int month, float ****foF2, float ****M3kF2, char DataFi
 													(k * (hrs)) +
 													 i];
 					// fread(&M3kF2[i][j][k][m], sizeof(float), 1, fp);
-				};
-			};
-		};	
-	};
-	
-	free(readBuffer);
+				}
+            }
+        }
+    }
+
+    free(readBuffer);
 
 	// Close the file and return.
 	fclose(fp);
 
 	return RTN_READIONPARAOK;
 
-};
+	#ifdef __GNUC__
+	#pragma GCC diagnostic pop
+	#endif
+}

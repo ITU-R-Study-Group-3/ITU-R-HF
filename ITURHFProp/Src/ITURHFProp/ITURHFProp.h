@@ -1,10 +1,13 @@
+#ifndef ITURHFPROP_H
+#define ITURHFPROP_H
+
 // Operating system preprocessor ****************************************************************
 #ifdef _WIN32
 	#include <Windows.h>
 
 	// P533.DLL typedefs ***************************************************
 	// P533 functions
-	typedef const char * (__cdecl *cP533Info)();
+	typedef const char * (__cdecl *cP533Info)(void);
 	typedef int(__cdecl * iP533)(struct PathData * path);
 	typedef int(__cdecl * iPathMemory)(struct PathData * path);
 	typedef int(__cdecl* iReadType11Func)(struct Antenna* Ant, FILE* DataFilePath, int silent);
@@ -320,3 +323,4 @@ int ReadInputConfiguration(char InFilePath[256], struct ITURHFProp *ITURHFP, str
 // End prototypes *********************************************************************************
 
 // End ITURHFProp **********************************************************************************
+#endif // ITURHFPROP_H

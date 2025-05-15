@@ -42,9 +42,15 @@ DLLEXPORT void SetAntennaPatternVal(struct PathData * path, int TXorRX, int azim
 		}
 		path->A_rx.pattern[frequencyIndex][azimuth][elevation] = value;
 	}
-};
+}
 
 int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
+
+	#ifdef __GNUC__
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunused-result"
+	#endif
+
 	char line[256];			// Read input line
 	char instr[256];		// String temp
 
@@ -82,9 +88,9 @@ int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
 
 	if (fp == NULL) {
 		return RTN_ERRCANTOPENANTFILE;
-	};
-	
-	// The first line is the name of the antenna.
+	}
+
+    // The first line is the name of the antenna.
 	// fgets will return a string that has a trailing "\n" which needs to be stripped off
 	/*
 	if (fgets(line, sizeof(line), fp) != NULL) {
@@ -95,16 +101,16 @@ int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
 	};*/
 	if (fgets(line, sizeof(line), fp) != NULL) {
 		line[strcspn(line, "\n")] = '\0';
-	};
+	}
 
-	strcpy(Ant->Name, line);	// Store it to the path structure.
+    strcpy(Ant->Name, line);	// Store it to the path structure.
 
 	// User feedback
 	if(silent != TRUE) {
 		printf("ReadType11: Reading antenna %.35s\n", Ant->Name);
-	};
+	}
 
-	fgets(line, sizeof(line), fp);		// Number of parameters
+    fgets(line, sizeof(line), fp);		// Number of parameters
 
 	// The next lines are parameters
 	fgets(line, sizeof(line), fp);		// Max Gain
@@ -119,27 +125,36 @@ int ReadType11(struct Antenna *Ant, FILE *fp, int silent) {
 		sscanf(line, " %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
 			&Ant->pattern[0][0][j],   &Ant->pattern[0][0][j+1], &Ant->pattern[0][0][j+2], &Ant->pattern[0][0][j+3], &Ant->pattern[0][0][j+4],
 			&Ant->pattern[0][0][j+5], &Ant->pattern[0][0][j+6], &Ant->pattern[0][0][j+7], &Ant->pattern[0][0][j+8], &Ant->pattern[0][0][j+9]);
-	};
-	fgets(line, sizeof(line), fp);
+	}
+    fgets(line, sizeof(line), fp);
 	sscanf(line, " %lf\n", &Ant->pattern[0][0][90]);
 
 	// If max gain != 0.0 add it to the values read in from the table.
 	if (MaxG != 0.0) {
 		for(j=0; j<elen; j += 1) {
 			Ant->pattern[0][0][j] += MaxG;
-		};
-	};
+		}
+    }
 
-	// Copy the array of elevation data to the rest of the data structure.
+    // Copy the array of elevation data to the rest of the data structure.
 	for (j=1; j<azin; j++) {
 		memcpy(Ant->pattern[0][j], Ant->pattern[0][0], elen * sizeof(double));
 	}
 	
 	return RTN_READANTENNAPATTERNSOK;
-};
+
+	#ifdef __GNUC__
+	#pragma GCC diagnostic pop
+	#endif
+}
 
 
 int ReadType13(struct Antenna *Ant, FILE * fp, double bearing, int silent) {
+
+	#ifdef __GNUC__
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunused-result"
+	#endif
 
 	char line[256];		// Read input line
 	char instr[256];	// String temp
@@ -184,17 +199,17 @@ int ReadType13(struct Antenna *Ant, FILE * fp, double bearing, int silent) {
 		size_t len = strlen(line);
 		if (len > 0 && line[len - 1] == '\n') {
 			line[--len] = '\0';
-		};
-	};
+		}
+    }
 
-	strcpy(Ant->Name, line);	// Store it to the path structure.
+    strcpy(Ant->Name, line);	// Store it to the path structure.
 
 	// User feedback
 	if(silent != TRUE) {
 		printf("ReadType13: Reading antenna %.35s\n", Ant->Name);
-	};
+	}
 
-	fgets(line, sizeof(line), fp);		// Number of parameters
+    fgets(line, sizeof(line), fp);		// Number of parameters
 
 	// The next lines are parameters
 	fgets(line, sizeof(line), fp);		// Max Gain
@@ -233,16 +248,26 @@ int ReadType13(struct Antenna *Ant, FILE * fp, double bearing, int silent) {
 			sscanf(line, " %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
 				&Ant->pattern[0][iazi][j],   &Ant->pattern[0][iazi][j+1], &Ant->pattern[0][iazi][j+2], &Ant->pattern[0][iazi][j+3], &Ant->pattern[0][iazi][j+4],
 				&Ant->pattern[0][iazi][j+5], &Ant->pattern[0][iazi][j+6], &Ant->pattern[0][iazi][j+7], &Ant->pattern[0][iazi][j+8], &Ant->pattern[0][iazi][j+9]);
-		};
-		fgets(line, sizeof(line), fp);
+		}
+        fgets(line, sizeof(line), fp);
 		sscanf(line, " %lf\n", &Ant->pattern[0][iazi][90]);
-	};
+	}
 
-	return RTN_READANTENNAPATTERNSOK;
-};
+    return RTN_READANTENNAPATTERNSOK;
+
+	#ifdef __GNUC__
+	#pragma GCC diagnostic pop
+	#endif
+}
 
 
 int ReadType14(struct Antenna *Ant, FILE *fp, int silent) {
+
+	#ifdef __GNUC__
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunused-result"
+	#endif
+
 	char line[256];			// Read input line
 	char instr[256];		// String temp
 
@@ -281,25 +306,25 @@ int ReadType14(struct Antenna *Ant, FILE *fp, int silent) {
 
 	if (fp == NULL) {
 		return RTN_ERRCANTOPENANTFILE;
-	};
-	
-	// The first line is the name of the antenna.
+	}
+
+    // The first line is the name of the antenna.
 	// fgets will return a string that has a trailing "\n" which needs to be stripped off
 	if (fgets(line, sizeof(line), fp) != NULL) {
 		size_t len = strlen(line);
 		if (len > 0 && line[len - 1] == '\n') {
 			line[--len] = '\0';
-		};
-	};
+		}
+    }
 
-	strcpy(Ant->Name, line);	// Store it to the path structure.
+    strcpy(Ant->Name, line);	// Store it to the path structure.
 
 	// User feedback
 	if(silent != TRUE) {
 		printf("ReadType14: Reading antenna %.35s\n", Ant->Name);
-	};
+	}
 
-	fgets(line, sizeof(line), fp);		// Number of parameters
+    fgets(line, sizeof(line), fp);		// Number of parameters
 
 	// The next lines are parameters
 	fgets(line, sizeof(line), fp);		// Max Gain
@@ -334,24 +359,28 @@ int ReadType14(struct Antenna *Ant, FILE *fp, int silent) {
 			sscanf(line, " %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
 				&Ant->pattern[i][0][j],   &Ant->pattern[i][0][j+1], &Ant->pattern[i][0][j+2], &Ant->pattern[i][0][j+3], &Ant->pattern[i][0][j+4],
 				&Ant->pattern[i][0][j+5], &Ant->pattern[i][0][j+6], &Ant->pattern[i][0][j+7], &Ant->pattern[i][0][j+8], &Ant->pattern[i][0][j+9]);
-		};
-		fgets(line, sizeof(line), fp);
+		}
+        fgets(line, sizeof(line), fp);
 		sscanf(line, " %lf\n", &Ant->pattern[i][0][90]);
 		
 		// Add max gain value where required.
 		if (MaxG != 0.0) {
 			for(j=0; j<=90; j += 1) {
 				Ant->pattern[i][0][j] += MaxG;
-			};
-		};
+			}
+        }
 
-		// Copy the array of elevation data to the rest of the data structure.
+        // Copy the array of elevation data to the rest of the data structure.
 		for (j=1; j<azin; j++) {
 			memcpy(Ant->pattern[i][j], Ant->pattern[i][0], elen * sizeof(double));
 		}
 	}
 	return RTN_READANTENNAPATTERNSOK;
-};
+
+	#ifdef __GNUC__
+	#pragma GCC diagnostic pop
+	#endif
+}
 
 
 void IsotropicPattern(struct Antenna *Ant, double G, int silent) {
@@ -369,15 +398,15 @@ void IsotropicPattern(struct Antenna *Ant, double G, int silent) {
     // User feedback
 	if(silent != TRUE) {
 		printf("IsotropicPattern: Reading Isotropic antenna\n");
-	};
-	Ant->freqs[0] = 0;
+	}
+    Ant->freqs[0] = 0;
 
 	for(i=0; i<azin; i++) {
 		for(j=0; j<elen; j++) {
 			Ant->pattern[0][i][j] = G;
-		};
-	};
+		}
+    }
 
-	return;
-};
+    return;
+}
 

@@ -1,3 +1,6 @@
+#ifndef ITURNOISE_H
+#define ITURNOISE_H
+
 // ITURNoise Return codes
 //  Error codes
 #define RTN_ERRYEAR						100	// ERROR: Invalid Input Year
@@ -21,3 +24,4 @@
 #define PRINTCSVALL 102 // Print CSV header and line
 
 
+#endif // ITURNOISE_H

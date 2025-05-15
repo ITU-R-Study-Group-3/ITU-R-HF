@@ -165,10 +165,10 @@
 		if (hLib == NULL) {
 			printf("P533: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
 			return RTN_ERRP372DLL;
-		};
+		}
 		int mod[512];
 		// Get the handle to the DLL library, hLib.
-		GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
+		GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 512);
 		// Get the P372Version() process from the DLL.
 		dllP372Version = (cP372Info)GetProcAddress((HMODULE)hLib, "P372Version");
 		// Get the P372CompileTime() process from the DLL.
@@ -268,7 +268,7 @@
 	return RTN_P533OK;  // Return no errors
 }
 
-DLLEXPORT char const * P533Version() {
+DLLEXPORT char const * P533Version(void) {
 
 	/*
 
@@ -287,9 +287,9 @@ DLLEXPORT char const * P533Version() {
 
 	return P533VER;
 
-};
+}
 
-DLLEXPORT char const * P533CompileTime() {
+DLLEXPORT char const * P533CompileTime(void) {
 
 	/*
 
@@ -308,9 +308,9 @@ DLLEXPORT char const * P533CompileTime() {
 
 	return P533CT;
 
-};
+}
 
-DLLEXPORT int sizeofPathDataStruct() {
+DLLEXPORT int sizeofPathDataStruct(void) {
 	/*
 		sizeofPathStruct() - Returns the sizeof(pathdata) for testing.
 			INPUT	

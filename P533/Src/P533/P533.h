@@ -1,3 +1,6 @@
+#ifndef P533_H
+#define P533_H
+
 // Operating system preprocessor directives *********************************************************
 #ifdef _WIN32
 	#define DLLEXPORT __declspec(dllexport)
@@ -486,7 +489,7 @@ void InitializePath(struct PathData *path);
 
 // P533.c Prototype for the P533 propagation model engine
 DLLEXPORT int P533(struct PathData *path);
-DLLEXPORT char const * P533Version();
+DLLEXPORT char const * P533Version(void);
 
 // Geometry.c Prototypes
 DLLEXPORT void GreatCirclePoint(struct Location here, struct Location there, struct ControlPt *midpnt, double distance, double fraction);
@@ -557,9 +560,10 @@ DLLEXPORT int ReadP1239(struct PathData *path, const char * DataFilePath);
 DLLEXPORT void SetAntennaPatternVal(struct PathData * path, int TXorRX, int azimuth, int elevation, double value);
 
 //Testing Routines
-DLLEXPORT int sizeofPathDataStruct();
+DLLEXPORT int sizeofPathDataStruct(void);
 
 
 // End Prototypes *********************************************************************************
 
 // End P533 ***************************************************************************************
+#endif // P533_H

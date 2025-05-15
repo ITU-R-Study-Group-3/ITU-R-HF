@@ -126,8 +126,8 @@ void Report(struct PathData path, struct ITURHFProp ITURHFP) {
 			}
 			else {
 				PrintRecord(path, ITURHFP, PRINT_DATA);
-			};
-		}
+			}
+        }
 		else if ((ITURHFP.ihr == ITURHFP.ihrend - 1) &&
 			(ITURHFP.ifrq == ITURHFP.ifrqend - 1) &&
 			(ITURHFP.ilng == ITURHFP.ilngend - 1) &&
@@ -138,8 +138,8 @@ void Report(struct PathData path, struct ITURHFProp ITURHFP) {
 		}
 		else { // Middle of the report
 			PrintRecord(path, ITURHFP, PRINT_DATA);
-		};
-	}
+		}
+    }
 	else if (ITURHFP.header == FALSE) {
 		if (ITURHFP.csvRFC4180 == TRUE) {
 			if (Header == TRUE) {
@@ -150,11 +150,11 @@ void Report(struct PathData path, struct ITURHFProp ITURHFP) {
 		} else {
 			PrintRecord(path, ITURHFP, PRINT_DATA);
 		}
-	};
+	}
 
-	return;
+    return;
 
-};
+}
 
 void PrintRecord(struct PathData path, struct ITURHFProp ITURHFP, int option) {
 
@@ -188,100 +188,100 @@ void PrintRecord(struct PathData path, struct ITURHFProp ITURHFP, int option) {
 			fprintf(fp, "%d,%d,", path.month+1, path.hour+1);
 			fprintf(fp, RFC4180_DBLFIELD, path.frequency);
 			break;
-	};
+	}
 
-	if((ITURHFP.RptFileFormat & RPT_RXLOCATION) == RPT_RXLOCATION) {
+    if((ITURHFP.RptFileFormat & RPT_RXLOCATION) == RPT_RXLOCATION) {
 		function_RPT_RXLOCATION(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_D) == RPT_D) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_D) == RPT_D) {
 		function_RPT_D(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_DMAX) == RPT_DMAX) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_DMAX) == RPT_DMAX) {
 		function_RPT_DMAX(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_ELE) == RPT_ELE) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_ELE) == RPT_ELE) {
 		function_RPT_ELE(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_BMUF) == RPT_BMUF) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_BMUF) == RPT_BMUF) {
 		function_RPT_BMUF(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_BMUFD) == RPT_BMUFD) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_BMUFD) == RPT_BMUFD) {
 		function_RPT_BMUFD(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_OPMUF) == RPT_OPMUF) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_OPMUF) == RPT_OPMUF) {
 		function_RPT_OPMUF(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_OPMUFD) == RPT_OPMUFD) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_OPMUFD) == RPT_OPMUFD) {
 		function_RPT_OPMUFD(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_N0_F2) == RPT_N0_F2) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_N0_F2) == RPT_N0_F2) {
 		function_RPT_N0_F2(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_N0_E) == RPT_N0_E) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_N0_E) == RPT_N0_E) {
 		function_RPT_N0_E(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_E) == RPT_E) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_E) == RPT_E) {
 		function_RPT_E(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_PR) == RPT_PR) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_PR) == RPT_PR) {
 		function_RPT_PR(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_GRW) == RPT_GRW) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_GRW) == RPT_GRW) {
 		function_RPT_GRW(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_NOISESOURCES) == RPT_NOISESOURCES) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_NOISESOURCES) == RPT_NOISESOURCES) {
 		function_RPT_NOISESOURCES(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_NOISESOURCESD) == RPT_NOISESOURCESD) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_NOISESOURCESD) == RPT_NOISESOURCESD) {
 		function_RPT_NOISESOURCESD(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_NOISETOTALD) == RPT_NOISETOTALD) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_NOISETOTALD) == RPT_NOISETOTALD) {
 		function_RPT_NOISETOTALD(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_NOISETOTAL) == RPT_NOISETOTAL) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_NOISETOTAL) == RPT_NOISETOTAL) {
 		function_RPT_NOISETOTAL(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_SNR) == RPT_SNR) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_SNR) == RPT_SNR) {
 		function_RPT_SNR(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_SNRD) == RPT_SNRD) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_SNRD) == RPT_SNRD) {
 		function_RPT_SNRD(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_SNRXX) == RPT_SNRXX) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_SNRXX) == RPT_SNRXX) {
 		function_RPT_SNRXX(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_SIR) == RPT_SIR) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_SIR) == RPT_SIR) {
 		function_RPT_SIR(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_SIRD) == RPT_SIRD) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_SIRD) == RPT_SIRD) {
 		function_RPT_SIRD(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_RSN) == RPT_RSN) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_RSN) == RPT_RSN) {
 		function_RPT_RSN(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_BCR) == RPT_BCR) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_BCR) == RPT_BCR) {
 		function_RPT_BCR(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_OCR) == RPT_OCR) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_OCR) == RPT_OCR) {
 		function_RPT_OCR(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_OCRS) ==RPT_OCRS ) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_OCRS) ==RPT_OCRS ) {
 		function_RPT_OCRS(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_MIR) == RPT_MIR) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_MIR) == RPT_MIR) {
 		function_RPT_MIR(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_DOMMODE) == RPT_DOMMODE) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_DOMMODE) == RPT_DOMMODE) {
 		function_RPT_DOMMODE(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_ESL) == RPT_ESL) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_ESL) == RPT_ESL) {
 		function_RPT_ESL(path, option, &col);
-	};
-	if((ITURHFP.RptFileFormat & RPT_LONG) == RPT_LONG) {
+	}
+    if((ITURHFP.RptFileFormat & RPT_LONG) == RPT_LONG) {
 		function_RPT_LONG(path, option, &col);
-	};
+	}
 
-	// If the data format header is being printed, put the tail on.
+    // If the data format header is being printed, put the tail on.
 	if(option == PRINT_HEADER) {
 		fprintf(fp, "\n");
 	    fprintf(fp, "************************** End Data Format ********************************\n");
@@ -292,10 +292,10 @@ void PrintRecord(struct PathData path, struct ITURHFProp ITURHFP, int option) {
 	else {
 		// End of output record line
 		fprintf(fp, "\n");
-	};
+	}
 
-	return;
-};
+    return;
+}
 
 void PrintHeader(struct PathData path, struct ITURHFProp ITURHFP) {
 
@@ -329,9 +329,9 @@ void PrintHeader(struct PathData path, struct ITURHFProp ITURHFP) {
 	else {
 		strcpy(outstr, "DIGITAL");
 		fprintf(fp, "\tModulation : %s\n", outstr);
-	};
+	}
 
-	fprintf(fp, "\tRequired signal-to-noise ratio : %lf\n", path.SNRr);
+    fprintf(fp, "\tRequired signal-to-noise ratio : %lf\n", path.SNRr);
 	fprintf(fp, "\tRequired %% of month signal-to-noise ratio : % d\n", path.SNRXXp);
 	fprintf(fp, "\tRequired signal-to-interference ratio : %lf\n", path.SIRr);
 
@@ -369,9 +369,9 @@ void PrintHeader(struct PathData path, struct ITURHFProp ITURHFP) {
 		fprintf(fp, "\tRequired Amplitude ratio (A) : %lf\n", path.A);
 		fprintf(fp, "\tTime window (usec) : %lf\n", path.TW);
 		fprintf(fp, "\tFrequency window (Hz) : %lf\n", path.FW);
-	};
+	}
 
-	if(ITURHFP.AntennaOrientation == TX2RX) {
+    if(ITURHFP.AntennaOrientation == TX2RX) {
 		fprintf(fp, "\tAntenna configuration : Transmitter main beam to receiver main beam\n");
 	}
 	else if(ITURHFP.AntennaOrientation == MANUAL) {
@@ -379,9 +379,9 @@ void PrintHeader(struct PathData path, struct ITURHFProp ITURHFP) {
 	}
 	else {
 		fprintf(fp, "\tAntenna configuration : UNKNOWN\n");
-	};
+	}
 
-	if (path.SorL == SHORTPATH) {
+    if (path.SorL == SHORTPATH) {
 		strcpy(outstr, "SHORTPATH");
 	}
 	else if (path.SorL == LONGPATH) {
@@ -389,8 +389,8 @@ void PrintHeader(struct PathData path, struct ITURHFProp ITURHFP) {
 	}
 	else {
 		strcpy(outstr, "ERROR");
-	};
-	fprintf(fp, "\tPath Direction : %s\n", outstr);
+	}
+    fprintf(fp, "\tPath Direction : %s\n", outstr);
 
 	fprintf(fp, "\tTransmit antenna               %.40s\n", path.A_tx.Name);
 	fprintf(fp, "\tTransmit antenna bearing     : %lf\n", ITURHFP.TXBearing*R2D);
@@ -421,7 +421,7 @@ void PrintHeader(struct PathData path, struct ITURHFProp ITURHFP) {
 
 	return;
 
-};
+}
 
 void PrintLastRecord(struct PathData path, struct ITURHFProp ITURHFP) {
 
@@ -432,7 +432,7 @@ void PrintLastRecord(struct PathData path, struct ITURHFProp ITURHFP) {
 
 	return;
 
-};
+}
 
 void function_RPT_D(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -451,9 +451,9 @@ void function_RPT_D(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD2, path.distance);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_DMAX(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -477,9 +477,9 @@ void function_RPT_DMAX(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD2, path.ptick);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_ELE(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -498,9 +498,9 @@ void function_RPT_ELE(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.ele*R2D);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_BMUF(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -519,9 +519,9 @@ void function_RPT_BMUF(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.BMUF);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_BMUFD(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -550,10 +550,10 @@ void function_RPT_BMUFD(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.MUF10);
 			break;
-	};
+	}
 
-	return;
-};
+    return;
+}
 
 void function_RPT_OPMUF(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -572,11 +572,11 @@ void function_RPT_OPMUF(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.OPMUF);
 			break;
-	};
+	}
 
-	return;
+    return;
 
-};
+}
 
 void function_RPT_OPMUFD(struct PathData path, int option, int *col) {
 
@@ -601,9 +601,9 @@ void function_RPT_OPMUFD(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.OPMUF10);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_N0_F2(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -621,8 +621,8 @@ void function_RPT_N0_F2(struct PathData path, int option, int *col) {
 			}
 			else {
 				sprintf(outstr, " NONE ");
-			};
-			fprintf(fp, STRFIELD, outstr);
+			}
+            fprintf(fp, STRFIELD, outstr);
 			break;
 		case PRINT_RFC4180_DATA:
 			fprintf(fp,",");
@@ -631,12 +631,12 @@ void function_RPT_N0_F2(struct PathData path, int option, int *col) {
 			}
 			else {
 				sprintf(outstr, "NONE");
-			};
-			fprintf(fp, RFC4180_STRFIELD, outstr);
+			}
+            fprintf(fp, RFC4180_STRFIELD, outstr);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_N0_E(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -654,8 +654,8 @@ void function_RPT_N0_E(struct PathData path, int option, int *col) {
 			}
 			else {
 				sprintf(outstr, " NONE ");
-			};
-			fprintf(fp, STRFIELD, outstr);
+			}
+            fprintf(fp, STRFIELD, outstr);
 			break;
 		case PRINT_RFC4180_DATA:
 			fprintf(fp,",");
@@ -664,12 +664,12 @@ void function_RPT_N0_E(struct PathData path, int option, int *col) {
 			}
 			else {
 				sprintf(outstr, "NONE");
-			};
-			fprintf(fp, RFC4180_STRFIELD, outstr);
+			}
+            fprintf(fp, RFC4180_STRFIELD, outstr);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_E(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -688,9 +688,9 @@ void function_RPT_E(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.Ep);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_GRW(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -709,9 +709,9 @@ void function_RPT_GRW(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.Grw);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_PR(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -730,9 +730,9 @@ void function_RPT_PR(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.Pr);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_NOISESOURCES(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -761,9 +761,9 @@ void function_RPT_NOISESOURCES(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.noiseP.FaG);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_NOISESOURCESD(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -807,9 +807,9 @@ void function_RPT_NOISESOURCESD(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.noiseP.DlG);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_NOISETOTALD(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -833,9 +833,9 @@ void function_RPT_NOISETOTALD(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.noiseP.DlT);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_NOISETOTAL(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -854,9 +854,9 @@ void function_RPT_NOISETOTAL(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.noiseP.FamT);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_SNR(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -875,9 +875,9 @@ void function_RPT_SNR(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.SNR);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_SNRD(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -901,9 +901,9 @@ void function_RPT_SNRD(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.DlSN);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_SNRXX(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -922,9 +922,9 @@ void function_RPT_SNRXX(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.SNRXX);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_SIR(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -943,9 +943,9 @@ void function_RPT_SIR(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.SIR);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_SIRD(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -969,9 +969,9 @@ void function_RPT_SIRD(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.DlSI);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_RSN(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -1000,9 +1000,9 @@ void function_RPT_RSN(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.RF);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_BCR(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -1021,9 +1021,9 @@ void function_RPT_BCR(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.BCR);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_OCR(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -1042,9 +1042,9 @@ void function_RPT_OCR(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.OCR);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_OCRS(struct PathData path, int option, int *col) {
 
@@ -1069,9 +1069,9 @@ void function_RPT_OCRS(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.probocc);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_MIR(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -1090,9 +1090,9 @@ void function_RPT_MIR(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD, path.MIR);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_RXLOCATION(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -1116,9 +1116,9 @@ void function_RPT_RXLOCATION(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD1, path.L_rx.lng*R2D);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_ESL(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -1142,9 +1142,9 @@ void function_RPT_ESL(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD1, path.El);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_LONG(struct PathData path, int option, int *col) {
 	switch(option) {
@@ -1213,9 +1213,9 @@ void function_RPT_LONG(struct PathData path, int option, int *col) {
 			fprintf(fp,",");
 			fprintf(fp, RFC4180_DBLFIELD1, path.F);
 			break;
-	};
-	return;
-};
+	}
+    return;
+}
 
 void function_RPT_DOMMODE(struct PathData path, int option, int *col) {
 
@@ -1245,9 +1245,9 @@ void function_RPT_DOMMODE(struct PathData path, int option, int *col) {
 			}
 			else { // There is no dominant mode
 				sprintf(outstr, " NONE ");
-			};
+			}
 
-			if(path.DMidx <= MAXMDS) {
+            if(path.DMidx <= MAXMDS) {
 				fprintf(fp,",");
 				fprintf(fp, STRFIELD, outstr);
 				fprintf(fp,",");
@@ -1290,8 +1290,8 @@ void function_RPT_DOMMODE(struct PathData path, int option, int *col) {
 				fprintf(fp, DBLFIELD, 0.0);
 				fprintf(fp,",");
 				fprintf(fp, DBLFIELD, 0.0);
-			};
-			break;
+			}
+            break;
 		case PRINT_RFC4180_DATA:
 			if(path.DMidx < MAXEMDS) { // E mode dominant
 				sprintf(outstr,  "%dE", path.DMidx+1);
@@ -1301,9 +1301,9 @@ void function_RPT_DOMMODE(struct PathData path, int option, int *col) {
 			}
 			else { // There is no dominant mode
 				sprintf(outstr, "NONE");
-			};
+			}
 
-			if(path.DMidx <= MAXMDS) {
+            if(path.DMidx <= MAXMDS) {
 				fprintf(fp,",");
 				fprintf(fp, RFC4180_STRFIELD, outstr);
 				fprintf(fp,",");
@@ -1346,12 +1346,12 @@ void function_RPT_DOMMODE(struct PathData path, int option, int *col) {
 				fprintf(fp, RFC4180_DBLFIELD, 0.0);
 				fprintf(fp,",");
 				fprintf(fp, RFC4180_DBLFIELD, 0.0);
-			};
-			break;
-	};
+			}
+            break;
+	}
 
-	return;
-};
+    return;
+}
 
 char EW(double lng) {
 
@@ -1359,7 +1359,7 @@ char EW(double lng) {
 	else if(lng > 0.0) return 'E';
 	else return '=';
 
-};
+}
 
 char NS(double lat) {
 
@@ -1367,5 +1367,5 @@ char NS(double lat) {
 	else if(lat > 0.0) return 'N';
 	else return '=';
 
-};
+}
 

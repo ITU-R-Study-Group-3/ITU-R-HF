@@ -137,7 +137,7 @@ int Noise(
         noiseP->FamT = -noiseP->ManMadeNoise;
 
         return RTN_NOISEOK;
-    };
+    }
     // ********************************************************************* //
     // **************** End Noise Calulation Override ********************** //
     // ********************************************************************* //
@@ -188,7 +188,7 @@ int Noise(
         sigmaT = c * sqrt(2.0 * log(alphaT / gammaT));
     } else {
         sigmaT = c * sqrt(log(1.0 + (betaT / pow(alphaT, 2))));
-    };
+    }
 
     FamTu = c * (log(alphaT) - (pow(sigmaT, 2) / (2.0 * pow(c, 2))));
 
@@ -218,7 +218,7 @@ int Noise(
         sigmaT = c * sqrt(2.0 * log(alphaT / gammaT));
     } else {
         sigmaT = c * sqrt(log(1.0 + (betaT / pow(alphaT, 2))));
-    };
+    }
 
     FamTl = c * (log(alphaT) - (pow(sigmaT, 2) / (2.0 * pow(c, 2))));
 
@@ -227,7 +227,7 @@ int Noise(
     noiseP->FamT = min(FamTu, FamTl); // Worst-case noise.
 
     return RTN_NOISEOK;
-};
+}
 
 void AtmosphericNoise(
     struct NoiseParams *noiseP,
@@ -300,7 +300,7 @@ void AtmosphericNoise(
         lrxmt += 24;
     } else if (lrxmt > 23) {
         lrxmt -= 24;
-    };
+    }
 
     /*
     The atmospheric noise is determined by:
@@ -348,7 +348,7 @@ void AtmosphericNoise(
     noiseP->DlA = 10.0 * log10(fa);
 
     return;
-};
+}
 
 void GetFamParameters(
     struct NoiseParams *noiseP,
@@ -379,7 +379,7 @@ void GetFamParameters(
 
     double v[5];
     double u[2];
-    double cz;
+    double cz = 0.0;
     double pz;
     double px;
     double x;
@@ -405,7 +405,7 @@ void GetFamParameters(
         q = (lng + 2.0 * PI) / 2.0;
     } else {
         q = lng / 2.0;
-    };
+    }
 
     // Calculate the longitude series
     for (j = 0; j < lm; j++) {
@@ -413,9 +413,9 @@ void GetFamParameters(
         R = 0.0;
         for (k = 0; k < ln; k++) {
             R = R + sin((k + 1.0) * q) * noiseP->fakp[FS->tmblk][k][j];
-        };
+        }
         ZZ[j] = R + noiseP->fakp[FS->tmblk][15][j];
-    };
+    }
 
     // Calculate the latitude series
     // Reuse the temp, q, as the latitude plus 90 degrees
@@ -424,7 +424,7 @@ void GetFamParameters(
     R = 0.0;
     for (j = 0; j < lm; j++) {
         R = R + sin((j + 1.0) * q) * ZZ[j];
-    };
+    }
     // Final Fourier series calculation.
     // (Note the linear nomalization using fakabp values)
     Fam1MHz = R + noiseP->fakabp[FS->tmblk][0] + noiseP->fakabp[FS->tmblk][1] * q;
@@ -434,7 +434,7 @@ void GetFamParameters(
         i = FS->tmblk + 6; // TIMEBLOCKINDX=TIMEBLOCKINDX+6
     } else {
         i = FS->tmblk; // TIMEBLOCKINDX=TIMEBLOCKINDX
-    };
+    }
 
     // for K = 0 then U1 = -0.75
     // for K = 1 then U1 = U
@@ -457,13 +457,13 @@ void GetFamParameters(
             pz = u[k] * pz + noiseP->fam[i][j];
             // PX = U1*PX + FAM(I+7,TIMEBLOCKINDX)
             px = u[k] * px + noiseP->fam[i][j + 7];
-        }; // j=2,6
+        } // j=2,6
 
         if (k == 0) {
             cz = Fam1MHz * (2.0 - pz) - px;
             // U1 = U
-        };
-    }; // k=0,1
+        }
+    } // k=0,1
 
     // Frequency variation of atmospheric noise
     FS->FA = cz * pz + px;
@@ -473,7 +473,7 @@ void GetFamParameters(
     x = log10(frequency);
     if (frequency > 20.0) {
         x = log10(20.0);
-    };
+    }
 
     for (j = 0; j < 5; j++) { // DO I=1,5
         // Limit frequency to 10 MHz for SigmaFam
@@ -481,17 +481,17 @@ void GetFamParameters(
         // IF((I .EQ. 5) .AND. (FREQ .GT. 10.0)) THEN
         if ((j == 4) && (frequency > 10.0)) {
             x = 1.0;
-        };
+        }
         // Y = DUD(1,TIMEBLOCKINDX,I)
         y = noiseP->dud[j][i][0];
 
         for (k = 1; k < 5; k++) {
            // Y = Y*X + DUD(J,TIMEBLOCKINDX,I)
             y = y * x + noiseP->dud[j][i][k];
-        }; // k=1,4
+        } // k=1,4
 
         v[j] = y; // V(I) = Y
-    }; // j=0,4
+    } // j=0,4
 
     // Store the return values
     FS->Du = v[0];      // Du = V(1)
@@ -501,7 +501,7 @@ void GetFamParameters(
     FS->SigmaFam = v[4];// Sigma_Fam = V(5)
 
     return;
-};
+}
 
 void ManMadeNoise(
     struct NoiseParams *noiseP,
@@ -576,12 +576,12 @@ void ManMadeNoise(
         // Use the CITY category in Table 2 P.372-10 for the deciles
         noiseP->DlM = 11.0;
         noiseP->DuM = 6.7;
-    };
+    }
 
     // Calculate the man made noise, FaM
     noiseP->FaM = c - d * log10(frequency);
 
-};
+}
 
 void GalacticNoise(
     struct NoiseParams *noiseP,
@@ -614,7 +614,7 @@ void GalacticNoise(
     // Determine the decile values are set to 2 dB (3/1.282)
     noiseP->DuG = 2.0;
     noiseP->DlG = 2.0;
-};
+}
 
 int ReadFamDud(
     struct NoiseParams *noiseP,
@@ -642,6 +642,11 @@ int ReadFamDud(
             noiseP->fakabp
      */
 
+	#ifdef __GNUC__
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunused-result"
+	#endif
+
     int i, j, k;
     int n;
 
@@ -653,7 +658,7 @@ int ReadFamDud(
 
     char line[256];
 
-    char CoeffFile[14];
+    char CoeffFile[22];
     char InFilePath[270];
 
     FILE *fp;
@@ -670,7 +675,7 @@ int ReadFamDud(
         printf("ReadFamDud: ERROR Can't find input file - %s\n", InFilePath);
 
         return RTN_ERROPENCOEFFFILE;
-    };
+    }
 
     // Read the first header line.
     fgets(line, 256, fp);
@@ -680,62 +685,62 @@ int ReadFamDud(
 
     for (n = 0; n < 400; n++) {
         fgets(line, 256, fp);
-    };
+    }
 
     //*************************************************************************
     // Skip ifm3(10) & xfm3(9,49,2)
 
     for (n = 0; n < 181; n++) {
         fgets(line, 256, fp);
-    };
+    }
 
     //*************************************************************************
     // Skip ie(10) & xe(9,22,2)
     for (n = 0; n < 84; n++) {
         fgets(line, 256, fp);
-    };
+    }
 
     //*************************************************************************
     // Skip iesu(10) & xesu(5,55,2)
 
     for (n = 0; n < 114; n++) {
         fgets(line, 256, fp);
-    };
+    }
 
     //*************************************************************************
     // Skip ies(10) & xes(7,61,2)
 
     for (n = 0; n < 175; n++) {
         fgets(line, 256, fp);
-    };
+    }
 
     //*************************************************************************
     // Skip iels(10) & xels(5,55,2)
 
     for (n = 0; n < 114; n++) {
         fgets(line, 256, fp);
-    };
+    }
 
     //*************************************************************************
     // Skip ihpo1(10) & xhpo1(13,29,2)
 
     for (n = 0; n < 155; n++) {
         fgets(line, 256, fp);
-    };
+    }
 
     //*************************************************************************
     // Skip ihpo2(10) & xhpo2(9,55,2)
 
     for (n = 0; n < 202; n++) {
         fgets(line, 256, fp);
-    };
+    }
 
     //*************************************************************************
     // ihp(10) & xhp(9,37,2)
 
     for (n = 0; n < 138; n++) {
         fgets(line, 256, fp);
-    };
+    }
 
     //*************************************************************************
     // fakp(29,16,6)
@@ -758,7 +763,7 @@ int ReadFamDud(
             A + 5 * n + 3,
             A + 5 * n + 4
         );
-    };
+    }
     // Read the last partial line
     fgets(line, 256, fp);
     sscanf(
@@ -775,9 +780,9 @@ int ReadFamDud(
         for (j = 0; j < 16; j++) {
             for (k = 0; k < 29; k++) {
                 noiseP->fakp[i][j][k] = *(A + 16 * 29 * i + 29 * j + k);
-            };
-        };
-    };
+            }
+        }
+    }
 
     // Free A
     free(A);
@@ -802,7 +807,7 @@ int ReadFamDud(
             A + 5 * n + 3,
             A + 5 * n + 4
         );
-    };
+    }
     // Read the last partial line
     fgets(line, 256, fp);
     sscanf(
@@ -816,8 +821,8 @@ int ReadFamDud(
     for (j = 0; j < 6; j++) {
         for (k = 0; k < 2; k++) {
             noiseP->fakabp[j][k] = *(A + 2 * j + k);
-        };
-    };
+        }
+    }
 
     // Free A
     free(A);
@@ -842,16 +847,16 @@ int ReadFamDud(
             A + 5 * n + 3,
             A + 5 * n + 4
         );
-    };
+    }
 
     // Reshape A into the Coeff structure.
     for (i = 0; i < 5; i++) {
         for (j = 0; j < 12; j++) {
             for (k = 0; k < 5; k++) {
                 noiseP->dud[i][j][k] = *(A + 5 * 12 * i + 5 * j + k);
-            };
-        };
-    };
+            }
+        }
+    }
 
     // Free A
     free(A);
@@ -877,7 +882,7 @@ int ReadFamDud(
             A + 5 * n + 3,
             A + 5 * n + 4
         );
-    };
+    }
     // Read the last partial line.
     fgets(line, 256, fp);
     sscanf(
@@ -892,8 +897,8 @@ int ReadFamDud(
     for (j = 0; j < 12; j++) {
         for (k = 0; k < 14; k++) {
             noiseP->fam[j][k] = *(A + 14 * j + k);
-        };
-    };
+        }
+    }
 
     // Free A
     free(A);
@@ -902,9 +907,13 @@ int ReadFamDud(
     fclose(fp);
 
     return RTN_READFAMDUDOK;
-};
 
-char const* P372Version() {
+	#ifdef __GNUC__
+	#pragma GCC diagnostic pop
+	#endif
+}
+
+char const* P372Version(void) {
     /*
     Return the version of the P533 DLL.
 
@@ -919,9 +928,9 @@ char const* P372Version() {
     */
 
     return P372VER;
-};
+}
 
-char const* P372CompileTime() {
+char const* P372CompileTime(void) {
     /*
     Return the compile time of the P533 DLL.
 
@@ -936,7 +945,7 @@ char const* P372CompileTime() {
     */
 
     return P372CT;
-};
+}
 
 void AtmosphericNoise_LT(
     struct NoiseParams *noiseP,
@@ -987,7 +996,7 @@ void AtmosphericNoise_LT(
     }
     else if (lrxmt > 23) {
         lrxmt -= 24;
-    };
+    }
     /*
     The atmospheric noise is determined by
         i) finding the atmospheric noise at the current time block at the 
@@ -1045,7 +1054,8 @@ void AtmosphericNoise_LT(
     FamS->tmblk = 99;
 
     return;
-};
+}
+
 /* BEGIN Windows __stdcall Interface routines to the Noise.c routines. */
 #ifdef _WIN32
     /* 
@@ -1059,16 +1069,18 @@ void AtmosphericNoise_LT(
             noiseP
         );
         return retval;
-    };
-    int __stdcall _FreeNoiseMemory(
+    }
+
+int __stdcall _FreeNoiseMemory(
         struct NoiseParams *noiseP
     ) {
         int retval = FreeNoiseMemory(
             noiseP
         );
         return retval;
-    };
-    int __stdcall _Noise(
+    }
+
+int __stdcall _Noise(
         struct NoiseParams *noiseP,
         int hour,
         double lng,
@@ -1083,8 +1095,9 @@ void AtmosphericNoise_LT(
             frequency
         );
         return retval;
-    };
-    int __stdcall _ReadFamDud(
+    }
+
+int __stdcall _ReadFamDud(
         struct NoiseParams *noiseP,
         const char *DataFilePath,
         int month
@@ -1095,21 +1108,25 @@ void AtmosphericNoise_LT(
             month
         );
         return retval;
-    };
-    void __stdcall _InitializeNoise(
+    }
+
+void __stdcall _InitializeNoise(
         struct NoiseParams *noiseP
     ) {
         InitializeNoise(noiseP);
-    };
-    char const *__stdcall _P372CompileTime() {
+    }
+
+char const *__stdcall _P372CompileTime(void) {
         P372CompileTime();
         return P372CT;
-    };
-    char  const *__stdcall _P372Version() {
+    }
+
+char  const *__stdcall _P372Version(void) {
         P372Version();
         return P372VER;
-    };
-    void __stdcall _AtmosphericNoise(
+    }
+
+void __stdcall _AtmosphericNoise(
         struct NoiseParams *noiseP,
         int iutc,
         double lng,
@@ -1123,8 +1140,9 @@ void AtmosphericNoise_LT(
             lat,
             frequency
         );
-    };
-    void __stdcall _AtmosphericNoise_LT(
+    }
+
+void __stdcall _AtmosphericNoise_LT(
         struct NoiseParams *noiseP,
         struct FamStats* FamS,
         int lrxmt,
@@ -1140,8 +1158,9 @@ void AtmosphericNoise_LT(
             lat,
             frequency
         );
-    };
-    int __stdcall _MakeNoise(
+    }
+
+int __stdcall _MakeNoise(
         int month,
         int hour,
         double lat,
@@ -1164,6 +1183,6 @@ void AtmosphericNoise_LT(
             pntflag
         );
         return retval;
-    };
+    }
 #endif
 /* END Windows __stdcall Interface routines to the Noise.c routines. */
