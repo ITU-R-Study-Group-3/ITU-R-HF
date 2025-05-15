@@ -20,7 +20,7 @@
 // Local Prototypes
 void PrintCSVLine(int month, int hour, double freq, double rlat, double rlng, double* out);
 void PrintCSVHeader(const char* P372ver, const char* P372compt);
-void PrintUsage();
+void PrintUsage(void);
 int RunAtmosNoiseMonths(char* datafilepath);
 void FindV_d(double freq, double c[5], double d[5], double* V_d, double* sigma_V_d);
 // End Local Prototypes
@@ -132,7 +132,7 @@ int main(int argc, char* argv[]) {
 
 		return RTN_ITURNOISEOK;
 
-	}; // argc == 2
+	} // argc == 2
 
 	// Are there enough command line arguments to proceed?
 	if (argc > 6) {
@@ -141,19 +141,19 @@ int main(int argc, char* argv[]) {
 		if ((month < 0) || (month > 11)) {
 			printf("ITURNoise: Error: Month (%d) Out of Range (1 to 12) ", month + 1);
 			return RTN_ERRMONTH;
-		};
+		}
 
 		hour = atoi(argv[2]) - 1;
 		if ((hour < 0) || (hour > 23)) {
 			printf("ITURNoise: Error: Hour (%d (UTC)) Out of Range (1 to 24 UTC) ", hour + 1);
 			return RTN_ERRMONTH;
-		};
+		}
 
 		freq = atof(argv[3]);
 		if ((freq < 0.01) || (freq > 30)) {
 			printf("ITURNoise: Error: Frequency (%5.4f (MHz)) Out of Range (0.01 to 30 MHz) ", freq);
 			return RTN_ERRMONTH;
-		};
+		}
 
 		lat = atof(argv[4]);
 		if ((lat < -90.0) || (lat > 90.0)) {
@@ -162,7 +162,7 @@ int main(int argc, char* argv[]) {
 		}
 		else {
 			rlat = lat * D2R;
-		};
+		}
 
 		lng = atof(argv[5]);
 		if ((lng < -180.0) || (lng > 180.0)) {
@@ -171,7 +171,7 @@ int main(int argc, char* argv[]) {
 		}
 		else {
 			rlng = lng * D2R;
-		};
+		}
 
 		mmnoise = atof(argv[6]); // 
 
@@ -179,7 +179,7 @@ int main(int argc, char* argv[]) {
 		if (stat(datafilepath, &sb)) { // Check to see if the directory exists
 			printf("ITURNoise: Error: Data file path %s does not exist\n", datafilepath);
 			return RTN_ERRBADDATAFILEPATH;
-		};
+		}
 
 		if (argc >= 9) {
 			pntflag = atoi(argv[8]);
@@ -207,12 +207,12 @@ int main(int argc, char* argv[]) {
 				// Passthru print flag to  MakeNoise()
 				mnpntflag = MNPRINTTOSTDOUT;
 			}
-		};
+		}
 
 		if ((pntflag == PRINTCSV) || (pntflag == PRINTCSVALL)) {
 			// Tell MakeNoise() not to print that the printing will be here
 			mnpntflag = MNNOPRINT;
-		};
+		}
 
 	// Load the Noise routines in P372.dll ******************************
 #ifdef _WIN32
@@ -222,7 +222,7 @@ int main(int argc, char* argv[]) {
 			if (hLib == NULL) {
 				printf("ITURNoise: AllocatePathMemory: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
 				return RTN_ERRP372DLL;
-			};
+			}
 			// Get the handle to the DLL library, hLib.
 			GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
 			// Get the P372Version() process from the DLL.
@@ -257,24 +257,24 @@ int main(int argc, char* argv[]) {
 			if (retval == RTN_MAKENOISEOK) {
 				if (pntflag == PRINTCSVALL) {
 					PrintCSVHeader(P372ver, P372compt);
-				};
+				}
 				if ((pntflag == PRINTCSV) || (pntflag == PRINTCSVALL)){
 					PrintCSVLine(month, hour, freq, rlat, rlng, &out[0]);
-				};
-			};
+				}
+			}
 	}
 	else {
 		printf("ITURNoise: ERROR: Insufficient number (%d) of command line arguments, 7 required.\n", argc);
 		printf("\n");
 		PrintUsage();
 		return RTN_ERRCOMMANDLINEARGS;
-	};
+	}
 
 	FreeLibrary(hLib);
  
 return retval;
 
-};
+}
 
 int RunAtmosNoiseMonths(char * datafilepath) {
 
@@ -304,7 +304,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	if (hLib == NULL) {
 		printf("ITURHFProp: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
 		return RTN_ERRP372DLL;
-	};
+	}
 	int mod[512];
 	// Get the handle to the DLL library, hLib.
 	GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
@@ -370,7 +370,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 	// Variables specific to the code fragment from AtmosphericNoise() 
 	// for the b) figure data generation
-	double pz, px, cz;
+	double pz, px, cz = 0.0;
 	double u[2];
 	double Fam[11]; // Output array for b) figure data generation
 	double Fam1MHz;
@@ -401,19 +401,19 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	if (stat(acsvfilepath, &st) == -1) {
 		sprintf(command, "mkdir %s", acsvfilepath);
 		system(command);
-	};
+	}
 
 	// Check to see if the B csv directory exists
 	if (stat(bcsvfilepath, &st) == -1) {
 		sprintf(command, "mkdir %s", bcsvfilepath);
 		system(command);
-	};
+	}
 
 	// Check to see if the C csv directory exists
 	if (stat(ccsvfilepath, &st) == -1) {
 		sprintf(command, "mkdir %s", ccsvfilepath);
 		system(command);
-	};
+	}
 
 	// End opening output file directories
 
@@ -428,50 +428,56 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	if (fp_V_d == NULL) {
 		printf("ITURNoise: Error: Can't open input file %s (%s)\n", V_dfilepath, strerror(errno));
 		return RTN_ERRV_DCANTOPENFILE;
-	};
+	}
 
 	sprintf(sigma_V_dfilepath, "%s\\%s", datafilepath, "sigma_V_d.txt");
 	fp_sigma_V_d = fopen(sigma_V_dfilepath, "r");
 	if (fp_sigma_V_d == NULL) {
 		printf("ITURNoise: Error: Can't open input file %s (%s)\n", sigma_V_dfilepath, strerror(errno));
 		return RTN_ERRSIGMA_V_DCANTOPENFILE;
-	};
+	}
 
 	tb = 0;
 	s = 0;
 	while (fscanf(fp_V_d, "%[^\n] ", line) != EOF) {
 		
-		int retval = sscanf(line, "%d %d %s %s %s %s %s",
-			&dummy, &dummy, &strl[4], &strl[3], &strl[2], &strl[1], &strl[0]);
+		if (sscanf(line, "%d %d %s %s %s %s %s",
+			&dummy, &dummy, &strl[4], &strl[3], &strl[2], &strl[1], &strl[0]) != 7)
+		{
+		    //Add error handling
+		}
 
 		for (i = 0; i < 5; i++) {
 			c[s][tb][i] = atof(strl[i]);
-		};
+		}
 
 		tb += 1;
 		if (tb == 6) {
 			tb = 0;
 			s += 1;
-		};
-	};
+		}
+	}
 
 	tb = 0;
 	s = 0;
 	while (fscanf(fp_sigma_V_d, "%[^\n] ", line) != EOF) {
 		
-		int retval = sscanf(line, "%d %d %s %s %s %s %s",
-			&dummy, &dummy, &strl[4], &strl[3], &strl[2], &strl[1], &strl[0]);
+		if (sscanf(line, "%d %d %s %s %s %s %s",
+			&dummy, &dummy, &strl[4], &strl[3], &strl[2], &strl[1], &strl[0]) != 7)
+		{
+			//Add error handling
+		}
 
 		for (i = 0; i < 5; i++) {
 			d[s][tb][i] = atof(strl[i]);
-		};
+		}
 
 		tb += 1;
 		if (tb == 6) {
 			tb = 0;
 			s += 1;
-		};
-	};
+		}
+	}
 
 	// End open and reading input files
 	//////////////////////////////////////////////////////////////////////////////
@@ -480,7 +486,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	retval = dllAllocateNoiseMemory(&noiseP);
 	if (retval != RTN_ALLOCATEP372OK) {
 		return RTN_ERRALLOCATENOISE;
-	};
+	}
 
 	// Initialize Noise from the P372.dll
 	dllInitializeNoise(&noiseP);
@@ -528,8 +534,8 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 		retval = dllReadFamDud(&noiseP, datafilepath, m);
 		if (retval != RTN_READFAMDUDOK) {
 			return retval;
-		};
-			
+		}
+
 		for (int h = 0; h <= 23; h+=4) { // hour local time
 	
 			sprintf(outputfilename, "%sa_%0dm%0dh.csv", acsvfilepath, m+1, h);
@@ -537,8 +543,8 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 			if (fp == NULL) {
 				printf("ITURNoise: Error: Can't open output file %s (%s)\n", outputfilename, strerror(errno));
 				return RTN_ERRCANTOPENFILE;
-			};
-			
+			}
+
 			// The file is open proceed
 			// User feedback
 			printf("Writing file %s\n", outputfilename);
@@ -559,13 +565,13 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 					fprintf(fp, "%d, %d, %5.4f, %5.4f, %5.4f, %5.4f\n", 
 						m + 1, h, freq, rlat * R2D, rlng * R2D, FamS.FA);
 
-				}; //  End Longitude loop
-			}; // End Latitude loop
+				} //  End Longitude loop
+			} // End Latitude loop
 
 			fclose(fp);
 
-		}; // End hour for
-	}; // End month for
+		} // End hour for
+	} // End month for
 	
 	/********************* End Generate a) Figure Data *******************/
 	
@@ -590,7 +596,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 		retval = dllReadFamDud(&noiseP, datafilepath, m);
 		if (retval != RTN_READFAMDUDOK) {
 			return retval;
-		};
+		}
 
 		for (int h = 0; h <= 23; h += 4) { // hour local time
 
@@ -599,7 +605,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 			if (fp == NULL) {
 				printf("ITURNoise: Error: Can't open output file %s (%s)\n", outputfilename, strerror(errno));
 				return RTN_ERRCANTOPENFILE;
-			};
+			}
 
 			// The file is open proceed
 			// User feedback
@@ -617,7 +623,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 					}
 					else {
 						Fam1MHz = F1 * 10.0;
-					};
+					}
 
 					// Set the time block to the current local time, the h loop
 					FamS.tmblk = (int)(h / 4.0); // Set the timeblock to the correct 4 hour block
@@ -630,7 +636,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 					}
 					else {
 						i = FamS.tmblk; // TIMEBLOCKINDX=TIMEBLOCKINDX
-					};
+					}
 
 					// for K = 0 then U1 = -0.75
 					// for K = 1 then U1 = U
@@ -646,30 +652,30 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 						for (int j = 2; j < 7; j++) {
 							pz = u[k] * pz + noiseP.fam[i][j];			// PZ = U1*PZ + FAM(I,TIMEBLOCKINDX)
 							px = u[k] * px + noiseP.fam[i][j + 7];		// PX = U1*PX + FAM(I+7,TIMEBLOCKINDX)
-						}; // j=2,6
+						} // j=2,6
 
 						if (k == 0) {
 							cz = Fam1MHz * (2.0 - pz) - px;
 							// U1 = U
-						};
-					}; // k=0,1
+						}
+					} // k=0,1
 
 					// Frequency variation of atmospheric noise
 					Fam[F1] = cz * pz + px;
 					//*** Code from AtmosphericNoise() **********************************
 
-				}; // End Fam1MHz loop
+				} // End Fam1MHz loop
 
 				// Print out all Fam1MHz data for this frequency
 				fprintf(fp, "%d, %d, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f\n", 
 					m+1,h,f_log[f],rlat*R2D,rlng*R2D,Fam[0],Fam[1],Fam[2],Fam[3],Fam[4],Fam[5],Fam[6],Fam[7],Fam[8],Fam[9],Fam[10]);
 			
-			}; // End f loop
-		}; // End h loop
+			} // End f loop
+		} // End h loop
 
 		fclose(fp);
 
-	}; // End m loop
+	} // End m loop
 
 	// User feedback
 	printf("ITURNoise: Data for b) Figures Complete\n");
@@ -690,7 +696,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 		retval = dllReadFamDud(&noiseP, datafilepath, m);
 		if (retval != RTN_READFAMDUDOK) {
 			return retval;
-		};
+		}
 
 		for (int h = 0; h <= 23; h += 4) { // hour local time
 
@@ -702,7 +708,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 			if (fp == NULL) {
 				printf("ITURNoise: Error: Can't open output file %s (%s)\n", outputfilename, strerror(errno));
 				return RTN_ERRCANTOPENFILE;
-			};
+			}
 
 			// The file is open proceed
 			// User feedback
@@ -724,12 +730,12 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 				fprintf(fp, "%d, %d, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f, %5.4f\n", 
 					m+1, h, f_log[f], rlat* R2D, rlng* R2D, FamS.FA, FamS.Du, FamS.Dl, FamS.SigmaFam, FamS.SigmaDu, FamS.SigmaDl, V_d, sigma_V_d);
 
-			}; // End frequency loop
+			} // End frequency loop
 
 			fclose(fp);
 
-		}; // End hour for
-	}; // End month for
+		} // End hour for
+	} // End month for
 	
 	/****************** End Generate c) Figure Data ***************/
 
@@ -745,9 +751,9 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	return RTN_ATMOSFILESOK;
 	   
 	 // End P372.DLL Load ************************************************
-};
+}
 
-void PrintUsage() {
+void PrintUsage(void) {
 
 	/*
 		PrintUsage - Prints a brief summary of how to use ITURNoise()
@@ -795,7 +801,7 @@ void PrintUsage() {
 
 	return;
 
-};
+}
 
 void PrintCSVHeader(const char* P372ver, const char* P372compt) {
 	/*
@@ -824,8 +830,8 @@ void PrintCSVHeader(const char* P372ver, const char* P372compt) {
 	printf("******************************************************************************\n");
 	printf("\t\tITU-R Study Group 3: Radiowave Propagation\n");
 	printf("******************************************************************************\n");
-	printf("\t\tAnalysis: %s\n", ntimestr);;
-	printf("\t\tP372 Version:      %s\n", P372ver);
+	printf("\t\tAnalysis: %s\n", ntimestr);
+    printf("\t\tP372 Version:      %s\n", P372ver);
 	printf("\t\tP372 Compile Time: %s\n", P372compt);
 	printf("******************************************************************************\n");
 
@@ -850,7 +856,7 @@ void PrintCSVHeader(const char* P372ver, const char* P372compt) {
 
 	return;
 
-};
+}
 
 void PrintCSVLine(int month, int hour, double freq, double rlat, double rlng, double* out) {
 	/*
@@ -874,7 +880,7 @@ void PrintCSVLine(int month, int hour, double freq, double rlat, double rlng, do
 
 	return;
 
-};
+}
 
 void FindV_d(double freq, double c[5], double d[5], double *V_d, double *sigma_V_d) {
 
@@ -909,5 +915,4 @@ void FindV_d(double freq, double c[5], double d[5], double *V_d, double *sigma_V
 
 	return;
 
-};
-
+}

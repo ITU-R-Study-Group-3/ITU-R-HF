@@ -1,0 +1,36 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  buildUbuntu:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: make
+      run: |
+        cd Linux
+        make all
+        
+  buildOSX:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: make
+      run: |
+        cd Linux
+        make all
+
+  buildWindows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v2
+    - name: Build Solution
+      run: |
+        cd P372/Win32/ITURNoise
+        msbuild /p:Configuration=Release /p:Platform="x86" ITURNoise.sln
+        cd ../../..
+        cd ITURHFProp/Win32/Combined
+        msbuild /p:Configuration=Release /p:Platform="Win32" Combined.sln              

@@ -25,7 +25,7 @@ DLLEXPORT double GreatCircleDistance(struct Location here, struct Location there
  */
 	return 2.0*R0*asin(sqrt(pow((sin((here.lat-there.lat)/2.0)),2.0) + cos(here.lat)*cos(there.lat)*pow((sin((here.lng - there.lng)/2.0)),2.0))); 
 
-}; //  GreatCircleDistance()
+} //  GreatCircleDistance()
 
 DLLEXPORT void GreatCirclePoint(struct Location here, struct Location there, struct ControlPt *midpnt, double distance, double fraction) {
 
@@ -67,11 +67,11 @@ DLLEXPORT void GreatCirclePoint(struct Location here, struct Location there, str
 		midpnt->distance = 0.0;
 		midpnt->L.lat = here.lat;
 		midpnt->L.lng = here.lng;
-	};
+	}
 
-	return;
+return;
 
-}; // GreatCirclePoint()
+} // GreatCirclePoint()
 
 DLLEXPORT void GeomagneticCoords(struct Location here, struct Location *there) {
 	
@@ -103,7 +103,7 @@ DLLEXPORT void GeomagneticCoords(struct Location here, struct Location *there) {
 
 	return;
 
-};
+}
 
 DLLEXPORT double Bearing(struct Location here, struct Location there, int direction) {
 
@@ -141,7 +141,7 @@ DLLEXPORT double Bearing(struct Location here, struct Location there, int direct
         // Flip the bearing around since you are looking at the long way round
 		// Then modulo 2*PI
 		bearing = fmod((2.0 * PI + (bearing + PI)), 2.0 * PI);
-	};
+	}
 
-	return bearing;
-};
+return bearing;
+}

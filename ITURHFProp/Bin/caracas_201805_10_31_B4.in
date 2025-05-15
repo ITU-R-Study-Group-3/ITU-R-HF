@@ -2,12 +2,12 @@ PathName "United Kingdom to Caracas"
 PathTXName "Caracas"
 Path.L_tx.lat 10.48
 Path.L_tx.lng -66.9
-TXAntFilePath "C:\Users\Behm\Documents\GitHub\ITURHFProp\bin\dipole_14mhz_10m_aagl.13"
+TXAntFilePath "dipole_14mhz_10m_aagl.13"
 TXGOS 0.0
 PathRXName "Birmingham"
 Path.L_rx.lat 52.4862
 Path.L_rx.lng -1.8904
-RXAntFilePath "C:\Users\Behm\Documents\GitHub\ITURHFProp\bin\dipole_14mhz_10m_aagl.13"
+RXAntFilePath "dipole_14mhz_10m_aagl.13"
 RXGOS 0.0
 AntennaOrientation "TX2RX"
 TXBearing 0.0
@@ -26,7 +26,7 @@ Path.SNRXXp 90
 Path.ManMadeNoise "RESIDENTIAL"
 Path.Modulation "ANALOG"
 Path.SorL "SHORTPATH"
-RptFilePath "C:\Users\Behm\Documents\GitHub\ITURHFProp\Reports\"
+RptFilePath "Reports/"
 //RptFileFormat = "RPT_ESL | RPT_PR | RPT_SNR | RPT_BCR | RPT_ELE | RPT_GRW | RPT_LONG"
 RptFileFormat = "RPT_DUMPPATH"
 LL.lat 52.4862
@@ -39,4 +39,4 @@ UR.lat 52.4862
 UR.lng -1.8904
 latinc 1.0
 lnginc 1.0
-DataFilePath "C:\Users\Behm\Documents\GitHub\P533\Data\"
+DataFilePath "../Data/"

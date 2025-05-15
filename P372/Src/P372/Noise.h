@@ -1,3 +1,6 @@
+#ifndef NOISE_H
+#define NOISE_H
+
 /* Operating system preprocessor directives */
 #ifdef _WIN32
     #define DLLEXPORT __declspec(dllexport)
@@ -105,7 +108,7 @@ struct NoiseParams {
 #ifdef _WIN32
     #include <Windows.h>
     // P372Version() & P372CompileTime()
-    typedef const char *(__cdecl *cP372Info)();
+    typedef const char *(__cdecl *cP372Info)(void);
     // AllocateNoiseMemory() & FreeNoiseMemory()
     typedef int(__cdecl *iNoiseMemory)(
         struct NoiseParams *noiseP
@@ -183,8 +186,8 @@ DLLEXPORT int ReadFamDud(
 DLLEXPORT void InitializeNoise(
     struct NoiseParams *noiseP
 );
-DLLEXPORT char const *P372CompileTime();
-DLLEXPORT char const *P372Version();
+DLLEXPORT char const *P372CompileTime(void);
+DLLEXPORT char const *P372Version(void);
 DLLEXPORT void AtmosphericNoise(
     struct NoiseParams *noiseP,
     int iutc,
@@ -237,8 +240,8 @@ DLLEXPORT int MakeNoise(
     DLLEXPORT void __stdcall _InitializeNoise(
         struct NoiseParams *noiseP
     );
-    DLLEXPORT char const *__stdcall _P372CompileTime();
-    DLLEXPORT char const *__stdcall _P372Version();
+    DLLEXPORT char const *__stdcall _P372CompileTime(void);
+    DLLEXPORT char const *__stdcall _P372Version(void);
     DLLEXPORT void __stdcall _AtmosphericNoise(
         struct NoiseParams *noiseP,
         int iutc,
@@ -294,3 +297,4 @@ DLLEXPORT int MakeNoise(
     void (*dllInitializeNoise)(struct NoiseParams *);
 #endif
 /* End operating system preprocessor */
+#endif // NOISE_H

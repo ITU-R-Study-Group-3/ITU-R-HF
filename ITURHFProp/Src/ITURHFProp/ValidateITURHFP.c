@@ -47,7 +47,7 @@ int ValidateITURHFP(struct ITURHFProp ITURHFP) {
 	if ((ITURHFP.AntennaOrientation != MANUAL) && (ITURHFP.AntennaOrientation != TX2RX))		return RTN_ERRANTENNAORN;
 
 	return RTN_VALIDATEITURHFPOK;
-};
+}
 
 
 

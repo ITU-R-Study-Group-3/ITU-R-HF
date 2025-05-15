@@ -1,12 +1,28 @@
-CC = gcc
+UNAME_S := $(shell uname -s)
+
+# Set CC based on the operating system
+ifeq ($(UNAME_S),Darwin)
+    CC = clang
+else
+    CC = gcc
+endif
+
 source_dir = ../Src/P533/
 bin_dir = ../Bin/
 # Use the following for testing
 #CFLAGS = -fPIC -Wall -Wextra -O0 -g -I$(source_dir)
 # Use the following for production
-CFLAGS = -std=c99 -fPIC -Wall -Wextra -O2 -I$(source_dir)
+OPTIMIZE ?= -O2
+CFLAGS = -std=c99 -fPIC -Wall -Wextra $(OPTIMIZE) -I$(source_dir)
 
-LDFLAGS = -shared -lm -ldl -z muldefs
+# Set linker flags based on the operating system
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+    LDFLAGS = -shared -lm -ldl
+else
+    LDFLAGS = -shared -lm -ldl -z muldefs
+endif
+
 RM = rm -f
 TARGET_LIB = libp533.so
 
