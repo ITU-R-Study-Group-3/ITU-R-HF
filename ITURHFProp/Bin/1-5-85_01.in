@@ -40,4 +40,4 @@ NW.lat 51.1166666667
 NW.lng 7.26666666667
 latinc 1.0
 lnginc 1.0
-DataFilePath "C:\Users\behm\Documents\GitHub\GitHf\Data\"
+DataFilePath "../Data/"

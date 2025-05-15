@@ -1,10 +1,24 @@
-CC = gcc
+UNAME_S := $(shell uname -s)
+
+# Set CC based on the operating system
+ifeq ($(UNAME_S),Darwin)
+    CC = clang
+else
+    CC = gcc
+endif
+
 # Use the following for testing
 #CFLAGS = -fPIC -Wall -Wextra -O0 -g
 # Use the following for production
 CFLAGS = -fPIC -Wall -Wextra -O2
 
-LDFLAGS = -lm -ldl -z muldefs
+# Set linker flags based on the operating system
+ifeq ($(UNAME_S),Darwin)
+    LDFLAGS = -lm -ldl
+else
+    LDFLAGS = -lm -ldl -z muldefs
+endif
+
 RM = rm -f
 source_dir = ../Src/ITURHFProp/
 

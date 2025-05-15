@@ -1,4 +1,12 @@
-CC = gcc
+UNAME_S := $(shell uname -s)
+
+# Set CC based on the operating system
+ifeq ($(UNAME_S),Darwin)
+    CC = clang
+else
+    CC = gcc
+endif
+
 CFLAGS = -fPIC -Wall -Wextra -O2 -g
 LDFLAGS = -lm -ldl
 RM = rm -f

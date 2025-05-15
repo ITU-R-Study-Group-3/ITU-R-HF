@@ -31,7 +31,7 @@ Path.FW 0.0
 Path.T0 0.0
 Path.F0 0.0
 Path.SorL "SHORTPATH"
-RptFilePath "../Reports/"
+RptFilePath "Reports/"
 RptFileFormat = "RPT_E | RPT_PR | RPT_RXLOCATION | RPT_D | RPT_NOISESOURCES | RPT_NOISESOURCESD | RPT_NOISETOTALD | RPT_NOISETOTAL"
 LL.lat 51.1166666667
 LL.lng 7.26666666667
@@ -43,8 +43,5 @@ UR.lat 51.1166666667
 UR.lng 7.26666666667
 latinc 1.0
 lnginc 1.0
-<<<<<<< HEAD
-DataFilePath "../../Data/"
-=======
-DataFilePath "../../P533/Data/"
->>>>>>> 76fc4964e7ec74b4fd2cfeeae7578899fe961699
+DataFilePath "../Data/"
+
