@@ -876,9 +876,10 @@ C:\>ITURNoise 1 14 1.0 40.0 165.0 0 "G:\User\Data\" 0
 
 - Argument 1 is an integer that indicates the month (1 to 12) of interest. In the example above the desired month is January. 
 - Argument 2 is an integer that indicates the hour (1 to 24) UTC at the receive point. In most cases this will require the calculation of the time UTC from the longitude at that receive point. In the example above the receive point is 11 hours (165? E/(15?/hr) ahead of UTC so to determine the noise for the 12th local time hour the 1st hour UTC is chosen. 
-- Argument 3 is a float that indicates the latitude (degrees). In the example above the latitude desired is 40? N. 
-- Argument 4 is a float that indicates the longitude (degrees). In the example above the longitude desired is 165? E
-- Argument 5 is a float that indicates the man-made noise which can either be categorical (0-5) or value of man-made noise in dB (represented by a negative number). In the example above the value 1.0 indicates that the noise category residential. The category codes appear below. 
+- Argument 3 is a float that indicates the frequency (MHz). In the example above the frequency is 1.0 MHz. 
+- Argument 4 is a float that indicates the latitude (degrees). In the example above the latitude desired is 40? N. 
+- Argument 5 is a float that indicates the longitude (degrees). In the example above the longitude desired is 165? E
+- Argument 6 is a float that indicates the man-made noise which can either be categorical (0-5) or value of man-made noise in dB (represented by a negative number). In the example above the value 1.0 indicates that the noise category residential. The category codes appear below. 
 
     |code|Noise Category|
     |----|--------------|
@@ -889,11 +890,9 @@ C:\>ITURNoise 1 14 1.0 40.0 165.0 0 "G:\User\Data\" 0
     | 4.0    | Noisy|
     | 5.0    | Quiet|
 
-    If argument 5 is give as a negative number, the man-made noise will be set to that value where the galactic and atmospheric noise calculations are not performed. This second mode is of little value for this stand-alone program, ITURNoise.exe, running, P533.dll. Overriding the P372 calculation is included here and is consistent with some analyses desired in ITURHFProp which also uses the P372.dll.
-
-- Argument 6 indicates the location of the required CCIR data files. The data file path must be given as a string enclosed in double quotes without trailing back slash. In the example above the location of the required CCIR data files are on drive C: in the directory Data, “C:\Data”
-
-- Argument 7 allows the program to provide return data from the P.372 calculation is several formats. The table below gibes the integer print flag codes. 
+- If argument 6 is give as a negative number, the man-made noise will be set to that value where the galactic and atmospheric noise calculations are not performed. This second mode is of little value for this stand-alone program, ITURNoise.exe, running, P533.dll. Overriding the P372 calculation is included here and is consistent with some analyses desired in ITURHFProp which also uses the P372.dll. 
+- Argument 7 indicates the location of the required CCIR data files. The data file path must be given as a string enclosed in double quotes without trailing back slash. In the example above the location of the required CCIR data files are on drive C: in the directory Data, “C:\Data”
+- Argument 8 allows the program to provide return data from the P.372 calculation is several formats. The table below gibes the integer print flag codes. 
 
     |code|        Print Mode|
     |----|----------------|
