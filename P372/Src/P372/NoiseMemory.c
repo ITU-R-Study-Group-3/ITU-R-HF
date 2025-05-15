@@ -1,3 +1,4 @@
+#include <stdlib.h>
 
 // Local includes
 #include "Common.h"
