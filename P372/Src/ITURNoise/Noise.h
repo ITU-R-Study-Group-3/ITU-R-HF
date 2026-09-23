@@ -297,6 +297,11 @@ DLLEXPORT int MakeNoise(
     int (*dllFreeNoiseMemory)(struct NoiseParams *);
     int (*dllReadFamDud)(struct NoiseParams *, const char *, int);
     void (*dllInitializeNoise)(struct NoiseParams *);
+    /* These three were declared only in the _WIN32 block above, so ITURNoise
+       could not be built on Linux or macOS. */
+    void (*dllAtmosphericNoise)(struct NoiseParams *, int, double, double, double);
+    void (*dllAtmosphericNoise_LT)(struct NoiseParams *, struct FamStats *, int, double, double, double);
+    int (*dllMakeNoise)(int, int, double, double, double, double, char *, double *, int);
 #endif
 /* End operating system preprocessor */
 #endif // NOISE_H

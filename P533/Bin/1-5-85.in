@@ -30,7 +30,7 @@ Path.FW 0.0
 Path.T0 0.0
 Path.F0 0.0
 Path.SorL "SHORTPATH"
-RptFilePath "C:\Users\behm.NTIA-ITS\Documents\GitHub\GitHf\Reports\"
+RptFilePath "../Reports/"
 \\RptFileFormat "RPT_E | RPT_PR | RPT_RXLOCATION | RPT_D | RPT_SNRXX | RPT_OCR | RPT_OCRS"
 RptFileFormat "RPT_ALL"
 LL.lat 51.1166666667
@@ -43,4 +43,4 @@ UR.lat 51.1166666667
 UR.lng 7.26666666667
 latinc 1.0
 lnginc 1.0
-DataFilePath "C:\Users\behm.NTIA-ITS\Documents\GitHub\GitHf\Data\"
+DataFilePath "../Data/"

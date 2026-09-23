@@ -16,7 +16,7 @@ void WriteHeader(FILE *fp);
 void WriteData(FILE *fp, double FA, double lng, double lat);
 // End Local Prototypes
  
-void main() {
+int main(void) {
 
 	double lat, lng, q;
 	double ZZ[29];
@@ -45,10 +45,8 @@ void main() {
 	strcpy(OutFile, "FAKP.out");
 	fp = fopen(OutFile, "w");
 	if (fp == NULL) {
-		printf("FAKP: ERROR Can't oen output file - %s\n", OutFile);
-		printf("Press Enter...");
-		getchar();
-		return;
+		printf("FAKP: ERROR Can't open output file - %s\n", OutFile);
+		return EXIT_FAILURE;
 	};
 
 	WriteHeader(fp);
@@ -152,7 +150,9 @@ void main() {
 
 	fclose(fp);
 
-};
+	return EXIT_SUCCESS;
+
+}
 
 void WriteHeader(FILE *fp) {
 	fprintf(fp, "latitude, longitude (0 - 360 E), Noise\n");

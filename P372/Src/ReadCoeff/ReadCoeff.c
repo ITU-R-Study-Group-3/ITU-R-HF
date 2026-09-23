@@ -80,9 +80,9 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 
 	fp = fopen(InFilePath, "r"); 
 	if(fp == NULL) {
+		// No interactive prompt here: this is library code and may run
+		// without a console attached.
 		printf("ReadCoeff: ERROR Can't find input file - %s\n", InFilePath);
-		printf("Press Enter...");
-		getchar();
 		return;
 	};
 	

@@ -6,7 +6,9 @@
 #include <math.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-//#include <unistd.h>
+#ifdef _WIN32
+	#include <direct.h>
+#endif
 
 // Local includes
 #include "Common.h"
@@ -24,6 +26,62 @@ void PrintUsage(void);
 int RunAtmosNoiseMonths(char* datafilepath);
 void FindV_d(double freq, double c[5], double d[5], double* V_d, double* sigma_V_d);
 // End Local Prototypes
+
+/*
+	Portability helpers. This program was originally written for Windows only:
+	it unloaded the library with FreeLibrary() unconditionally, spelled paths
+	with backslashes and created directories by shelling out to "mkdir".
+*/
+#ifdef _WIN32
+	#define P372_LIB_CLOSE(h) FreeLibrary((HMODULE)(h))
+	#define P372_MKDIR(p)     _mkdir(p)
+#else
+	#define P372_LIB_CLOSE(h) dlclose(h)
+	#define P372_MKDIR(p)     mkdir((p), 0775)
+#endif
+
+/*
+	MakeDirPath() - Creates a directory and any missing parent, like "mkdir -p".
+
+		INPUT
+			const char *path - a directory path, with or without a trailing '/'
+
+		OUTPUT
+			returns TRUE when the directory exists on return
+
+		SUBROUTINES
+			None
+*/
+static int MakeDirPath(const char *path) {
+
+	char work[256];
+	size_t i, n;
+	struct stat st;
+
+	n = strlen(path);
+	if (n == 0 || n >= sizeof(work)) return FALSE;
+	memcpy(work, path, n + 1);
+
+	// Drop a trailing separator so the final component is created below.
+	while (n > 0 && (work[n-1] == '/' || work[n-1] == '\\')) work[--n] = '\0';
+
+	for (i = 1; i <= n; i++) {
+		if (i == n || work[i] == '/' || work[i] == '\\') {
+			char saved = work[i];
+			work[i] = '\0';
+			if (stat(work, &st) == -1) {
+				if (P372_MKDIR(work) == -1 && errno != EEXIST) {
+					printf("ITURNoise: Error: Can't create directory %s (%s)\n", work, strerror(errno));
+					return FALSE;
+				}
+			}
+			work[i] = saved;
+		}
+	}
+
+	return TRUE;
+
+}
 
 int main(int argc, char* argv[]) {
 	/*
@@ -126,7 +184,10 @@ int main(int argc, char* argv[]) {
 		// Then the user wants to run all the tables necessary to create the
 		// Atmospheric noise Figures in Recommendation P.372-14 
 		// Assume that the only argument given is the path to the data files
-		sprintf(&datafilepath[0], "%s\\", argv[1]);
+		if ((size_t)snprintf(datafilepath, sizeof(datafilepath), "%s/", argv[1]) >= sizeof(datafilepath)) {
+			printf("ITURNoise: Error: Data file path too long\n");
+			return RTN_ERRCOMMANDLINEARGS;
+		}
 
 		RunAtmosNoiseMonths(&datafilepath[0]);
 
@@ -175,7 +236,10 @@ int main(int argc, char* argv[]) {
 
 		mmnoise = atof(argv[6]); // 
 
-		sprintf(&datafilepath[0], "%s\\", argv[7]);
+		if ((size_t)snprintf(datafilepath, sizeof(datafilepath), "%s/", argv[7]) >= sizeof(datafilepath)) {
+			printf("ITURNoise: Error: Data file path too long\n");
+			return RTN_ERRCOMMANDLINEARGS;
+		}
 		if (stat(datafilepath, &sb)) { // Check to see if the directory exists
 			printf("ITURNoise: Error: Data file path %s does not exist\n", datafilepath);
 			return RTN_ERRBADDATAFILEPATH;
@@ -230,14 +294,14 @@ int main(int argc, char* argv[]) {
 			// Get the P372CompileTime() process from the DLL.
 			dllP372CompileTime = (cP372Info)GetProcAddress((HMODULE)hLib, "P372CompileTime");
 			dllMakeNoise = (iMakeNoise)GetProcAddress((HMODULE)hLib, "__MakeNoise@52");
-#elif __linux__ || __APPLE__
-			void* hLib;
+#elif defined(__linux__) || defined(__APPLE__)
+			// Note: no local hLib here. The global declared in Noise.h is the one
+			// the matching P372_LIB_CLOSE() below unloads.
 			hLib = dlopen("libp372.so", RTLD_NOW);
-			if (!hLib) {
-				printf("Couldn't load libp372.so, exiting.\n");
-				exit(1);
-			};
-			dllAllocateNoiseMemory = dlsym(hLib, "AllocateNoiseMemory");
+			if (hLib == NULL) {
+				printf("ITURNoise: Error %d Couldn't load libp372.so\n", RTN_ERRP372DLL);
+				return RTN_ERRP372DLL;
+			}
 			dllP372Version = dlsym(hLib, "P372Version");
 			dllP372CompileTime = dlsym(hLib, "P372CompileTime");
 			dllNoise = dlsym(hLib, "Noise");
@@ -245,7 +309,16 @@ int main(int argc, char* argv[]) {
 			dllFreeNoiseMemory = dlsym(hLib, "FreeNoiseMemory");
 			dllInitializeNoise = dlsym(hLib, "InitializeNoise");
 			dllReadFamDud = dlsym(hLib, "ReadFamDud");
-#endif	
+			// MakeNoise() was resolved only in the Windows branch, so this program
+			// called through a NULL pointer on Linux and macOS.
+			dllMakeNoise = dlsym(hLib, "MakeNoise");
+#endif
+
+			if (dllP372Version == NULL || dllP372CompileTime == NULL || dllMakeNoise == NULL) {
+				printf("ITURNoise: Error %d P372 entry point not found\n", RTN_ERRP372DLL);
+				P372_LIB_CLOSE(hLib);
+				return RTN_ERRP372DLL;
+			}
 	
 			// Load the version and compile time of the P372.DLL
 			P372ver = dllP372Version();
@@ -270,7 +343,7 @@ int main(int argc, char* argv[]) {
 		return RTN_ERRCOMMANDLINEARGS;
 	}
 
-	FreeLibrary(hLib);
+	P372_LIB_CLOSE(hLib);
  
 return retval;
 
@@ -305,9 +378,6 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 		printf("ITURHFProp: Error %d P372.DLL Not Found\n", RTN_ERRP372DLL);
 		return RTN_ERRP372DLL;
 	}
-	int mod[512];
-	// Get the handle to the DLL library, hLib.
-	GetModuleFileName((HMODULE)hLib, (LPTSTR)mod, 50);
 	// Get the P372Version() process from the DLL.
 	dllP372Version = (cP372Info)GetProcAddress((HMODULE)hLib, "P372Version");
 	// Get the P372CompileTime() process from the DLL.
@@ -320,12 +390,12 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	dllAtmosphericNoise_LT = (vAtmosphericNoise_LT)GetProcAddress((HMODULE)hLib, "AtmosphericNoise_LT");
 	dllAtmosphericNoise = (vAtmosphericNoise)GetProcAddress((HMODULE)hLib, "AtmosphericNoise");
 	dllReadFamDud = (iReadFamDud)GetProcAddress((HMODULE)hLib, "ReadFamDud");
-#elif __linux__ || __APPLE__
-	void* hLib;
+#elif defined(__linux__) || defined(__APPLE__)
+	// Note: no local hLib here; the global from Noise.h is what gets unloaded.
 	hLib = dlopen("libp372.so", RTLD_NOW);
-	if (!hLib) {
-		printf("Couldn't load libp372.so, exiting.\n");
-		exit(1);
+	if (hLib == NULL) {
+		printf("ITURNoise: Error %d Couldn't load libp372.so\n", RTN_ERRP372DLL);
+		return RTN_ERRP372DLL;
 	}
 	dllReadFamDud = dlsym(hLib, "ReadFamDud");
 	dllP372Version = dlsym(hLib, "P372Version");
@@ -334,7 +404,17 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	dllAllocateNoiseMemory = dlsym(hLib, "AllocateNoiseMemory");
 	dllFreeNoiseMemory = dlsym(hLib, "FreeNoiseMemory");
 	dllInitializeNoise = dlsym(hLib, "InitializeNoise");
+	// Both of these were resolved only in the Windows branch.
+	dllAtmosphericNoise = dlsym(hLib, "AtmosphericNoise");
+	dllAtmosphericNoise_LT = dlsym(hLib, "AtmosphericNoise_LT");
 #endif
+
+	if (dllReadFamDud == NULL || dllP372Version == NULL || dllP372CompileTime == NULL ||
+		dllAtmosphericNoise == NULL || dllAtmosphericNoise_LT == NULL) {
+		printf("ITURNoise: Error %d P372 entry point not found\n", RTN_ERRP372DLL);
+		P372_LIB_CLOSE(hLib);
+		return RTN_ERRP372DLL;
+	}
 
 	FILE* fp = NULL;
 	FILE* fp_V_d = NULL;
@@ -387,33 +467,18 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	char ccsvfilepath[256];
 	char V_dfilepath[256];
 	char sigma_V_dfilepath[256];
-	char command[256];
 
-	struct stat st = { 0 };
-	
 	// Open output file directories if necessary
 	// The file structure for output files is static
-	sprintf(acsvfilepath, "%s", ".\\P372_figures\\a\\csv\\");
-	sprintf(bcsvfilepath, "%s", ".\\P372_figures\\b\\csv\\");
-	sprintf(ccsvfilepath, "%s", ".\\P372_figures\\c\\csv\\");
+	snprintf(acsvfilepath, sizeof(acsvfilepath), "%s", "./P372_figures/a/csv/");
+	snprintf(bcsvfilepath, sizeof(bcsvfilepath), "%s", "./P372_figures/b/csv/");
+	snprintf(ccsvfilepath, sizeof(ccsvfilepath), "%s", "./P372_figures/c/csv/");
 
-	// Check to see if the A csv directory exists
-	if (stat(acsvfilepath, &st) == -1) {
-		sprintf(command, "mkdir %s", acsvfilepath);
-		system(command);
-	}
-
-	// Check to see if the B csv directory exists
-	if (stat(bcsvfilepath, &st) == -1) {
-		sprintf(command, "mkdir %s", bcsvfilepath);
-		system(command);
-	}
-
-	// Check to see if the C csv directory exists
-	if (stat(ccsvfilepath, &st) == -1) {
-		sprintf(command, "mkdir %s", ccsvfilepath);
-		system(command);
-	}
+	// Create the csv directories. MakeDirPath() creates the missing parents too,
+	// which is what the old "mkdir" shell-out relied on the Windows shell to do.
+	if (MakeDirPath(acsvfilepath) == FALSE) return RTN_ERRCANTOPENFILE;
+	if (MakeDirPath(bcsvfilepath) == FALSE) return RTN_ERRCANTOPENFILE;
+	if (MakeDirPath(ccsvfilepath) == FALSE) return RTN_ERRCANTOPENFILE;
 
 	// End opening output file directories
 
@@ -423,14 +488,14 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	// files. They have been extracted from NTIA Report 85-173 which contains 
 	// the Behm verified CCIR coefficient data that is used throughout in 
 	// ITURHFProp(). 
-	sprintf(V_dfilepath, "%s\\%s", datafilepath, "V_d.txt");
+	snprintf(V_dfilepath, sizeof(V_dfilepath), "%s%s", datafilepath, "V_d.txt");
 	fp_V_d = fopen(V_dfilepath, "r");
 	if (fp_V_d == NULL) {
 		printf("ITURNoise: Error: Can't open input file %s (%s)\n", V_dfilepath, strerror(errno));
 		return RTN_ERRV_DCANTOPENFILE;
 	}
 
-	sprintf(sigma_V_dfilepath, "%s\\%s", datafilepath, "sigma_V_d.txt");
+	snprintf(sigma_V_dfilepath, sizeof(sigma_V_dfilepath), "%s%s", datafilepath, "sigma_V_d.txt");
 	fp_sigma_V_d = fopen(sigma_V_dfilepath, "r");
 	if (fp_sigma_V_d == NULL) {
 		printf("ITURNoise: Error: Can't open input file %s (%s)\n", sigma_V_dfilepath, strerror(errno));
@@ -439,12 +504,17 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 	tb = 0;
 	s = 0;
-	while (fscanf(fp_V_d, "%[^\n] ", line) != EOF) {
+	while (fscanf(fp_V_d, "%255[^\n] ", line) != EOF) {
 		
-		if (sscanf(line, "%d %d %s %s %s %s %s",
-			&dummy, &dummy, &strl[4], &strl[3], &strl[2], &strl[1], &strl[0]) != 7)
+		// strl[n] is already a char*; the old code passed &strl[n], a char(*)[256].
+		// The field widths keep a long token inside the 256-byte buffers.
+		if (sscanf(line, "%d %d %255s %255s %255s %255s %255s",
+			&dummy, &dummy, strl[4], strl[3], strl[2], strl[1], strl[0]) != 7)
 		{
-		    //Add error handling
+			printf("ITURNoise: Error: Malformed record in %s: %s\n", V_dfilepath, line);
+			fclose(fp_V_d);
+			fclose(fp_sigma_V_d);
+			return RTN_ERRV_DCANTOPENFILE;
 		}
 
 		for (i = 0; i < 5; i++) {
@@ -460,12 +530,15 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 	tb = 0;
 	s = 0;
-	while (fscanf(fp_sigma_V_d, "%[^\n] ", line) != EOF) {
+	while (fscanf(fp_sigma_V_d, "%255[^\n] ", line) != EOF) {
 		
-		if (sscanf(line, "%d %d %s %s %s %s %s",
-			&dummy, &dummy, &strl[4], &strl[3], &strl[2], &strl[1], &strl[0]) != 7)
+		if (sscanf(line, "%d %d %255s %255s %255s %255s %255s",
+			&dummy, &dummy, strl[4], strl[3], strl[2], strl[1], strl[0]) != 7)
 		{
-			//Add error handling
+			printf("ITURNoise: Error: Malformed record in %s: %s\n", sigma_V_dfilepath, line);
+			fclose(fp_V_d);
+			fclose(fp_sigma_V_d);
+			return RTN_ERRSIGMA_V_DCANTOPENFILE;
 		}
 
 		for (i = 0; i < 5; i++) {
@@ -505,7 +578,8 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	printf("                    ITU-R Study Group 3\n");
 	printf("************************************************************\n");
 	printf("         ITURNoise: P372 Figure Data Generator\n");
-	sprintf(ntimestr, "%0d/%0d/%0d %02d:%02d:%02d",
+	printf("         P372 Version: %s (%s)\n", P372ver, P372compt);
+	snprintf(ntimestr, sizeof(ntimestr), "%0d/%0d/%0d %02d:%02d:%02d",
 		ntime->tm_mday, ntime->tm_mon + 1, ntime->tm_year - 100,
 		ntime->tm_hour, ntime->tm_min, ntime->tm_sec);
 	printf("         Creation: %s\n", ntimestr);
@@ -514,7 +588,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 	// Make a filename compatible string from the time stamp
 	// to be used in the loops below
-	sprintf(ntimestr, "%0d%0d%0dd-%02d%02d%02dt",
+	snprintf(ntimestr, sizeof(ntimestr), "%0d%0d%0dd-%02d%02d%02dt",
 		ntime->tm_mday, ntime->tm_mon + 1, ntime->tm_year - 100,
 		ntime->tm_hour, ntime->tm_min, ntime->tm_sec);
 
@@ -538,7 +612,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 		for (int h = 0; h <= 23; h+=4) { // hour local time
 	
-			sprintf(outputfilename, "%sa_%0dm%0dh.csv", acsvfilepath, m+1, h);
+			snprintf(outputfilename, sizeof(outputfilename), "%sa_%0dm%0dh.csv", acsvfilepath, m+1, h);
 			fp = fopen(outputfilename, "w");
 			if (fp == NULL) {
 				printf("ITURNoise: Error: Can't open output file %s (%s)\n", outputfilename, strerror(errno));
@@ -600,7 +674,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 
 		for (int h = 0; h <= 23; h += 4) { // hour local time
 
-			sprintf(outputfilename, "%sb_%0dm%0dh.csv", bcsvfilepath, m + 1, h);
+			snprintf(outputfilename, sizeof(outputfilename), "%sb_%0dm%0dh.csv", bcsvfilepath, m + 1, h);
 			fp = fopen(outputfilename, "w");
 			if (fp == NULL) {
 				printf("ITURNoise: Error: Can't open output file %s (%s)\n", outputfilename, strerror(errno));
@@ -703,7 +777,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 			// Set the time block index, tb, for the c and d arrays
 			tb = h / 4;
 
-			sprintf(outputfilename, "%sc_%0dm%0dh.csv", ccsvfilepath, m + 1, h);
+			snprintf(outputfilename, sizeof(outputfilename), "%sc_%0dm%0dh.csv", ccsvfilepath, m + 1, h);
 			fp = fopen(outputfilename, "w");
 			if (fp == NULL) {
 				printf("ITURNoise: Error: Can't open output file %s (%s)\n", outputfilename, strerror(errno));
@@ -746,7 +820,7 @@ int RunAtmosNoiseMonths(char * datafilepath) {
 	printf("ITURNoise: Data for c) Figures Complete\n");
 	printf("\n*** End ITURNoise Data Generation ***\n");
 
-	FreeLibrary(hLib);
+	P372_LIB_CLOSE(hLib);
 
 	return RTN_ATMOSFILESOK;
 	   
@@ -823,7 +897,7 @@ void PrintCSVHeader(const char* P372ver, const char* P372compt) {
 	// Get the time to time stamp the output files.
 	tm = time(NULL);
 	ntime = localtime(&tm);
-	sprintf(ntimestr, "%d/%d/%d - %02d:%02d:%02d",
+	snprintf(ntimestr, sizeof(ntimestr), "%d/%d/%d - %02d:%02d:%02d",
 		ntime->tm_mday, ntime->tm_mon + 1, ntime->tm_year - 100,
 		ntime->tm_hour, ntime->tm_min, ntime->tm_sec);
 

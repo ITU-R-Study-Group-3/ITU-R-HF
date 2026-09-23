@@ -86,24 +86,24 @@ for(j=0; j<12; j++) {
 };
 */
 
-    printf("path->dud addr             0x%x\n", &noiseP.dud);
-    printf("\tpath->dud[0][0][0] addr             0x%x contents %lf\n", &noiseP.dud[0][0][0], noiseP.dud[0][0][0]);
-    printf("\tpath->dud[4][0][0] addr             0x%x contents %lf\n", &noiseP.dud[4][0][0], noiseP.dud[4][0][0]);
-    printf("\tpath->dud[0][11][0] addr             0x%x contents %lf\n", &noiseP.dud[0][11][0], noiseP.dud[0][11][0]);
-    printf("\tpath->dud[0][0][4] addr             0x%x contents %lf\n", &noiseP.dud[0][0][4], noiseP.dud[0][0][4]);
-    printf("path->fam addr           0x%x\n", &noiseP.fam);
-    printf("\tpath->fam[0][0] addr             0x%x contents %lf\n", &noiseP.fam[0][0], noiseP.fam[0][0]);
-    printf("\tpath->fam[11][0] addr             0x%x contents %lf\n", &noiseP.fam[11][0], noiseP.fam[11][0]);
-    printf("\tpath->fam[0][13] addr             0x%x contents %lf\n", &noiseP.fam[0][13], noiseP.fam[0][13]);
-    printf("path->fakp addr           0x%x\n", &noiseP.fakp);
-    printf("\tpath->fakp[0][0][0] addr             0x%x contents %lf\n", &noiseP.fakp[0][0][0], noiseP.fakp[0][0][0]);
-    printf("\tpath->fakp[5][0][0] addr             0x%x contents %lf\n", &noiseP.fakp[5][0][0], noiseP.fakp[5][0][0]);
-    printf("\tpath->fakp[0][15][0] addr             0x%x contents %lf\n", &noiseP.fakp[0][15][0], noiseP.fakp[0][15][0]);
-    printf("\tpath->fakp[0][0][28] addr             0x%x contents %lf\n", &noiseP.fakp[0][0][28], noiseP.fakp[0][0][28]);
-    printf("path->fakabp addr           0x%x\n", &noiseP.fakabp);
-    printf("\tpath->fakabp[0][0] addr             0x%x contents %lf\n", &noiseP.fakabp[0][0], noiseP.fakabp[0][0]);
-    printf("\tpath->fakabp[5][0] addr             0x%x contents %lf\n", &noiseP.fakabp[5][0], noiseP.fakabp[5][0]);
-    printf("\tpath->fakabp[0][1] addr             0x%x contents %lf\n", &noiseP.fakabp[0][1], noiseP.fakabp[0][1]);
+    printf("path->dud addr             %p\n", (void *)&noiseP.dud);
+    printf("\tpath->dud[0][0][0] addr             %p contents %lf\n", (void *)&noiseP.dud[0][0][0], noiseP.dud[0][0][0]);
+    printf("\tpath->dud[4][0][0] addr             %p contents %lf\n", (void *)&noiseP.dud[4][0][0], noiseP.dud[4][0][0]);
+    printf("\tpath->dud[0][11][0] addr             %p contents %lf\n", (void *)&noiseP.dud[0][11][0], noiseP.dud[0][11][0]);
+    printf("\tpath->dud[0][0][4] addr             %p contents %lf\n", (void *)&noiseP.dud[0][0][4], noiseP.dud[0][0][4]);
+    printf("path->fam addr           %p\n", (void *)&noiseP.fam);
+    printf("\tpath->fam[0][0] addr             %p contents %lf\n", (void *)&noiseP.fam[0][0], noiseP.fam[0][0]);
+    printf("\tpath->fam[11][0] addr             %p contents %lf\n", (void *)&noiseP.fam[11][0], noiseP.fam[11][0]);
+    printf("\tpath->fam[0][13] addr             %p contents %lf\n", (void *)&noiseP.fam[0][13], noiseP.fam[0][13]);
+    printf("path->fakp addr           %p\n", (void *)&noiseP.fakp);
+    printf("\tpath->fakp[0][0][0] addr             %p contents %lf\n", (void *)&noiseP.fakp[0][0][0], noiseP.fakp[0][0][0]);
+    printf("\tpath->fakp[5][0][0] addr             %p contents %lf\n", (void *)&noiseP.fakp[5][0][0], noiseP.fakp[5][0][0]);
+    printf("\tpath->fakp[0][15][0] addr             %p contents %lf\n", (void *)&noiseP.fakp[0][15][0], noiseP.fakp[0][15][0]);
+    printf("\tpath->fakp[0][0][28] addr             %p contents %lf\n", (void *)&noiseP.fakp[0][0][28], noiseP.fakp[0][0][28]);
+    printf("path->fakabp addr           %p\n", (void *)&noiseP.fakabp);
+    printf("\tpath->fakabp[0][0] addr             %p contents %lf\n", (void *)&noiseP.fakabp[0][0], noiseP.fakabp[0][0]);
+    printf("\tpath->fakabp[5][0] addr             %p contents %lf\n", (void *)&noiseP.fakabp[5][0], noiseP.fakabp[5][0]);
+    printf("\tpath->fakabp[0][1] addr             %p contents %lf\n", (void *)&noiseP.fakabp[0][1], noiseP.fakabp[0][1]);
 
   return 0;
 }

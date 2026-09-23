@@ -6,7 +6,7 @@
 #include "ReadCoeff.h"
 // End local include 
  
-void main() {
+int main(void) {
 
 		struct IonoCoeff Coeff;
 
@@ -25,4 +25,6 @@ void main() {
 
 		FreeCoeffArrays(&Coeff);
 
-};
+		return EXIT_SUCCESS;
+
+}
