@@ -202,12 +202,22 @@ int main(int argc, char *argv[]) {
 	}
 
     // Find the input and output files if they are on the command line
+	// Note: snprintf() is used throughout so that an over-long command line
+	// argument is truncated rather than overrunning the fixed-size buffer.
 	if(argc > 1) { // argc is 2 or 3 there is an input file
-		sprintf(InFilePath, "%s", argv[1]);
+		if((size_t)snprintf(InFilePath, sizeof(InFilePath), "%s", argv[1]) >= sizeof(InFilePath)) {
+			printf("Main: Error %d Input file path too long (max %d characters)\n",
+				RTN_ERRCOMMANDLINEARG, (int)sizeof(InFilePath) - 1);
+			return RTN_ERRCOMMANDLINEARG;
+		}
 	}
 
     if(argc > 2) { // An explicite output file name has been requested
-		sprintf(OutFilePath, "%s", argv[2]);
+		if((size_t)snprintf(OutFilePath, sizeof(OutFilePath), "%s", argv[2]) >= sizeof(OutFilePath)) {
+			printf("Main: Error %d Output file path too long (max %d characters)\n",
+				RTN_ERRCOMMANDLINEARG, (int)sizeof(OutFilePath) - 1);
+			return RTN_ERRCOMMANDLINEARG;
+		}
 	}
 
     if(argc <= 1) { // There was not input file indicated on command line
@@ -264,30 +274,27 @@ int main(int argc, char *argv[]) {
 
 	// Create an output file if none is designated on the command line.
 	if(OutFilePath[0] == EMPTY) {
-		if(ITURHFP.RptFileFormat == RPT_DUMPPATH) { // All Path Data is desired
-			// The path data dump, PDD, file name is time stamped.
-			sprintf(OutFileName, "PDD%02d%02d%02d-%02d%02d%02d.txt",
-				ITURHFP.time->tm_mday, ITURHFP.time->tm_mon+1, ITURHFP.time->tm_year-100,
-				ITURHFP.time->tm_hour, ITURHFP.time->tm_min, ITURHFP.time->tm_sec);
-			strcpy(OutFilePath, ITURHFP.RptFilePath);
-			strcat(OutFilePath, OutFileName);
-			// Store the output file
-			strcpy(ITURHFP.RptFilePath, OutFilePath);
-		}
-		else { // Customized report is desired
-			// Open the report file and initialize the file pointer in ITURHFP
-			sprintf(OutFileName, "RPT%02d%02d%02d-%02d%02d%02d.txt",
-				ITURHFP.time->tm_mday, ITURHFP.time->tm_mon+1, ITURHFP.time->tm_year-100,
-				ITURHFP.time->tm_hour, ITURHFP.time->tm_min, ITURHFP.time->tm_sec);
-			strcpy(OutFilePath, ITURHFP.RptFilePath);
-			strcat(OutFilePath, OutFileName);
-			// Store the output file
-			strcpy(ITURHFP.RptFilePath, OutFilePath);
+		// The report file name is time stamped. PDD is a full path data dump,
+		// RPT is a customized report.
+		snprintf(OutFileName, sizeof(OutFileName), "%s%02d%02d%02d-%02d%02d%02d.txt",
+			(ITURHFP.RptFileFormat == RPT_DUMPPATH) ? "PDD" : "RPT",
+			ITURHFP.time->tm_mday, ITURHFP.time->tm_mon+1, ITURHFP.time->tm_year-100,
+			ITURHFP.time->tm_hour, ITURHFP.time->tm_min, ITURHFP.time->tm_sec);
+		// Append the generated name to the user's report directory. The concatenation
+		// is bounded because RptFilePath and OutFilePath are the same size.
+		if((size_t)snprintf(OutFilePath, sizeof(OutFilePath), "%s%s", ITURHFP.RptFilePath, OutFileName) >= sizeof(OutFilePath)) {
+			printf("Main: Error %d Report file path too long (max %d characters)\n",
+				RTN_ERROPENOUTPUTFILE, (int)sizeof(OutFilePath) - 1);
+			return RTN_ERROPENOUTPUTFILE;
 		}
     }
-	else {
-		// Store the output file. The user has designated the output file name on the command line
-		strcpy(ITURHFP.RptFilePath, OutFilePath);
+
+	// Store the output file. When the path was given on the command line this is
+	// the user's name, otherwise it is the time-stamped name generated above.
+	if((size_t)snprintf(ITURHFP.RptFilePath, sizeof(ITURHFP.RptFilePath), "%s", OutFilePath) >= sizeof(ITURHFP.RptFilePath)) {
+		printf("Main: Error %d Report file path too long (max %d characters)\n",
+			RTN_ERROPENOUTPUTFILE, (int)sizeof(ITURHFP.RptFilePath) - 1);
+		return RTN_ERROPENOUTPUTFILE;
 	}
 
     // Open the output file and initialize the file pointer in ITURHFP

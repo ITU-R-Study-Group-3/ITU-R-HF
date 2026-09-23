@@ -6,6 +6,31 @@
 #include "ReadCoeff.h"
 // End local include 
 
+/*
+	The coefficient files are fixed-format, so a short read or a record that does
+	not parse means the file is truncated or is not a coefficient file at all.
+	Continuing past that point would silently fill the Coeff structure with
+	uninitialised values, so these macros report the file and give up instead.
+	They are used only inside ReadCoeff(), where `fp` and `InFilePath` are in scope.
+*/
+#define RCGETS(line, fp) \
+	do { \
+		if (fgets((line), (int)sizeof(line), (fp)) == NULL) { \
+			printf("ReadCoeff: ERROR Unexpected end of coefficient file - %s\n", InFilePath); \
+			fclose(fp); \
+			return; \
+		} \
+	} while (0)
+
+#define RCSCAN(nexpected, call) \
+	do { \
+		if ((call) != (nexpected)) { \
+			printf("ReadCoeff: ERROR Malformed record in coefficient file - %s\n", InFilePath); \
+			fclose(fp); \
+			return; \
+		} \
+	} while (0)
+
 void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 
 	/*
@@ -38,14 +63,20 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	
 	char line[256];
 
-	char CoeffFile[14];
 	char InFilePath[270];
 	
 	FILE *fp;
 
-	strcpy(InFilePath, "..\\..\\..\\data\\coeffs\\txt\\");
-	sprintf(CoeffFile, "COEFF%02dW.txt", month);
-	strcat(InFilePath, CoeffFile);
+	// Forward slashes are accepted by the Windows CRT as well as by POSIX, so one
+	// spelling of the default location serves every supported platform. Set the
+	// environment variable ITU_COEFF_DIR to read the files from somewhere else.
+	const char *CoeffDir = getenv("ITU_COEFF_DIR");
+	if (CoeffDir == NULL || CoeffDir[0] == '\0') CoeffDir = "../../../data/coeffs/txt";
+
+	if ((size_t)snprintf(InFilePath, sizeof(InFilePath), "%s/COEFF%02dW.txt", CoeffDir, month) >= sizeof(InFilePath)) {
+		printf("ReadCoeff: ERROR Coefficient file path too long\n");
+		return;
+	}
 
 	fp = fopen(InFilePath, "r"); 
 	if(fp == NULL) {
@@ -59,7 +90,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	NullCoeffArrays(Coeff);
 
 	// Read the first header line
-	fgets(line, 256, fp);
+	RCGETS(line, fp);
 
 	// Store the header name
 	strcpy(Coeff->name, line);
@@ -83,26 +114,26 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(13*76*2 * sizeof(double));
 
 		// Read the line "if2(10)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 2 lines into the if2 array
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->if2+0, Coeff->if2+1, Coeff->if2+2,
-											   Coeff->if2+3, Coeff->if2+4);
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->if2+5, Coeff->if2+6, Coeff->if2+7,
-											   Coeff->if2+8, Coeff->if2+9);
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->if2+0, Coeff->if2+1, Coeff->if2+2,
+											   Coeff->if2+3, Coeff->if2+4));
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->if2+5, Coeff->if2+6, Coeff->if2+7,
+											   Coeff->if2+8, Coeff->if2+9));
 		// Read the line "xf2(13,76,2)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 	
 		// Read 395 lines into the array 
 		for(n=0; n<395; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf\n", A+5*n);
+		RCGETS(line, fp); 
+		RCSCAN(1, sscanf(line, " %lf\n", A+5*n));
 
 		// Reshape A into the Coeff structure 
 		for(i=0; i<2; i++) {
@@ -120,7 +151,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else { // This data is not desired
 		// Move to the next block
 		for(n=0; n<400; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 
@@ -143,26 +174,26 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(9*49*2 * sizeof(double));
 
 		// Read the line "ifm3(10)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 2 lines into the ifm3 array
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->ifm3, Coeff->ifm3+1, Coeff->ifm3+2,
-											   Coeff->ifm3+3, Coeff->ifm3+4);
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->ifm3+5, Coeff->ifm3+6, Coeff->ifm3+7,
-											   Coeff->ifm3+8, Coeff->ifm3+9);
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->ifm3, Coeff->ifm3+1, Coeff->ifm3+2,
+											   Coeff->ifm3+3, Coeff->ifm3+4));
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->ifm3+5, Coeff->ifm3+6, Coeff->ifm3+7,
+											   Coeff->ifm3+8, Coeff->ifm3+9));
 		// Read the line "xfm3(19,49,2)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 176 lines into the array A
 		for(n=0; n<176; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf %lf\n", A+5*n, A+5*n+1);
+		RCGETS(line, fp); 
+		RCSCAN(2, sscanf(line, " %lf %lf\n", A+5*n, A+5*n+1));
 
 		// Reshape A into the Coeff structure 
 		for(i=0; i<2; i++) {
@@ -180,7 +211,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else { // This data is not desired
 		// Move to the next block
 		for(n=0; n<181; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -201,26 +232,26 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(9*22*2 * sizeof(double));
 		
 		// Read the line "ie(10)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 2 lines into the ie array
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->ie, Coeff->ie+1, Coeff->ie+2,
-											   Coeff->ie+3, Coeff->ie+4);
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->ie+5, &Coeff->ie+6, Coeff->ie+7,
-											   Coeff->ie+8, &Coeff->ie+9);
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->ie, Coeff->ie+1, Coeff->ie+2,
+											   Coeff->ie+3, Coeff->ie+4));
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->ie+5, Coeff->ie+6, Coeff->ie+7,
+											   Coeff->ie+8, Coeff->ie+9));
 		// Read the line "xe(13,76,2)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 79 lines into the array A
 		for(n=0; n<79; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf\n", A+5*n);
+		RCGETS(line, fp); 
+		RCSCAN(1, sscanf(line, " %lf\n", A+5*n));
 
 		// Reshape A into the Coeff structure 
 		for(i=0; i<2; i++) {
@@ -238,7 +269,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else { // This data is not desired
 		// Move to the next block
 		for(n=0; n<84; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 
@@ -260,22 +291,22 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(5*55*2 * sizeof(double));
 
 		// Read the line "iesu(10)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 2 lines into the iesu array
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->iesu, Coeff->iesu+1, Coeff->iesu+2,
-											   Coeff->iesu+3, Coeff->iesu+4);
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->iesu+5, &Coeff->iesu+6, Coeff->iesu+7,
-											   Coeff->iesu+8, &Coeff->iesu+9);
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->iesu, Coeff->iesu+1, Coeff->iesu+2,
+											   Coeff->iesu+3, Coeff->iesu+4));
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->iesu+5, Coeff->iesu+6, Coeff->iesu+7,
+											   Coeff->iesu+8, Coeff->iesu+9));
 		// Read the line "xesu(13,76,2)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 	
 		// Read 79 lines into the array A
 		for(n=0; n<110; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 
 		// Reshape A into the Coeff structure 
@@ -294,7 +325,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else { // This data is not desired
 		// Move to the next block
 		for(n=0; n<114; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -315,26 +346,26 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(7*61*2 * sizeof(double));
 
 		// Read the line "ies(10)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 2 lines into the ies array
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->ies, Coeff->ies+1, Coeff->ies+2,
-											   Coeff->ies+3, Coeff->ies+4);
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->ies+5, &Coeff->ies+6, Coeff->ies+7,
-											   Coeff->ies+8, &Coeff->ies+9);
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->ies, Coeff->ies+1, Coeff->ies+2,
+											   Coeff->ies+3, Coeff->ies+4));
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->ies+5, Coeff->ies+6, Coeff->ies+7,
+											   Coeff->ies+8, Coeff->ies+9));
 		// Read the line "xes(7,61,2)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 79 lines into the array A
 		for(n=0; n<170; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3);
+		RCGETS(line, fp); 
+		RCSCAN(4, sscanf(line, " %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3));
 
 		// Reshape A in to the Coeff structure 
 		for(i=0; i<2; i++) {
@@ -351,7 +382,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else { // This data is not desired
 		// Move to the next block
 		for(n=0; n<175; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -372,22 +403,22 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(5*55*2 * sizeof(double));
 
 		// Read the line "iels(10)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 2 lines into the iels array
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->iesl, Coeff->iesl+1, Coeff->iesl+2,
-											   Coeff->iesl+3, Coeff->iesl+4);
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->iesl+5, &Coeff->iesl+6, Coeff->iesl+7,
-											   Coeff->iesl+8, &Coeff->iesl+9);
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->iesl, Coeff->iesl+1, Coeff->iesl+2,
+											   Coeff->iesl+3, Coeff->iesl+4));
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->iesl+5, Coeff->iesl+6, Coeff->iesl+7,
+											   Coeff->iesl+8, Coeff->iesl+9));
 		// Read the line "xels(13,76,2)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 79 lines into the array A
 		for(n=0; n<110; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 
 		// Reshape A into the Coeff structure 
@@ -406,7 +437,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else { // This data is not desired
 		// Move to the next block
 		for(n=0; n<114; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -427,26 +458,26 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(13*29*2 * sizeof(double));
 
 		// Read the line "ihpo1(10)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 2 lines into the ihpo1 array
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->ihpo1, Coeff->ihpo1+1, Coeff->ihpo1+2,
-											   Coeff->ihpo1+3, Coeff->ihpo1+4);
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->ihpo1+5, &Coeff->ihpo1+6, Coeff->ihpo1+7,
-											   Coeff->ihpo1+8, &Coeff->ihpo1+9);
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->ihpo1, Coeff->ihpo1+1, Coeff->ihpo1+2,
+											   Coeff->ihpo1+3, Coeff->ihpo1+4));
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->ihpo1+5, Coeff->ihpo1+6, Coeff->ihpo1+7,
+											   Coeff->ihpo1+8, Coeff->ihpo1+9));
 		// Read the line "xhpo1(13,29,2)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 	
 		// Read 79 lines into the array A
 		for(n=0; n<150; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3);
+		RCGETS(line, fp); 
+		RCSCAN(4, sscanf(line, " %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3));
 
 		// Reshape A in to the Coeff structure 
 		for(i=0; i<2; i++) {
@@ -464,7 +495,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else { // This data is not desired
 		// Move to the next block
 		for(n=0; n<155; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -485,22 +516,22 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(9*55*2 * sizeof(double));
 
 		// Read the line "ihpo2(10)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 2 lines into the ihpo2 array
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->ihpo2, Coeff->ihpo2+1, Coeff->ihpo2+2,
-											   Coeff->ihpo2+3, Coeff->ihpo2+4);
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->ihpo2+5, &Coeff->ihpo2+6, Coeff->ihpo2+7,
-											   Coeff->ihpo2+8, &Coeff->ihpo2+9);
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->ihpo2, Coeff->ihpo2+1, Coeff->ihpo2+2,
+											   Coeff->ihpo2+3, Coeff->ihpo2+4));
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->ihpo2+5, Coeff->ihpo2+6, Coeff->ihpo2+7,
+											   Coeff->ihpo2+8, Coeff->ihpo2+9));
 		// Read the line "xhpo2(9,55,2)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 	
 		// Read 79 lines into the array A
 		for(n=0; n<198; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 
 		// Reshape A into the Coeff structure 
@@ -518,7 +549,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else { // This data is not desired
 		// Move to the next block
 		for(n=0; n<202; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -539,26 +570,26 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(9*37*2 * sizeof(double));
 
 		// Read the line "ihp(10)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 2 lines into the ihp array
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->ihp, Coeff->ihp+1, Coeff->ihp+2,
-											   Coeff->ihp+3, Coeff->ihp+4);
-		fgets(line, 256, fp); 
-		sscanf(line, " %d %d %d %d %d\n", Coeff->ihp+5, &Coeff->ihp+6, Coeff->ihp+7,
-											   Coeff->ihp+8, &Coeff->ihp+9);
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->ihp, Coeff->ihp+1, Coeff->ihp+2,
+											   Coeff->ihp+3, Coeff->ihp+4));
+		RCGETS(line, fp); 
+		RCSCAN(5, sscanf(line, " %d %d %d %d %d\n", Coeff->ihp+5, Coeff->ihp+6, Coeff->ihp+7,
+											   Coeff->ihp+8, Coeff->ihp+9));
 		// Read the line "xhp(13,76,2)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 	
 		// Read 79 lines into the array A
 		for(n=0; n<133; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf\n", A+5*n);
+		RCGETS(line, fp); 
+		RCSCAN(1, sscanf(line, " %lf\n", A+5*n));
 		
 		// Reshape A into the Coeff structure 
 		for(i=0; i<2; i++) {
@@ -576,7 +607,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else { // This data is not desired
 		// Move to the next block
 		for(n=0; n<138; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -595,16 +626,16 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(29*16*6 * sizeof(double));
 
 		// Read the line "fakp(29,16,6)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 556 lines into the array A
 		for(n=0; n<556; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3);
+		RCGETS(line, fp); 
+		RCSCAN(4, sscanf(line, " %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3));
 		
 		// Reshape A into the Coeff structure 
 		for(i=0; i<6; i++) {
@@ -622,7 +653,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else {// This data is not desired
 		// Move to the next block
 		for(n=0; n<558; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 
@@ -639,16 +670,16 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(2*6 * sizeof(double));
 
 		// Read the line "fakabp(2,6)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 2 lines into the array A
 		for(n=0; n<2; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf %lf\n", A+5*n, A+5*n+1);
+		RCGETS(line, fp); 
+		RCSCAN(2, sscanf(line, " %lf %lf\n", A+5*n, A+5*n+1));
 		
 		// Reshape A into the Coeff structure 
 		for(j=0; j<6; j++) {
@@ -664,7 +695,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else {// This data is not desired
 		// Move to the next block
 		for(n=0; n<4; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -683,12 +714,12 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(5*12*5 * sizeof(double));
 
 		// Read the line "dud(5,12,5)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 60 lines into the array A
 		for(n=0; n<60; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		
 		// Reshape A into the Coeff structure 
@@ -707,7 +738,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else {// This data is not desired
 		// Move to the next block
 		for(n=0; n<61; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -723,16 +754,16 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(12*14 * sizeof(double));
 
 		// Read the line "fam(14,12)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 33 lines into the array A
 		for(n=0; n<33; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2);
+		RCGETS(line, fp); 
+		RCSCAN(3, sscanf(line, " %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2));
 		
 		// Reshape A into the Coeff structure 
 		for(j=0; j<12; j++) {
@@ -748,7 +779,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else {// This data is not desired
 		// Move to the next block
 		for(n=0; n<35; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -767,16 +798,16 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(9*16*6 * sizeof(double));
 
 		// Read the line "sys1(9,16,6)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 172 lines into the array A
 		for(n=0; n<172; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3);
+		RCGETS(line, fp); 
+		RCSCAN(4, sscanf(line, " %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3));
 		
 		// Reshape A into the Coeff structure 
 		for(i=0; i<6; i++) {
@@ -794,7 +825,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else {// This data is not desired
 		// Move to the next block
 		for(n=0; n<174; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -813,16 +844,16 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(9*16*6 * sizeof(double));
 
 		// Read the line "sys2(9,16,6)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 172 lines into the array A
 		for(n=0; n<172; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3);
+		RCGETS(line, fp); 
+		RCSCAN(4, sscanf(line, " %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3));
 		
 		// Reshape A into the Coeff structure 
 		for(i=0; i<6; i++) {
@@ -840,7 +871,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else {// This data is not desired
 		// Move to the next block
 		for(n=0; n<174; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -859,16 +890,16 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(9*4*6 * sizeof(double));
 
 		// Read the line "perr(9,4,6)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 43 lines into the array A
 		for(n=0; n<43; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf\n", A+5*n);
+		RCGETS(line, fp); 
+		RCSCAN(1, sscanf(line, " %lf\n", A+5*n));
 		
 		// Reshape A into the Coeff structure 
 		for(i=0; i<6; i++) {
@@ -886,7 +917,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else {// This data is not desired
 		// Move to the next block
 		for(n=0; n<45; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -905,16 +936,16 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(6*16*6 * sizeof(double));
 
 		// Read the line "f2d(16,6,6)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 115 lines into the array A
 		for(n=0; n<115; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf\n", A+5*n);
+		RCGETS(line, fp); 
+		RCSCAN(1, sscanf(line, " %lf\n", A+5*n));
 		
 		// Reshape A into the Coeff structure 
 		for(i=0; i<6; i++) {
@@ -932,7 +963,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else {// This data is not desired
 		// Move to the next block
 		for(n=0; n<117; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -951,16 +982,16 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(8*7*6 * sizeof(double));
 
 		// Read the line "pko(8,7,6)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 67 lines into the array A
 		for(n=0; n<67; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf\n", A+5*n);
+		RCGETS(line, fp); 
+		RCSCAN(1, sscanf(line, " %lf\n", A+5*n));
 		
 		// Reshape A into the Coeff structure 
 		for(i=0; i<6; i++) {
@@ -978,7 +1009,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else {// This data is not desired
 		// Move to the next block
 		for(n=0; n<69; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -997,16 +1028,16 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(8*7*6 * sizeof(double));
 
 		// Read the line "slp(8,7,6)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 67 lines into the array A
 		for(n=0; n<67; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf\n", A+5*n);
+		RCGETS(line, fp); 
+		RCSCAN(1, sscanf(line, " %lf\n", A+5*n));
 		
 		// Reshape A into the Coeff structure 
 		for(i=0; i<6; i++) {
@@ -1024,7 +1055,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else {// This data is not desired
 		// Move to the next block
 		for(n=0; n<69; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 	//************************************************************************************
@@ -1043,16 +1074,16 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 		A = (double*) malloc(8*7*6 * sizeof(double));
 
 		// Read the line "ccr(8,7,6)"
-		fgets(line, 256, fp);
+		RCGETS(line, fp);
 
 		// Read 67 lines into the array A
 		for(n=0; n<67; n++) {
-			fgets(line, 256, fp); 
-			sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4);
+			RCGETS(line, fp); 
+			RCSCAN(5, sscanf(line, " %lf %lf %lf %lf %lf\n", A+5*n, A+5*n+1, A+5*n+2, A+5*n+3, A+5*n+4));
 		};
 		// Read the last partial line
-		fgets(line, 256, fp); 
-		sscanf(line, " %lf\n", A+5*n);
+		RCGETS(line, fp); 
+		RCSCAN(1, sscanf(line, " %lf\n", A+5*n));
 		
 		// Reshape A into the Coeff structure 
 		for(i=0; i<6; i++) {
@@ -1070,7 +1101,7 @@ void ReadCoeff(struct IonoCoeff *Coeff, int month, long What2Read) {
 	else {// This data is not desired
 		// Move to the next block
 		for(n=0; n<69; n++) {
-			fgets(line, 256, fp); 
+			RCGETS(line, fp); 
 		};
 	};
 

@@ -190,11 +190,6 @@
 #define TXTORX	1
 #define RXTOTX  2
 
-// Testing
-// E Layer Screening switch
-#define NOELAYERSCREENING TRUE
-// Testing
-
 // End #define ************************************************************************************
 
 

@@ -27,63 +27,85 @@ int AllocateNoiseMemory(
             None
      */
 
-    double ***fakp;
-    double **fakabp;
-    double **fam;
-    double ***dud;
-
     int m, n;
 
+    // Every array is created with calloc() so that the child pointers are NULL
+    // until they are successfully allocated. That allows FreeNoiseMemory() to
+    // release a partially built structure if any allocation below fails.
+    noiseP->fakp = NULL;
+    noiseP->fakabp = NULL;
+    noiseP->fam = NULL;
+    noiseP->dud = NULL;
+
     // Create the fakp array.
-    fakp = (double***)malloc(6 * sizeof(double**));
+    noiseP->fakp = (double***)calloc(6, sizeof(double**));
+    if (noiseP->fakp == NULL) {
+        FreeNoiseMemory(noiseP);
+        return RTN_ERRALLOCATEFAKP;
+    }
     for (n = 0; n < 6; n++) {
-        fakp[n] = (double**)malloc(16 * sizeof(double*));
+        noiseP->fakp[n] = (double**)calloc(16, sizeof(double*));
+        if (noiseP->fakp[n] == NULL) {
+            FreeNoiseMemory(noiseP);
+            return RTN_ERRALLOCATEFAKP;
+        }
         for (m = 0; m < 16; m++) {
-            fakp[n][m] = (double*)malloc(29 * sizeof(double));
+            noiseP->fakp[n][m] = (double*)calloc(29, sizeof(double));
+            if (noiseP->fakp[n][m] == NULL) {
+                FreeNoiseMemory(noiseP);
+                return RTN_ERRALLOCATEFAKP;
+            }
         }
     }
 
     // Create the fakabp array.
-    fakabp = (double**)malloc(6 * sizeof(double*));
+    noiseP->fakabp = (double**)calloc(6, sizeof(double*));
+    if (noiseP->fakabp == NULL) {
+        FreeNoiseMemory(noiseP);
+        return RTN_ERRALLOCATEFAKABP;
+    }
     for (m = 0; m < 6; m++) {
-        fakabp[m] = (double*)malloc(2 * sizeof(double));
+        noiseP->fakabp[m] = (double*)calloc(2, sizeof(double));
+        if (noiseP->fakabp[m] == NULL) {
+            FreeNoiseMemory(noiseP);
+            return RTN_ERRALLOCATEFAKABP;
+        }
     }
 
     // Create the dud array.
-    dud = (double***)malloc(5 * sizeof(double**));
+    noiseP->dud = (double***)calloc(5, sizeof(double**));
+    if (noiseP->dud == NULL) {
+        FreeNoiseMemory(noiseP);
+        return RTN_ERRALLOCATEDUD;
+    }
     for (n = 0; n < 5; n++) {
-        dud[n] = (double**)malloc(12 * sizeof(double*));
+        noiseP->dud[n] = (double**)calloc(12, sizeof(double*));
+        if (noiseP->dud[n] == NULL) {
+            FreeNoiseMemory(noiseP);
+            return RTN_ERRALLOCATEDUD;
+        }
         for (m = 0; m < 12; m++) {
-            dud[n][m] = (double*)malloc(5 * sizeof(double));
+            noiseP->dud[n][m] = (double*)calloc(5, sizeof(double));
+            if (noiseP->dud[n][m] == NULL) {
+                FreeNoiseMemory(noiseP);
+                return RTN_ERRALLOCATEDUD;
+            }
         }
     }
 
     // Create the fam array.
-    fam = (double**)malloc(12 * sizeof(double*));
-    for (m = 0; m < 12; m++) {
-        fam[m] = (double*)malloc(14 * sizeof(double));
-    }
-
-    // Check for NULLs and save the pointers to the path structure.
-    if (dud != NULL)
-        noiseP->dud = dud;
-    else
-        return RTN_ERRALLOCATEDUD;
-
-    if (fam != NULL)
-        noiseP->fam = fam;
-    else
+    noiseP->fam = (double**)calloc(12, sizeof(double*));
+    if (noiseP->fam == NULL) {
+        FreeNoiseMemory(noiseP);
         return RTN_ERRALLOCATEFAM;
-
-    if (fakp != NULL)
-        noiseP->fakp = fakp;
-    else
-        return RTN_ERRALLOCATEFAKP;
-
-    if (fakabp != NULL)
-        noiseP->fakabp = fakabp;
-    else
-        return RTN_ERRALLOCATEFAKABP;
+    }
+    for (m = 0; m < 12; m++) {
+        noiseP->fam[m] = (double*)calloc(14, sizeof(double));
+        if (noiseP->fam[m] == NULL) {
+            FreeNoiseMemory(noiseP);
+            return RTN_ERRALLOCATEFAM;
+        }
+    }
 
     return RTN_ALLOCATEP372OK;
 }
@@ -107,35 +129,53 @@ int FreeNoiseMemory(
 
     int m, n;
 
+    // Each pointer is checked before it is dereferenced so that this routine can
+    // also clean up a structure that AllocateNoiseMemory() only partially built.
+    // Freed pointers are set to NULL so that a second call is harmless.
+
     // Free DUD
-    for (n = 0; n < 5; n++) {
-        for (m = 0; m < 12; m++) {
-            free(noiseP->dud[n][m]);
+    if (noiseP->dud != NULL) {
+        for (n = 0; n < 5; n++) {
+            if (noiseP->dud[n] == NULL) continue;
+            for (m = 0; m < 12; m++) {
+                free(noiseP->dud[n][m]);
+            }
+            free(noiseP->dud[n]);
         }
-        free(noiseP->dud[n]);
+        free(noiseP->dud);
+        noiseP->dud = NULL;
     }
-    free(noiseP->dud);
 
     // Free FAM
-    for (m = 0; m < 12; m++) {
-        free(noiseP->fam[m]);
+    if (noiseP->fam != NULL) {
+        for (m = 0; m < 12; m++) {
+            free(noiseP->fam[m]);
+        }
+        free(noiseP->fam);
+        noiseP->fam = NULL;
     }
-    free(noiseP->fam);
 
     // Free FAKP
-    for (n = 0; n < 6; n++) {
-        for (m = 0; m < 16; m++) {
-            free(noiseP->fakp[n][m]);
+    if (noiseP->fakp != NULL) {
+        for (n = 0; n < 6; n++) {
+            if (noiseP->fakp[n] == NULL) continue;
+            for (m = 0; m < 16; m++) {
+                free(noiseP->fakp[n][m]);
+            }
+            free(noiseP->fakp[n]);
         }
-        free(noiseP->fakp[n]);
+        free(noiseP->fakp);
+        noiseP->fakp = NULL;
     }
-    free(noiseP->fakp);
 
     // Free fakabp
-    for (m = 0; m < 6; m++) {
-        free(noiseP->fakabp[m]);
+    if (noiseP->fakabp != NULL) {
+        for (m = 0; m < 6; m++) {
+            free(noiseP->fakabp[m]);
+        }
+        free(noiseP->fakabp);
+        noiseP->fakabp = NULL;
     }
-    free(noiseP->fakabp);
 
     return RTN_NOISEFREED;
 }

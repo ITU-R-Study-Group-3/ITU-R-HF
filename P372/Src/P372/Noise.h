@@ -67,6 +67,8 @@
 #define RTN_NOISEMANMADEOK 25
 // MakeNoise() Stand alone P372 caller.
 #define RTN_MAKENOISEOK 26
+// P533.c LoadP372() resolved the P372 entry points.
+#define RTN_P372LOADOK 27
 /* End Defines */
 
 /* Struct Definitions */
